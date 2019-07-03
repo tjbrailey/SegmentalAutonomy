@@ -1,0 +1,84 @@
+ID,Unique ID,Region,Country,Country name,Incompatibility,Sign A,Sign B,PA name,PA year,PA date,POLPACT end,Transitional,POLPACT,MILPACT,TERRPACT,POLPACT 1,POLPACT 2,POLPACT 3,POLFULL,POLDATE,POLIMPDUR,POLDATA,MILPACT 1,MILPACT 2,MILPACT 3,MILFULL,MILDATE,MILIMPDUR,MILDATA,TERRPACT 1,TERRPACT 2,TERRPACT 3,TERRFULL,TERRDATE,TERRIMPDUR,TERRDATA
+1,1,2,1,Afghanistan,Government,Government of Afghanistan,"H-Islami, H-Wadat",Islamabad Accord,1993,1993-03-07,,1,1,0,0,1,1,1,1,June 1993,3,1,,,,,,,,,,,,,,
+1,2,2,1,Afghanistan,Government,Government of Afghanistan,H-Islami,Jalalabad Accord,1993,1993-05-20,,1,1,0,0,1,1,1,1,June 1993,1,1,,,,,,,,,,,,,,
+1,3,2,1,Afghanistan,Government,Government of Afghanistan,H-Islami,Mahipar Agreement,1996,1996-05-24,,1,1,0,0,1,1,1,1,July 1996,2,1,,,,,,,,,,,,,,
+2,4,1,2,Angola,Government,Government of Angola,UNITA,The Bicesse Accords,1991,1991-05-31,,0,0,1,0,,,,,,,,0,2,2,0,September 1992,16,1,,,,,,,
+2,5,1,2,Angola,Government,Government of Angola,UNITA,Lusaka Protocol,1994,1994-11-20,2006,1,1,1,1,0,1,1,0,April 1997,29,1,0,2,2,0,June 1996,19,1,0,0,0,0,no,no,0
+2,6,1,2,Angola,Government,Government of Angola,UNITA,Luenda MoU,2002,2002-04-04,,1,1,1,1,1,1,1,1,November 2002,7,1,0,0,1,1,August 2002,4,1,0,1,0,0,June 2003,14,0
+3,7,2,3,Bangladesh (Chittagong Hill Tracts),Territory,Government of Bangladesh,JSS/SB,Chittagong Hill Tracts Treaty,1997,1997-12-02,,0,1,0,1,1,1,1,1,July 1998,7,1,,,,,,,,0,1,1,1,May 1998,5,1
+4,8,3,4,Bosnia-Herzegovina (Croat),Territory,Government of Bosnia-Herzegovina,Croatian Republic of Bosnia and Herzegovina,Washington Agreement,1994,1994-03-01,,0,1,1,1,1,1,1,1,June 1994,3,1,0,1,2,0,September 1994,6,1,0,1,1,1,November 1995,20,0
+5,9,3,4,Bosnia-Herzegovina (Serb),Territory,Government of Bosnia-Herzegovina,"Serbian Republic of Bosnia (Republika Srpska), Serbian irregulars",Dayton Agreement,1995,1995-11-21,,0,1,1,1,1,1,1,1,November 1996,12,0,1,0,0,1,November 1995,0,1,0,1,1,1,November 1995,0,1
+6,10,1,5,Burundi,Government,"Government of Burundi, ","Palipehutu, Frolina, CNDD",Arusha Peace and Reconciliation Agreement for Burundi,2000,2000-08-28,October 2004,1,1,1,0,1,1,1,1,November 2001,15,1,0,0,2,0,-99,-99,0,,,,,,,
+6,11,1,5,Burundi,Government,"Government of Burundi, ",CNDD-FDD,Accord du Cezzez-le-feu entre le Gouvernement de Transition du Burundi et le CNDD-FDD,2002,2002-12-02,October 2004,1,1,1,0,1,1,1,1,December 2003,12,1,0,1,2,0,December 2003,12,1,,,,,,,
+6,12,1,5,Burundi,Government,"Government of Burundi, ",CNDD-FDD,The Global Ceasefire agreement between Transitional Government and the Forces pour la defence de la democratie (CNDD-FDD),2003,2003-11-16,November 2004,1,1,1,0,1,1,1,1, December 2003,1,1,0,1,2,0,December 2003,1,1,,,,,,,
+7,13,2,6,Cambodia,Government,Government of Cambodia,"KR, KPNLF, FUNCINPEC",Paris Agreement,1991,1991-10-23,June 1993,1,1,0,0,1,1,1,1, December 1991,1,1,,,,,,,,,,,,,,
+8,14,1,7,Chad,Government,Government of Chad,FNT,El Geneina Agreement,1992,1992-10-31,,0,0,1,0,,,,,,,,0,0,2,0,November 1992,1,0,,,,,,,
+8,15,1,7,Chad,Government,Government of Chad,CNR,Tripoli 1 Agreement,1993,1993-10-16,,0,0,1,0,,,,,,,,0,-99,-99,-99,-99,-99,0,,,,,,,
+8,16,1,7,Chad,Government,Government of Chad,CSNPD,Bangui-2 Agreement,1994,1994-08-10,,0,0,1,0,,,,,,,,0,0,1,1,February 1995,6,0,,,,,,,
+8,17,1,7,Chad,Government,Government of Chad,FNT,Abeche Agreement,1994,1994-10-12,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+8,18,1,7,Chad,Government,Government of Chad,MDD,The Dougia Accord,1995,1995-11-22,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+8,19,1,7,Chad,Government,Government of Chad,FNT,National Reconciliation Agreement,1997,1997-10-03,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+8,20,1,7,Chad,Government,Government of Chad,FARF,The Donya Agreement,1998,1998-05-07,,0,0,1,0,,,,,,,,0,0,1,1,January 1999,8,0,,,,,,,
+8,21,1,7,Chad,Government,Government of Chad,MDD,Reconciliation Agreement,1999,1999-07-03,,0,0,1,0,,,,,,,,0,-99,-99,-99,-99,-99,0,,,,,,,
+8,22,1,7,Chad,Government,Government of Chad,MDJT,Tripoli 2 Agreement,2002,2002-01-07,,0,1,1,0,0,0,0,0,no,no,1,0,0,2,0,September 2003,20,0,,,,,,,
+9,23,4,8,Colombia,Government,Government of Colombia,EPL,Acuerdo Final Gobierno Nacional-Ejército Popular de Liberacion,1991,1991-02-15,,0,1,0,0,1,1,1,1,February 1991,0,1,,,,,,,,,,,,,,
+10,24,1,9,Comoros (Anjouan),Territory,Government of Comoros,"MPA Govt of Anjouan, ",The Famboni Declaration,2000,2000-08-26,,0,0,0,1,,,,,,,,,,,,,,,0,0,0,0,-99,-99,0
+10,25,1,9,Comoros (Anjouan),Territory,Government of Comoros,"MPA Govt of Anjouan, ",The Famboni II Agreement,2001,2001-02-17,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,July 2004,41,1
+10,26,1,9,Comoros (Anjouan),Territory,Government of Comoros,"MPA Govt of Anjouan, ",Agreement on the Transitional Arrangements in the Comoros,2003,2003-12-20,April 2004,1,1,0,1,1,1,1,1,January 2004,1,1,,,,,,,,0,1,1,1,July 2004,7,1
+11,27,1,10,Congo,Government,Government of Congo,"Ninja, Nitsoulious, Cocoyes",Accord de Cessez-le-Feu et de Cessation des Hostilités,1999,1999-12-29,,0,0,1,0,,,,,,,,0,0,2,0,January 2000,1,0,,,,,,,
+12,28,3,11,Croatia (Serb),Territory,Government of Croatia,"Serbian Republic of Krajina, Serbian irregulars",The Erdut Agreement,1995,1995-11-12,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,May 1997,18,1
+13,29,1,12,Democratic Republic of Congo,Government ,Government of DRC,"RCD, RCD-ML, MLC",Lusaka Accord,1999,1999-07-10,,0,0,1,0,,,,,,,,0,2,2,0,October 2003,52,1,,,,,,,
+13,30,1,12,Democratic Republic of Congo,Government,Government of DRC,"RCD-ML, MLC",Political agreement on consensual management of the transition in the Democratic Republic of the Congo,2002,2002-04-16,,1,1,1,0,0,0,0,0,no,no,1,0,2,2,0,October 2003,18,1,,,,,,,
+13,31,1,12,Democratic Republic of Congo,Government,Government of DRC,"RCD, RCD-ML, MLC",Global and Inclusive Agreement on Transition in the DRC,2002,2002-12-17,August 2006,1,1,1,0,1,1,1,1,August 2003,8,1,0,2,2,0,October 2003,10,1,,,,,,,
+13,32,1,12,Democratic Republic of Congo,Government,Government of DRC,"RCD, RCD-ML, MLC",Inter-Congolese Political Negotiations - The Final Act,2003,2003-04-02,August 2006,1,1,1,0,1,1,1,1,August 2003,4,1,0,2,2,0,October 2003,6,1,,,,,,,
+14,33,1,13,Djibouti,Government,Government of Djibouti,FRUD,Accord de paix et de la reconciliation nationale,1994,1994-12-26,,0,0,1,1,,,,,,,,0,0,1,1,March 1996,15,0,0,0,0,0,no,no,1
+14,34,1,13,Djibouti,Government,Government of Djibouti,FRUD Faction,Accord Cadre de Reforme et de Concorde Civile,2000,2000-02-07,,0,0,1,1,,,,,,,,0,0,1,1,June 2001,16,0,0,1,1,1,September 2002,31,1
+14,35,1,13,Djibouti,Government,Government of Djibouti,FRUD Faction,Accord de Reforme et Concorde Civile,2001,2001-05-12,,0,0,1,1,,,,,,,,0,0,1,1,June 2001,1,0,0,1,1,1,September 2002,16,1
+15,36,4,14,El Salvador,Government,Government of El Salvador,FMLN,The Chapultepec Peace Agreement,1992,1992-01-16,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+16,37,3,15,Georgia (Abkhazia),Territory,Government of Georgia,Abkhazia,Declaration on measures for a political settlement of the Georgian/Abkhaz conflict,1994,1994-04-04,,0,0,0,1,,,,,,,,,,,,,,,1,0,0,1,April 1994,0,1
+17,38,4,16,Guatemala,Government,Government of Guatemala,URNG,"The Agreement on the Implementation, Compliance and Verification Timetable for the Peace Agreements",1996,1996-12-29,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,September 1997,9,1
+18,39,1,17,Guinea-Bissau,Government,Government of Guinea-Bissau,"Military junta for the consolidation of democracy, peace and justice",Abuja Peace Agreement,1998,1998-11-01,,1,1,0,0,1,1,1,1,April 1999,2,1,,,,,,,,,,,,,,
+19,40,2,18,India (Bodoland),Territory,Government of India,ABSU,"Bodoland Autonomous Council Act, 1993",1993,1993-02-20,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,May 1993,3,1
+20,41,2,18,India (Tripura),Territory,Government of India,ATTF,Memorandum of Settlement - 23 August 1993,1993,1993-08-23,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+21,42,2,19,Indonesia (Aceh),Territory,Government of Indonesia,GAM,Cessation of Hostilities Framework Agreement,2002,2002-12-09,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,December 2002,0,0
+22,43,5,20,Israel (Palestine),Territory,Government of Israel,Fatah,Declaration of Principles on Interrim Self-Government Arrangement,1993,1993-09-13,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0, December 1994,15,1
+22,44,5,20,Israel (Palestine),Territory,Government of Israel,Fatah,Agreement on the Gaza Strip and the Jericho Area,1994,1994-05-04,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1, December 1994,7,1
+22,45,5,20,Israel (Palestine),Territory,Government of Israel,Fatah,Agreement on Preparatory Transfer of Powers and Responsibilites,1994,1994-08-29,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1, December 1994,4,1
+22,46,5,20,Israel (Palestine),Territory,Government of Israel,Fatah,Israeli-Palestinian Interim Agreement on the West Bank and the Gaza Strip,1995,1995-09-28,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,December 1995,3,1
+22,47,5,20,Israel (Palestine),Territory,Government of Israel,"Fatah, PNA",Protocol on Redeployment in Hebron,1997,1997-01-15,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,January 1997,0,1
+22,48,5,20,Israel (Palestine),Territory,Government of Israel,"Fatah, PNA",The Wye River Memorandum,1998,1998-10-23,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,November 1998,1,1
+23,49,1,21,Ivory Coast,Government,Government of Ivory Coast,"MPCI, MJP, MPIGO",Linas-Marcoussis Accord,2003,2003-01-23,,1,1,0,0,1,1,1,1,August 2004,19,1,,,,,,,,,,,,,,
+23,50,1,21,Ivory Coast,Government,Government of Ivory Coast,"MPCI, MJP, MPIGO",Accra II,2003,2003-03-07,,1,1,0,0,1,1,1,1,August 2004,17,1,,,,,,,,,,,,,,
+23,51,1,21,Ivory Coast,Government,Government of Ivory Coast,"MPCI, MJP, MPIGO",Accra III,2004,2004-07-30,,1,1,0,0,1,1,1,1,August 2004,1,1,,,,,,,,,,,,,,
+24,52,1,22,Liberia,Government,Government of Liberia,"NPFL, INPFL",Bamako Ceasefire Agreement,1990,1990-11-28,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+24,53,1,22,Liberia,Government,Government of Liberia,"NPFL, INPFL",Banjul IV Agreement,1990,1990-12-21,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+24,54,1,22,Liberia,Government,Government of Liberia,"NPFL, INPFL",Lome agreement,1991,1991-02-13,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+24,55,1,22,Liberia,Government,Government of Liberia,NPFL,Yamoussoukro IV Peace Agreement,1991,1991-10-30,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+24,56,1,22,Liberia,Government,Government of Liberia,"NPFL, (ULIMO-J)",Cotonou Agreement,1993,1993-07-25,1997-07-19,1,1,0,0,1,1,1,1,May 1994,10,1,,,,,,,,,,,,,,
+24,57,1,22,Liberia,Government,Government of Liberia,NPFL,Akosombo Agreement,1994,1994-09-12,,1,1,0,0,0,0,0,0,no,no,1,,,,,,,,,,,,,,
+24,58,1,22,Liberia,Government,Government of Liberia,NPFL,Abuja Peace Agreement,1995,1995-08-19,1997-07-19,1,1,0,0,1,1,1,1,September 1995,1,1,,,,,,,,,,,,,,
+24,59,1,22,Liberia,Government,Government of Liberia,NPFL,Abuja II,1996,1996-08-17,1997-07-19,1,1,0,0,1,1,1,1,September 1996,1,1,,,,,,,,,,,,,,
+24,60,1,22,Liberia,Government,Government of Liberia,"LURD, (MODEL)",Comprehensive Peace Agreement Between the Government of Liberia and the Liberians United for Reconciliation and Democracy and the Movement for Democracy in Liberia and Political Parties,2003,2003-08-18,October 2005,1,1,0,0,1,1,1,1,October 2003,2,1,,,,,,,,,,,,,,
+25,61,3,23,Macedonia,Government,Government of Macedonia,UCK,Ohrid Agreement,2001,2001-08-13,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,July 2005,47,1
+26,62,1,24,Mali (Azawad),Territory,Government of Mali,"MPA, (FIAA)",Tamanrasset Accord,1991,1991-01-06,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+26,63,1,24,Mali (Azawad),Territory,Government of Mali,"MPA, (FIAA)",Pacte National,1992,1992-04-11,,0,1,1,1,1,1,1,1,June 1992,2,1,0,0,2,0,February 1993,10,0,0,0,0,0,no,no,0
+27,64,4,25,Mexico,Government,Government of Mexico,EZLN,San Andrés Accords,1996,1996-02-16,,0,1,0,1,0,0,0,0,no,no,1,,,,,,,,0,0,0,0,no,no,1
+28,65,3,26,Moldova,Territory,Government of Moldova,Dniestr Republic,Memorandum on the Basis for Normalization of Relations between the Republic of Moldova and Transdniestria,1997,1997-05-08,,0,0,1,1,,,,,,,,1,0,0,1,May 1997,0,1,1,0,0,1,May 1997,0,1
+29,66,1,27,Mozambique,Government,Government of Mozambique,RENAMO,The Acordo Geral de Paz,1992,1992-10-04,,0,0,1,0,,,,,,,,0,1,1,1,August 1994,10,1,,,,,,,
+30,67,1,28,Niger (Air and Azawad),Territory,Government of Niger,FLAA,The Paris Accord,1993,1993-06-10,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+30,68,1,28,Niger (Air and Azawad),Territory,Government of Niger,CRA,Ouagadougou Accord,1994,1994-10-09,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,1995,"""""",0
+30,69,1,28,Niger (Air and Azawad),Territory,Government of Niger,CRA/ORA,Accord etablissant une paix définitive entre le gouvernement de la republique du Niger et lórganisation de la résistance armée,1995,1995-04-15,,0,0,1,1,,,,,,,,0,0,2,0,September 1995,5,1,0,1,0,0,1995,"""""",0
+31,70,2,29,Papua New Guinea (Bougainville),Territory,Government of Papua New Guinea,BRA,Bougainville Peace Agreement,2001,2001-08-30,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,December 2004,40,1
+32,71,2,30,Philippines (Mindanao),Territory,Government of the Philippines,MNLF,Peace Agreement with the Moro National Front,1996,1996-09-02,,0,0,1,1,,,,,,,,0,0,2,0,November 1996,2,1,0,1,1,1,August 2001,59,1
+33,72,1,31,Rwanda,Government,Government of Rwanda,FPR,Arusha Accords,1993,1993-08-04,,1,1,1,0,0,0,0,0,no,no,1,0,0,0,0,No,No,1,,,,,,,
+34,73,1,32,Sierra Leone,Government,Government of Sierra Leone,RUF,Abidjan Peace Agreement,1996,1996-11-30,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
+34,74,1,32,Sierra Leone,Government,Government of Sierra Leone,RUF,Lomé Agreement,1999,1999-07-07,May 2000,1,1,0,0,1,1,1,1,November 1999,4,0,,,,,,,,,,,,,,
+34,75,1,32,Sierra Leone,Government,Government of Sierra Leone,RUF,Abuja Ceasefire Agreement,2000,2000-11-10,2002-05-14,1,1,0,0,0,0,0,0,no,no,1,,,,,,,,,,,,,,
+35,76,1,33,Somalia,Government,Government of Somalia,"USC Faction, SSDF, SPM",Addis Ababa Agreement,1993,1993-03-27,,1,1,0,0,0,0,0,0,no,no,1,,,,,,,,,,,,,,
+35,77,1,33,Somalia,Government,Government of Somalia,USC Faction,The Cairo Declaration on Somalia,1997,1997-12-22,,0,0,0,1,,,,,,,,,,,,,,,0,0,0,0,no,no,0
+36,78,1,34,Sudan (Southern Sudan),Government/Territory,Government of Sudan,SPLA Faction,Khartoum Agreement,1997,1997-04-21,,0,0,0,1,,,,,,,,,,,,,,,0,1,0,0,July 1997,3,0
+37,79,2,35,Tajikistan,Government,Government of Tajikistan,UTO,"Agreement between the President of the Republic of Tajikistan, E.S. Rakhmonov, and the leader of the United Tajik-Opposition, S.A. Huri, on the results of the meeting held in Moscow 23 December 1996",1996,1996-12-23,2000-03-26,1,1,1,0,1,1,1,1,July 1999,31,1,0,0,1,1,August 1999,32,1,,,,,,,
+37,80,2,35,Tajikistan,Government,Government of Tajikistan,UTO,Moscow Declaration,1997,1997-06-27,2000-03-26,1,1,1,0,1,1,1,1,July 1999,25,1,0,0,1,1,August 1999,26,1,,,,,,,
+38,81,1,36,Uganda,Government,Government of Uganda,UNRF II,Yumbe Peace Agreement,2002,2002-12-24,,-99,1,1,0,0,0,0,0,no,no,0,0,1,1,1,March 2003,3,1,,,,,,,
+39,82,3,37,UK (Northern Ireland),Territory,Government of United Kingdom,IRA,The Good Friday Agreement,1998,1998-04-10,,0,0,0,1,,,,,,,,,,,,,,,0,1,1,1,December 1999,20,1
+40,83,3,38,Yugoslavia (Slovenia),Territory,Government of Yugoslavia,Republic of Slovenia,The Brioni Agreement,1991,1991-07-12,,0,0,0,0,,,,,,,,,,,,,,,,,,,,,
