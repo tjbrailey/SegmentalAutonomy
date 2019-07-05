@@ -30,6 +30,7 @@ psed_prom <- out[[1]]$PSED_agreement_promises
 psed_prac <- out[[1]]$PSED_agreement_practices
 idc <- rio::import('IDC_country-year_v1_0.RData')
 impact <- rio::import('c_656154-l_1-k_impact--version2.0.csv') # IMPACT data previously in .xls. Updated to .csv.
+dtd <- rio::import('Democracy Timeseries Data January 2009 Excel2007.csv')
 
 # Clean workspace
 rm(out, files, read_excel_allsheets)
