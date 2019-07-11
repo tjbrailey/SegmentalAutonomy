@@ -12,7 +12,7 @@ library(ggplot2)
 library(ggmap)
 
 # Parse out sheets from PSED excel workbook
-files <- list.files(wd, "PSED_agreement.xlsx")
+files <- list.files(wd, 'PSED_agreement.xlsx')
 files <- files[]
 
 read_excel_allsheets <- function(filename) { 
@@ -26,11 +26,16 @@ out <- lapply(files, read_excel_allsheets)
 basename(files)
 
 # Install datasets
+ # Power-sharing-specific
 psed_prom <- out[[1]]$PSED_agreement_promises
 psed_prac <- out[[1]]$PSED_agreement_practices
 idc <- rio::import('IDC_country-year_v1_0.RData')
 impact <- rio::import('c_656154-l_1-k_impact--version2.0.csv') # IMPACT data previously in .xls. Updated to .csv.
 dtd <- rio::import('Democracy Timeseries Data January 2009 Excel2007.csv')
+epr <- rio::import('data-epr_countryyear.csv')
+  # General
+dpi <- rio::import('DPI2012.xls')
+qog <- rio::import('qog_std_cs_jan19.csv')
 
 # Clean workspace
 rm(out, files, read_excel_allsheets)
