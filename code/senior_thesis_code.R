@@ -1,5 +1,6 @@
-### Thomas Brailey Senior Thesis Code ### 
-      ### POLI 191A // POLI 191B ###
+  ### Senior Thesis Code ### 
+    ### Thomas Brailey ###
+### POLI 191A // POLI 191B ###
 
 # Set working directory
 setwd(paste0(here::here(), '/data/'))
