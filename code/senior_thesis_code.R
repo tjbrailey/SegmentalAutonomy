@@ -36,6 +36,7 @@ epr <- rio::import('data-epr_countryyear.csv')
   # General
 dpi <- rio::import('DPI2012.xls')
 qog <- rio::import('qog_std_cs_jan19.csv')
+polityiv <- rio::import('p4v2017.xls')
 
 # Clean workspace
 rm(out, files, read_excel_allsheets)
