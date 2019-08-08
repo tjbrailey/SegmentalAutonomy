@@ -36,6 +36,7 @@ dtd <- rio::import('Democracy Timeseries Data January 2009 Excel2007.csv')
 epr <- rio::import('data-epr_countryyear.csv')
 cah_pshare_and_dem <- rio::import('pshare_and_democracy_for_world_politics_publication.dta')
 cah_craft_peace <- rio::import('book_project_49_cases_long_time_version_feb_2004.dta')
+bumba <- rio::import('Bumba(peaceduration).RData')
 
   # General
 dpi <- rio::import('DPI2012.xls')
