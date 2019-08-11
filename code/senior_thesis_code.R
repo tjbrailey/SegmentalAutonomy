@@ -2,6 +2,8 @@
     ### Thomas Brailey ###
 ### POLI 191A // POLI 191B ###
 
+rm(list = ls())
+
 # Set working directory
 setwd(paste0(here::here(), '/data/'))
 wd <- paste0(here::here(), '/data/')
@@ -42,6 +44,7 @@ bumba <- rio::import('Bumba(peaceduration).RData')
 dpi <- rio::import('DPI2012.xls')
 qog <- rio::import('qog_std_cs_jan19.csv')
 polityiv <- rio::import('p4v2017.xls')
+ucdp <- rio::import('ucdp-prio-acd-191.xlsx')
 
 # Clean workspace
 rm(out, files, read_excel_allsheets)
