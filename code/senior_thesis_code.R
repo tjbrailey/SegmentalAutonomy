@@ -39,6 +39,9 @@ epr <- rio::import('data-epr_countryyear.csv')
 cah_pshare_and_dem <- rio::import('pshare_and_democracy_for_world_politics_publication.dta')
 cah_craft_peace <- rio::import('book_project_49_cases_long_time_version_feb_2004.dta')
 bumba <- rio::import('Bumba(peaceduration).RData')
+pax <- rio::import('pax_20_02_2018_1_CSV.csv')
+di <- rio::import('Diplomatic Interventions data.dta')
+dme <- rio::import('DME data.dta')
 
   # General
 dpi <- rio::import('DPI2012.xls')
