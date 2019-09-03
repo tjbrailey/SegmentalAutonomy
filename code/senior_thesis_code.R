@@ -2,7 +2,11 @@
     ### Thomas Brailey ###
 ### POLI 191A // POLI 191B ###
 
+
 rm(list = ls())
+
+
+### Install data
 
 # Set working directory
 setwd(paste0(here::here(), '/data/'))
@@ -43,7 +47,7 @@ pax <- rio::import('pax_20_02_2018_1_CSV.csv')
 di <- rio::import('Diplomatic Interventions data.dta')
 dme <- rio::import('DME data.dta')
 
-  # General
+  # General (the Y)
 dpi <- rio::import('DPI2012.xls')
 qog <- rio::import('qog_std_cs_jan19.csv')
 polityiv <- rio::import('p4v2017.xls')
@@ -53,13 +57,13 @@ ucdp <- rio::import('ucdp-prio-acd-191.xlsx')
 rm(out, files, read_excel_allsheets)
 
 
+### Join data
 
-# Join data
+# Standardize country names to COW
+#idc$country <- countrycode::countrycode(idc$gwno, 'gwn', 'cown', nomatch = NA)
+
+### Clean
 
 
 
-# Clean
-
-
-
-# Data analysis
+### Data analysis
