@@ -49,7 +49,8 @@ dme <- rio::import('DME data.dta')
 
   # General (the Y)
 dpi <- rio::import('DPI2012.xls')
-qog <- rio::import('qog_std_cs_jan19.csv')
+qog_cs <- rio::import('qog_std_cs_jan19.csv')
+qog_ts <- rio::import('qog_std_ts_jan19.csv')
 polityiv <- rio::import('p4v2017.xls')
 ucdp <- rio::import('ucdp-prio-acd-191.xlsx')
 
@@ -59,11 +60,125 @@ rm(out, files, read_excel_allsheets)
 
 ### Join data
 
-# Standardize country names to COW
-#idc$country <- countrycode::countrycode(idc$gwno, 'gwn', 'cown', nomatch = NA)
+# Set baseline for new data
+tb <- idc
+
+tb$country[tb$country == "Cent. Af. Rep."] <- "Central African Republic"
+tb$country[tb$country == "Dom. Rep."] <- "Dominican Republic"
+tb$country[tb$country == "GDR"] <- "German Democratic Republic"
+tb$country[tb$country == "PRC"] <- "China"
+tb$country[tb$country == "ROK"] <- "South Korea"
+tb$country[tb$country == "S. Africa"] <- "South Africa"
+tb$country[tb$country == "Serbia and Montenegro"] <- "Montenegro"
+
+tb <- tb[!is.na(tb$country) & !is.na(tb$ifs),]
+
+tb$cowc <- countrycode::countrycode(tb$country, 'country.name', 'cowc')
+tb$cown <- countrycode::countrycode(tb$country, 'country.name', 'cown')
+
+tb <- tb %>%
+  dplyr::select(country, cowc, cown, year, gwno, ifs, dplyr::everything())
+
+# Prepare other data
+dtd_psp_sub <- dtd %>%
+  dplyr::select(Refno,
+                Nation,
+                CCode,
+                Year,
+                Natcode,
+                NatWVS,
+                Natmap,
+                Natabrv,
+                auton,
+                Coalition,
+                coalition2,
+                coalitiongov,
+                VANstand,
+                Admin,
+                mixed,
+                proportional,
+                prDPI,
+                roseprop,
+                xrcomp
+                )
+  
+pax_psp_sub <- pax %>%
+  dplyr::select(PpsAut,
+                TpsAut,
+                PpsEx,
+                CenBan,
+                
+                PpsOro,
+                PpsOthPr,
+                StRef
+                )
+
+qog_ts_psp_sub <- qog_ts %>%
+  dplyr::select(fe_etfra,
+                iaep_ebbp,
+                dpi_pr,
+                gtm_unit,
+                ccp_hr,
+                ffp_hr,
+                iiag_phr,
+                dpi_housesys,
+                dpi_sensys,
+                jw_bicameral,
+                bti_ig,
+                vdem_partipdem,
+                iaep_nr,
+                bti_sop,
+                gol_est,
+                gol_mt,
+                iaep_es,
+                no_ef,
+                no_ce,
+                iaep_eccdt,
+                iaep_ecdl,
+                iaep_eml,
+                iaep_epmf,
+                iaep_evp,
+                iaep_lcre,
+                iaep_lego,
+                iaep_lrit,
+                wbgi_pve
+  )
+
+dpi_psp_sub <- dpi %>%
+  dplyr::select(auton,
+                pr,
+                sensys,
+                eiec
+                )
+
+impact_psp_sub <- impact %>%
+  dplyr::select(TERRPACT,
+                POLPACT
+                )
+
+psed <- dplyr::left_join(psed_prac, psed_prom)
+psed_psp_sub <- psed %>% 
+  dplyr::select(tps_autonomy,
+                other_proprep,
+                pps_cabinet,
+                pps_sencabinet,
+                pps_nsencabinet
+  )
+
+# Join data
 
 ### Clean
 
 
 
 ### Data analysis
+
+# Summary statistics
+
+# Core model 
+
+# Supplementary models 
+
+# Robustness checks
+
+# Model comparison (cPASS)
