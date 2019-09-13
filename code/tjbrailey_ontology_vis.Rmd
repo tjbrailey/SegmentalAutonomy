@@ -1,0 +1,58 @@
+---
+title: "tjbrailey_ontology_vis"
+subtitle: "POLI 191A/B"
+author: "Thomas Brailey"
+date: "12/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# piping function will break if these packages are not called.
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(ggplot2)
+```
+
+# Load Data
+```{r}
+# read in excel file. 
+psp_ont <- readxl::read_xlsx(paste0(here::here(),'/data/tjbrailey_psp_ontology.xlsx'))
+psp_ont <- dplyr::as_data_frame(psp_ont)
+
+# select relevant variables.
+psp_ont_prep <- psp_ont %>%
+  dplyr::select(child_0,
+                child_1,
+                provisions)
+```
+
+# Define Hierarchy
+```{r}
+# generate pathString as new column.
+psp_ont_prep$pathString <- paste("Power Sharing Provision",
+                             psp_ont_prep$child_0,
+                             psp_ont_prep$child_1,
+                             psp_ont_prep$provisions,
+                             sep = "|")
+
+# create list. 
+psp_tree <- data.tree::as.Node(psp_ont_prep, pathDelimiter = "|")
+print(psp_tree, limit = 15)
+
+```
+# Visualizations
+```{r}
+# pepare list for visualization. 
+psp_list <- data.tree::ToListExplicit(psp_tree, unname = TRUE)
+psp_ontology_vis <- networkD3::radialNetwork(psp_list, 
+                         fontSize = 18,
+                         width = 1000,
+                         height = 1000)
+# visualize.
+psp_ontology_vis
+```
+### Note: This ontology is a work in progress.
+```{r, include = FALSE}
+# save visualization.
+networkD3::saveNetwork(psp_ontology_vis, file = paste0(here::here(), '/vis/psp_ontology_vis'))
+```
