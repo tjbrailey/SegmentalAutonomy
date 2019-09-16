@@ -9,6 +9,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
+library(ggplot2)
 ```
 
 # Load Data
@@ -304,6 +305,8 @@ tb_3 <- dplyr::left_join(tb_2, impact_psp_sub)
 tb_4 <- dplyr::left_join(tb_3, qog_ts_psp_sub)
 tb_5 <- dplyr::left_join(tb_4, pax_psp_sub)
 tb_6 <- dplyr::left_join(tb_5, dpi_psp_sub)
+
+saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp_9-16-19.rds'))
 ```
 
 # Visualize Missingness
