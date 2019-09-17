@@ -312,9 +312,21 @@ saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp_9-16-19.rds'))
 # Visualize Missingness
 ```{r}
 DataExplorer::plot_missing(tb_6)
+
+png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
+    width = 2000,
+    height = 1000)
+DataExplorer::plot_missing(tb_6)
+dev.off()
 ```
 
 
 ```{r}
 Amelia::missmap(tb_6)
+
+png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
+    width = 2000, 
+    height = 1000)
+Amelia::missmap(tb_6)
+dev.off()
 ```
