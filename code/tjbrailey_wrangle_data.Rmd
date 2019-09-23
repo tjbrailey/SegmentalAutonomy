@@ -188,7 +188,7 @@ qog_ts_psp_sub <- qog_ts %>%
   dplyr::select(ccode, 
                 cname, 
                 year, 
-                ccodealp,
+                #ccodealp,
                 fe_etfra,
                 iaep_ebbp,
                 gtm_unit,
@@ -307,7 +307,7 @@ tb_5 <- dplyr::left_join(tb_4, pax_psp_sub)
 tb_6 <- dplyr::left_join(tb_5, dpi_psp_sub)
 
 tb_6 %>% 
-  dplyr::filter(year == "2010", country == "Vietnam")
+  dplyr::filter(year == "2010", country == "Germany")
 
 saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp_9-16-19.rds'))
 ```
