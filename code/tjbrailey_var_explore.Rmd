@@ -60,6 +60,8 @@ seg_imp <- seg_states_dat %>%
 
 seg_imp_dat <- psp %>%
   dplyr::filter(country %in% c(seg_imp))
+
+seg_imp_dat %>% dplyr::filter(pr == 1)
 ```
 
 # Visualizing Segmental Autonomy Implementation
@@ -69,7 +71,7 @@ gp1 <- ggplot(seg_imp_dat, aes(x = year, y = auton)) +
   facet_wrap(~ country) + 
   labs(x = "Year",
        y = "Segmental Autonomy (1 = Implemented, 0 = Not Present)",
-       title = "Implementation of Segmental Autonomy") + 
+       title = "Implementation of Segmental Autonomy Provisions") + 
   theme_bw()
 gp1
 
