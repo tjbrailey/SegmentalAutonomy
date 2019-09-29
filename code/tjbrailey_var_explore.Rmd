@@ -1,0 +1,78 @@
+---
+title: "tjbrailey_var_explore"
+subtitle: "POLI 191A/B"
+author: "Thomas Brailey"
+date: "27/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(ggplot2)
+```
+
+# Load Data
+```{r}
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+```
+
+# Exploration of Core Consociational Provisions
+```{r}
+# states that employ mutual veto provisions
+psp %>% 
+  dplyr::filter(mveto == 1) %>%
+  dplyr::distinct(country)
+
+# states that employ grand coalition provisions
+psp %>%
+  dplyr::filter(gcman == 1 & gcimp == 1) %>%
+  dplyr::distinct(country)
+ 
+# states that employ proportionality
+psp %>%
+  dplyr::filter(pr == 1 | 
+                  proportional == 1) %>%
+  dplyr::distinct(country)
+
+# states that employ segmental autonomy
+psp %>%
+  dplyr::filter(auton == 1) %>% 
+  dplyr::distinct(country)
+```
+
+# Exploration of Segmental Autonomy
+```{r}
+# states that have employed segmental autonomy provisions 
+seg_states <- psp %>%
+  dplyr::filter(auton == 1) %>% 
+  dplyr::distinct(country) %>%
+  dplyr::pull(country)
+
+seg_states_dat <- psp %>% 
+  dplyr::filter(country %in% c(seg_states))
+
+# states that have, between 1975 and 2010, employed segmental autonomy provisions
+seg_imp <- seg_states_dat %>%
+  dplyr::filter(auton == 0) %>%
+  dplyr::distinct(country) %>%
+  dplyr::pull(country)
+
+seg_imp_dat <- psp %>%
+  dplyr::filter(country %in% c(seg_imp))
+```
+
+# Visualizing Segmental Autonomy Implementation
+```{r}
+gp1 <- ggplot(seg_imp_dat, aes(x = year, y = auton)) +
+  geom_line() + 
+  facet_wrap(~ country) + 
+  labs(x = "Year",
+       y = "Segmental Autonomy (1 = Implemented, 0 = Not Present)",
+       title = "Implementation of Segmental Autonomy") + 
+  theme_bw()
+gp1
+
+ggsave(gp1, filename = paste0(here::here(), "/vis/seg_auton_implement.png"), units = "in",
+       width = 11, height = 7)
+```
