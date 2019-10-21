@@ -1,0 +1,18 @@
+---
+title: "tjbrailey_data_analysis"
+subtitle: "POLI 191A/B"
+author: "Thomas Brailey"
+date: "29/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(ggplot2)
+```
+
+# Load data
+```{r}
+
+```
