@@ -7,6 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
@@ -56,7 +57,7 @@ seg_states_dat <- psp %>%
 seg_imp <- seg_states_dat %>%
   dplyr::filter(auton == 0) %>%
   dplyr::distinct(country) %>%
-  dplyr::pull(country)
+  dplyr::pull()
 
 seg_imp_dat <- psp %>%
   dplyr::filter(country %in% c(seg_imp))
@@ -67,10 +68,12 @@ seg_imp_dat %>% dplyr::filter(pr == 1)
 # Visualizing Segmental Autonomy Implementation
 ```{r}
 gp1 <- ggplot(seg_imp_dat, aes(x = year, y = auton)) +
-  geom_line() + 
+  geom_point() +
+  #geom_line() + 
   facet_wrap(~ country) + 
   labs(x = "Year",
-       y = "Segmental Autonomy (1 = Implemented, 0 = Not Present)",
+       y = "Segmental Autonomy 
+       (1 = Provision Implemented, 0 = Provision Not Present)",
        title = "Implementation of Segmental Autonomy Provisions") + 
   theme_bw()
 gp1
