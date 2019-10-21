@@ -8,6 +8,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # piping function will break if these packages are not called.
+rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
@@ -44,17 +45,18 @@ print(psp_tree, limit = 15)
 ```{r}
 # pepare list for visualization. 
 psp_list <- data.tree::ToListExplicit(psp_tree, unname = TRUE)
-psp_ontology_vis <- networkD3::radialNetwork(psp_list, 
-                         fontSize = 18,
-                         textColour = "black",
-                         opacity = 0.7,
-                         width = 1000,
-                         height = 1000)
+psp_ontology_vis <- networkD3::diagonalNetwork(psp_list, 
+                         #fontSize = 18,
+                         #textColour = "black",
+                         #opacity = 0.7,
+                         width = 1200,
+                         height = 1200)
 # visualize.
 psp_ontology_vis
 ```
 ### Note: This ontology is a work in progress.
 ```{r, include = FALSE}
 # save visualization.
-networkD3::saveNetwork(psp_ontology_vis, file = paste0(here::here(), '/vis/psp_ontology_vis'))
+networkD3::saveNetwork(psp_ontology_vis, file = paste0(here::here(), '/vis/psp_ontology_vis.html'))
+webshot::webshot("file:///C:/Users/Tom%20Brailey/Dropbox/github_private/SeniorThesis/vis/psp_ontology_vis.html", paste0(here::here(), "/vis/psp_ontology_vis.png"))
 ```
