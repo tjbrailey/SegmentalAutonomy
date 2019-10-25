@@ -5,10 +5,7 @@ date: "13/09/2019"
 output:
   word_document: default
   html_document: default
-<<<<<<< HEAD
-=======
 subtitle: POLI 191A/B
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 ---
 
 ```{r setup, include=FALSE}
@@ -37,7 +34,6 @@ read_excel_allsheets <- function(filename) {
 out <- lapply(paste0(here::here(), '/data/PSED_agreement.xlsx'), read_excel_allsheets)
 basename(files)
 
-<<<<<<< HEAD
 # Install datasets.
 # Power-sharing-specific datasets.
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
@@ -45,32 +41,14 @@ dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.c
 pax <- rio::import(paste0(wd,'pax_20_02_2018_1_CSV.csv'))
 vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
-=======
-# install datasets.
-# power-sharing-specific datasets.
-#psed_prom <- out[[1]]$PSED_agreement_promises
-#psed_prac <- out[[1]]$PSED_agreement_practices
-idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
-#impact <- rio::import(paste0(wd,'c_656154-l_1-k_impact--version2.0.csv'))
-dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.csv'))
-#epr <- rio::import(paste0(wd,'data-epr_countryyear.csv'))
-#cah_pshare_and_dem <- rio::import(paste0(wd,'pshare_and_democracy_for_world_politics_publication.dta'))
-#cah_craft_peace <- rio::import(paste0(wd,'book_project_49_cases_long_time_version_feb_2004.dta'))
-#bumba <- rio::import(paste0(wd,'Bumba(peaceduration).RData'))
-pax <- rio::import(paste0(wd,'pax_20_02_2018_1_CSV.csv'))
-#di <- rio::import(paste0(wd,'Diplomatic Interventions data.dta'))
-#dme <- rio::import(paste0(wd,'DME data.dta'))
 
 # general datasets (the y value).
 vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
-#qog_cs <- rio::import(paste0(wd,'qog_std_cs_jan19.csv'))
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
 polityiv <- rio::import(paste0(wd,'p4v2017.xls'))
 ucdp <- rio::import(paste0(wd,'ucdp-prio-acd-191.xlsx'))
 wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
-<<<<<<< HEAD
 
 # Other datasets not used.
 #psed_prom <- out[[1]]$PSED_agreement_promises
@@ -84,8 +62,6 @@ wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.
 #dme <- rio::import(paste0(wd,'DME data.dta'))
 # general datasets (the y value).
 #qog_cs <- rio::import(paste0(wd,'qog_std_cs_jan19.csv'))
-=======
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 
 # Clean workspace.
 rm(out, files, read_excel_allsheets)
@@ -112,10 +88,7 @@ tb$cown <- countrycode::countrycode(tb$country, 'country.name', 'cown')
 
 # Some values were not matched unambiguously: Serbia
 
-<<<<<<< HEAD
 # Select key variables.
-=======
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 tb <- tb %>%
   dplyr::select(country, 
                 cowc, 
@@ -159,13 +132,10 @@ tb <- tb %>%
 dtd_psp_sub <- dtd %>%
   dplyr::select(Nation,
                 Year,
-<<<<<<< HEAD
-=======
                 Natcode,
                 NatWVS,
                 Natmap,
                 Natabrv,
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
                 Coalition,
                 coalition2,
                 coalitiongov,
@@ -230,21 +200,6 @@ pax_psp_sub$cowc <- countrycode::countrycode(pax_psp_sub$country, 'country.name'
 
 pax_psp_sub <- pax_psp_sub %>%
   dplyr::select(-country)
-<<<<<<< HEAD
-=======
-```
-## V-Dem
-```{r}
-vdem_psp_sub <- vdem %>%
-  dplyr::select(country_name, country_id, country_text_id, year, e_miinterc, e_civil_war) %>% 
-  dplyr::rename(country = country_name)
-vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
-vdem_psp_sub$cown <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cown')
-vdem_psp_sub$cowc <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cowc')
-
-vdem_psp_sub <- vdem_psp_sub %>%
-  dplyr::select(-country)
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 ```
 
 ## Clean V-Dem
@@ -318,10 +273,7 @@ dpi_psp_sub <- dpi %>%
   dplyr::select(countryname, 
                 year,
                 system,
-<<<<<<< HEAD
                 author,
-=======
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
                 pr,
                 sensys,
                 eiec
@@ -345,7 +297,6 @@ dpi_psp_sub <- dpi_psp_sub %>%
   dplyr::select(-country)
 ```
 
-<<<<<<< HEAD
 ## Clean World Values Survey
 ```{r}
 # Clean and select key variables.
@@ -391,85 +342,39 @@ wvs_n_per_year <- wvs_cleaned %>%
 wvs_n_by_country <- wvs_cleaned %>%
   dplyr::group_by(S020, cowc) %>%
   dplyr::summarize(obs = n())
-=======
-## World Value Survery
-```{r}
-wvs <- dplyr::as_tibble(wvs)
-
-wvs_psp_sub <- wvs %>% 
-  dplyr::select(S003, S020,
-     A035,
-     
-     A124_01, A124_02,A124_03,A124_04,A124_05,A124_06,A124_07,A124_08,A124_09,A124_10,A124_11,A124_12,A124_13,A124_14,A124_15,A124_16,A124_17,A124_18,A124_19,A124_20,A124_21,A124_22,A124_23,A124_24,A124_25,A124_27,A124_28,A124_29,A124_30,A124_31,A124_32,A124_33,A124_34,A124_35,A124_36,A124_37,A124_38,A124_42,A124_43,A124_45,A124_46,A124_47,A124_48,A124_49,A124_50,A124_51,A124_52,A124_53,A124_54,A124_55,A124_56,A124_57,A124_58,A124_59,A124_60,A124_61,
-     
-E069_11, E069_12,
-
-E114, E115, E116, E117,
-
-E124)
-
-wvs_psp_sub[wvs_psp_sub == -4] <- NA
-
-wvs_psp_sub$country <- countrycode::countrycode(wvs$S003, "iso3n", "country.name", nomatch = "unknown")
-wvs_psp_sub$cowc <- countrycode::countrycode(wvs$S003, "iso3n", "cowc")
-wvs_psp_sub$cown <- countrycode::countrycode(wvs$S003, "iso3n", "cown")
-
-wvs_psp_sub <- wvs_psp_sub %>%
-  dplyr::select(-country)
-
-
-wvs_n_per_year <- wvs_psp_sub %>%
-  dplyr::group_by(S020) %>%
-  dplyr::summarize(obs=n())
-wvs_n_by_country <- wvs_psp_sub %>%
-  dplyr::group_by(S020, cowc) %>%
-  dplyr::summarize(states = n())
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 ```
 
 # Join Data
 ```{r}
-<<<<<<< HEAD
 # Join data one-by-one. Check for discrepancies. 
-=======
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 tb_1 <- dplyr::left_join(tb, dtd_psp_sub, by = c("cown", "cowc", "year"))
 tb_2 <- dplyr::left_join(tb_1, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
 tb_3 <- dplyr::left_join(tb_2, pax_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_5 <- dplyr::left_join(tb_4, vdem_psp_sub, by = c("cown", "cowc", "year"))
-<<<<<<< HEAD
 tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
-=======
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 
 # Collapse duplicate country/years whie retaining values.
 tb_6 <- tb_5 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
-<<<<<<< HEAD
 # Save data as a .rds file.
 saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 
 # Remove intermediate join files.
 rm(tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
-=======
-saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 
-rm(tb_1, tb_2, tb_3, tb_4, tb_5)
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
+# Save new data.
+saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 ```
 
 # Visualize Data Before Recoding
 ```{r}
-<<<<<<< HEAD
 # DataExplorer missingness.
 DataExplorer::plot_missing(tb_7)
-=======
 DataExplorer::plot_missing(tb_6)
 DataExplorer::plot_histogram(tb_6)
->>>>>>> bcda0b362e5307a047248999b31ccb4cae34ecda
 
 # Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
