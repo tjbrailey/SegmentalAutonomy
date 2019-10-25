@@ -3,10 +3,13 @@ title: "tjbrailey_wrangle_data"
 subtitle: "POLI 191A/B"
 author: "Thomas Brailey"
 date: "13/09/2019"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
+rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
@@ -14,10 +17,10 @@ library(ggplot2)
 
 # Load Data
 ```{r}
-# set working directory. 
+# Set working directory. 
 wd <- paste0(here::here(), '/data/') 
 
-# parse out .xlsx worksheets 
+# Parse out .xlsx worksheets 
 files <- list.files(paste0(wd, 'PSED_agreement.xlsx'))
 files <- files[]
 
@@ -31,46 +34,41 @@ read_excel_allsheets <- function(filename) {
 out <- lapply(paste0(here::here(), '/data/PSED_agreement.xlsx'), read_excel_allsheets)
 basename(files)
 
-# install datasets.
-# power-sharing-specific datasets.
-psed_prom <- out[[1]]$PSED_agreement_promises
-psed_prac <- out[[1]]$PSED_agreement_practices
-
+# Install datasets.
+# Power-sharing-specific datasets.
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
-
-impact <- rio::import(paste0(wd,'c_656154-l_1-k_impact--version2.0.csv'))
-
 dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.csv'))
-
-epr <- rio::import(paste0(wd,'data-epr_countryyear.csv'))
-
-cah_pshare_and_dem <- rio::import(paste0(wd,'pshare_and_democracy_for_world_politics_publication.dta'))
-
-cah_craft_peace <- rio::import(paste0(wd,'book_project_49_cases_long_time_version_feb_2004.dta'))
-
-bumba <- rio::import(paste0(wd,'Bumba(peaceduration).RData'))
-
 pax <- rio::import(paste0(wd,'pax_20_02_2018_1_CSV.csv'))
-
-di <- rio::import(paste0(wd,'Diplomatic Interventions data.dta'))
-
-dme <- rio::import(paste0(wd,'DME data.dta'))
-
-# general datasets (the y value).
+vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
-qog_cs <- rio::import(paste0(wd,'qog_std_cs_jan19.csv'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
 polityiv <- rio::import(paste0(wd,'p4v2017.xls'))
 ucdp <- rio::import(paste0(wd,'ucdp-prio-acd-191.xlsx'))
+wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
 
-# clean workspace.
+# Other datasets not used.
+#psed_prom <- out[[1]]$PSED_agreement_promises
+#psed_prac <- out[[1]]$PSED_agreement_practices
+#impact <- rio::import(paste0(wd,'c_656154-l_1-k_impact--version2.0.csv'))
+#epr <- rio::import(paste0(wd,'data-epr_countryyear.csv'))
+#cah_pshare_and_dem <- rio::import(paste0(wd,'pshare_and_democracy_for_world_politics_publication.dta'))
+#cah_craft_peace <- rio::import(paste0(wd,'book_project_49_cases_long_time_version_feb_2004.dta'))
+#bumba <- rio::import(paste0(wd,'Bumba(peaceduration).RData'))
+#di <- rio::import(paste0(wd,'Diplomatic Interventions data.dta'))
+#dme <- rio::import(paste0(wd,'DME data.dta'))
+# general datasets (the y value).
+#qog_cs <- rio::import(paste0(wd,'qog_std_cs_jan19.csv'))
+
+# Clean workspace.
 rm(out, files, read_excel_allsheets)
 ```
 
 # Set Baseline Data
 ```{r}
+# Use Strom et al.'s (2017) data as baseline.
 tb <- idc
 
+# Rename unmatched countries.
 tb$country[tb$country == "Cent. Af. Rep."] <- "Central African Republic"
 tb$country[tb$country == "Dom. Rep."] <- "Dominican Republic"
 tb$country[tb$country == "GDR"] <- "German Democratic Republic"
@@ -84,6 +82,9 @@ tb <- tb[!is.na(tb$country) & !is.na(tb$ifs),]
 tb$cowc <- countrycode::countrycode(tb$country, 'country.name', 'cowc')
 tb$cown <- countrycode::countrycode(tb$country, 'country.name', 'cown')
 
+# Some values were not matched unambiguously: Serbia
+
+# Select key variables.
 tb <- tb %>%
   dplyr::select(country, 
                 cowc, 
@@ -114,22 +115,19 @@ tb <- tb %>%
                 subtax,
                 subed,
                 subpolice,
+                fedunits,
                 state,
-                muni
+                muni,
+                -ifs
                 )
 ```
 
-## DTD (Norris, 2008)
+## Clean DTD (Norris, 2008)
 ```{r}
+# Select key variables.
 dtd_psp_sub <- dtd %>%
   dplyr::select(Nation,
-                CCode,
                 Year,
-                Natcode,
-                NatWVS,
-                Natmap,
-                Natabrv,
-                auton,
                 Coalition,
                 coalition2,
                 coalitiongov,
@@ -137,19 +135,25 @@ dtd_psp_sub <- dtd %>%
                 Admin,
                 mixed,
                 proportional,
-                prDPI,
                 roseprop,
                 xrcomp
                 ) %>%
   dplyr::rename(country = Nation,
                 year = Year)
+
+# Some values were not matched unambiguously:
+
 dtd_psp_sub$country <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'country.name')
 dtd_psp_sub$cowc <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'cowc')
 dtd_psp_sub$cown <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'cown')  
+
+dtd_psp_sub <- dtd_psp_sub %>%
+  dplyr::select(-country)
 ```
 
-## PAX (Bell, C. and Badanjak, S., 2019)
+## Clean PAX (Bell, C. and Badanjak, S., 2019)
 ```{r}
+# Select key varialbes and clean.
 pax_psp_sub <- pax %>%
   dplyr::select(Con,
                 Dat,
@@ -177,26 +181,50 @@ pax_psp_sub <- pax %>%
   dplyr::ungroup() %>%
   dplyr::mutate(country = sub("\\/.*", "", country)) %>%
   dplyr::select(-Agt)
+
+# Some values were not matched unambiguously: Kurds-Kurdistan, United Nations
+# Some values were not matched unambiguously: Palestinian Territories, Serbia
+# Some values were not matched unambiguously: Palestinian Territories, Serbia
+
 pax_psp_sub$country <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'country.name')
 pax_psp_sub$cown <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'cown')
 pax_psp_sub$cowc <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'cowc')
+
+pax_psp_sub <- pax_psp_sub %>%
+  dplyr::select(-country)
 ```
 
-## QoG
+## Clean V-Dem
 ```{r}
+# Select key variables.
+vdem_psp_sub <- vdem %>%
+  dplyr::select(country_name, country_id, country_text_id, year, e_miinterc, e_civil_war) %>% 
+  dplyr::rename(country = country_name)
+
+vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
+vdem_psp_sub$cown <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cown')
+vdem_psp_sub$cowc <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cowc')
+
+vdem_psp_sub <- vdem_psp_sub %>%
+  dplyr::select(-country, -country_id, -country_text_id)
+```
+
+## Clean QoG
+```{r}
+# Select key variables and clean.
 qog_ts_psp_sub <- qog_ts %>%
-  dplyr::select(ccode, 
-                cname, 
+  dplyr::select(cname, 
                 year, 
-                #ccodealp,
                 fe_etfra,
                 iaep_ebbp,
+                gle_gdp,
+                bti_ci,
+                cspf_sfi,
                 gtm_unit,
                 ccp_hr,
                 ffp_hr,
                 iiag_phr,
                 dpi_housesys,
-                dpi_sensys,
                 jw_bicameral,
                 bti_ig,
                 vdem_partipdem,
@@ -218,27 +246,33 @@ qog_ts_psp_sub <- qog_ts %>%
                 wbgi_pve
   ) %>%
   dplyr::rename(country = cname)
+
 qog_ts_psp_sub$country[qog_ts_psp_sub$country == "Micronesia"] <- "Federated States of Micronesia"
 qog_ts_psp_sub$country[qog_ts_psp_sub$country == "Serbia and Montenegro"] <- "Montenegro"
 qog_ts_psp_sub$country <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'country.name')
+
 qog_ts_psp_sub$cown <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cown')
 qog_ts_psp_sub$cowc <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cowc')
+
+qog_ts_psp_sub <- qog_ts_psp_sub %>%
+  dplyr::select(-country)
 ```
 
-## DPI
+## Clean DPI
 ```{r}
+# Select key variables.
 dpi_psp_sub <- dpi %>%
   dplyr::select(countryname, 
-                ifs, 
                 year,
                 system,
-                auton,
+                author,
                 pr,
                 sensys,
                 eiec
                 ) %>%
   dplyr::rename(country = countryname) %>%
   dplyr::mutate(year = as.numeric(year))
+
 dpi_psp_sub$country[dpi_psp_sub$country == "Cent. Af. Rep."] <- "Central African Republic"
 dpi_psp_sub$country[dpi_psp_sub$country == "Dom. Rep."] <- "Dominican Republic"
 dpi_psp_sub$country[dpi_psp_sub$country == "GDR"] <- "German Democratic Republic"
@@ -246,79 +280,90 @@ dpi_psp_sub$country[dpi_psp_sub$country == "PRC"] <- "China"
 dpi_psp_sub$country[dpi_psp_sub$country == "PRK"] <- "North Korea"
 dpi_psp_sub$country[dpi_psp_sub$country == "ROK"] <- "South Korea"
 dpi_psp_sub$country[dpi_psp_sub$country == "S. Africa"] <- "South Africa"
+
 dpi_psp_sub$country <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'country.name')
 dpi_psp_sub$cowc <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'cowc')
 dpi_psp_sub$cown <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'cown')
+
+dpi_psp_sub <- dpi_psp_sub %>%
+  dplyr::select(-country)
 ```
 
-## IMPACT (Jarstad and Nilsson, 2008)
+## Clean World Values Survey
 ```{r}
-impact_psp_sub <- impact %>%
-  dplyr::select(`Country name`,
-                `PA name`,
-                `PA year`, 
-                TERRPACT,
-                POLPACT
-                ) %>%
-  dplyr::group_by(`Country name`, `PA year`, TERRPACT, POLPACT) %>%
-  dplyr::summarise(`PA name` = paste(`PA name`, collapse=", ")) %>%
-  dplyr::rename(country = `Country name`,
-                pa_name = `PA name`,
-                year = `PA year`)
-impact_psp_sub$country[impact_psp_sub$country == "Israel (Palestine)"] <- "Israel"
-impact_psp_sub$country[impact_psp_sub$country == "UK (Northern Ireland)"] <- "United Kingdom"
-impact_psp_sub$country[impact_psp_sub$country == "Yugoslavia (Slovenia)"] <- "Yugoslavia"
-impact_psp_sub$country <- countrycode::countrycode(impact_psp_sub$country, 'country.name', 'country.name')
-impact_psp_sub$cowc <- countrycode::countrycode(impact_psp_sub$country, 'country.name', 'cowc')
-impact_psp_sub$cown <- countrycode::countrycode(impact_psp_sub$country, 'country.name', 'cown')
-```
+# Clean and select key variables.
+wvs <- dplyr::as_tibble(wvs)
 
-## PSED
-```{r}
-psed <- dplyr::left_join(psed_prac, psed_prom)
-psed_psp_sub <- psed %>% 
-  dplyr::select(location,
-                GWNo,
-                PostStartDate,
-                tps_autonomy,
-                other_proprep,
-                pps_cabinet,
-                pps_sencabinet,
-                pps_nsencabinet
-  ) %>%
-  dplyr::group_by(location, PostStartDate) %>%
-  dplyr::distinct() %>%
-  dplyr::rename(country = location,
-                year = PostStartDate) %>%
+wvs_cleaned <- wvs %>% 
+  dplyr::select(S003, S018, S020,
+     A035,
+     A124_02, A124_06, A124_09, A124_12, A124_18,
+     E069_07, E069_08, E069_11, E069_12, E069_17,
+     E114, E115, E116, E117,
+     E124)
+
+wvs_cleaned[wvs_cleaned == -4] <- NA
+
+wvs_cleaned$country <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "country.name", nomatch = "unknown")
+wvs_cleaned$cowc <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cowc")
+wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cown")
+
+# Create averages for A124 and E069 variables.
+wvs_psp_sub <- wvs_cleaned %>%
+  dplyr::mutate(A124_avg = rowMeans(wvs_cleaned[,c("A124_02", "A124_06", "A124_09", "A124_12", "A124_18")], na.rm = TRUE),
+                E069_avg = rowMeans(wvs_cleaned[,c("E069_07", "E069_08", "E069_11", "E069_12", "E069_17")], na.rm = TRUE)) %>%
+  dplyr::select(country, cowc, cown, S003, S020, A035, A124_avg, E069_avg, E114, E115, E116, E117, E124) %>%
+  dplyr::group_by(country, cowc, cown, S020) %>%
+  dplyr::summarise(A035_avg = mean(A035),
+                   A124_2avg = mean(A124_avg),
+                   E069_2avg = mean(E069_avg),
+                   E114_avg = mean(E114),
+                   E115_avg = mean(E115),
+                   E116_avg = mean(E116),
+                   E117_avg = mean(E117),
+                   E124_avg = mean(E124)) %>%
+  dplyr::rename(year = S020) %>%
   dplyr::ungroup() %>%
-  dplyr::mutate(year = as.numeric(stringr::str_extract(year, "^.{4}")))
-psed_psp_sub$country <- countrycode::countrycode(psed_psp_sub$country, 'country.name', 'country.name')
-psed_psp_sub$cowc <- countrycode::countrycode(psed_psp_sub$country, 'country.name', 'cowc')
-psed_psp_sub$cown <- countrycode::countrycode(psed_psp_sub$country, 'country.name', 'cown')  
+  dplyr::select(-country)
+
+# Explore variables. 
+wvs_n_per_year <- wvs_cleaned %>%
+  dplyr::group_by(S020) %>%
+  dplyr::summarize(obs = n())
+
+wvs_n_by_country <- wvs_cleaned %>%
+  dplyr::group_by(S020, cowc) %>%
+  dplyr::summarize(obs = n())
 ```
 
 # Join Data
 ```{r}
-tb_1 <- dplyr::left_join(tb, dtd_psp_sub)
-tb_2 <- dplyr::left_join(tb_1, psed_psp_sub)
-tb_3 <- dplyr::left_join(tb_2, impact_psp_sub)
-tb_4 <- dplyr::left_join(tb_3, qog_ts_psp_sub)
-tb_5 <- dplyr::left_join(tb_4, pax_psp_sub)
-tb_6 <- dplyr::left_join(tb_5, dpi_psp_sub)
+# Join data one-by-one. Check for discrepancies. 
+tb_1 <- dplyr::left_join(tb, dtd_psp_sub, by = c("cown", "cowc", "year"))
+tb_2 <- dplyr::left_join(tb_1, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
+tb_3 <- dplyr::left_join(tb_2, pax_psp_sub, by = c("cown", "cowc", "year"))
+tb_4 <- dplyr::left_join(tb_3, dpi_psp_sub, by = c("cown", "cowc", "year"))
+tb_5 <- dplyr::left_join(tb_4, vdem_psp_sub, by = c("cown", "cowc", "year"))
+tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
 tb_7 <- tb_6 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
+# Save data as a .rds file.
 saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
+
+# Remove intermediate join files.
+rm(tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
 ```
 
-# Visualize Data
+# Visualize Data Before Recoding
 ```{r}
+# DataExplorer missingness.
 DataExplorer::plot_missing(tb_7)
-DataExplorer::plot_histogram(tb_7)
 
+# Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
@@ -326,13 +371,174 @@ DataExplorer::plot_missing(tb_7)
 dev.off()
 ```
 
+```{r}
+# DataExplorer variable histograms. 
+DataExplorer::plot_histogram(tb_7)
+
+# Save images.
+png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
+    width = 2000,
+    height = 1000)
+DataExplorer::plot_histogram(tb_7)
+dev.off()
+
+```
 
 ```{r}
-Amelia::missmap(tb_6)
+# Amelia missingness.
+Amelia::missmap(tb_7)
 
+# Save image.
 png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
     width = 2000, 
     height = 1000)
-Amelia::missmap(tb_6)
+Amelia::missmap(tb_7)
 dev.off()
 ```
+
+# Recode and Rename Variables
+```{r}
+# Install data.
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+
+# Fill WVS values by year.
+psp_expand_wvs <- psp %>%
+  dplyr::group_by(country) %>%
+  tidyr::fill(A035_avg,
+              A124_2avg,
+              E069_2avg,
+              E114_avg,
+              E115_avg,
+              E116_avg,
+              E117_avg,
+              E124_avg)
+
+# Remove codings for NA values.
+psp_na_recode <- psp_expand_wvs
+
+psp_na_recode[psp_na_recode == "-999"] <- NA
+psp_na_recode[psp_na_recode == "-44"] <- NA
+psp_na_recode[psp_na_recode == "-66"] <- NA
+psp_na_recode[psp_na_recode == "-77"] <- NA
+psp_na_recode[psp_na_recode == "-88"] <- NA
+
+# Rename variables.
+psp_rename <- psp_na_recode
+
+psp_rename <- psp_rename %>%
+  dplyr::rename(idc_mveto = mveto,
+                idc_gcman = gcman,
+                idc_gcimp = gcimp,
+                idc_auton = auton,
+                idc_jrevman = jrevman,
+                idc_relconstd = relconstd,
+                idc_relconstp = relconstp,
+                idc_milleg = milleg,
+                idc_partynoethnic = partynoethnic,
+                idc_jtenure = jtenure,
+                idc_jconst = jconst,
+                idc_gcseats1 = gcseats1,
+                idc_gcseats2 = gcseats2,
+                idc_gcseats3 = gcseats3,
+                idc_unity = unity,
+                idc_resman = resman,
+                idc_resseats = resseats,
+                idc_resseats2 = resseats2,
+                idc_resseatsimp = resseatsimp,
+                idc_miman = miman, 
+                idc_subtax = subtax, 
+                idc_subed = subed, 
+                idc_subpolice = subpolice,
+                idc_state = state,
+                idc_muni = muni,
+                idc_fedunits = fedunits,
+                
+                dtd_coalition = Coalition, 
+                dtd_coalition2 = coalition2,
+                dtd_coalitiongov = coalitiongov,
+                dtd_vanstand = VANstand,
+                dtd_admin = Admin, 
+                dtd_mixed = mixed, 
+                dtd_proportional = proportional,
+                dtd_roseprop = roseprop,
+                dtd_xrcomp = xrcomp, 
+                
+                qog_fe_etfra = fe_etfra,
+                qog_iaep_ebbp = iaep_ebbp,
+                qog_gle_gdp = gle_gdp,
+                qog_bti_ci = bti_ci,
+                qog_cspf_sfi = cspf_sfi,
+                qog_gtm_unit = gtm_unit,
+                qog_ccp_hr = ccp_hr,
+                qog_ffp_hr = ffp_hr, 
+                qog_iiag_phr = iiag_phr,
+                qog_dpi_housesys = dpi_housesys,
+                qog_jw_bicameral = jw_bicameral,
+                qog_bti_ig = bti_ig, 
+                qog_vdem_partipdem = vdem_partipdem,
+                qog_iaep_nr = iaep_nr,
+                qog_bti_sop = bti_sop,
+                qog_gol_est = gol_est,
+                qog_gol_mt = gol_mt,
+                qog_iaep_es = iaep_es,
+                qog_no_ef = no_ef,
+                qog_no_ce = no_ce,
+                qog_iaep_eccdt = iaep_eccdt,
+                qog_iaep_ecdl = iaep_ecdl,
+                qog_iaep_eml = iaep_eml,
+                qog_iaep_epmf = iaep_epmf,
+                qog_iaep_evp = iaep_evp,
+                qog_iaep_lcre = iaep_lcre,
+                qog_iaep_lego = iaep_lego,
+                qog_iaep_lrit = iaep_lrit,
+                qog_wbgi_pve = wbgi_pve,
+                
+                pax_ppsaut = PpsAut,
+                pax_tpsaut = TpsAut,
+                pax_ppsex = PpsEx,
+                pax_cenban = CenBan,
+                pax_ppsoro = PpsOro,
+                pax_ppsothpr = PpsOthPr,
+                pax_stref = StRef,
+                
+                dpi_system = system,
+                dpi_author = author,
+                dpi_pr = pr,
+                dpi_sensys = sensys,
+                dpi_eiec = eiec,
+                
+                vdem_e_miinterc = e_miinterc, 
+                vdem_e_civil_war = e_civil_war,
+                
+                wvs_A035_child_qualities = A035_avg,
+                wvs_A124_neighbors = A124_2avg,
+                wvs_E069_confidence = E069_2avg,
+                wvs_E114_leader = E114_avg,
+                wvs_E115_experts = E115_avg,
+                wvs_E116_army = E116_avg,
+                wvs_E117_democracy = E117_avg,
+                wvs_E124_hr = E124_avg
+                )
+
+variable.names(psp_rename)
+```
+
+# Visualize After Recoding
+```{r}
+DataExplorer::plot_missing(psp_rename)
+DataExplorer::plot_histogram(psp_rename)
+Amelia::missmap(psp_rename)
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+
+# look at failed cases - see if seg autonomy caused war/failures
+# creation of states - more/less conflict? gdp output - night lights? 
