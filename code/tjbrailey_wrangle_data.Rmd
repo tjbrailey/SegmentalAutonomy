@@ -20,20 +20,6 @@ library(ggplot2)
 # Set working directory. 
 wd <- paste0(here::here(), '/data/') 
 
-# Parse out .xlsx worksheets 
-files <- list.files(paste0(wd, 'PSED_agreement.xlsx'))
-files <- files[]
-
-read_excel_allsheets <- function(filename) { 
-  sheets <- readxl::excel_sheets(filename) 
-  x <- lapply(sheets, function(x) readxl::read_excel(filename, sheet = x)) 
-  names(x) <- sheets 
-  x 
-} 
-
-out <- lapply(paste0(here::here(), '/data/PSED_agreement.xlsx'), read_excel_allsheets)
-basename(files)
-
 # Install datasets.
 # Power-sharing-specific datasets.
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
@@ -41,27 +27,8 @@ dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.c
 pax <- rio::import(paste0(wd,'pax_20_02_2018_1_CSV.csv'))
 vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
-
-# general datasets (the y value).
-vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
-dpi <- rio::import(paste0(wd,'DPI2012.xls'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
-polityiv <- rio::import(paste0(wd,'p4v2017.xls'))
-ucdp <- rio::import(paste0(wd,'ucdp-prio-acd-191.xlsx'))
 wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
-
-# Other datasets not used.
-#psed_prom <- out[[1]]$PSED_agreement_promises
-#psed_prac <- out[[1]]$PSED_agreement_practices
-#impact <- rio::import(paste0(wd,'c_656154-l_1-k_impact--version2.0.csv'))
-#epr <- rio::import(paste0(wd,'data-epr_countryyear.csv'))
-#cah_pshare_and_dem <- rio::import(paste0(wd,'pshare_and_democracy_for_world_politics_publication.dta'))
-#cah_craft_peace <- rio::import(paste0(wd,'book_project_49_cases_long_time_version_feb_2004.dta'))
-#bumba <- rio::import(paste0(wd,'Bumba(peaceduration).RData'))
-#di <- rio::import(paste0(wd,'Diplomatic Interventions data.dta'))
-#dme <- rio::import(paste0(wd,'DME data.dta'))
-# general datasets (the y value).
-#qog_cs <- rio::import(paste0(wd,'qog_std_cs_jan19.csv'))
 
 # Clean workspace.
 rm(out, files, read_excel_allsheets)
@@ -132,10 +99,6 @@ tb <- tb %>%
 dtd_psp_sub <- dtd %>%
   dplyr::select(Nation,
                 Year,
-                Natcode,
-                NatWVS,
-                Natmap,
-                Natabrv,
                 Coalition,
                 coalition2,
                 coalitiongov,
@@ -206,15 +169,22 @@ pax_psp_sub <- pax_psp_sub %>%
 ```{r}
 # Select key variables.
 vdem_psp_sub <- vdem %>%
-  dplyr::select(country_name, country_id, country_text_id, year, e_miinterc, e_civil_war) %>% 
+  dplyr::select(country_name, 
+                year, 
+                e_miinterc, 
+                e_civil_war) %>% 
   dplyr::rename(country = country_name)
 
 vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
 vdem_psp_sub$cown <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cown')
 vdem_psp_sub$cowc <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cowc')
 
+# Some values were not matched unambiguously: Republic of Vietnam, Würtemberg
+# Some values were not matched unambiguously: Brunswick, Hamburg, Hesse-Darmstadt, Hesse-Kassel, Hong Kong SAR China, Nassau, Oldenburg, Palestinian Territories, Piedmont-Sardinia, Saxe-Weimar-Eisenach, Serbia
+# Some values were not matched unambiguously: Brunswick, Hamburg, Hesse-Darmstadt, Hesse-Kassel, Hong Kong SAR China, Nassau, Oldenburg, Palestinian Territories, Piedmont-Sardinia, Saxe-Weimar-Eisenach, Serbia
+
 vdem_psp_sub <- vdem_psp_sub %>%
-  dplyr::select(-country, -country_id, -country_text_id)
+  dplyr::select(-country)
 ```
 
 ## Clean QoG
@@ -261,6 +231,10 @@ qog_ts_psp_sub$country <- countrycode::countrycode(qog_ts_psp_sub$country, 'coun
 
 qog_ts_psp_sub$cown <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cown')
 qog_ts_psp_sub$cowc <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cowc')
+
+# Some values were not matched unambiguously: Tibet
+# Some values were not matched unambiguously: Serbia
+# Some values were not matched unambiguously: Serbia
 
 qog_ts_psp_sub <- qog_ts_psp_sub %>%
   dplyr::select(-country)
@@ -316,6 +290,9 @@ wvs_cleaned$country <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "coun
 wvs_cleaned$cowc <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cowc")
 wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cown")
 
+# Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
+# Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
+
 # Create averages for A124 and E069 variables.
 wvs_psp_sub <- wvs_cleaned %>%
   dplyr::mutate(A124_avg = rowMeans(wvs_cleaned[,c("A124_02", "A124_06", "A124_09", "A124_12", "A124_18")], na.rm = TRUE),
@@ -355,7 +332,7 @@ tb_5 <- dplyr::left_join(tb_4, vdem_psp_sub, by = c("cown", "cowc", "year"))
 tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
-tb_6 <- tb_5 %>% 
+tb_7 <- tb_6 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
@@ -366,21 +343,20 @@ saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 rm(tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
 
 # Save new data.
-saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp.rds'))
+saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
+saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 ```
 
 # Visualize Data Before Recoding
 ```{r}
 # DataExplorer missingness.
 DataExplorer::plot_missing(tb_7)
-DataExplorer::plot_missing(tb_6)
-DataExplorer::plot_histogram(tb_6)
 
 # Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_missing(tb_6)
+DataExplorer::plot_missing(tb_7)
 dev.off()
 ```
 
@@ -394,7 +370,6 @@ png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     height = 1000)
 DataExplorer::plot_histogram(tb_7)
 dev.off()
-
 ```
 
 ```{r}
