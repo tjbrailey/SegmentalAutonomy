@@ -526,7 +526,3 @@ Amelia::missmap(psp_rename)
 
 ```{r}
 ```
-
-
-# look at failed cases - see if seg autonomy caused war/failures
-# creation of states - more/less conflict? gdp output - night lights? 
