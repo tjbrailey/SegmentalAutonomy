@@ -15,28 +15,31 @@ library(ggplot2)
 
 # Load Data
 ```{r}
+# Load PSP data, created in tjbrailey_wrangle_data.Rmd.
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
 ```
 
 # Exploration of Core Consociational Provisions
 ```{r}
-# states that employ mutual veto provisions
+# Exploring consociationalism.
+
+# States that employ mutual veto provisions.
 psp %>% 
   dplyr::filter(mveto == 1) %>%
   dplyr::distinct(country)
 
-# states that employ grand coalition provisions
+# States that employ grand coalition provisions.
 psp %>%
   dplyr::filter(gcman == 1 & gcimp == 1) %>%
   dplyr::distinct(country)
  
-# states that employ proportionality
+# States that employ proportionality/
 psp %>%
   dplyr::filter(pr == 1 | 
                   proportional == 1) %>%
   dplyr::distinct(country)
 
-# states that employ segmental autonomy
+# States that employ segmental autonomy.
 psp %>%
   dplyr::filter(auton == 1) %>% 
   dplyr::distinct(country)
@@ -44,7 +47,7 @@ psp %>%
 
 # Exploration of Segmental Autonomy
 ```{r}
-# states that have employed segmental autonomy provisions 
+# States that have employed segmental autonomy provisions. 
 seg_states <- psp %>%
   dplyr::filter(auton == 1) %>% 
   dplyr::distinct(country) %>%
@@ -53,7 +56,7 @@ seg_states <- psp %>%
 seg_states_dat <- psp %>% 
   dplyr::filter(country %in% c(seg_states))
 
-# states that have, between 1975 and 2010, employed segmental autonomy provisions
+# States that have, between 1975 and 2010, employed segmental autonomy provisions.
 seg_imp <- seg_states_dat %>%
   dplyr::filter(auton == 0) %>%
   dplyr::distinct(country) %>%
@@ -61,15 +64,12 @@ seg_imp <- seg_states_dat %>%
 
 seg_imp_dat <- psp %>%
   dplyr::filter(country %in% c(seg_imp))
-
-seg_imp_dat %>% dplyr::filter(pr == 1)
 ```
 
 # Visualizing Segmental Autonomy Implementation
 ```{r}
 gp1 <- ggplot(seg_imp_dat, aes(x = year, y = auton)) +
   geom_point() +
-  #geom_line() + 
   facet_wrap(~ country) + 
   labs(x = "Year",
        y = "Segmental Autonomy 
@@ -80,4 +80,27 @@ gp1
 
 ggsave(gp1, filename = paste0(here::here(), "/vis/seg_auton_implement.png"), units = "in",
        width = 11, height = 7)
+```
+
+```{r}
+# Subdivisions of Segmental Autonomy.
+subed <- psp %>%
+  dplyr::filter(subed == 1) %>%
+  dplyr::distinct(country, year)
+
+subtax <- psp %>%
+  dplyr::filter(subtax == 1) %>%
+  dplyr::distinct(country, year)
+
+subpolice <- psp %>%
+  dplyr::filter(subpolice == 1) %>%
+  dplyr::distinct(country, year)
+
+fedunits <- psp %>%
+  dplyr::filter(fedunits == 1) %>%
+  dplyr::distinct(country, year)
+
+author <- psp %>%
+  dplyr::filter(author == 1) %>%
+  dplyr::distinct(country, year)
 ```

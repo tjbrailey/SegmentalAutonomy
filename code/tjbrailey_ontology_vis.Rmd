@@ -9,7 +9,6 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-# piping function will break if these packages are not called.
 rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)

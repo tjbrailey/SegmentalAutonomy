@@ -7,12 +7,26 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
 ```
 
-# Load data
+# Load Data
 ```{r}
+# Load PSP data, created in tjbrailey_wrangle_data.Rmd.
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+```
 
+# Model 1
+```{}
+```
+
+# Model 2
+```{}
+```
+
+# Model 3
+```{}
 ```
