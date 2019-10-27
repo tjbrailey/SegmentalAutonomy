@@ -9,6 +9,7 @@ subtitle: POLI 191A/B
 ---
 
 ```{r setup, include=FALSE}
+# Be sure to run the entire markdown file.
 rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
@@ -337,14 +338,10 @@ tb_7 <- tb_6 %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
 # Save data as a .rds file.
-saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
+saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
 # Remove intermediate join files.
 rm(tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
-
-# Save new data.
-saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
-saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp.rds'))
 ```
 
 # Visualize Data Before Recoding
@@ -387,7 +384,7 @@ dev.off()
 # Recode and Rename Variables
 ```{r}
 # Install data.
-psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_not_cleaned.rds"))
 
 # Fill WVS values by year.
 psp_expand_wvs <- psp %>%
@@ -409,6 +406,7 @@ psp_na_recode[psp_na_recode == "-44"] <- NA
 psp_na_recode[psp_na_recode == "-66"] <- NA
 psp_na_recode[psp_na_recode == "-77"] <- NA
 psp_na_recode[psp_na_recode == "-88"] <- NA
+psp_na_recode$ccp_hr[psp_na_recode$ccp_hr == "96"] <- 3
 
 # Rename variables.
 psp_rename <- psp_na_recode
@@ -509,6 +507,9 @@ psp_rename <- psp_rename %>%
                 )
 
 variable.names(psp_rename)
+
+# Save as a .csv file 
+write.csv(psp_rename, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 ```
 
 # Visualize After Recoding
