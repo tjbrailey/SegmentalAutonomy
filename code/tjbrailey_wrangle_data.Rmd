@@ -408,6 +408,10 @@ psp_na_recode[psp_na_recode == "-77"] <- NA
 psp_na_recode[psp_na_recode == "-88"] <- NA
 psp_na_recode$ccp_hr[psp_na_recode$ccp_hr == "96"] <- 3
 
+psp_na_recode[psp_na_recode == ".a"] <- NA
+psp_na_recode[psp_na_recode == ".b"] <- NA
+psp_na_recode[psp_na_recode == ".e"] <- NA
+
 # Rename variables.
 psp_rename <- psp_na_recode
 
