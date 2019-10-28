@@ -25,14 +25,10 @@ wd <- paste0(here::here(), '/data/')
 # Power-sharing-specific datasets.
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
 dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.csv'))
-pax <- rio::import(paste0(wd,'pax_20_02_2018_1_CSV.csv'))
 vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
 wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
-
-# Clean workspace.
-rm(out, files, read_excel_allsheets)
 ```
 
 # Set Baseline Data
@@ -122,49 +118,7 @@ dtd_psp_sub$cown <- countrycode::countrycode(dtd_psp_sub$country, 'country.name'
 dtd_psp_sub <- dtd_psp_sub %>%
   dplyr::select(-country)
 ```
-
-## Clean PAX (Bell, C. and Badanjak, S., 2019)
-```{r}
-# Select key varialbes and clean.
-pax_psp_sub <- pax %>%
-  dplyr::select(Con,
-                Dat,
-                Agt,
-                PpsAut,
-                TpsAut,
-                PpsEx,
-                CenBan,
-                PpsOro,
-                PpsOthPr,
-                StRef
-                ) %>%
-  dplyr::rename(country = Con,
-                year = Dat) %>%
-  dplyr::mutate(year = as.numeric(stringr::str_sub(year, start= -4))) %>%
-  dplyr::group_by(PpsAut,
-                  TpsAut,
-                  PpsEx,
-                  CenBan,
-                  PpsOro,
-                  PpsOthPr,
-                  StRef, 
-                  country, year) %>%
-  dplyr::summarise(Agt = paste(Agt, collapse=", ")) %>% 
-  dplyr::ungroup() %>%
-  dplyr::mutate(country = sub("\\/.*", "", country)) %>%
-  dplyr::select(-Agt)
-
-# Some values were not matched unambiguously: Kurds-Kurdistan, United Nations
-# Some values were not matched unambiguously: Palestinian Territories, Serbia
-# Some values were not matched unambiguously: Palestinian Territories, Serbia
-
-pax_psp_sub$country <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'country.name')
-pax_psp_sub$cown <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'cown')
-pax_psp_sub$cowc <- countrycode::countrycode(pax_psp_sub$country, 'country.name', 'cowc')
-
-pax_psp_sub <- pax_psp_sub %>%
-  dplyr::select(-country)
-```
+  
 
 ## Clean V-Dem
 ```{r}
@@ -287,12 +241,19 @@ wvs_cleaned <- wvs %>%
 
 wvs_cleaned[wvs_cleaned == -4] <- NA
 
-wvs_cleaned$country <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "country.name", nomatch = "unknown")
-wvs_cleaned$cowc <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cowc")
-wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "iso3n", "cown")
+wvs_cleaned$country <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "country.name")
+wvs_cleaned$cowc <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "cowc")
+wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "cown")
 
 # Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
 # Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
+
+# 101: ???
+# 275: Palestine
+# 344: Hong Kong
+# 630: Puerto Rico
+# 688: ???
+# 914: ???
 
 # Create averages for A124 and E069 variables.
 wvs_psp_sub <- wvs_cleaned %>%
@@ -327,57 +288,56 @@ wvs_n_by_country <- wvs_cleaned %>%
 # Join data one-by-one. Check for discrepancies. 
 tb_1 <- dplyr::left_join(tb, dtd_psp_sub, by = c("cown", "cowc", "year"))
 tb_2 <- dplyr::left_join(tb_1, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
-tb_3 <- dplyr::left_join(tb_2, pax_psp_sub, by = c("cown", "cowc", "year"))
-tb_4 <- dplyr::left_join(tb_3, dpi_psp_sub, by = c("cown", "cowc", "year"))
-tb_5 <- dplyr::left_join(tb_4, vdem_psp_sub, by = c("cown", "cowc", "year"))
-tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
+tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
+tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
+tb_5 <- dplyr::left_join(tb_4, wvs_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
-tb_7 <- tb_6 %>% 
+tb_6 <- tb_5 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
 # Save data as a .rds file.
-saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
+saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
 # Remove intermediate join files.
-rm(tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
+rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5)
 ```
 
 # Visualize Data Before Recoding
 ```{r}
 # DataExplorer missingness.
-DataExplorer::plot_missing(tb_7)
+DataExplorer::plot_missing(tb_6)
 
 # Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_missing(tb_7)
+DataExplorer::plot_missing(tb_6)
 dev.off()
 ```
 
 ```{r}
 # DataExplorer variable histograms. 
-DataExplorer::plot_histogram(tb_7)
+DataExplorer::plot_histogram(tb_6)
 
 # Save images.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_histogram(tb_7)
+DataExplorer::plot_histogram(tb_6)
 dev.off()
 ```
 
 ```{r}
 # Amelia missingness.
-Amelia::missmap(tb_7)
+Amelia::missmap(tb_6)
 
 # Save image.
 png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
     width = 2000, 
     height = 1000)
-Amelia::missmap(tb_7)
+Amelia::missmap(tb_6)
 dev.off()
 ```
 
@@ -482,14 +442,6 @@ psp_rename <- psp_rename %>%
                 qog_iaep_lego = iaep_lego,
                 qog_iaep_lrit = iaep_lrit,
                 qog_wbgi_pve = wbgi_pve,
-                
-                pax_ppsaut = PpsAut,
-                pax_tpsaut = TpsAut,
-                pax_ppsex = PpsEx,
-                pax_cenban = CenBan,
-                pax_ppsoro = PpsOro,
-                pax_ppsothpr = PpsOthPr,
-                pax_stref = StRef,
                 
                 dpi_system = system,
                 dpi_author = author,
