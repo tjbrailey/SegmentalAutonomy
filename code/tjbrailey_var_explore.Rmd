@@ -7,7 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-rm(list=ls())
+#rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
@@ -16,7 +16,7 @@ library(ggplot2)
 # Load Data
 ```{r}
 # Load PSP data, created in tjbrailey_wrangle_data.Rmd.
-psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 ```
 
 # Exploration of Core Consociational Provisions
@@ -25,31 +25,37 @@ psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
 
 # States that employ mutual veto provisions.
 psp %>% 
-  dplyr::filter(mveto == 1) %>%
+  dplyr::filter(idc_mveto == 1) %>%
   dplyr::distinct(country)
 
 # States that employ grand coalition provisions.
 psp %>%
-  dplyr::filter(gcman == 1 & gcimp == 1) %>%
+  dplyr::filter(idc_gcman == 1 & idc_gcimp == 1) %>%
   dplyr::distinct(country)
  
 # States that employ proportionality/
 psp %>%
-  dplyr::filter(pr == 1 | 
-                  proportional == 1) %>%
+  dplyr::filter(dpi_pr == 1 | 
+                  dtd_proportional == 1) %>%
   dplyr::distinct(country)
 
 # States that employ segmental autonomy.
 psp %>%
-  dplyr::filter(auton == 1) %>% 
+  dplyr::filter(idc_auton == 1) %>% 
   dplyr::distinct(country)
 ```
 
 # Exploration of Segmental Autonomy
 ```{r}
+# idc_auton missingness/summary.
+auton_sum <- psp %>%
+  dplyr::select(country, year, idc_auton) %>%
+  dplyr::group_by(idc_auton) %>%
+  dplyr::summarize(summary = n())
+
 # States that have employed segmental autonomy provisions. 
 seg_states <- psp %>%
-  dplyr::filter(auton == 1) %>% 
+  dplyr::filter(idc_auton == 1) %>% 
   dplyr::distinct(country) %>%
   dplyr::pull(country)
 
@@ -58,7 +64,7 @@ seg_states_dat <- psp %>%
 
 # States that have, between 1975 and 2010, employed segmental autonomy provisions.
 seg_imp <- seg_states_dat %>%
-  dplyr::filter(auton == 0) %>%
+  dplyr::filter(idc_auton == 0) %>%
   dplyr::distinct(country) %>%
   dplyr::pull()
 
@@ -68,7 +74,7 @@ seg_imp_dat <- psp %>%
 
 # Visualizing Segmental Autonomy Implementation
 ```{r}
-gp1 <- ggplot(seg_imp_dat, aes(x = year, y = auton)) +
+gp1 <- ggplot(seg_imp_dat, aes(x = year, y = idc_auton)) +
   geom_point() +
   facet_wrap(~ country) + 
   labs(x = "Year",
@@ -85,22 +91,29 @@ ggsave(gp1, filename = paste0(here::here(), "/vis/seg_auton_implement.png"), uni
 ```{r}
 # Subdivisions of Segmental Autonomy.
 subed <- psp %>%
-  dplyr::filter(subed == 1) %>%
+  dplyr::filter(idc_subed == 1) %>%
   dplyr::distinct(country, year)
 
 subtax <- psp %>%
-  dplyr::filter(subtax == 1) %>%
+  dplyr::filter(idc_subtax == 1) %>%
   dplyr::distinct(country, year)
 
 subpolice <- psp %>%
-  dplyr::filter(subpolice == 1) %>%
+  dplyr::filter(idc_subpolice == 1) %>%
   dplyr::distinct(country, year)
 
 fedunits <- psp %>%
-  dplyr::filter(fedunits == 1) %>%
+  dplyr::filter(idc_fedunits == 1) %>%
   dplyr::distinct(country, year)
 
 author <- psp %>%
-  dplyr::filter(author == 1) %>%
+  dplyr::filter(dpi_author == 1) %>%
   dplyr::distinct(country, year)
+```
+
+# Additional Checks
+```{r}
+# Number of World Value Survey responses by country.
+wvs_miss <- psp %>%
+  dplyr::filter(!is.na(wvs_A124_neighbors))
 ```

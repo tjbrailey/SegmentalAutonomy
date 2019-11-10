@@ -16,17 +16,34 @@ library(ggplot2)
 # Load Data
 ```{r}
 # Load PSP data, created in tjbrailey_wrangle_data.Rmd.
-psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp.rds"))
+psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+psp <- psp[,-1]
+variable.names(psp)
 ```
 
-# Model 1
-```{}
+# Heterogeneity Checks
+```{r}
+gplots::plotmeans(wvs_A124_neighbors ~ country, main="Heterogeineity across countries", data=psp)
+gplots::plotmeans(wvs_A124_neighbors ~ year, main="Heterogeineity across years", data=psp)
+
+gplots::plotmeans(ucdp_intensity_level ~ country, main="Heterogeineity across countries", data=psp)
+gplots::plotmeans(ucdp_intensity_level ~ year, main="Heterogeineity across years", data=psp)
 ```
 
-# Model 2
-```{}
+# Linear Regression
+```{r}
+lm1 <- lm(wvs_A124_neighbors ~ idc_auton, data = psp)
+summary(lm1)
 ```
 
-# Model 3
-```{}
+# Cox Regression
+```{r}
+cx1 <- survival::coxph(formula = survival::Surv(year, ucdp_cumulative_intensity) ~ idc_auton, data = psp)
+summary(cx1)
+```
+
+# #####
+```{r}
+model_fits <- dplyr::group_by(psp, country) %>% 
+  dplyr::do(fit = forecast::auto.arima(.$ucdp_cumulative_intensity))
 ```
