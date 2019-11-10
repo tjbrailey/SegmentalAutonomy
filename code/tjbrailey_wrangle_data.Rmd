@@ -29,6 +29,7 @@ vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
 wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
+ucdp <- rio::import(paste0(wd, "ucdp-prio-acd-191.xlsx"))
 ```
 
 # Set Baseline Data
@@ -283,6 +284,21 @@ wvs_n_by_country <- wvs_cleaned %>%
   dplyr::summarize(obs = n())
 ```
 
+## Clean UCDP
+```{r}
+ucdp_psp_sub <- ucdp %>% 
+  dplyr::select(location, year, side_a, side_b, territory_name, intensity_level, cumulative_intensity, type_of_conflict) %>%
+  dplyr::filter(stringr::str_detect(location, ",", negate = TRUE)) %>%
+  dplyr::rename(country = location)
+
+# Some values were not matched unambiguously: Hyderabad
+
+ucdp_psp_sub$cowc <- countrycode::countrycode(ucdp_psp_sub$country, "country.name", "cowc")
+ucdp_psp_sub$cown <- countrycode::countrycode(ucdp_psp_sub$country, "country.name", "cown")
+
+ucdp_psp_sub <- dplyr::select(ucdp_psp_sub, -country) 
+```
+
 # Join Data
 ```{r}
 # Join data one-by-one. Check for discrepancies. 
@@ -290,54 +306,55 @@ tb_1 <- dplyr::left_join(tb, dtd_psp_sub, by = c("cown", "cowc", "year"))
 tb_2 <- dplyr::left_join(tb_1, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
 tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
-tb_5 <- dplyr::left_join(tb_4, wvs_psp_sub, by = c("cown", "cowc", "year"))
+tb_5 <- dplyr::left_join(tb_4, ucdp_psp_sub, by = c("cown", "cowc", "year"))
+tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
-tb_6 <- tb_5 %>% 
+tb_7 <- tb_6 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
 # Save data as a .rds file.
-saveRDS(tb_6, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
+saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
 # Remove intermediate join files.
-rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5)
+rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
 ```
 
 # Visualize Data Before Recoding
 ```{r}
 # DataExplorer missingness.
-DataExplorer::plot_missing(tb_6)
+DataExplorer::plot_missing(tb_7)
 
 # Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_missing(tb_6)
+DataExplorer::plot_missing(tb_7)
 dev.off()
 ```
 
 ```{r}
 # DataExplorer variable histograms. 
-DataExplorer::plot_histogram(tb_6)
+DataExplorer::plot_histogram(tb_7)
 
 # Save images.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_histogram(tb_6)
+DataExplorer::plot_histogram(tb_7)
 dev.off()
 ```
 
 ```{r}
 # Amelia missingness.
-Amelia::missmap(tb_6)
+Amelia::missmap(tb_7)
 
 # Save image.
 png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
     width = 2000, 
     height = 1000)
-Amelia::missmap(tb_6)
+Amelia::missmap(tb_7)
 dev.off()
 ```
 
@@ -452,6 +469,13 @@ psp_rename <- psp_rename %>%
                 vdem_e_miinterc = e_miinterc, 
                 vdem_e_civil_war = e_civil_war,
                 
+                ucdp_side_a = side_a,
+                ucdp_side_b = side_b,
+                ucdp_territory_name = territory_name,
+                ucdp_intensity_level = intensity_level,
+                ucdp_type_of_conflict = type_of_conflict, 
+                ucdp_cumulative_intensity = cumulative_intensity,
+                
                 wvs_A035_child_qualities = A035_avg,
                 wvs_A124_neighbors = A124_2avg,
                 wvs_E069_confidence = E069_2avg,
@@ -471,14 +495,14 @@ write.csv(psp_rename, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv
 # Visualize After Recoding
 ```{r}
 DataExplorer::plot_missing(psp_rename)
+```
+
+```{r}
 DataExplorer::plot_histogram(psp_rename)
+```
+
+```{r}
 Amelia::missmap(psp_rename)
-```
-
-```{r}
-```
-
-```{r}
 ```
 
 ```{r}
