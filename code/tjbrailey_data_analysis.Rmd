@@ -63,10 +63,7 @@ summary(lm6)
 logit1 <- glm(ucdp_cumulative_intensity ~ idc_auton + year + as.factor(country),
                   data = psp, 
                 family = binomial(link = "logit"))
-logit1_predicted <- plogis(predict(logit1, psp))
-
 Zelig::summary(logit1)
-
 ```
 
 
