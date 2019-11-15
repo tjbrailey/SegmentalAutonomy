@@ -487,23 +487,76 @@ psp_rename <- psp_rename %>%
                 )
 
 variable.names(psp_rename)
+```
+
+# Add Binary for Other Provisions
+```{r}
+psp_add_bin <- psp_rename %>%
+  dplyr::mutate(other_provis = ifelse(idc_jrevman == 1 | 
+  idc_relconstd == 1 | 
+  idc_relconstp == 1 |    
+  idc_milleg == 1 |
+  idc_partynoethnic == 1 |
+  idc_jtenure == 1 |
+  idc_jconst == 1 |          
+  idc_gcseats1 == 1 |
+  idc_gcseats2 == 1 |       
+  idc_gcseats3 == 1 | 
+  idc_unity == 1 |            
+  idc_resman == 1 |
+  idc_resseats == 1 |
+  idc_resseats2 == 1 |
+  idc_resseatsimp == 1 |          
+  idc_miman == 1 |
+  idc_subtax == 1 |
+  idc_subed == 1 |
+  idc_subpolice == 1 |  
+  idc_state == 1 |  
+  idc_muni == 1, 1, 0),
+  other_provis = ifelse(is.na(other_provis), 0, other_provis)) %>%
+  dplyr::ungroup()
+```
+
+# Factor Analysis
+```{r}
+wvs <- psp_add_bin %>%
+  dplyr::select(wvs_A035_child_qualities, wvs_A124_neighbors, wvs_E069_confidence, wvs_E114_leader, wvs_E115_experts, wvs_E116_army, wvs_E117_democracy, wvs_E124_hr)
+
+summary(wvs)
+cor(wvs, use = "complete.obs")
+
+pcal <- princomp(na.omit(wvs), scores = TRUE, cor = TRUE)
+summary(pcal)
+
+loadings(pcal)
+
+plot(pcal)
+screeplot(pcal, type = "line", main = "Scree Plot")
+
+biplot(pcal)
+
+x <- data.frame(pcal$scores)
+x$names <- rownames(x)
+
+psp_add_bin$names <- rownames(psp_add_bin)
+psp_pca <- dplyr::left_join(psp_add_bin, x) %>%
+  dplyr::select(-names, -Comp.2, -Comp.3, -Comp.4, -Comp.5, -Comp.6, -Comp.7, -Comp.8) %>%
+  dplyr::rename(wvs_factor = Comp.1)
 
 # Save as a .csv file 
-write.csv(psp_rename, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+write.csv(psp_pca, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 ```
 
 # Visualize After Recoding
 ```{r}
-DataExplorer::plot_missing(psp_rename)
+DataExplorer::plot_missing(psp_pca)
 ```
 
 ```{r}
-DataExplorer::plot_histogram(psp_rename)
+DataExplorer::plot_histogram(psp_pca)
 ```
 
 ```{r}
-Amelia::missmap(psp_rename)
+Amelia::missmap(psp_pca)
 ```
 
-```{r}
-```

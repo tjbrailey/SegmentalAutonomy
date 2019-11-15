@@ -17,6 +17,8 @@ library(ggplot2)
 ```{r}
 # Load PSP data, created in tjbrailey_wrangle_data.Rmd.
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+psp <- psp[,-1]
+variable.names(psp)
 ```
 
 # Exploration of Core Consociational Provisions
@@ -93,6 +95,7 @@ ggsave(gp1, filename = paste0(here::here(), "/vis/seg_auton_implement.png"), uni
 subed <- psp %>%
   dplyr::filter(idc_subed == 1) %>%
   dplyr::distinct(country, year)
+unique(subed$country)
 
 subtax <- psp %>%
   dplyr::filter(idc_subtax == 1) %>%
@@ -109,6 +112,7 @@ fedunits <- psp %>%
 author <- psp %>%
   dplyr::filter(dpi_author == 1) %>%
   dplyr::distinct(country, year)
+unique(author$country)
 ```
 
 # Additional Checks
@@ -116,4 +120,9 @@ author <- psp %>%
 # Number of World Value Survey responses by country.
 wvs_miss <- psp %>%
   dplyr::filter(!is.na(wvs_A124_neighbors))
+unique(wvs_miss$country)
+
+seg_imp_wvs_miss <- wvs_miss %>%
+  dplyr::filter(country %in% c(seg_imp))
+unique(seg_imp_wvs_miss$country)
 ```

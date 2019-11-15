@@ -21,29 +21,57 @@ psp <- psp[,-1]
 variable.names(psp)
 ```
 
-# Heterogeneity Checks
+# Averages 
 ```{r}
-gplots::plotmeans(wvs_A124_neighbors ~ country, main="Heterogeineity across countries", data=psp)
-gplots::plotmeans(wvs_A124_neighbors ~ year, main="Heterogeineity across years", data=psp)
+wvs_avg <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
+  dplyr::summarize(avg = mean(wvs_A124_neighbors, na.rm = TRUE))
 
-gplots::plotmeans(ucdp_intensity_level ~ country, main="Heterogeineity across countries", data=psp)
-gplots::plotmeans(ucdp_intensity_level ~ year, main="Heterogeineity across years", data=psp)
+seg_aut_yr <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
+  dplyr::tally(idc_auton == 1) %>%
+  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
+
+wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
+
+plot1 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
+  geom_point() + 
+  geom_smooth()
+plot1
 ```
 
 # Linear Regression
 ```{r}
-lm1 <- lm(wvs_A124_neighbors ~ idc_auton, data = psp)
+lm1 <- lm(ucdp_cumulative_intensity ~ idc_auton, data = psp)
+lm2 <- lm(ucdp_cumulative_intensity ~ idc_auton + year, data = psp)
+lm3 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
+lm4 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
+lm5 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+lm6 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve + other_provis, data = psp)
 summary(lm1)
+summary(lm2)
+summary(lm3)
+summary(lm4)
+summary(lm5)
+summary(lm6)
 ```
+
+# Logit 
+```{r}
+logit1 <- glm(ucdp_cumulative_intensity ~ idc_auton + year + as.factor(country),
+                  data = psp, 
+                family = binomial(link = "logit"))
+logit1_predicted <- plogis(predict(logit1, psp))
+
+Zelig::summary(logit1)
+
+```
+
 
 # Cox Regression
 ```{r}
-cx1 <- survival::coxph(formula = survival::Surv(year, ucdp_cumulative_intensity) ~ idc_auton, data = psp)
+cx1 <- survival::coxph(formula = survival::Surv(year, ucdp_cumulative_intensity) ~ idc_auton + country, data = psp)
 summary(cx1)
-```
-
-# #####
-```{r}
-model_fits <- dplyr::group_by(psp, country) %>% 
-  dplyr::do(fit = forecast::auto.arima(.$ucdp_cumulative_intensity))
 ```
