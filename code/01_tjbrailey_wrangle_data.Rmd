@@ -519,7 +519,7 @@ psp_add_bin <- psp_rename %>%
 
 # Factor Analysis
 ```{r}
-wvs <- psp_add_bin %>%
+wvs <- data.frame(psp_add_bin) %>%
   dplyr::select(wvs_A035_child_qualities, wvs_A124_neighbors, wvs_E069_confidence, wvs_E114_leader, wvs_E115_experts, wvs_E116_army, wvs_E117_democracy, wvs_E124_hr)
 
 summary(wvs)

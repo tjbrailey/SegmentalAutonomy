@@ -19,18 +19,20 @@ library(ggplot2)
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 psp <- psp[,-1]
 variable.names(psp)
+
+psp$country <- as.factor(psp$country)
 ```
 
 # Averages 
 ```{r}
 wvs_avg <- psp %>%
   dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
-  dplyr::summarize(avg = mean(wvs_A124_neighbors, na.rm = TRUE))
+  dplyr::filter(any(!is.na(wvs_factor))) %>%
+  dplyr::summarize(avg = mean(wvs_factor, na.rm = TRUE))
 
 seg_aut_yr <- psp %>%
   dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
+  dplyr::filter(any(!is.na(wvs_factor))) %>%
   dplyr::tally(idc_auton == 1) %>%
   dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
 
