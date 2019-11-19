@@ -44,20 +44,37 @@ plot1 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
 plot1
 ```
 
-# Linear Regression
+# Linear Regression on factored wvs values
 ```{r}
-lm1 <- lm(ucdp_cumulative_intensity ~ idc_auton, data = psp)
-lm2 <- lm(ucdp_cumulative_intensity ~ idc_auton + year, data = psp)
-lm3 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
-lm4 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
-lm5 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
-lm6 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve + other_provis, data = psp)
-summary(lm1)
-summary(lm2)
-summary(lm3)
-summary(lm4)
-summary(lm5)
-summary(lm6)
+wvs_lm1 <- lm(wvs_factor ~ idc_auton, data = psp)
+wvs_lm2 <- lm(wvs_factor ~ idc_auton + as.factor(year), data = psp)
+wvs_lm3 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
+wvs_lm4 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
+wvs_lm5 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+wvs_lm6 <- lm(wvs_factor ~ (idc_auton * other_provis) + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+
+summary(wvs_lm1)
+summary(wvs_lm2)
+summary(wvs_lm3)
+summary(wvs_lm4)
+summary(wvs_lm5)
+summary(wvs_lm6)
+```
+
+# Linear Regression on conflict intensity
+```{r}
+con_lm1 <- lm(ucdp_cumulative_intensity ~ idc_auton, data = psp)
+con_lm2 <- lm(ucdp_cumulative_intensity ~ idc_auton + year, data = psp)
+con_lm3 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
+con_lm4 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
+con_lm5 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+con_lm6 <- lm(ucdp_cumulative_intensity ~ (idc_auton * other_provis) + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+summary(con_lm1)
+summary(con_lm2)
+summary(con_lm3)
+summary(con_lm4)
+summary(con_lm5)
+summary(con_lm6)
 ```
 
 # Logit 

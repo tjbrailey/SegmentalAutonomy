@@ -492,27 +492,10 @@ variable.names(psp_rename)
 # Add Binary for Other Provisions
 ```{r}
 psp_add_bin <- psp_rename %>%
-  dplyr::mutate(other_provis = ifelse(idc_jrevman == 1 | 
-  idc_relconstd == 1 | 
-  idc_relconstp == 1 |    
-  idc_milleg == 1 |
-  idc_partynoethnic == 1 |
-  idc_jtenure == 1 |
-  idc_jconst == 1 |          
-  idc_gcseats1 == 1 |
-  idc_gcseats2 == 1 |       
-  idc_gcseats3 == 1 | 
-  idc_unity == 1 |            
-  idc_resman == 1 |
-  idc_resseats == 1 |
-  idc_resseats2 == 1 |
-  idc_resseatsimp == 1 |          
-  idc_miman == 1 |
-  idc_subtax == 1 |
-  idc_subed == 1 |
-  idc_subpolice == 1 |  
-  idc_state == 1 |  
-  idc_muni == 1, 1, 0),
+  dplyr::mutate(other_provis = ifelse(idc_mveto == 1|
+                                      idc_gcman == 1 |
+                                        idc_gcimp == 1 |
+                                        dpi_pr == 1, 1, 0),
   other_provis = ifelse(is.na(other_provis), 0, other_provis)) %>%
   dplyr::ungroup()
 ```
