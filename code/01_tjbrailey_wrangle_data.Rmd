@@ -235,16 +235,17 @@ wvs <- dplyr::as_tibble(wvs)
 wvs_cleaned <- wvs %>% 
   dplyr::select(S003, S018, S020,
      A035,
-     A124_02, A124_06, A124_09, A124_12, A124_18,
-     E069_07, E069_08, E069_11, E069_12, E069_17,
-     E114, E115, E116, E117,
-     E124)
+     A124_02, A124_06, A124_09, A124_12, A124_18) 
 
+wvs_cleaned$A035[wvs_cleaned$A035 == 0] <- 2
+wvs_cleaned$A035[wvs_cleaned$A035 == 1] <- 0
+wvs_cleaned$A035[wvs_cleaned$A035 == 2] <- 1
+
+wvs_cleaned[wvs_cleaned == -5] <- NA
 wvs_cleaned[wvs_cleaned == -4] <- NA
-
-wvs_cleaned$country <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "country.name")
-wvs_cleaned$cowc <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "cowc")
-wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "cown")
+wvs_cleaned[wvs_cleaned == -3] <- NA
+wvs_cleaned[wvs_cleaned == -2] <- NA
+wvs_cleaned[wvs_cleaned == -1] <- NA
 
 # Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
 # Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
@@ -258,21 +259,26 @@ wvs_cleaned$cown <- countrycode::countrycode(wvs_cleaned$S003, "wvs", "cown")
 
 # Create averages for A124 and E069 variables.
 wvs_psp_sub <- wvs_cleaned %>%
-  dplyr::mutate(A124_avg = rowMeans(wvs_cleaned[,c("A124_02", "A124_06", "A124_09", "A124_12", "A124_18")], na.rm = TRUE),
-                E069_avg = rowMeans(wvs_cleaned[,c("E069_07", "E069_08", "E069_11", "E069_12", "E069_17")], na.rm = TRUE)) %>%
-  dplyr::select(country, cowc, cown, S003, S020, A035, A124_avg, E069_avg, E114, E115, E116, E117, E124) %>%
-  dplyr::group_by(country, cowc, cown, S020) %>%
+  dplyr::mutate(A124_avg = rowMeans(wvs_cleaned[,c("A124_02", "A124_06", "A124_09", "A124_12", "A124_18")], na.rm = TRUE)) %>%
+  dplyr::select(S003, S020, A035, A124_avg)
+
+wvs_psp_sub$A035[is.nan(wvs_psp_sub$A035)] <- NA
+wvs_psp_sub$A124_avg[is.nan(wvs_psp_sub$A124_avg)] <- NA
+
+wvs_psp_sub <- wvs_psp_sub %>%
+  dplyr::group_by(S003, S020) %>%
   dplyr::summarise(A035_avg = mean(A035),
-                   A124_2avg = mean(A124_avg),
-                   E069_2avg = mean(E069_avg),
-                   E114_avg = mean(E114),
-                   E115_avg = mean(E115),
-                   E116_avg = mean(E116),
-                   E117_avg = mean(E117),
-                   E124_avg = mean(E124)) %>%
+                   A124_2avg = mean(A124_avg)
+                   ) %>%
   dplyr::rename(year = S020) %>%
-  dplyr::ungroup() %>%
-  dplyr::select(-country)
+  dplyr::ungroup()
+
+wvs_psp_sub$country <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "country.name")
+wvs_psp_sub$cowc <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "cowc")
+wvs_psp_sub$cown <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "cown")
+
+wvs_psp_sub <- wvs_psp_sub %>%
+  dplyr::select(-country, -S003)
 
 # Explore variables. 
 wvs_n_per_year <- wvs_cleaned %>%
@@ -280,7 +286,7 @@ wvs_n_per_year <- wvs_cleaned %>%
   dplyr::summarize(obs = n())
 
 wvs_n_by_country <- wvs_cleaned %>%
-  dplyr::group_by(S020, cowc) %>%
+  dplyr::group_by(S003, S020) %>%
   dplyr::summarize(obs = n())
 ```
 
@@ -318,7 +324,7 @@ tb_7 <- tb_6 %>%
 saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
 # Remove intermediate join files.
-rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
+#rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
 ```
 
 # Visualize Data Before Recoding
@@ -367,13 +373,8 @@ psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_not_cleaned.rds"))
 psp_expand_wvs <- psp %>%
   dplyr::group_by(country) %>%
   tidyr::fill(A035_avg,
-              A124_2avg,
-              E069_2avg,
-              E114_avg,
-              E115_avg,
-              E116_avg,
-              E117_avg,
-              E124_avg)
+              A124_2avg
+              )
 
 # Remove codings for NA values.
 psp_na_recode <- psp_expand_wvs
@@ -477,13 +478,7 @@ psp_rename <- psp_rename %>%
                 ucdp_cumulative_intensity = cumulative_intensity,
                 
                 wvs_A035_child_qualities = A035_avg,
-                wvs_A124_neighbors = A124_2avg,
-                wvs_E069_confidence = E069_2avg,
-                wvs_E114_leader = E114_avg,
-                wvs_E115_experts = E115_avg,
-                wvs_E116_army = E116_avg,
-                wvs_E117_democracy = E117_avg,
-                wvs_E124_hr = E124_avg
+                wvs_A124_neighbors = A124_2avg
                 )
 
 variable.names(psp_rename)
@@ -502,28 +497,28 @@ psp_add_bin <- psp_rename %>%
 
 # Factor Analysis
 ```{r}
-wvs <- data.frame(psp_add_bin) %>%
-  dplyr::select(wvs_A035_child_qualities, wvs_A124_neighbors, wvs_E069_confidence, wvs_E114_leader, wvs_E115_experts, wvs_E116_army, wvs_E117_democracy, wvs_E124_hr)
+wvs_035_124 <- data.frame(psp_add_bin) %>%
+  dplyr::select(wvs_A035_child_qualities, wvs_A124_neighbors
+                )
 
-summary(wvs)
-cor(wvs, use = "complete.obs")
+cor(wvs_035_124, use = "complete.obs")
 
-pcal <- princomp(na.omit(wvs), scores = TRUE, cor = TRUE)
-summary(pcal)
+pcal_035_124 <- princomp(na.omit(wvs_035_124), scores = TRUE, cor = TRUE)
+summary(pcal_035_124)
 
-loadings(pcal)
+loadings(pcal_035_124)
 
-plot(pcal)
-screeplot(pcal, type = "line", main = "Scree Plot")
+plot(pcal_035_124)
+screeplot(pcal_035_124, type = "line", main = "Scree Plot")
 
-biplot(pcal)
+biplot(pcal_035_124)
 
-x <- data.frame(pcal$scores)
+x <- data.frame(pcal_035_124$scores)
 x$names <- rownames(x)
 
 psp_add_bin$names <- rownames(psp_add_bin)
 psp_pca <- dplyr::left_join(psp_add_bin, x) %>%
-  dplyr::select(-names, -Comp.2, -Comp.3, -Comp.4, -Comp.5, -Comp.6, -Comp.7, -Comp.8) %>%
+  dplyr::select(-names, -Comp.2) %>%
   dplyr::rename(wvs_factor = Comp.1)
 
 # Save as a .csv file 

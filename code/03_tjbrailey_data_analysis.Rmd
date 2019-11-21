@@ -7,7 +7,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-rm(list=ls())
+#rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
 library(ggplot2)
@@ -20,11 +20,14 @@ psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 psp <- psp[,-1]
 variable.names(psp)
 
-psp$country <- as.factor(psp$country)
+psp <- data.frame(psp)
+
+summary(psp)
 ```
 
 # Averages 
 ```{r}
+# wvs A035 and A124 factored
 wvs_avg <- psp %>%
   dplyr::group_by(country) %>%
   dplyr::filter(any(!is.na(wvs_factor))) %>%
@@ -40,41 +43,89 @@ wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
 
 plot1 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
   geom_point() + 
-  geom_smooth()
+  geom_smooth() + 
+  theme_bw()
 plot1
+
+# child qualities
+wvs_avg <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A035_child_qualities))) %>%
+  dplyr::summarize(avg = mean(wvs_A035_child_qualities, na.rm = TRUE))
+
+seg_aut_yr <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A035_child_qualities))) %>%
+  dplyr::tally(idc_auton == 1) %>%
+  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
+
+wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
+
+plot2 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()
+plot2
+
+# neighbors
+wvs_avg <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
+  dplyr::summarize(avg = mean(wvs_A124_neighbors, na.rm = TRUE))
+
+seg_aut_yr <- psp %>%
+  dplyr::group_by(country) %>%
+  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
+  dplyr::tally(idc_auton == 1) %>%
+  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
+
+wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
+
+plot3 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
+  geom_point() + 
+  geom_smooth() + 
+  theme_bw()
+plot3
 ```
 
 # Linear Regression on factored wvs values
 ```{r}
-wvs_lm1 <- lm(wvs_factor ~ idc_auton, data = psp)
-wvs_lm2 <- lm(wvs_factor ~ idc_auton + as.factor(year), data = psp)
-wvs_lm3 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
-wvs_lm4 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
-wvs_lm5 <- lm(wvs_factor ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
-wvs_lm6 <- lm(wvs_factor ~ (idc_auton * other_provis) + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+wvs_lm1 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
+wvs_lm2 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
+wvs_lm3 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
+wvs_lm4 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
+wvs_lm5 <- estimatr::lm_robust(wvs_factor ~ (idc_auton * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
 
 summary(wvs_lm1)
 summary(wvs_lm2)
 summary(wvs_lm3)
 summary(wvs_lm4)
 summary(wvs_lm5)
-summary(wvs_lm6)
+```
+
+# Visualization of wvs_lm
+```{r}
+#equation1=function(x){coef(fit1)[2]*x+coef(fit1)[1]}
+#equation2=function(x){coef(fit1)[2]*x+coef(fit1)[1]+coef(fit1)[3]}
+
+#ggplot(radial,aes(y=NTAV,x=age,color=sex))+geom_point()+
+#        stat_function(fun=equation1,geom="line",color=scales::hue_pal()(2)[1])+
+#        stat_function(fun=equation2,geom="line",color=scales::hue_pal()(2)[2])
 ```
 
 # Linear Regression on conflict intensity
 ```{r}
-con_lm1 <- lm(ucdp_cumulative_intensity ~ idc_auton, data = psp)
-con_lm2 <- lm(ucdp_cumulative_intensity ~ idc_auton + year, data = psp)
-con_lm3 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country), data = psp)
-con_lm4 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp, data = psp)
-con_lm5 <- lm(ucdp_cumulative_intensity ~ idc_auton + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
-con_lm6 <- lm(ucdp_cumulative_intensity ~ (idc_auton * other_provis) + as.factor(year) + as.factor(country) + qog_gle_gdp + qog_wbgi_pve, data = psp)
+con_lm1 <- estimatr::lm_robust(ucdp_cumulative_intensity ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
+con_lm2 <- estimatr::lm_robust(ucdp_cumulative_intensity ~ idc_auton + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
+con_lm3 <- estimatr::lm_robust(ucdp_cumulative_intensity ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
+con_lm4 <- estimatr::lm_robust(ucdp_cumulative_intensity ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
+con_lm5 <- estimatr::lm_robust(ucdp_cumulative_intensity ~ (idc_auton * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
+
 summary(con_lm1)
 summary(con_lm2)
 summary(con_lm3)
 summary(con_lm4)
 summary(con_lm5)
-summary(con_lm6)
 ```
 
 # Logit 
