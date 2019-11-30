@@ -30,6 +30,8 @@ dpi <- rio::import(paste0(wd,'DPI2012.xls'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
 wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
 ucdp <- rio::import(paste0(wd, "ucdp-prio-acd-191.xlsx"))
+intra <- rio::import(paste0(wd, 'annual_onset.dta'))
+p4 <- rio::import(paste0(here::here(), "/data/p4v2017.xls"))
 ```
 
 # Set Baseline Data
@@ -177,7 +179,10 @@ qog_ts_psp_sub <- qog_ts %>%
                 iaep_lcre,
                 iaep_lego,
                 iaep_lrit,
-                wbgi_pve
+                wbgi_pve,
+                hum_satdem,
+                hum_supdem,
+                hum_trust,
   ) %>%
   dplyr::rename(country = cname)
 
@@ -305,6 +310,34 @@ ucdp_psp_sub$cown <- countrycode::countrycode(ucdp_psp_sub$country, "country.nam
 ucdp_psp_sub <- dplyr::select(ucdp_psp_sub, -country) 
 ```
 
+## Clean PRIO
+```{r}
+intra_psp_sub <- intra %>%
+  dplyr::select(gwno, year, onset2)
+
+#Some values were not matched unambiguously: 711, 816
+
+intra_psp_sub$cowc <- countrycode::countrycode(intra_psp_sub$gwno, 'gwn', 'cowc')
+intra_psp_sub$cown <- countrycode::countrycode(intra_psp_sub$gwno, 'gwn', 'cown')
+
+intra_psp_sub <- intra_psp_sub %>% dplyr::select(-gwno)
+```
+## Clean PolityIV
+```{r}
+p4_psp_sub <- p4 %>%
+  dplyr::select(country, year, polity) 
+
+#Some values were not matched unambiguously: Orange Free State, Prussia, Sardinia, Serbia, Serbia and Montenegro, United Province CA
+
+p4_psp_sub$cowc <- countrycode::countrycode(p4_psp_sub$country, 'country.name', 'cowc')
+p4_psp_sub$cown <- countrycode::countrycode(p4_psp_sub$country, 'country.name', 'cown')
+
+p4_psp_sub <- p4_psp_sub %>% 
+  dplyr::filter(!is.na(cowc)) %>%
+  dplyr::select(-country)
+```
+
+
 # Join Data
 ```{r}
 # Join data one-by-one. Check for discrepancies. 
@@ -314,6 +347,8 @@ tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
 tb_5 <- dplyr::left_join(tb_4, ucdp_psp_sub, by = c("cown", "cowc", "year"))
 tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
+tb_6 <- dplyr::left_join(tb_6, intra_psp_sub, by = c("cown", "cowc", "year"))
+tb_6 <- dplyr::left_join(tb_6, p4_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
 tb_7 <- tb_6 %>% 
@@ -460,6 +495,9 @@ psp_rename <- psp_rename %>%
                 qog_iaep_lego = iaep_lego,
                 qog_iaep_lrit = iaep_lrit,
                 qog_wbgi_pve = wbgi_pve,
+                qog_hum_satdem = hum_satdem,
+                qog_hum_supdem = hum_supdem,
+                qog_hum_trust = hum_trust,
                 
                 dpi_system = system,
                 dpi_author = author,
@@ -476,6 +514,10 @@ psp_rename <- psp_rename %>%
                 ucdp_intensity_level = intensity_level,
                 ucdp_type_of_conflict = type_of_conflict, 
                 ucdp_cumulative_intensity = cumulative_intensity,
+                
+                prio_onset = onset2,
+                
+                polity4_polity_score = polity,
                 
                 wvs_A035_child_qualities = A035_avg,
                 wvs_A124_neighbors = A124_2avg
