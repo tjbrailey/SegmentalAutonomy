@@ -415,7 +415,9 @@ psp_expand_wvs <- psp %>%
 psp_na_recode <- psp_expand_wvs
 
 psp_na_recode[psp_na_recode == "-999"] <- NA
+
 psp_na_recode[psp_na_recode == "-44"] <- NA
+
 psp_na_recode[psp_na_recode == "-66"] <- NA
 psp_na_recode[psp_na_recode == "-77"] <- NA
 psp_na_recode[psp_na_recode == "-88"] <- NA
