@@ -35,7 +35,7 @@ csts <- function(dv, iv){
   # Plot
   plot1 <- ggplot(iv_dv, aes(x = n, y = avg)) +
     geom_point() + 
-    geom_smooth() + 
+    geom_smooth(method = "lm", se = FALSE) + 
     theme_bw() +
     labs(title = paste0(dv,  " Value by Percentage of Years Under Segmental Autonomy"),
        x = paste0("Percentage of Years Under Segmental Autonomy (",iv, ")"),

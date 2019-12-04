@@ -32,392 +32,64 @@ source(paste0(here::here(), "/R/lm.R"))
 # Cross-Sectional Analyses
 ## World Values Survey
 ```{r}
-# wvs A035 and A124 factored indexes
-wvs_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_factor))) %>%
-  dplyr::summarize(avg = mean(wvs_factor, na.rm = TRUE))
+csts("wvs_factor", "idc_auton")
 
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_factor))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
+csts("wvs_A035_child_qualities", "idc_auton")
 
-wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
-
-plot1 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Factored Public Tolerance by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Factored World Values Survey Response") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot1
-ggsave(plot1, file = paste0(here::here(), "/vis/csts_wvs_factor.png"), width = 12, height = 8)
-
-
-# child qualities index
-wvs_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A035_child_qualities))) %>%
-  dplyr::summarize(avg = mean(wvs_A035_child_qualities, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A035_child_qualities))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
-
-plot2 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Public Tolerance by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Factored World Values Survey Response") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot2
-ggsave(plot2, file = paste0(here::here(), "/vis/csts_wvs_cq.png"), width = 12, height = 8)
-
-
-# neighbors index
-wvs_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
-  dplyr::summarize(avg = mean(wvs_A124_neighbors, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(wvs_A124_neighbors))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-wvs_seg_aut <- dplyr::left_join(seg_aut_yr, wvs_avg)
-
-plot3 <- ggplot(wvs_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Tolerance Toward Neighbors by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Factored World Values Survey Response") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot3
-ggsave(plot3, file = paste0(here::here(), "/vis/csts_wvs_neighbprs.png"), width = 12, height = 8)
+csts("wvs_A124_neighbors", "idc_auton")
 ```
 
 ## UCDP Conflict
 ```{r}
-ucdp_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(ucdp_cumulative_intensity))) %>%
-  dplyr::summarize(avg = mean(ucdp_cumulative_intensity, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(ucdp_cumulative_intensity))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-ucdp_seg_aut <- dplyr::left_join(seg_aut_yr, ucdp_avg)
-
-plot4 <- ggplot(ucdp_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Conflict Intensity by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Average Cumulative Conflict Intensity") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot4
-ggsave(plot4, file = paste0(here::here(), "/vis/csts_ucdp.png"), width = 12, height = 8)
+csts("ucdp_cumulative_intensity", "idc_auton")
 ```
 
 ## QOG Support for Democracy
 ```{r}
-# Social trust
-trust_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_trust))) %>%
-  dplyr::summarize(avg = mean(qog_hum_trust, na.rm = TRUE))
+csts("qog_hum_trust", "idc_auton")
 
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_trust))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
+csts("qog_hum_supdem", "idc_auton")
 
-hum_trust_seg_aut <- dplyr::left_join(seg_aut_yr, trust_avg)
-
-plot5 <- ggplot(hum_trust_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Social Trust by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Average Social Trust Rates by Country") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot5
-ggsave(plot5, file = paste0(here::here(), "/vis/csts_hum_trust.png"), width = 12, height = 8)
-
-
-# Satistfaction with Democracy
-satdem_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_satdem))) %>%
-  dplyr::summarize(avg = mean(qog_hum_satdem, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_satdem))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-hum_satdem_seg_aut <- dplyr::left_join(seg_aut_yr, satdem_avg)
-
-plot6 <- ggplot(hum_satdem_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Satisfaction with Democracy by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Average Satisfaction with Democracy Rates by Country") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot6
-ggsave(plot6, file = paste0(here::here(), "/vis/csts_hum_satdem.png"), width = 12, height = 8)
-
-
-# Support for Democracy
-support_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_supdem))) %>%
-  dplyr::summarize(avg = mean(qog_hum_supdem, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(qog_hum_supdem))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-hum_supdem_seg_aut <- dplyr::left_join(seg_aut_yr, support_avg)
-
-plot7 <- ggplot(hum_supdem_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth(method = "lm", se = F) +
-  theme_bw() +
-  labs(title = "Support for Democracy by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Average Support for Democracy Rates by Country") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot7
-ggsave(plot7, file = paste0(here::here(), "/vis/csts_hum_supdem.png"), width = 12, height = 8)
+csts("qog_hum_satdem", "idc_auton")
 ```
 
 ## Polity Scores
 ```{r}
-polity_avg <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(polity4_polity_score))) %>%
-  dplyr::summarize(avg = mean(polity4_polity_score, na.rm = TRUE))
-
-seg_aut_yr <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::filter(any(!is.na(polity4_polity_score))) %>%
-  dplyr::tally(idc_auton == 1) %>%
-  dplyr::mutate(n = (n / ((max(psp$year) - min(psp$year)) + 1) * 100 ))
-
-polity_seg_aut <- dplyr::left_join(seg_aut_yr,polity_avg)
-
-plot8 <- ggplot(polity_seg_aut, aes(x = n, y = avg)) +
-  geom_point() + 
-  geom_smooth() + 
-  theme_bw() +
-  labs(title = "Polity Scores by Percentage of Years Under Segmental Autonomy",
-       x = "Percentage of Years Under Segmental Autonomy",
-       y = "Average Polity Score by Country") +
-  theme(title = element_text(size = 16),
-        axis.title.x = element_text(size = 14),
-        axis.title.y = element_text(size = 14),
-        axis.text.x = element_text(size = 12, angle = 90),
-        axis.text.y = element_text(size = 12),
-        strip.text = element_text(size = 14))
-plot8
-ggsave(plot8, file = paste0(here::here(), "/vis/csts_polity.png"), width = 12, height = 8)
+csts("polity4_polity_score", "idc_auton")
 ```
 
 # Linear Regression on Factored World Values Survey Variables
 ```{r}
-wvs_lm1 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
-wvs_lm2 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
-wvs_lm3 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
-wvs_lm4 <- estimatr::lm_robust(wvs_factor ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-wvs_lm5 <- estimatr::lm_robust(wvs_factor ~ (idc_auton * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-
-#summary(wvs_lm1)
-#summary(wvs_lm2)
-#summary(wvs_lm3)
-#summary(wvs_lm4)
-#summary(wvs_lm5)
-
-wvs_lm1_tex <- texreg::texreg(wvs_lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm2_tex <- texreg::texreg(wvs_lm2, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm3_tex <- texreg::texreg(wvs_lm3, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm4_tex <- texreg::texreg(wvs_lm4, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm5_tex <- texreg::texreg(wvs_lm5, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm_full_tex <- texreg::texreg(list(wvs_lm1, wvs_lm2, wvs_lm3, wvs_lm4, wvs_lm5), mfrow = TRUE, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y", "Y", "Y"),
-                        `Year fixed effects` = c("N", "Y", "Y", "Y", "Y")))
-wvs_lm_full_tex
-```
-
-# World Values Survey with Different Main Independent Variables
-```{r}
-# Subtax
-wvs_lm1_subtax <- estimatr::lm_robust(wvs_factor ~ idc_subtax + as.factor(country), data = psp, se_type = "HC0")
-wvs_lm2_subtax <- estimatr::lm_robust(wvs_factor ~ idc_subtax + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
-wvs_lm3_subtax <- estimatr::lm_robust(wvs_factor ~ idc_subtax + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
-wvs_lm4_subtax <- estimatr::lm_robust(wvs_factor ~ idc_subtax + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-wvs_lm5_subtax <- estimatr::lm_robust(wvs_factor ~ (idc_subtax * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-
-wvs_lm1_subtax_tex <- texreg::texreg(wvs_lm1_subtax, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm2_subtax_tex <- texreg::texreg(wvs_lm2_subtax, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm3_subtax_tex <- texreg::texreg(wvs_lm3_subtax, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm4_subtax_tex <- texreg::texreg(wvs_lm4_subtax, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm5_subtax_tex <- texreg::texreg(wvs_lm5_subtax, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm_subtax_full_tex <- texreg::texreg(list(wvs_lm1_subtax, wvs_lm2_subtax, wvs_lm3_subtax, wvs_lm4_subtax, wvs_lm5_subtax), mfrow = TRUE, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y", "Y", "Y"),
-                        `Year fixed effects` = c("N", "Y", "Y", "Y", "Y")))
-wvs_lm_subtax_full_tex
-
-
-# Subed
-wvs_lm1_subed <- estimatr::lm_robust(wvs_factor ~ idc_subed + as.factor(country), data = psp, se_type = "CR2", clusters = country)
-wvs_lm2_subed <- estimatr::lm_robust(wvs_factor ~ idc_subed + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
-wvs_lm3_subed <- estimatr::lm_robust(wvs_factor ~ idc_subed + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
-wvs_lm4_subed <- estimatr::lm_robust(wvs_factor ~ idc_subed + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-wvs_lm5_subed <- estimatr::lm_robust(wvs_factor ~ (idc_subed * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-
-wvs_lm1_subed_tex <- texreg::texreg(wvs_lm1_subed, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm2_subed_tex <- texreg::texreg(wvs_lm2_subed, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm3_subed_tex <- texreg::texreg(wvs_lm3_subed, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm4_subed_tex <- texreg::texreg(wvs_lm4_subed, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm5_subed_tex <- texreg::texreg(wvs_lm5_subed, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm_subed_full_tex <- texreg::texreg(list(wvs_lm1_subed, wvs_lm2_subed, wvs_lm3_subed, wvs_lm4_subed, wvs_lm5_subed), mfrow = TRUE, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y", "Y", "Y"),
-                        `Year fixed effects` = c("N", "Y", "Y", "Y", "Y")))
-wvs_lm_subed_full_tex
-
-
-
-# Subpolice
-wvs_lm1_subpolice <- estimatr::lm_robust(wvs_factor ~ idc_subpolice + as.factor(country), data = psp, se_type = "HC0")
-wvs_lm2_subpolice <- estimatr::lm_robust(wvs_factor ~ idc_subpolice + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
-wvs_lm3_subpolice <- estimatr::lm_robust(wvs_factor ~ idc_subpolice + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
-wvs_lm4_subpolice <- estimatr::lm_robust(wvs_factor ~ idc_subpolice + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-wvs_lm5_subpolice <- estimatr::lm_robust(wvs_factor ~ (idc_subpolice * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-
-wvs_lm1_subpolice_tex <- texreg::texreg(wvs_lm1_subpolice, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm2_subpolice_tex <- texreg::texreg(wvs_lm2_subpolice, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm3_subpolice_tex <- texreg::texreg(wvs_lm3_subpolice, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm4_subpolice_tex <- texreg::texreg(wvs_lm4_subpolice, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm5_subpolice_tex <- texreg::texreg(wvs_lm5_subpolice, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-wvs_lm_subpolice_full_tex <- texreg::texreg(list(wvs_lm1_subpolice, wvs_lm2_subpolice, wvs_lm3_subpolice, wvs_lm4_subpolice, wvs_lm5_subpolice), mfrow = TRUE, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y", "Y", "Y"),
-                        `Year fixed effects` = c("N", "Y", "Y", "Y", "Y")))
-wvs_lm_subpolice_full_tex
+psp_lm("wvs_factor", "idc_auton")
+psp_lm("wvs_factor", "idc_subtax")
+psp_lm("wvs_factor", "idc_subed")
+psp_lm("wvs_factor", "idc_subpolice")
 ```
 
 # Linear Regression QOG Democracy Information
 ```{r}
-# Social Trust
-trust_lm1 <- estimatr::lm_robust(qog_hum_trust ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
-satdem_lm1 <- estimatr::lm_robust(qog_hum_satdem ~ (idc_auton * other_provis) + as.factor(country), data = psp, se_type = "HC0")
-supdem_lm1 <- estimatr::lm_robust(qog_hum_supdem ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
+psp_lm("qog_hum_trust", "idc_auton")
+psp_lm("qog_hum_supdem", "idc_auton")
+psp_lm("qog_hum_satdem", "idc_auton")
 
-trust_lm1_tex <- texreg::texreg(trust_lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-satdem_lm1_tex <- texreg::texreg(satdem_lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-supdem_lm1_tex <- texreg::texreg(supdem_lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
+psp_lm("qog_hum_trust", "idc_subed")
+psp_lm("qog_hum_supdem", "idc_subed")
+psp_lm("qog_hum_satdem", "idc_subed")
 
+psp_lm("qog_hum_trust", "idc_subtax")
+psp_lm("qog_hum_supdem", "idc_subtax")
+psp_lm("qog_hum_satdem", "idc_subtax")
 
-trust_lm1_tex
-satdem_lm1_tex
-supdem_lm1_tex
+psp_lm("qog_hum_trust", "idc_subpolice")
+psp_lm("qog_hum_supdem", "idc_subpolice")
+psp_lm("qog_hum_satdem", "idc_subpolice")
 ```
 
 
 # Linear Regression on Conflict Intensity
 ```{r}
-con_lm1 <- estimatr::lm_robust(prio_onset ~ idc_auton + as.factor(country), data = psp, se_type = "HC0")
-con_lm2 <- estimatr::lm_robust(prio_onset ~ idc_auton + as.factor(country) + as.factor(year), data = psp, se_type = "HC0")
-con_lm3 <- estimatr::lm_robust(prio_onset ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp, data = psp, se_type = "HC0")
-con_lm4 <- estimatr::lm_robust(prio_onset ~ idc_auton + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-con_lm5 <- estimatr::lm_robust(prio_onset ~ (idc_auton * other_provis) + as.factor(country) + as.factor(year) + qog_gle_gdp + qog_wbgi_pve, data = psp, se_type = "HC0")
-
-
-con_lm1_tex <- texreg::texreg(con_lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-con_lm2_tex <- texreg::texreg(con_lm2, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-con_lm3_tex <- texreg::texreg(con_lm3, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-con_lm4_tex <- texreg::texreg(con_lm4, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-con_lm5_tex <- texreg::texreg(con_lm5, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-con_lm_full_tex <- texreg::texreg(list(con_lm1, con_lm2, con_lm3, con_lm4, con_lm5), mfrow = TRUE, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Country Fixed effects` = c("Y", "Y", "Y", "Y", "Y"),
-                        `Year fixed effects` = c("N", "Y", "Y", "Y", "Y")))
-con_lm_full_tex
-```
-
-# Logit 
-```{r}
-logit1 <- glm(ucdp_cumulative_intensity ~ idc_auton + as.factor(country),
-                  data = psp, 
-                family = binomial(link = "logit"))
-#Zelig::summary(logit1)
-```
-
-
-# Cox Regression
-```{r}
-# Create new variable for conflict length
-psp_temp <- psp %>%
-  dplyr::group_by(country) %>%
-  dplyr::mutate(conf_len = sum(ucdp_cumulative_intensity, na.rm=T))
-
-cx1 <- survival::coxph(formula = survival::Surv(conf_len, prio_onset) ~ idc_auton + as.factor(country) , data = psp_temp)
-#summary(cx1)
-
-cx2 <- survival::coxph(formula = survival::Surv(conf_len, prio_onset) ~ (idc_auton * other_provis) + as.factor(country) , data = psp_temp)
-#summary(cx2)
+psp_lm("prio_onset", "idc_auton")
+psp_lm("prio_onset", "idc_subed")
+psp_lm("prio_onset", "idc_subtax")
+psp_lm("prio_onset", "idc_subpolice")
 ```
