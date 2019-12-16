@@ -1,12 +1,23 @@
 ---
-title: "tjbrailey_wrangle_data"
-author: "Thomas Brailey"
-date: "13/09/2019"
+title: "01 Data Wrangling"
+author: "Thomas J. Brailey"
+date: "29/09/2019"
 output:
-  word_document: default
-  html_document: default
-subtitle: POLI 191A/B
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
 ---
+<style>
+    body .main-container {
+        max-width: 100%;
+    }
+</style>
 
 ```{r setup, include=FALSE}
 # Be sure to run the entire markdown file.
@@ -61,7 +72,6 @@ tb <- tb %>%
                 cowc, 
                 cown, 
                 year, 
-                gwno, 
                 ifs, 
                 mveto,
                 gcman,
@@ -92,36 +102,6 @@ tb <- tb %>%
                 -ifs
                 )
 ```
-
-## Clean DTD (Norris, 2008)
-```{r}
-# Select key variables.
-dtd_psp_sub <- dtd %>%
-  dplyr::select(Nation,
-                Year,
-                Coalition,
-                coalition2,
-                coalitiongov,
-                VANstand,
-                Admin,
-                mixed,
-                proportional,
-                roseprop,
-                xrcomp
-                ) %>%
-  dplyr::rename(country = Nation,
-                year = Year)
-
-# Some values were not matched unambiguously:
-
-dtd_psp_sub$country <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'country.name')
-dtd_psp_sub$cowc <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'cowc')
-dtd_psp_sub$cown <- countrycode::countrycode(dtd_psp_sub$country, 'country.name', 'cown')  
-
-dtd_psp_sub <- dtd_psp_sub %>%
-  dplyr::select(-country)
-```
-  
 
 ## Clean V-Dem
 ```{r}
@@ -183,6 +163,10 @@ qog_ts_psp_sub <- qog_ts %>%
                 hum_satdem,
                 hum_supdem,
                 hum_trust,
+                wdi_gini,
+                gle_pop,
+                al_ethnic,
+                dpi_auton
   ) %>%
   dplyr::rename(country = cname)
 
@@ -325,7 +309,7 @@ intra_psp_sub <- intra_psp_sub %>% dplyr::select(-gwno)
 ## Clean PolityIV
 ```{r}
 p4_psp_sub <- p4 %>%
-  dplyr::select(country, year, polity) 
+  dplyr::select(country, year, polity, fragment) 
 
 #Some values were not matched unambiguously: Orange Free State, Prussia, Sardinia, Serbia, Serbia and Montenegro, United Province CA
 
@@ -341,8 +325,7 @@ p4_psp_sub <- p4_psp_sub %>%
 # Join Data
 ```{r}
 # Join data one-by-one. Check for discrepancies. 
-tb_1 <- dplyr::left_join(tb, dtd_psp_sub, by = c("cown", "cowc", "year"))
-tb_2 <- dplyr::left_join(tb_1, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
+tb_2 <- dplyr::left_join(tb, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
 tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
 tb_5 <- dplyr::left_join(tb_4, ucdp_psp_sub, by = c("cown", "cowc", "year"))
@@ -458,16 +441,6 @@ psp_rename <- psp_rename %>%
                 idc_muni = muni,
                 idc_fedunits = fedunits,
                 
-                dtd_coalition = Coalition, 
-                dtd_coalition2 = coalition2,
-                dtd_coalitiongov = coalitiongov,
-                dtd_vanstand = VANstand,
-                dtd_admin = Admin, 
-                dtd_mixed = mixed, 
-                dtd_proportional = proportional,
-                dtd_roseprop = roseprop,
-                dtd_xrcomp = xrcomp, 
-                
                 qog_fe_etfra = fe_etfra,
                 qog_iaep_ebbp = iaep_ebbp,
                 qog_gle_gdp = gle_gdp,
@@ -500,6 +473,9 @@ psp_rename <- psp_rename %>%
                 qog_hum_satdem = hum_satdem,
                 qog_hum_supdem = hum_supdem,
                 qog_hum_trust = hum_trust,
+                qog_wdi_gini = wdi_gini,
+                qog_gle_pop = gle_pop,
+                qog_al_ethnic = al_ethnic,
                 
                 dpi_system = system,
                 dpi_author = author,
@@ -520,23 +496,34 @@ psp_rename <- psp_rename %>%
                 prio_onset = onset2,
                 
                 polity4_polity_score = polity,
+                polity4_fragment = fragment,
                 
                 wvs_A035_child_qualities = A035_avg,
                 wvs_A124_neighbors = A124_2avg
-                )
+                ) %>% 
+  # Fill out remaining variables
+  dplyr::group_by(country) %>% 
+  tidyr::fill(qog_wdi_gini)
 
 variable.names(psp_rename)
 ```
 
-# Add Binary for Other Provisions
+# Add Binary for Other Provisions, New Measure of Autonomy, and Cumulative Conflict Length
 ```{r}
 psp_add_bin <- psp_rename %>%
-  dplyr::mutate(other_provis = ifelse(idc_mveto == 1|
+  dplyr::mutate(tb_other_provis = ifelse(idc_mveto == 1|
                                       idc_gcman == 1 |
                                         idc_gcimp == 1 |
                                         dpi_pr == 1, 1, 0),
-  other_provis = ifelse(is.na(other_provis), 0, other_provis)) %>%
+  tb_other_provis = ifelse(is.na(tb_other_provis), 0, tb_other_provis)) %>%
+  dplyr::mutate(tb_aut = ifelse(idc_subtax == 1 | 
+                                  idc_subed == 1 |
+                                  idc_subpolice == 1, 1, 0)) %>%
+  dplyr::group_by(ucdp_side_a, ucdp_side_b) %>% 
+  dplyr::mutate(tb_conflict_length = sum(length(ucdp_cumulative_intensity), na.rm = T)) %>%
   dplyr::ungroup()
+  
+psp_add_bin$tb_conflict_length[psp_add_bin$tb_conflict_length == 4943] <- NA
 ```
 
 # Factor Analysis

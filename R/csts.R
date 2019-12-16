@@ -17,6 +17,10 @@ csts <- function(dv, iv){
   # Load data
   psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
   psp <- psp[,-1]
+  
+  psp <- psp %>%
+    dplyr::filter(qog_al_ethnic > 0.4840572)
+  
 
   # Subset data
   dv_avg <- psp %>%

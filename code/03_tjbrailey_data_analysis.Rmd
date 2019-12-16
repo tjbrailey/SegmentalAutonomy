@@ -1,10 +1,23 @@
 ---
-title: "tjbrailey_data_analysis"
-subtitle: "POLI 191A/B"
-author: "Thomas Brailey"
+title: "03 Data Analysis"
+author: "Thomas J. Brailey"
 date: "29/09/2019"
-output: html_document
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
 ---
+<style>
+    body .main-container {
+        max-width: 100%;
+    }
+</style>
 
 ```{r setup, include=FALSE}
 rm(list=ls())
@@ -22,7 +35,7 @@ variable.names(psp)
 
 psp <- data.frame(psp)
 
-#summary(psp)
+#DataExplorer::plot_histogram(psp)
 
 # Load esssential scripts
 source(paste0(here::here(), "/R/csts.R"))
@@ -32,34 +45,35 @@ source(paste0(here::here(), "/R/lm.R"))
 # Cross-Sectional Analyses
 ## World Values Survey
 ```{r}
-csts("wvs_factor", "idc_auton")
+csts("wvs_factor", "tb_aut")
 
-csts("wvs_A035_child_qualities", "idc_auton")
+csts("wvs_A035_child_qualities", "tb_aut")
 
-csts("wvs_A124_neighbors", "idc_auton")
+csts("wvs_A124_neighbors", "tb_aut")
 ```
 
 ## UCDP Conflict
 ```{r}
-csts("ucdp_cumulative_intensity", "idc_auton")
+csts("ucdp_cumulative_intensity", "tb_aut")
 ```
 
 ## QOG Support for Democracy
 ```{r}
-csts("qog_hum_trust", "idc_auton")
+csts("qog_hum_trust", "tb_aut")
 
-csts("qog_hum_supdem", "idc_auton")
+csts("qog_hum_supdem", "tb_aut")
 
-csts("qog_hum_satdem", "idc_auton")
+csts("qog_hum_satdem", "tb_aut")
 ```
 
 ## Polity Scores
 ```{r}
-csts("polity4_polity_score", "idc_auton")
+csts("polity4_polity_score", "tb_aut")
 ```
 
 # Linear Regression on Factored World Values Survey Variables
 ```{r}
+psp_lm("wvs_factor", "tb_aut")
 psp_lm("wvs_factor", "idc_auton")
 psp_lm("wvs_factor", "idc_subtax")
 psp_lm("wvs_factor", "idc_subed")
@@ -68,18 +82,30 @@ psp_lm("wvs_factor", "idc_subpolice")
 
 # Linear Regression QOG Democracy Information
 ```{r}
+psp_lm("qog_hum_trust", "tb_aut")
+psp_lm("qog_hum_supdem", "tb_aut")
+psp_lm("qog_hum_satdem", "tb_aut")
+```
+
+```{r}
 psp_lm("qog_hum_trust", "idc_auton")
 psp_lm("qog_hum_supdem", "idc_auton")
 psp_lm("qog_hum_satdem", "idc_auton")
+```
 
+```{r}
 psp_lm("qog_hum_trust", "idc_subed")
 psp_lm("qog_hum_supdem", "idc_subed")
 psp_lm("qog_hum_satdem", "idc_subed")
+```
 
+```{r}
 psp_lm("qog_hum_trust", "idc_subtax")
 psp_lm("qog_hum_supdem", "idc_subtax")
 psp_lm("qog_hum_satdem", "idc_subtax")
+```
 
+```{r}
 psp_lm("qog_hum_trust", "idc_subpolice")
 psp_lm("qog_hum_supdem", "idc_subpolice")
 psp_lm("qog_hum_satdem", "idc_subpolice")
@@ -92,4 +118,27 @@ psp_lm("prio_onset", "idc_auton")
 psp_lm("prio_onset", "idc_subed")
 psp_lm("prio_onset", "idc_subtax")
 psp_lm("prio_onset", "idc_subpolice")
+psp_lm("prio_onset", "tb_aut")
+```
+
+```{r}
+psp_lm("ucdp_cumulative_intensity", "idc_auton")
+psp_lm("ucdp_cumulative_intensity", "idc_subed")
+psp_lm("ucdp_cumulative_intensity", "idc_subtax")
+psp_lm("ucdp_cumulative_intensity", "idc_subpolice")
+psp_lm("ucdp_cumulative_intensity", "tb_aut")
+```
+
+```{r}
+psp_lm("ucdp_intensity_level", "idc_auton")
+psp_lm("ucdp_intensity_level", "idc_subed")
+psp_lm("ucdp_intensity_level", "idc_subtax")
+psp_lm("ucdp_intensity_level", "idc_subpolice")
+psp_lm("ucdp_intensity_level", "tb_aut")
+```
+
+# Cox Proportional Hazards Model
+```{r}
+cx1 <- survival::coxph(survival::Surv(year, tb_conflict_length) ~ tb_aut, data = psp)
+texreg::texreg(cx1)
 ```
