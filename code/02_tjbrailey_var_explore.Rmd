@@ -50,8 +50,7 @@ psp %>%
  
 # States that employ proportionality/
 psp %>%
-  dplyr::filter(dpi_pr == 1 | 
-                  dtd_proportional == 1) %>%
+  dplyr::filter(dpi_pr == 1) %>%
   dplyr::distinct(country)
 
 # States that employ segmental autonomy.
@@ -126,21 +125,6 @@ author <- psp %>%
   dplyr::filter(dpi_author == 1) %>%
   dplyr::distinct(country, year)
 unique(author$country)
-```
-
-# Additional Checks
-```{r}
-# Number of World Value Survey responses by country.
-wvs_miss <- psp %>%
-  dplyr::filter(!is.na(wvs_A124_neighbors))
-unique(wvs_miss$country)
-
-seg_imp_wvs_miss <- wvs_miss %>%
-  dplyr::filter(country %in% c(seg_imp))
-unique(seg_imp_wvs_miss$country)
-```
-```{r}
-View(dplyr::select(psp, idc_auton, idc_subed, idc_subtax, idc_subpolice, dpi_author))
 ```
 
 # Subset code

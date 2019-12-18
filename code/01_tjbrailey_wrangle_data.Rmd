@@ -166,7 +166,8 @@ qog_ts_psp_sub <- qog_ts %>%
                 wdi_gini,
                 gle_pop,
                 al_ethnic,
-                dpi_auton
+                dpi_auton,
+                pt_federal
   ) %>%
   dplyr::rename(country = cname)
 
@@ -476,6 +477,7 @@ psp_rename <- psp_rename %>%
                 qog_wdi_gini = wdi_gini,
                 qog_gle_pop = gle_pop,
                 qog_al_ethnic = al_ethnic,
+                qog_pt_federal = pt_federal,
                 
                 dpi_system = system,
                 dpi_author = author,
@@ -503,7 +505,11 @@ psp_rename <- psp_rename %>%
                 ) %>% 
   # Fill out remaining variables
   dplyr::group_by(country) %>% 
-  tidyr::fill(qog_wdi_gini)
+  tidyr::fill(qog_wdi_gini, 
+              qog_wbgi_pve, 
+              qog_hum_satdem,
+              qog_hum_supdem, 
+              qog_hum_trust) 
 
 variable.names(psp_rename)
 ```
