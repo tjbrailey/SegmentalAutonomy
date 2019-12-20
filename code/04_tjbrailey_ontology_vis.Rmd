@@ -1,12 +1,23 @@
 ---
-title: "tjbrailey_ontology_vis"
-subtitle: "POLI 191A/B"
-author: "Thomas Brailey"
-date: "12/09/2019"
+title: "04 Ontology Visualization"
+author: "Thomas J. Brailey"
+date: "29/09/2019"
 output:
-  word_document: default
-
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
 ---
+<style>
+    body .main-container {
+        max-width: 100%;
+    }
+</style>
 
 ```{r setup, include=FALSE}
 rm(list=ls())
