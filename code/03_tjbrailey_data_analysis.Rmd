@@ -96,3 +96,12 @@ psp_lm("ucdp_intensity_level", "idc_auton")
 psp_lm("polity4_polity_score", "tb_aut")
 psp_lm("polity4_polity_score", "idc_auton")
 ```
+```{r}
+# Bivariate
+cox1 <- survival::coxph(survival::Surv(year, ucdp_cumulative_intensity) ~ idc_auton, data = psp)
+summary(cox1)
+
+# With controls
+cox2 <- survival::coxph(survival::Surv(year, ucdp_cumulative_intensity) ~ (idc_auton * tb_other_provis) + as.factor(country) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, data = psp)
+print(summary(cox2))
+```
