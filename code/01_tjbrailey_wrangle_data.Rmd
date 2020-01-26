@@ -36,10 +36,9 @@ wd <- paste0(here::here(), '/data/')
 # Power-sharing-specific datasets.
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
 dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.csv'))
-vdem <- rio::import(paste0(wd,"V-Dem-CY-Full+Others-v9.csv"))
+vdem <- rio::import(paste0(wd,"V-Dem-CY+Others-v8.csv"))
 dpi <- rio::import(paste0(wd,'DPI2012.xls'))
 qog_ts <- rio::import(paste0(wd,'qog_std_ts_jan19.csv'))
-wvs <- rio::import(paste0(wd, "F00008390-WVS_Longitudinal_1981_2016_r_v20180912.rds"))
 ucdp <- rio::import(paste0(wd, "ucdp-prio-acd-191.xlsx"))
 intra <- rio::import(paste0(wd, 'annual_onset.dta'))
 p4 <- rio::import(paste0(here::here(), "/data/p4v2017.xls"))
@@ -110,7 +109,7 @@ vdem_psp_sub <- vdem %>%
   dplyr::select(country_name, 
                 year, 
                 e_miinterc, 
-                e_civil_war) %>% 
+                e_Civil_War) %>% 
   dplyr::rename(country = country_name)
 
 vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
@@ -217,69 +216,6 @@ dpi_psp_sub <- dpi_psp_sub %>%
   dplyr::select(-country)
 ```
 
-## Clean World Values Survey
-```{r}
-# Clean and select key variables.
-wvs <- dplyr::as_tibble(wvs)
-
-wvs_cleaned <- wvs %>% 
-  dplyr::select(S003, S018, S020,
-     A035,
-     A124_02, A124_06, A124_09, A124_12, A124_18) 
-
-wvs_cleaned$A035[wvs_cleaned$A035 == 0] <- 2
-wvs_cleaned$A035[wvs_cleaned$A035 == 1] <- 0
-wvs_cleaned$A035[wvs_cleaned$A035 == 2] <- 1
-
-wvs_cleaned[wvs_cleaned == -5] <- NA
-wvs_cleaned[wvs_cleaned == -4] <- NA
-wvs_cleaned[wvs_cleaned == -3] <- NA
-wvs_cleaned[wvs_cleaned == -2] <- NA
-wvs_cleaned[wvs_cleaned == -1] <- NA
-
-# Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
-# Some values were not matched unambiguously: 101, 275, 344, 630, 688, 914
-
-# 101: ???
-# 275: Palestine
-# 344: Hong Kong
-# 630: Puerto Rico
-# 688: ???
-# 914: ???
-
-# Create averages for A124 and E069 variables.
-wvs_psp_sub <- wvs_cleaned %>%
-  dplyr::mutate(A124_avg = rowMeans(wvs_cleaned[,c("A124_02", "A124_06", "A124_09", "A124_12", "A124_18")], na.rm = TRUE)) %>%
-  dplyr::select(S003, S020, A035, A124_avg)
-
-wvs_psp_sub$A035[is.nan(wvs_psp_sub$A035)] <- NA
-wvs_psp_sub$A124_avg[is.nan(wvs_psp_sub$A124_avg)] <- NA
-
-wvs_psp_sub <- wvs_psp_sub %>%
-  dplyr::group_by(S003, S020) %>%
-  dplyr::summarise(A035_avg = mean(A035),
-                   A124_2avg = mean(A124_avg)
-                   ) %>%
-  dplyr::rename(year = S020) %>%
-  dplyr::ungroup()
-
-wvs_psp_sub$country <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "country.name")
-wvs_psp_sub$cowc <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "cowc")
-wvs_psp_sub$cown <- countrycode::countrycode(wvs_psp_sub$S003, "wvs", "cown")
-
-wvs_psp_sub <- wvs_psp_sub %>%
-  dplyr::select(-country, -S003)
-
-# Explore variables. 
-wvs_n_per_year <- wvs_cleaned %>%
-  dplyr::group_by(S020) %>%
-  dplyr::summarize(obs = n())
-
-wvs_n_by_country <- wvs_cleaned %>%
-  dplyr::group_by(S003, S020) %>%
-  dplyr::summarize(obs = n())
-```
-
 ## Clean UCDP
 ```{r}
 ucdp_psp_sub <- ucdp %>% 
@@ -321,7 +257,43 @@ p4_psp_sub <- p4_psp_sub %>%
   dplyr::filter(!is.na(cowc)) %>%
   dplyr::select(-country)
 ```
+# Clean RAI
+```{r}
+rai_psp_sub <- rio::import(paste0(here::here(), "/data/RAI_country_scores_2015.xlsx")) %>%
+  dplyr::select(country_name, year, n_RAI) %>%
+  dplyr::mutate(cown = countrycode::countrycode(country_name, "country.name", "cown"),
+                cowc = countrycode::countrycode(cown, "cown", "cowc"),
+                year = as.numeric(year)) %>%
+  dplyr::select(cown, cowc, year, n_RAI)
+```
 
+# Clean EPR
+```{r}
+epr <- rio::import(paste0(here::here(), "/data/EPR-2018.1.1.csv")) %>%
+  dplyr::mutate(cown = countrycode::countrycode(gwid, "gwn", "cown")) %>%
+  dplyr::select(cown, from, group, reg_aut) %>%
+  dplyr::rename(year = from) %>% 
+  dplyr::group_by(cown, group) %>%
+  tidyr::complete(cown, group, 
+                  year = 1946:2017, 
+                  fill = list(incidents = 0)) 
+epr_wide <- epr %>% 
+  tidyr::pivot_wider(names_from = group, 
+                     values_from = reg_aut) %>%
+  dplyr::group_by(cown) 
+
+epr_wide <- epr_wide %>%
+  tidyr::fill_(names(epr_wide[,2:642])) %>%
+  dplyr::ungroup()
+
+epr_wide$reg_aut_cont <- rowSums(epr_wide[,3:642] == TRUE, na.rm = TRUE)
+
+epr_psp_sub <- epr_wide %>%  
+  dplyr::mutate(reg_aut_dum = ifelse(reg_aut_cont >= 1, 1, 0),
+                cowc = countrycode::countrycode(cown, "cown", "cowc")) %>%
+  dplyr::select(cown, cowc, year, reg_aut_dum, reg_aut_cont)
+
+```
 
 # Join Data
 ```{r}
@@ -330,17 +302,18 @@ tb_2 <- dplyr::left_join(tb, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
 tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
 tb_5 <- dplyr::left_join(tb_4, ucdp_psp_sub, by = c("cown", "cowc", "year"))
-tb_6 <- dplyr::left_join(tb_5, wvs_psp_sub, by = c("cown", "cowc", "year"))
-tb_6 <- dplyr::left_join(tb_6, intra_psp_sub, by = c("cown", "cowc", "year"))
-tb_6 <- dplyr::left_join(tb_6, p4_psp_sub, by = c("cown", "cowc", "year"))
+tb_6 <- dplyr::left_join(tb_5, epr_psp_sub, by = c("cown", "cowc", "year"))
+tb_7 <- dplyr::left_join(tb_6, intra_psp_sub, by = c("cown", "cowc", "year"))
+tb_8 <- dplyr::left_join(tb_7, p4_psp_sub, by = c("cown", "cowc", "year"))
+tb_9 <- dplyr::left_join(tb_8, rai_psp_sub, by = c("cown", "cowc", "year"))
 
 # Collapse duplicate country/years whie retaining values.
-tb_7 <- tb_6 %>% 
+tb_10 <- tb_9 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
 # Save data as a .rds file.
-saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
+saveRDS(tb_10, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
 # Remove intermediate join files.
 #rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
@@ -349,37 +322,37 @@ saveRDS(tb_7, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 # Visualize Data Before Recoding
 ```{r}
 # DataExplorer missingness.
-DataExplorer::plot_missing(tb_7)
+DataExplorer::plot_missing(tb_10)
 
 # Save image.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_missing(tb_7)
+DataExplorer::plot_missing(tb_10)
 dev.off()
 ```
 
 ```{r}
 # DataExplorer variable histograms. 
-DataExplorer::plot_histogram(tb_7)
+DataExplorer::plot_histogram(tb_10)
 
 # Save images.
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
-DataExplorer::plot_histogram(tb_7)
+DataExplorer::plot_histogram(tb_10)
 dev.off()
 ```
 
 ```{r}
 # Amelia missingness.
-Amelia::missmap(tb_7)
+Amelia::missmap(tb_10)
 
 # Save image.
 png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
     width = 2000, 
     height = 1000)
-Amelia::missmap(tb_7)
+Amelia::missmap(tb_10)
 dev.off()
 ```
 
@@ -388,15 +361,8 @@ dev.off()
 # Install data.
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_not_cleaned.rds"))
 
-# Fill WVS values by year.
-psp_expand_wvs <- psp %>%
-  dplyr::group_by(country) %>%
-  tidyr::fill(A035_avg,
-              A124_2avg
-              )
-
 # Remove codings for NA values.
-psp_na_recode <- psp_expand_wvs
+psp_na_recode <- psp
 
 psp_na_recode[psp_na_recode == "-999"] <- NA
 
@@ -486,7 +452,7 @@ psp_rename <- psp_rename %>%
                 dpi_eiec = eiec,
                 
                 vdem_e_miinterc = e_miinterc, 
-                vdem_e_civil_war = e_civil_war,
+                vdem_e_civil_war = e_Civil_War,
                 
                 ucdp_side_a = side_a,
                 ucdp_side_b = side_b,
@@ -500,8 +466,10 @@ psp_rename <- psp_rename %>%
                 polity4_polity_score = polity,
                 polity4_fragment = fragment,
                 
-                wvs_A035_child_qualities = A035_avg,
-                wvs_A124_neighbors = A124_2avg
+                epr_reg_aut_dum = reg_aut_dum,
+                epr_reg_aut_cont = reg_aut_cont,
+                
+                rai_n_RAI = n_RAI
                 ) %>% 
   # Fill out remaining variables
   dplyr::group_by(country) %>% 
@@ -532,46 +500,22 @@ psp_add_bin <- psp_rename %>%
 psp_add_bin$tb_conflict_length[psp_add_bin$tb_conflict_length == 4943] <- NA
 ```
 
-# Factor Analysis
+# Save Final Data
 ```{r}
-wvs_035_124 <- data.frame(psp_add_bin) %>%
-  dplyr::select(wvs_A035_child_qualities, wvs_A124_neighbors
-                )
-
-cor(wvs_035_124, use = "complete.obs")
-
-pcal_035_124 <- princomp(na.omit(wvs_035_124), scores = TRUE, cor = TRUE)
-summary(pcal_035_124)
-
-loadings(pcal_035_124)
-
-plot(pcal_035_124)
-screeplot(pcal_035_124, type = "line", main = "Scree Plot")
-
-biplot(pcal_035_124)
-
-x <- data.frame(pcal_035_124$scores)
-x$names <- rownames(x)
-
-psp_add_bin$names <- rownames(psp_add_bin)
-psp_pca <- dplyr::left_join(psp_add_bin, x) %>%
-  dplyr::select(-names, -Comp.2) %>%
-  dplyr::rename(wvs_factor = Comp.1)
-
 # Save as a .csv file 
-write.csv(psp_pca, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+write.csv(psp_add_bin, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 ```
 
 # Visualize After Recoding
 ```{r}
-DataExplorer::plot_missing(psp_pca)
+DataExplorer::plot_missing(psp_add_bin)
 ```
 
 ```{r}
-DataExplorer::plot_histogram(psp_pca)
+DataExplorer::plot_histogram(psp_add_bin)
 ```
 
 ```{r}
-Amelia::missmap(psp_pca)
+Amelia::missmap(psp_add_bin)
 ```
 
