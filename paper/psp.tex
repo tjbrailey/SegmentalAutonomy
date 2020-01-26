@@ -1,0 +1,448 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{float}
+\usepackage[margin=1.in]{geometry}
+\usepackage{tocloft}
+\usepackage{inputenc}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{tabularx}
+
+\geometry{letterpaper, portrait, margin=1in}
+
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+\graphicspath{{./}{Documents}}
+
+\begin{document}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\addcontentsline{toc}{section}{Abstract}
+
+\begin{center}
+\vspace{1cm}
+\LARGE
+\textbf{Provisions of Power-Sharing: Assessing the Impacts of Segmental Autonomy}
+
+\large
+\vspace{.5cm}
+
+A Thesis Presented in Partial Fulfillment of the Political Science Honors Bachelor's Degree\\
+
+\vspace{.5cm}
+
+\textbf{Thomas J. Brailey}\\
+
+\vspace{.5cm}
+\Large
+\vspace{.5cm}
+\Large
+
+\textbf{Abstract}
+\end{center}
+How can power-sharing be most effectively understood? Existing studies of power-sharing, consociational political design, and power-dividing, tend to present novel and nuanced approaches to defining and parameterizing these concepts. As such, quantitative and qualitative reviews of the effectiveness of power-sharing agreements and consociational democracy seem difficult to reconcile both terminologically and conceptually. Moreover, though the recent blossom of large-N quantitative power-sharing studies have begun to centralize existing conceptions, each take different approaches in operationalizing their variables and aggregating their data. This paper attempts to resolve two issues with the power-sharing literature. Firstly, I offer an ontology of the existing forms of power-sharing and power-dividing in terms of their provisions in order to better understand the relationship between these conceptions. Secondly, I assess the effectiveness of power-sharing in terms of these provisions, rather than of the broad concepts themselves, across all countries from 1975 through 2010. Specifically, I analyze the effects that segmental autonomy, a core provision of consociational democracy, has on abating conflict, expediting democratization, and improving levels of group trust. I also measure the effect of a state's use of multiple power-sharing provisions in addition to segmental autonomy in order to see if, in accordance with the literature, more complex power-sharing agreements are more beneficial in any given state. In doing so, I generate an empirical framework within which other provisions of power-sharing may be better understood.
+
+\vfill
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width = .2\textwidth]{ucsd_seal.png}
+\end{center}
+\end{figure}
+
+\begin{center}	
+Department of Political Science\\
+Under the supervision of Professor Gareth Nellis\\
+University of California, San Diego\\
+\today
+\end{center}
+
+\end{titlepage}
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\pagebreak
+
+\pagenumbering{gobble}
+
+\begin{center}\section*{Acknowledgements}\end{center}
+\addcontentsline{toc}{section}{Acknowledgments}
+Add acknowledgements here.
+
+\pagebreak
+
+\pagenumbering{arabic}
+
+\doublespacing
+
+\section{Introduction}
+How can scholars draw meaningful conclusions on the effectiveness of power-sharing, consociationalism, and the other forms of nation-building, when these concepts are fluid, subjective, and contested? Take, for example, civil war: a concept in comparative politics that is inextricably linked to the concept of power-sharing, yet one that has far greater consensus regarding what it is, how its effectiveness can be measured, and how it relates to other phenomena in political science\footnote{Lake and Rothchild, 1996; Walter, 1997}. While it would be illogical to assume any form of consensus exists within such a broad topic, the concept of civil war does not suffer from the same magnitude of terminological discrepancy and extreme disagreement over its formulation. Furthermore, recent large-N studies of power-sharing have sought to standardize the concept to a degree, though the same issues exist when one compares these datasets. For example, Strøm et al. (2017) encapsulate the universe of power-sharing cases by categorizing them into inclusive, dispersive, and constraining agreements. Conversely, Jaarstad and Nilsson (2008) have coded their IMPACT database to distinguish political, military, territorial, and economic power-sharing agreements. While these large datasets to a good job of covering power-sharing institutions, they are reproducible only within the context of their own paper and are not comparable on a larger scale. Additionally, Ansorg et al. (2013), in a unique study of over two-hundred and fifty datasets on conflict, institutions, and power-relations, note that there are severe issues of transparency and accuracy with regards to the data collection stages.
+
+Though there is noticeable variation in the existing conceptions of power-sharing, there exists a great deal of overlap within the provisions stipulated by consociational political systems and power-sharing accords. These provisions have yet to be studied in great depth, though doing so could allow one to empirically compare the existing forms of power-sharing. As such, one may be able to evaluate their effectiveness and may also understand in which contexts these provisions are most prevalent. 
+
+\subsection{Defining Power-Sharing: Political Systems and Written Accords} 
+Before diving into the analysis, it is important to define several terms. Firstly, power-sharing is generally understood to be some set of provisions that allow minority groups—ethnic, regional, linguistic, or otherwise—some enhanced level of political maneuverability. Power-sharing is often employed in ethno-federal, conflictual, or post-conflictual states as a means of peace-building and as a means of integrating and accommodating minority voices in a political system, though it is frequently seen in non-conflictual democracies with profound ethnic communities\footnote{Horowitz, 1985; Lijphart, 1969; Esman, 1973; Nordlinger, 1974}.
+
+When power-sharing provisions are embedded in, or amended into, a constitution, we have what is generally understood to be consociational democracy. States that are often cited as being consociational in nature include the Netherlands from 1917 to 1967, Cyprus from 1960 to 1963, and Lebanon from 1943 to 1975, and from 1989 onwards\footnote{Andeweg, 1999, 2000; Lijphart, 1977; Picard, 1997}. This is arguably the foundation of the power-sharing literature; promulgated by Arend Lijphart’s “Consociational Democracy”. Lijphart develops his own typology of existing democratic structures, stating that “[c]onsociational democracy means government by elite cartel designed to turn a democracy with a fragmented political culture into a stable democracy,” and outlining several favorable conditions of consociationalism’s success\footnote{Lijphart, 1969, 216}. Lijphart’s typology has been met with intense scrutiny over the years, with particular attention paid to its tautological nature, extensive and fluid conditions for success, and various country case studies where consociationalism has apparently failed \footnote{Andeweg, 2000; Bogaards, 1998; Seaver, 2000; Tull, 2005}. The debates surrounding consociationalism seem to serve as a 
+microcosm for the debates on power-sharing writ large as Andeweg (2000) states that “the level of abstraction of many contributions to (and critiques of) consociationalism is rather low, perhaps because the theory has largely been developed inductively from empirical case studies”\footnote{Andeweg, 2000, 531}. Critiques and studies of consociationalism and power-sharing agreements often exist in a vacuum, bounded by individual case studies and nuanced conceptualization, making it difficult to truly assess the effectiveness of these systems and institutions.    
+
+Alternatively, power-sharing provisions can be written into a peace agreement following a conflict. This is what the more recent literature, especially recent quantitative and causal inference approaches, focus on\footnote{Strøm et al., 2017; Graham et al. 2015; Jarstad and Nilsson, 2008; Mukherjee, 2008}. Power-sharing in these instances are implemented via accord and address civil conflicts in a given state. Agreements can be, as Hartzell and Hoddie (2003, 2007) suggest, political, economic, territorial, or military in nature. The recent power-sharing agreement in the Republic of South Sudan provides a good example. The Agreement on the Resolution of the Conflict in the Republic of South Sudan (ARCSS) calls for the implementation of a transitional government, establishes a truth commission, and outlines the provisions of the new government. These provisions are inclusive and consensus-based, and include the opposition group, whether a party, a faction, or loose collective, in the legislative branch, as well as various economic and military provisions intended to keep the peace between the Government of the Republic of South Sudan (GRSS), the South Sudan Armed Opposition, and former detainees\footnote{IGAD, 2015, 6}. 
+
+While consociational democracy differs conceptually from power-sharing institutions found in peace accords, they serve the same purpose—that is, to ensure peace between socially diverse states—and their underlying provisions often overlap. By understanding the individual provisions, we might better understand why some constitutions and agreements that exhibit power-sharing fail, and why some succeed, in causing peace and improving levels of social trust. 
+
+\subsection{Power-Sharing Provisions}
+Despite the persistent academic debates as to the salience of power-sharing, accords and political systems that utilize and promote these concepts are fairly common. Interestingly, though power-sharing is often described as an institution implemented in post-conflictual and ethnically divided states, it is often present in states that do not exhibit these characteristics. 
+
+The prevalence of power-sharing, indeed its use as a panacea for conflictual and ethnically-divided states, cannot be ignored. How, then, can the myriad studies of power-sharing, and the evidently contested track-record of its success, be reconciled? Power-sharing, both in the political system context and the peace agreement context, is not a monolithic concept. Rather, it is heterogenous; consisting of various accords, provisions, and conditions, the importance and interactions of which have largely been ignored. One more recent paper by Ram and Strøm (2014) assesses the prevalence and effectiveness of one form of consociational power-sharing, mutual veto. They focus on analyzing one type of consociational provision—mutual veto—and their findings are both enlightening and warrant further exploration into the other provisions of consociational democracy and power-sharing agreements. Their initial findings seem to undermine, or at least disagree with, the current debate on consociationalism. While the debate focuses on consociationalism as either a grandiose panacea for segmental societies or an inevitable roadblock to democratic survival, Ram and Strøm (2014) find that, in the case of mutual veto, the provisions of consociationalism are not particularly common. “[M]utual veto provisions are a rare form of power-sharing,” they suggest, and only eleven polities have implemented such provisions between 1975 and 2010\footnote{Ram and Strøm, 2014, 345}. Moreover, the small sample of mutual veto states means that statistical analysis is not a feasible option. Descriptively, states that have employed mutual veto provisions have experienced mildly reduced conflict rates, yet, somewhat counterintuitively, mutual veto provisions are “most common in relatively prosperous and institutionally stable societies”\footnote{Ram and Strøm, 2014, 355}. It is interesting, then, that Lijphart and others would be so adamant of the essentiality of mutual veto provisions in consociational democracy in spite of their minimal prevalence and their proclivity to emerge in non-conflictual, stable democracies. Thus, we can assume that the success of consociational systems, and other power-sharing arrangements, must emerge from some sort of interaction effect, or perhaps by a particularly salient, as of yet unexplored, provision.
+
+Assessing the provisions of power-sharing allows for two novel areas of exploration.  Firstly, it allows us to standardize previous conceptions of power-sharing, power-dividing, and partition, which in turn allows us to, to some degree, compare and reconcile the vast literature on peacebuilding and institutional design. Secondly, assessing the provisions of power-sharing allows for a deeper understanding of which provisions are used, in which contexts they are implemented, and which provisions may be the most effective for ensuring lasting peace, preserving democracy, and reducing intergroup tensions. 
+
+\subsection{Segmental Autonomy}
+Given that segmental autonomy has a far broader conception than, say, mutual veto, there are markedly more cases that exhibit some form of segmental autonomy over time. Though it shall be explained in greater detail in the next chapter, this allows for the expansion of Ram and Strøm’s (2014) approach to analyzing power-sharing provisions, while also moving away from a reliance on case-study and summary statistics toward more rigorous quantitative methods.
+
+Segmental autonomy was first conceptualized by Lijphart as a provision allowing groups to “transcend cleavages and to join in a common effort with the elites of rival subcultures”\footnote{Lijphart, 1969, 216}. In essence, by granting minority groups some level regional autonomy, cross-cutting social cleavages, and officially recognizing these newly autonomous group, the provision serves as a concession to those groups and thus abates tension and conflict. Lijphart expands upon this idea in later works, highlighting the importance of the minorities’ rule over itself, and adds that segmental autonomy can be implemented in a territorial or non-territorial federation, or a political system that allows for substantial delegation to segmental groups \footnote{Lijphart, 1977, 1989}. 
+
+The concept of segmental autonomy has expanded vastly since its conception. Far from the vague parameters of Lijphart’s earlier work, segmental autonomy can now be disaggregated into religious, ethnic, and racial autonomy, educational autonomy, and is laterally separated from federalism. Norris’s (2008) and Kelly’s (2019) meta-analyses both do an excellent job in reconciling the literature on consociational theory and developing a theoretical framework to better understand the favorable conditions of segmental autonomy. Kelly (2019) cites the work of Steiner (1981) and Halpern (1986) in establishing the core requirements of autonomy necessary for consociationalism, namely, distinguishable cultural groups with their own identities and their own political organization, political relevance, within-group marriage, and a widely perceived legitimacy within the state\footnote{Kelly, 2019, 30}. Both authors reach a similar conclusion regarding power-sharing and inclusive constitutional design. Kelly (2019) suggests that, when adopting a qualitative approach, segmental autonomy can be “conducive to stability in plural societies,” though regression models suggest that segmental autonomy can be “destabilizing”\footnote{Kelly, 2019, 3}. Norris (2008), too, states that “power-sharing arrangements are the best chance of success for sustaining democracy” but that it should be “interpreted cautiously, with many qualifiers” given the mixed results from state to state\footnote{Norris, 2008, 222}. Much like the broader discussion of power-sharing and consociationalism, a firm conclusion on the efficacy of individual provisions is frustrated by country-specific characteristics and the broad conceptions of these provisions.
+
+It is perhaps because of the broadly-encompassing nature of this provision that segmental autonomy is cited in several different and competing power-sharing typologies. Subnational autonomy, as it is coined, can be found in Charron’s (2009) discussion of vertical power-sharing in ethno-federalist states. When assessing the saliency of ethno-federal arrangements, they suggest that “the more diverse the state, the stronger the predicted benefit that an ethno-federation produces in terms of [quality of governance]”\footnote{Charron, 2009, 600}. Moreover, regional autonomy is a core provision in territorial power-sharing, according to Hartzell and Hoddie (2007). Various forms of “subnational authority” are facets of Strøm et al.’s (2017) so-called dispersive power-sharing. Lastly, and perhaps most interestingly, regional autonomy is also cited as a component in partition, according to Berg and Ben-Porat (2008), Roeder and Rothchild (2005), and Kuperman (2004), the former arguing that “[f]ederal autonomy extends beyond consociationalism towards partition”\footnote{Berg and Ben-Porat, 2008, 33}. The latter conception is particularly interesting, as partition is often presented as an alternative to power-sharing though they both share autonomy as a provision\footnote{Berg and Ben-Porat, 2008; Rothchild and Roeder, 2005}. 
+
+\subsection{Hypotheses} 
+Through this new theoretical lens, we are able to ask new questions about the nature of power-sharing. Specifically, I ask two questions pertaining to segmental autonomy and its effect on prolonged peace, democratization, and social trust. Though my hypotheses and the impetus behind them will be elucidated in Chapter 2, it is necessary to briefly summarize them here.
+
+Firstly, I ask whether the implementation of segmental autonomy exerts a positive effect on prolonged peace, a state’s democracy scores, and whether it reduces tension between different minority segments in a society. Existing studies on power-sharing and consociationalism produce mixed results regarding its effectiveness, though many qualitative case-study analyses seem to point to the possibility that power-sharing in certain circumstances can be effective. By developing a framework in which to analyze the provisions themselves, perhaps we will be able to understand which provisions are most effective in causing peace and why. 
+
+Secondly, I add to my initial hypothesis by looking at the effects of segmental autonomy when employed alongside other power-sharing provisions. This hypothesis is borne from Norris’s (2008) argument that power-sharing is more successful when employed alongside other democratic reforms. My study extends this claim by looking at the interaction effects of the provisions and understanding which are the most effective at causing peace.
+
+\section{Conceptualizing Power-Sharing} 
+Power-sharing is a topic of comparative politics that, since Lijphart’s seminal work, has generated vast swathes of literature and an equally vast debate among scholars and policymakers\footnote{Lijphart, 1969}. Existing studies range from the necessity of consociationalism in ethno-federal polities\footnote{Lijphart, 1969, 1977, 1985, 1999 O’Leary}, to the modes which purportedly ensure a successful implementation of a peace pact\footnote{Walter, 2002, 2003; Hartzell and Hoddie, 2003, 2007; Mukherjee, 2006}, to the tautological nature, and irrelevance, of consociational and power-sharing practices\footnote{Andeweg, 2000; Bogaards, 1998; Rothchild and Roeder, 2005}. Some go as far as to argue that consociationalism is an inherently racist institution and may actually provoke ethnic conflicts, though the pro-consociational camp make the same argument for integrationist policies\footnote{O’Leary, 2005}. There is clearly a great deal of disagreement over power-sharing’s effectiveness and whether it is required at all. 
+
+As mentioned, perhaps the most striking issue associated with power-sharing is its fluidity. There is no clear differentiation between consociationalism, power-sharing, power-dividing, and partition. There seems to be four broad camps regarding power-sharing design: those who focus on power-sharing as a form of democracy\footnote{Barry, 1975; Lijphart, 1975; Norris, 2008; Steiner, 1974}; those who focus on power-sharing through peace agreements and policy\footnote{Hartzell and Hoddie, 2003, 2007; Mukherjee, 2006}; and those who favor integrationist versus accommodating provisions. Within all four groups, there is disagreement on what constitutes power-sharing, and what its main areas of focus are and should be. The purpose of power-sharing is also disputed, with many authors using different formulations of the dependent variable; one author who claims that power-sharing is effective because it abates conflict is disputed by another who argues it is ineffective as it does not include all ethnic identities in a government. Of the recent quantitative power-sharing literature\footnote{Hartzell and Hoddie, 2003, 2007; Graham et al., 2017; Jarstad and Nilsson, 2008; Mattes and Savun, 2009; Strøm et al., 2017; Walter, 2002}, the authors highlight entirely different conceptions of power-sharing. Moreover, Hartzell and Hoddie (2003, 2007) suggest that multidimensional power-sharing institutions, that is, those institutions with several power-sharing provisions, are more likely to see positive results regarding democratization and cessation of conflict than fewer, though fail to explore in depth the provisions themselves\footnote{Hartzell and Hoddie, 2003, 325-326}. 
+
+More pertinent to my own study, there is a slowly growing body of literature that focuses on the comparison and reconciliation of the various power-sharing datasets, the consolidation of present conceptions of power-sharing institutions and political systems, and at least one study on an individual provision of power-sharing. Given the data that exist, studying the provisions of power-sharing is problematic. As Ansorg et al. (2013) note, of the two-hundred and fifty-seven datasets on institutions and conflict in divided societies, “[t]ransparency was an issue for 28.4 percent of [them]”\footnote{Ansorg et al., 2013, 12}. Many do not have codebooks, there are few sources referenced, and detailed operationalization is lacking. As such, any attempt to compare findings of the success of power-sharing, as well as the actual contents of the power-sharing institutions, is very difficult. The issues of vague data are less pertinent with the large, so-called authoritative country-level datasets such as the Database of Political Institutions (DPI), Varieties of Democracy (V-DEM), and Quality of Governance (QOG), but are far more prevalent in datasets create for the purpose of academic articles. With the latter, in some cases, links and references to data used in the paper are broken, and codebooks unfinished, and one dataset used in a successful book on power-sharing institutions has over sixty-nine percent missingness. Further, Binningsbø (2013) compares recent quantitative and causal approaches to power-sharing, arguing that while the designs are similar, “they use somewhat different reasoning explaining the relationship” between power-sharing, peace, and democratization\footnote{Binningsbø, 2013, 101}. While it is undoubtedly necessary for nuanced approaches to be taken in order to better understand the causes, outcomes, and conditions of power-sharing, these studies exist in their own defined universes, making comparison and cross-validation somewhat challenging. Strøm et al. (2017) note a similar issue: “[o]nce we recognize that powersharing can be disaggregated in such ways, however, it is entirely possible that its different components do not always work in concert or reinforce one another\footnote{Strøm et al., 2017, 6}. Though they agree with Binningsbø (2013) on the possibility of disaggregation, the roles of the provisions, and their overlap with the various conceptions of power-sharing, is not explored further.  
+
+\subsection{Empirical Conceptions of Regional Autonomy}
+While it is important to understand the substantive effects that provisions of power-sharing exhibit when implemented, an equally important question is how the field operationalizes these concepts and whether these measures can be considered construct valid. As such, I utilize measurements of constructs from four different datasets in order to better understand the construct validity of regional autonomy. These datasets include DPI\textit{Cruz et al., 2015}, Ethnic Power Relations (EPR)\footnote{Vogt et al., 2015}, Inclusion, Dispersion, and Constraint (IDC)\footnote{Strøm et al., 2015}, and the Regional Autonomy Index (RAI)\footnote{Hooghe et al., 2015}. The Local Autonomy Index\footnote{Ladner et al., 2019} and PA-X\footnote{Bell et al., 2019} measurements are not included in the analysis given that their units of analysis cannot easily be manipulated to align with the other datasets. Based on the codebook descriptions for these variables, we expect the autonomy variables (\textit{auton}, \textit{n\_RAI}, and \textit{reg\_aut}) to exhibit high correlation amongst one another and low correlation between constructs that are theoretically different (\textit{author}, \textit{subtax}, \textit{subed}, and \textit{subpolice}). Table 1 shows Pearson correlations for these variables.
+
+Intuitively, among measures of subnational authority (\textit{subtax}, \textit{subed}, \textit{subpolice}, \textit{author}), we see relatively high levels of correlation (0.65 - 0.81). Less intuitively, however, among the three measures of regional autonomy, there is relatively low correlation across all three models (0.24 - 0.41). We also see \textit{n\_RAI} correlate highly with measures of subnational authority, between which we should theoretically be able to distinguish. These findings hearken back to Adcock and Collier's (2001) discussion on establishing equivalence across context-specific observations\footnote{Adcock and Collier, 2001, 534-535}. In other words, different country-specific contexts make generalized measurements especially difficult, exemplified by the fact that three supposedly theoretically convergent constructs have been operationalized in such a way so as to be weakly correlated with one another and more strongly correlated with theoretically and conceptually different constructs.
+
+Where does this leave us? Frustratingly, the development of a new measurement that seeks to reconcile existing conceptions of regional autonomy is beyond the scope of this paper. Instead, these findings necessitate heightened caution and care when drawing inferences and making conclusions based on statistical results. Regional autonomy is not--as we saw with the debate on consociationalism--a well-defined concept, and the implications of which must be addressed in my methodology. Section 5 will address these conceptual discrepancies from an empirical standpoint. 
+
+\begin{table}[ht]
+	\centering
+	\setlength{\tabcolsep}{10pt}
+	\renewcommand{\arraystretch}{1.5} 
+	\resizebox{\textwidth}{!}{
+	\begin{tabular}{rlllllll}
+		\hline
+		& \textit{auton} (DPI) & \textit{n\_RAI} (RAI) & \textit{reg\_aut} (EPR) & \textit{subtax} (IDC) & \textit{subed} (IDC) & \textit{subpolice} (IDC) & \textit{author} (DPI) \\ 
+		\hline
+		\textit{auton} (DPI) & 1 &  &  &  &  &  &  \\ 
+		\textit{n\_RAI} (RAI) & 0.24 & 1 &  &  &  &  &  \\ 
+		\textit{reg\_aut} (EPR) & 0.32 & 0.41 & 1 &  &  &  &  \\ 
+		\textit{subtax} (IDC) & 0.20 & 0.86 & 0.46 & 1 &  &  &  \\ 
+		\textit{subed} (IDC) & 0.15 & 0.7 & 0.35 & 0.78 & 1 &  &  \\ 
+		\textit{subpolice} (IDC) & -0.05 & 0.83 & 0.35 & 0.76 & 0.65 & 1 &  \\ 
+		\textit{author} (DPI) & 0.18 & 0.79 & 0.38 & 0.77 & 0.65 & 0.81 & 1 \\ 
+		\hline
+	\end{tabular}}
+\caption{Pearson's Correlation of Regional Autonomy and Authority Measurements}
+\end{table}
+
+\subsection{Partition and Power-Dividing}
+It is also worth noting that in my own ontology, I include the concepts of partitioning and power-dividing as additional root classes. Though less literature focuses on these two concepts, they are inextricably linked to power-sharing—often presented as an alternative to power-sharing—and exhibit similar terminological discrepancy. Proponents of power-dividing as an alternative to power-sharing include Roeder and Rothchild (2005), who define power-dividing institutions as those that “stress the importance of civil liberties that limit government, separation of powers that create multiple majorities, and checks and balances that limit each majority\footnote{Roeder and Rothchild, 2005, 52}. Conversely, Hartzell and Hoddie (2007) talk about the successes of power-sharing and power-dividing institutions as similar or interchangeable institutions\footnote{Hartzell and Hoddie, 2007, 150-152}. What is more, when one breaks down both power-dividing and the various conceptions of power-sharing, one finds that many of the individual provisions are strikingly similar. Civil liberties, multiple majorities, checks and balances, and separation of powers are indicative of Roeder and Rothchild’s (2005) conception of power-dividing, though are also present in, for example, Strøm et al.’s (2017) conception of inclusive power-sharing, or Hartzell and Hoddie’s (2003, 2007) conception of political power-sharing. 
+
+Kuperman’s work makes two arguments that serve to further muddy the debate on power-sharing versus alternative forms of institutionalizing peace. Firstly, they argue that there are “six case of true power sharing” based on the presence of regional autonomy, peace enforcement, disguised victory, non-ethnic schisms, and a pause in fighting\footnote{Kuperman, 1996, emphasis added}. Secondly, they argue in favor of partition—partition de jure, adjusted borders, and/or regional autonomy—in the case of the conflicts in Bosnia. Specifically, they argue that regional autonomy would be the most effective method; “close to de facto partition, without the prize of independence. It is a compromise solution”\footnote{Kuperman, 2006}. However, regional or segmental autonomy is a key provision in several different conceptions of power-sharing in peace agreements and in political systems. Though partition is purported to be a “a solution of ‘last resort’” and as a “meeting point between the needs for self-determination and territorial expression”, the provisions by which it is deemed to be successful are shared by an opposing—nay antithetical—institution: power-sharing\footnote{Berg and Ben-Porat, 2008, 32; Waterman, 1987}. Given the overlap between the provisions of not just the forms of power-sharing, but also other methods of institutionalizing peace, it seems logical to assess which of these provisions are most common, and which are most effective. 
+
+\subsection{Ontologizing Power-Sharing}
+In addition to creating a large-N dataset on the provisions of power-sharing, I have formulated an ontology of the different formulations of power-sharing, power-dividing, and partition. Starting with Lijphart’s (1969) seminal work and moving forward, I have attempted to classify and categorize each different definition and their purported provisions. Many of these provisions could be further sub-categorized, and there is marked variation in the specificity of the provisions across conceptions, but this ontology provides a broad but solid overview of the similarities and differences between the existing conceptions of peace institutions.
+
+This ontology could well be a significant development in the power-sharing literature. There are currently seventy-eight provisions when broken down by author, and yet these works often fail to highlight the relevance of the provisions themselves. We do not know whether all of the provisions of, say, coercive consociationalism or inclusive power-sharing, exert the same effect, whether some are redundant, or whether, when it comes to the institutionalization of peace, we face a simple case of “the more the better”. While these questions lie outside of the scope of this paper, I believe that a deeper analysis into the interactions of provisions—as opposed to the broader concepts themselves—may produce fascinating findings. 
+
+While conducting the literature review portion of my thesis, I managed to extract most of the relevant information on the provisions of each form of power-sharing from the author’s typology tables. Further, authors who have conducted meta-analyses on power-sharing institutions such as Andeweg (2000), Bogaards (1998), and Norris (2008), include sections on the development of conceptions over time, allowing me to easily integrate terms into the ontology. Further, I have provided citations for each provision, and suggested a range of variables that could be utilized for measuring each provision. As mentioned, given that some of these provisions are inherently broad, not all provisions have been assigned a variable and, as such, unlock an avenue for further research. For pedagogical purposes, I have assigned upper-level nodes to be one of three possible parent classes: “political systems” such as liberal consociationalism, integrative consociationalism, and the like; “power-sharing arrangements”—characterized as institutions implemented via peace agreements—such as territorial, economic, and military power-sharing; and “power-sharing alternatives” which encompass partition and power-dividing, concepts that are often posited in opposition to power-sharing institutions. The code and data for reproducing the ontology visualization can be found in the appendix of this paper.
+
+\subsection{Regional Autonomy in Mali and Niger}
+The contiguous states of Mali and Niger provide an insightful qualitative comparison of the effects of regional autonomy. As described in Table 2, the two states bear striking similarities that warrant further investigation and comparison: they have similar population sizes, similar GDP, similar political systems, and have had their trajectories undoubtedly influenced by former French colonial rule. More importantly, both states have a significant Tuareg population within their borders. Since independence in 1960 (granted on  June 20 and August 3 for Mali and Niger respectively), the two countries have had similar political experiences. From military and one-party rule for most of the 1960s and 1970s, to various coup d’états against monopolistic leaders, to democratic reforms throughout the 1990s, Mali and Niger's stories have been of ethnic tensions and regional instability. The two countries diverge significantly in 1999 when Mali, in response to growing ethnic tensions, implemented regional autonomy in the form of regional elections. Following similar ethnic violence and a coup, Niger opted for the inclusion of Tuareg members as ministers in a coalition government, and explicitly avoided regional autonomy provisions for the Tuareg population\footnote{Minorities at Risk Project, 2003}. In not implementing regional autonomy, various reports suggest that relations between the Niger government and the Tuareg ethnic population have been unfavorable, especially when compared to the relative peace between the Tuareg and the Malian government. 
+
+\begin{table}[ht]
+\centering
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5} 
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|}
+  \hline
+\textbf{Country}                &   \textbf{Mali}  &  \textbf{Niger}  \\ 
+  \hline
+Regional Autonomy?              &   Yes            &  No              \\
+    \hline
+Population (1999, millions)     &   10.6           &  10.9            \\
+    \hline
+Tuareg \% of Population (2001)  &   10             &  9.3             \\
+    \hline
+GDP (1999, billion USD)       &   3.4            &  2.0             \\
+    \hline
+Ethnic Fractionalization (1999) &   0.8            &  0.6             \\
+	\hline
+Area (million sq. km.) & 1.2 & 1.3 \\
+	\hline
+Former French Colony?			&  Yes			   &  Yes			  \\
+    \hline 
+Political System                &  Unitary semi-presidential republic & Unitary
+semi-presidential republic  \\
+   \hline
+\end{tabular}}
+\caption{Country Characteristics}
+\end{table}
+
+Prior to achieving autonomy in 1999, the Tuareg had been pressuring the Mali government to decentralize decision-making and funding allocations. Though the Mali government were concerned that the Tuareg might push for a complete secession from the state, they refused to grant the Tuareg people regional autonomy. The increase in political pressure by the Tuareg culminated in a coup d’état in 1991 against authoritarian leader Moussa Traoré\footnote{Humphreys, 2005}. The following year saw the introduction of peace accords granting the Tuareg some level of regional autonomy. Though intended to abate tensions between the central government and the ethnic groups in Mali, the peace accords were not fully implemented until 1999 when the first Tuareg regional elections were held\footnote{Keita, 1998}. Prior to the regional elections, rates of politically-motivated conflict between the Tuareg, the central government, and other minority ethnic populations, remained high. In the years following the \textit{de facto} implementation of regional autonomy, conflict rates and fatalities appeared to decrease. The Ethnic Power-Relations Atlas (EPR) anecdotally remarks that following regional autonomy in the north east, conflict rates decreased within the Tuareg region\footnote{Vogt et al., 2015}. Similarly, the Minorities at Risk Project note that, despite a recent history of rebellion and violence, Mali's Tuareg population are "unlikely to engage in large-scale violence in the near future"\footnote{Minorities at Risk Project, 2003}. 
+
+The Tuareg in Niger faced similar discrimination post-independence. As in Mali, the Tuareg were economically marginalized and effectively unable to participate in government decision-making. In 1993, two years after especially intense violence between the military government and the Tuareg population, a power-sharing government was established in the form of a coalition cabinet. Though some government positions were held by Tuareg politicians, they were quickly sacked and detained. It was not until 1994 that the Tuareg--though still in the midst of violence with state army--were successfully integrated into the governing coalition. While their inclusion pointed to reduced tensions, subsequent elections and coups rendered the Tuareg powerless, and in 2007 a Tuareg rebellion broke out against the government. Interestingly, the 2007 Tuareg rebellions occurred in both Mali and Niger almost simultaneously, but where the violence in Mali focused on the government's failure to implement economic reforms, the violence in Niger was attributed to their political exclusion\footnote{Bertelsmann, 2008}. As a result, the Tuareg population in Niger--throughout the numerous democratic and authoritarian transitions since 1999--exhibit several risk factors for rebellion and increased violence.
+
+- counter-argument: niger has faced more political unrest/dictatorships irrespective of autonomy. counter: this violence/instability arises from niger's failure to integrate/disperse political voices and thus does not allow for balance or compromise. creates the foundation for military rule and political exclusion. 
+
+- summarize outcomes. cite acled, epr, mar 
+
+\section{Theory and Hypothesis}
+States that employ segmental autonomy provisions along with other provisions of power-sharing, either through peace accord or constitutional reform, are more likely to experience reduced intergroup tensions and prolonged peace. I conceptually define power-sharing provisions as the underlying mechanisms within a constitution or peace agreement that allow for military, political, economic, social, and territorial inclusion and accommodation between state factions. More specifically, I define segmental autonomy in line with Lijphart (1969, 1977), Norris (2008), and Kelly’s (2019) definition. That is, minority groups, with government-recognized autonomy over specific and salient issues. I operationalize this concept by measuring the importance of these provisions in terms of temporal democracy scores, conflict prolongation, and proxies for intergroup tolerance such as social trust measures and support for democracy surveys. In other words, does the implementation of segmental or regional autonomy within a state cause peace or exacerbate existing intergroup tensions? The measurements by which I operationalize my concept can be found in electoral datasets such as the Database for Political Institutions, the Uppsala Conflict Data Program, and Quality of Governance. 
+
+Given the results of existing quantitative studies on power-sharing writ large, I expect that my own findings will, generally speaking, reflect other’s results, but will provide a greater insight into the nature and effectiveness of the provision of segmental autonomy. Moreover, I expect my own findings to reflect Ram and Strøm’s (2014) findings on mutual veto provisions. It is worth noting that, as the existing data stand, many of the formulated provisions of power-sharing have yet to be measured to any degree. For example, two of Lijphart’s (1975) later conceptualized provisions of consociational democracy, a neutral head of state, and the government leader as primus inter pares, have not been coded in any electoral database. Perhaps these are inherently subjective and difficult to quantify in a dataset, but in any case, this lack of consistency across the measurement of provisions is undoubtedly an area of future study. The issue of provision coding in datasets will be discussed further in the limitations section and will undoubtedly be an area for future research. 
+
+For the purpose of this study, I shall only focus on one power-sharing provision and, in turn, hope to develop a methodological framework in which other provisions may be studied. Given the provisions that have been coded, and previous studies on the saliency of power-sharing, I present my two core hypotheses.
+
+\singlespacing
+H\textsubscript{1}: Ethnically diverse states that employ segmental autonomy provisions, either through peace accord or constitutional reform, will experience reduced intergroup tensions, prolonged peace, and democratization.
+
+\bigskip
+
+H\textsubscript{2}: Ethnically diverse states that employ segmental autonomy provisions along with other provisions of power-sharing, either through peace accord or constitutional reform, will experience reduced intergroup tensions, prolonged peace and democratization. 
+
+\doublespacing
+Conversely, if my results do not confirm my hypothesis, I will fail to reject the null. 
+
+\singlespacing
+H\textsubscript{Null}: There will be no relation between the implementation of segmental autonomy provisions and the reduction in intergroup tensions, prolonged peace, and democratization in ethnically diverse states. 
+
+\doublespacing
+The causal chains that justify the implementation of segmental autonomy in ethnically diverse states come from the work of Lijphart (1969), Nordlinger (1972), and Esman (1973). They argue that provisions such as regional autonomy and other forms of power-sharing serve to “reduce the long-range political salience of communal solidarities,” though each other embeds this outcome in a slightly different framework\footnote{Esman, 1973, 55}. Horowitz suggests that dispersive methods might reduce ethnic conflict by multiplying the number of focal points of political power which, in turn, serves to “take the heat off of a single focal point”\footnote{Horowitz, 1985, 598}. In essence, by proliferating the number of autonomous regions in a given state, one reduces the possibility of any one faction having power over another. We see the proliferation of subnational units in states such as Uganda and Nigeria as examples of a central government’s attempt to reduce the political salience of any given political focal point. 
+
+We see similar causal arguments put forth in more recent literature on power-sharing. Norris (2008) and Strøm et al. (2017) both base their conceptualization of autonomy’s causal chain on the aforementioned works. While the conceptualization and operationalization of power-sharing and consociational theory have proliferated since their inception, the fundamental causal chains do not seem to extend outside of Lijphart and Nordlinger’s original theories of consociationalism and balanced pluralism respectively. Lluch (2012) argues that that autonomism succeeds due to its hybridity and multiplicity: “it can perfectly balance its anti -federalist stances with its grounding in the federalist principle of multiple levels of government within the same state apparatus, complemented by its anti-secessionism stance”\footnote{Lluch, 2012, 155}. Though this argument does not deviate from Lijphart’s core causal mechanism, it provides perhaps more impetus for employing regional autonomy rather than federalist arrangements in segmental societies. 
+
+This causal mechanism is not without its detractors. Though Kelly (2019) ultimately argues in favor of segmental autonomy provisions in ethnically diverse states, they caution that autonomy, through its separation of groups along ethnic lines, could reduce intergroup interactions to the point that prejudice, scapegoating, and secession may occur. Though not empirically analyzed in Kelly’s work, Lijphart’s mechanism, when pushed too far, could indeed have a negative effect on intergroup relations. This is perhaps where Norris’s (2008) theory that multiple power-sharing institutions are required to counterbalance the potential risks of more dispersive forms of conflict management comes into play. Keller and Smith (2005) share a similar concern to Kelly (2019) in that segmental autonomy may go beyond political decentralization and group self-determination, instead exacerbating intergroup tensions and oppositional identities, and incentivizing more extreme concessions by the central government. However, they are generally less optimistic regarding the potential payoffs of dispersive institutions, stating that “[t]he long-term implications of [subnational autonomy] are unclear, but in the short term there has been a tendency for increased demands for further autonomy among distinct groups within regions”\footnote{Keller and Smith, 2005, 240}. The fundamental causal chain between the implementation of segmental autonomy provisions, conflict, intergroup relations, and democratization, is similar among each author I have looked at. These authors’ causal arguments deviate regarding the severity of the outcomes; while some suggest that dispersed and autonomous ethnic groups will reduce conflict, others suggest that there exists some latent optimum level of dispersion and that when pushed too far, autonomy will exert a negative effect of conflict and intergroup relations.  
+
+\section{Methodology}
+\subsection{Data Collection}
+Data collection began with a broad overview of existing datasets on power-sharing in existing papers. A great deal of time was spent finding and reading-in the data, as well as reaching out to academics in order to find codebooks and bypass dead weblinks. As mentioned, Ansorg et al.’s (2013) expansive study on existing datasets was of great help in my own evaluation of existing datasets. Their findings very much parallel my own experiences with these political datasets: they are often hard to obtain; they often do not contain all the information required to fully understand the data; they are often conceptualized and parameterized differently, making comparison especially challenging; and there is often little information on how the variables were coded, reducing the credibility of these data. Moreover, many of the datasets suffer from significant missingness, again potentially reducing the accuracy of the authors’ findings. 
+
+As mentioned, I create a unique ontological dataset on the provisions of power-sharing based off of the literature review. It contains the core provisions of power-sharing, power-dividing, and partition, the source author, and any variables that relate to the provisions. Exploring all of the possible interactions within this ontology is outside the scope of this paper, though it is likely that further study will reveal interesting and salient findings on the subject. 
+
+After identifying datasets that contained variables or potential proxies for the provisions that have been conceptualized in the literature, I merge them in R and create a second unique dataset\footnote{See the appendix at the end of this paper for replication code}. I use Strøm et al.’s (2017) “Inclusion, Dispersion and Constraint Dataset” as it is arguably the most complete dataset on power-sharing provisions—despite only covering data from 1975 through to 2010. Other datasets included in the final merge are Norris (2008), Hartzell and Hoddie (2007), and Jaarstad and Nilsson (2008). I use dplyr’s left\_join() command to join the datasets together, and then clean the merged product as I go along. I elaborate on the nature of the data and future endeavors in the scope section of the paper. It should be noted that all the code written for this project have been formatted as R Markdown files and can be found in the appendix of this paper. 
+
+Given that many of the prominent datasets have high percentages of missingness, this is something that has to be accounted for in my own analyses. Visualizations of the merged data’s missingness can be found in the appendix. 
+
+\subsection{Measurements}
+\subsubsection{Dependent Variables} 
+In my attempt to partially reconcile the literature on power-sharing, I run statistical tests on three main dependent variables and several supplemental dependent variables. I use QOG’s hum\_trust variable to measure the effect that the implementation of segmental autonomy has on a social trust. hum\_trust is an index score which represents an average of all country-survey scores available within each country-year and is measured from 0—no social trust—to 100—complete trust in others. I also use the hum\_satdem and hum\_supdem in QOG as supplements to measure whether satisfaction or support for democracy changes with the implementation of segmental autonomy provisions. These are also indices of survey data on the country-year level. My second dependent variable is the PolityIV project’s polity score, a twenty-one-point score that captures a state’s level of democracy, anocracy, or autocracy. In line with my core hypothesis, I use this variable to understand whether there is a statistically significant relationship between the presence of regional autonomy and changes in democracy. My final dependent variable comes from the Uppsala Data Conflict Program (UCDP) and addresses the relationship between conflict rates and autonomy. I utilize a binary and continuous measurement of state conflict for robustness. The binary variable captures whether, in a given country-year observation, there were over one-thousand battle deaths, while the continuous variable captures the severity of that conflict by the number of deaths, with fewer than one-thousand being considered minor, and over one-thousand being considered a war. 
+
+\subsubsection{Independent Variables} 
+My core independent variable is the implementation of segmental autonomy. I utilize other dataset’s conception of autonomy as well as my own variable for robustness. In all cases, the measurement of autonomy is dichotomous. Firstly, I use the \textit{auton} variable found in Strøm et al.’s Inclusion, Dispersion, and Constraint dataset, and the DPI database. DPI conceptualizes the measurement as follows:
+
+\singlespacing
+Autonomous regions are not the same as states, provinces, etc. An autonomous region is recorded if a source explicitly mentions a region, area, or district that is autonomous or self-governing. Furthermore, they must be constitutionally designated as “autonomous” or “independent” or “special”. Federal Districts or Capital
+Districts do not count as autonomous regions. Disputed autonomy is not recorded. Indian reservations are
+not counted as autonomous. \textbf{Deviating from convention, no information recorded as 0}\footnote{Cruz et al., 2018, emphasis in original}.
+
+\doublespacing
+I supplement this core measurement of the presence of autonomous with some more fine-grained measurements of autonomy from Strøm et al.’s dataset. Specifically, I include subed, subtax, and subpolice, to see if specific forms of segmental autonomy exert more or less of an effect on my dependent variables. I also generate a new variable, tb\_aut, that simply takes a value of one if either subed, subtax, or subpolice equal one. Lastly, I include a measure of federalism, pt\_federal, in order to compare the results of federalist versus autonomy provisions.  
+
+\subsubsection{Control Variables} 
+The impetus behind including my control variables comes from existing empirical studies\footnote{Hartzell and Hoddie, 2007; Kelly, 2019; Norris, 2008; Strøm et al., 2017; Walter, 2002} and the necessity of country controls. As such, I have included variables from QOG on political stability, the Gini Index, population, and polity score\footnote{I exclude polity score from the model where the dependent variable is also polity score}. Additionally, I calculate a new variable, tb\_other\_provis, which takes a value of one when any of the other core provisions of consociational democracy—mutual veto, proportionality, or grand coalition—are present in any country-year observation. 
+
+\subsection{Models}
+Prior to running statistical models, I generate simple cross-sectional time-series plots that show the relationship between the percentage of years each state has spent with de jure implementation of segmental autonomy and levels of social trust, polity score, and conflict intensity within the state. These summary statistics can be found in the appendix of this paper. As these cross-sectional visualizations include all states in the dataset, we do not see any significant trends across time, though it does show the variation in the implementation of segmental autonomy across time. 
+
+I begin my statistical analyses by subsetting the data to those states that exhibit high levels of ethnic fractionalization (characterized by states that have an ethnic fractionalization score of above the world median value), and then running several iterations of robust ordinary least squares (OLS) regression on my cross-sectional time-series dataset on three distinct dependent variables. For each dependent variable—levels of social trust, conflict intensity, and polity score—the same control variables are included in the OLS. For all models, I include country fixed-effects, and for the latter two iterations, I include year fixed-effects. 
+
+\section{Results}
+Table 3 shows the impact of segmental autonomy on social trust levels for all country-year observations that fall above the median ethnic fractionalization value for all states in my dataset. As shown, for all iterations of our model, our segmental autonomy variable does not exert a statistically significant effect on our dependent variable. It seems that the presence of other power-sharing provisions, not including segmental autonomy, might serve to reduce levels of social trust across ethnically diverse states. But when combined with segmental autonomy, the statistical significance of this interaction disappears. It should be noted that we see no statistical significance when utilizing the other measurements of segmental and regional autonomy. 
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{lccc}
+			\hline
+			& Model 1 & Model 2 & Model 3 \\
+			\hline
+			(Intercept)                  & $49.65$      & $9.79$    & $22.37$     \\
+			& $$           & $(12.38)$ & $(12.09)$   \\
+			Regional Autonomy                   & $0.40^{***}$ & $-3.75$   & $-30.81$    \\
+			& $(0.00)$     & $(19.00)$ & $(23.94)$   \\
+			Political Instability               &              & $4.19$    & $4.90$      \\
+			&              & $(4.93)$  & $(5.03)$    \\
+			Gini Index               &              & $0.53$    & $0.49$      \\
+			&              & $(0.30)$  & $(0.32)$    \\
+			Population                &              & $0.00$    & $0.00$      \\
+			&              & $(0.00)$  & $(0.00)$    \\
+			PolityIV Score       &              & $0.74$    & $0.77$      \\
+			&              & $(0.83)$  & $(0.82)$    \\
+			Other Provisions            &              &           & $-12.28$    \\
+			&              &           & $(3.39)$    \\
+			Regional Autonomy:Other Provisions &              &           & $29.00^{*}$ \\
+			&              &           & $(5.98)$    \\
+			\hline
+			Country Fixed Effects?		 & Y			& Y 		& Y			  \\
+			Year Fixed Effects?			 & N			& Y			& Y			  \\
+			R$^2$                        & 0.51         & 0.58      & 0.58        \\
+			Adj. R$^2$                   & 0.47         & 0.50      & 0.51        \\
+			Num. obs.                    & 598          & 409       & 409         \\
+			RMSE                         & 11.47        & 11.57     & 11.53       \\
+			\hline
+			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+		\end{tabular}
+		\caption{Regional Autonomy's Impact on Social Trust}
+		\label{table:coefficients}
+	\end{center}
+\end{table}
+			
+Table 4 uses a dichotomous conflict intensity measurement as the dependent variable. Again, we do not see segmental autonomy exert any statistically significant effect on conflict intensity levels in ethnically diverse states. Though at odds with a large portion of the literature, the presence of other core provisions may slightly increase the severity of conflict in ethnically diverse states. This result undoubtedly warrants further investigation. We do see, intuitively, political stability exerting a statistically significant effect on conflict intensity. That is, as a state becomes more politically stable, conflict rates decrease.  
+
+\begin{table}[!htbp]
+	\centering
+	\begingroup\footnotesize
+	\begin{tabular}{lrrrr}
+		\hline
+		& coef & HR = exp(coef) & 95\% CI & $p$-value \\ 
+		\hline
+		Regional Autonomy & -32.40 & 0.00 & [ 0.00,   Inf] & 1.00 \\ 
+		Other Provisions & -2.74 & 0.06 & [ 0.01,  0.55] & 0.01 \\ 
+		Political Instability & -1.48 & 0.23 & [ 0.13,  0.39] & < 0.00 \\ 
+		Gini Index & 0.02 & 1.02 & [ 0.97,  1.08] & 0.43 \\ 
+		Population & -0.00 & 1.00 & [ 1.00,  1.00] & < 0.00 \\ 
+		PolityIV Score & -0.09 & 0.92 & [ 0.84,  0.99] & 0.04 \\ 
+		Regional Autonomy:Other Provisions & NA & NA & [   NA,    NA] & NA \\ 
+		\hline
+	\end{tabular}
+	\endgroup
+	\caption{Regional Autonomy and Prolonged Peace, $n = $ 245, number of events = 195.} 
+	\label{mod}
+\end{table}
+
+Table 5 shows the effect that the presence of segmental autonomy has on democratization in an ethnically fractionalized state. Any statistical significance we do see from the autonomy variable quickly dissipates when we incorporate our control variables and interactions. These results will be analyzed in more depth in the next sections. Given our results, and that our OLS regressions are global models, it may be useful to assess the saliency of provisions using more “localized” approaches.
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{l c c c }
+			\hline
+			& Model 1 & Model 2 & Model 3 \\
+			\hline
+			(Intercept)                  & $-7.27^{***}$ & $-3.90$     & $-4.07$       \\
+			& $(0.00)$      & $(2.94)$    & $(2.96)$      \\
+			Regional Autonomy                   & $2.94$        & $5.85^{**}$ & $11.53^{***}$ \\
+			& $(3.67)$      & $(1.47)$    & $(1.69)$      \\
+			Political Instability               &               & $0.88$      & $0.87$        \\
+			&               & $(0.65)$    & $(0.65)$      \\
+			Gini Index               &               & $0.02$      & $0.02$        \\
+			&               & $(0.05)$    & $(0.05)$      \\
+			Population               &               & $0.00$      & $0.00$        \\
+			&               & $(0.00)$    & $(0.00)$      \\
+			Other Provisions            &               &             & $0.65$        \\
+			&               &             & $(0.77)$      \\
+			Regional Autonomy:Other Provisions &               &             & $-6.20^{*}$   \\
+			&               &             & $(2.67)$      \\
+			\hline
+			Country Fixed Effects?		 & Y			 & Y 		   & Y			  \\
+			Year Fixed Effects?			 & N			 & Y		   & Y			  \\
+			R$^2$                        & 0.64          & 0.82        & 0.82          \\
+			Adj. R$^2$                   & 0.63          & 0.79        & 0.79          \\
+			Num. obs.                    & 2379          & 758         & 758           \\
+			RMSE                         & 4.27          & 2.35        & 2.35          \\
+			\hline
+			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+		\end{tabular}
+		\caption{Regional Autonomy's Effect on Democratization}
+		\label{table:coefficients}
+	\end{center}
+\end{table}
+
+\subsection{Comparison Across Measurements}
+
+Table 6
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{l c c c }
+			\hline
+			& Model 1 & Model 2 & Model 3 \\
+			\hline
+			(Intercept)        & $49.65^{***}$ & $43.57^{***}$ & $21.24^{***}$ \\
+			& $(4.31)$      & $(4.71)$      & $(2.68)$      \\
+			\textit{auton} (DPI)         & $4.30^{*}$    &               &               \\
+			& $(2.14)$      &               &               \\
+			\textit{reg\_aut} (EPR) &               & $6.08^{**}$   &               \\
+			&               & $(1.93)$      &               \\
+			\textit{n\_RAI} (RAI)        &               &               & $0.45^{**}$   \\
+			&               &               & $(0.15)$      \\
+			\hline
+			Country Fixed Effects?	& Y				& Y				& Y				\\
+			R$^2$              		& 0.61          & 0.61          & 0.65          \\
+			Adj. R$^2$         		& 0.58          & 0.58          & 0.63          \\
+			Num. obs.          		& 1927          & 1936          & 1372          \\
+			RMSE               		& 10.55         & 10.51         & 9.61          \\
+			\hline
+			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+		\end{tabular}
+		\caption{Comparing Measures of Regional Autonomy on Social Trust}
+		\label{table:coefficients}
+	\end{center}
+\end{table}
+
+\section{Discussion}
+The OLS models provide little support for the core hypotheses. We do not see any significant effects exerted by the presence of segmental in ethnically fragmented states for any of our three dependent variables. Given that the existing literature of power-sharing writ large produce mixed findings as to its effectiveness, these results seem to reflect the aggregated findings as opposed to the conclusions of any given author. While the literature on consociational design generally suggests that these provisions can be beneficial, many of these studies are case-specific, so perhaps null results at the aggregate level might not be so unexpected. 
+
+Regarding levels of social trust, we see segmental autonomy provisions alone having no significant effect, though we do see the presence of multiple consociational provisions diminishing levels of social trust with statistical significance. However, the high RMSE value and r-squared value purports to only explain fifty percent of the variance in the relationship between autonomy and social trust, and so even when account for country and year fixed-effects and our controls, these core provisions fail to explain the underlying patterns in the data. While I will elucidate further in the next section, issues such as a lack of data when controlling for all independent variables may indeed have affected our results. 
+
+Similarly, mixed results emerge when looking at conflict intensity. As expected, we see political stability exerting a statistically significant effect on conflict rates, where less stable polities are more likely to see more intense conflicts. We do not see any relationship between autonomy and conflict intensity, though we see that the inclusion of multiple consociational provisions correlates with reduced rates of conflict. This finding is in line with existing literature and with my second hypothesis, though this suggests that segmental autonomy—even if present alongside other power-sharing provisions—does not affect conflict intensity. Additionally, an r-squared value of 0.55 warrants further investigation because, as is the case with the first model, our model fails to fully explain the variation in the data. 
+
+Our final dependent variable, polity score, is unlikely to correlate with the presence of segmental autonomy. Though this model explains more of the variation in the data than the previous two, we do not see any one variable exert a statistically significant effect on polity score. This is understandable, given that democratization is a slow process and thus an OLS model might not capture the full extent of the effects of consociational provisions. One could suggest that polity scores are one of several potential measurements and proxies for democracy, and that different measurements may produce different results. While this is indeed the case, polity scores are generally understood to be a good measure of democracy, and running several iterations of models with different measures of democracy would be convoluted, arbitrary, and would constitute data mining. In any case, we do not see segmental autonomy correlate with polity score and, as such, we fail to reject our null hypothesis.
+ 
+\subsection{Scope and Limitations}
+Several potential limitations with the study need to be addressed. Firstly, given that my study relies on the data of other authors, there is a great deal of variation within the merged data. As mentioned, authors often conceptualize and parametrize their datasets differently, which makes comparison and merging data somewhat challenging. Further, there exists great variation of the frequency of each variable, for example, the PSED dataset variable “tps\_autonomy” has roughly ninety-eight percent missingness\footnote{Mehler, 2009, 2013}. While it is not worth relying on this variable in statistical analyses, the very fact that there exists so much missingness is a, albeit probably unsolvable, finding in itself. Perhaps this conceptualized provision is rare in the real world, which, if we refer back to Ram and Strøm’s work, raises questions as to its saliency and interactions with other provisions. Alternatively, it could be that the variable is particularly subjective and difficult to code correctly, which provides a potential area of exploration in the future. 
+
+Moreover, and as previously mentioned, there exists a great deal of variation in terms of the quality of the available data. Many of the datasets are missing codebooks, and many give vague explanations of their coding practices and parameterization. As such, in line with Ansorg et al.’s (2013) findings, results should be approached with caution. Hopefully, by aggregating the various datasets, and by comparing the reporting of variables across datasets, we can account for, to some degree, the issue of internal and external validity among power-sharing datasets.
+
+It is challenging to disaggregate to the same level the different provisions of power-sharing. Again, this relates to the terminological discrepancies between the different formulations of power-sharing, as well as there being no consensus on what constitutes a provision. For example, Lijphart’s “grand coalition” is a relatively broad provision which, one assumes, could be further disaggregated. Strøm’s dispersive provision of “subnational tax authority” is, conversely, fairly specific and unlikely to be further disaggregated. While the levels of the provisions themselves may not be completely aligned, this paper analyzes the smallest given level of provision, so in that sense, the levels of analysis are equal. One potential area of future research is to look at the different levels of analysis for these provisions, and incorporate it into the existing power-sharing ontology. While not necessarily a limitation of this paper, it is worth noting that there are many other controls that are worth exploring as they pertain to power-sharing provisions. For example, Bormann et al. (2014) evaluate the importance of de facto versus de jure power-sharing institutions. They frame power-sharing in terms of inclusive, dispersive, and constraining institutions and generate mixed findings. 
+
+Additionally, it is worth noting that many of the issues I have faced in my own study are common in many of the papers that I have cited. Given the subjective and contested nature of power-sharing, coupled with the fact many facets of power-sharing do not lend themselves to quantitative classification, a lack of reliable and complete data is an ongoing issue. The recent quantitative, large-N, studies of power-sharing provide some hope for the standardization of the topic, but there is still a lot of progress to be made in terms of the operationalization and validity of future studies and datasets.  
+
+Finally, while the size of my ontology is indeed daunting, this paper aims only to reconcile a small section of the literature. It would have been unwise to attempt to address all of the provisions of power-sharing in one paper, based on limited primary data collection, and with a relatively constrained time scope. In any case, the ontology provides a roadmap of what I intend to study in the future and hopefully, to some degree, provides a clearer view of the existing literature on power-sharing and the institutionalization of peace.  
+
+\subsection{Conclusion}
+The current literature on power-sharing, power-dividing, and partition present several fundamental issues. Firstly, authors conceptualize and operationalize power-sharing and related terms differently when presenting their arguments, making comparison across cases extremely difficult. This lack of standardization and agreement over these concepts makes many of the arguments for and against power-sharing somewhat redundant. Moreover, the provisions of power-sharing are presented as a given, and few studies have addressed the significance of each provisions and their interactions. Existing studies on the provisions of power-sharing suggest that they are not as common and as effective as previously thought. Lastly, coding practices for the curation of power-sharing datasets leaves much to be improved. Many coding rules are poorly defined, if explicated at all; data are sparse and missingness for coded variables are often over fifty percent; and in many cases the data in academic papers are not accessible. 
+
+These findings are not to discredit the authors, rather, they are in part to understand how and where these works fit in a broader schema of power-sharing and the institutionalization of peace. To fully understand power-sharing and peace institutionalization, we need to understand what provisions are utilized, how they are implemented, how they interact with other provisions and institutions, and how they might lead to peace.
+
+My own findings provide mixed results of the efficacy of individual provisions of power-sharing, suggesting that it is likely the inclusion of multiple provisions—as opposed to the implementation of any particular provision—that is most effective in generating positive outcomes in ethnically diverse states. My findings also suggest that existing “global” studies of power-sharing—even when accounting for country-specific conditions—are unlikely to generate meaningful results. In any case, this paper has generated a framework by which we may be able to better understand the provisions of power-sharing, how they relate to one another in the existing literature, and their interactions with other provisions implemented in a given polity.
+
+
+
+
+\pagebreak
+\pagenumbering{gobble}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{ieeetr}
+\nocite{*}
+% \bibliography{biblio.bib}
+% change the file name to line up with your bibtex file
+\end{document}
