@@ -20,7 +20,7 @@ csts <- function(dv, iv){
   
   # Subset by ethnically diverse states 
   #psp <- psp %>%
-   # dplyr::filter(qog_al_ethnic > median(psp$qog_al_ethnic))
+    #dplyr::filter(qog_al_ethnic > median(psp$qog_al_ethnic))
   
   # Make text look pretty 
   if(dv == "ucdp_cumulative_intensity"){

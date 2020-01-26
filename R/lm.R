@@ -19,14 +19,19 @@ psp_lm <- function(dv, iv){
   psp <- dplyr::as_data_frame(rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv")))
   psp <- psp[,-1]
   
-  # Subset by ethnic fractionalization
+  # Subset
   #psp <- psp %>%
    # dplyr::group_by(country) %>%
     #dplyr::mutate(no_aut = sum(idc_auton, na.rm = TRUE)) %>%
     #dplyr::filter(sum(no_aut) != 0)
+  
   psp <- psp %>%
     dplyr::group_by(country) %>%
     dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
+  
+  #psp <- psp %>%
+   # dplyr::group_by(country) %>%
+    #dplyr::filter(qog_gle_gdp < median(psp$qog_gle_gdp, na.rm = TRUE))
   
   
   lm1 <- estimatr::lm_robust(!!sym(dv) ~ !!sym(iv) + as.factor(country), 
