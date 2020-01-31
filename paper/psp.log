@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  27 JAN 2020 10:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  31 JAN 2020 00:08
 entering extended mode
 **./psp.tex
 (psp.tex
@@ -434,7 +434,14 @@ Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
 \TX@delta=\dimen161
 \TX@cols=\count266
 \TX@ftn=\toks26
-) (psp.aux
+)
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lipsum\lipsum.sty"
+Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
+
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lipsum\lipsum.ltd.
+tex"
+File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
+)) (psp.aux
 
 LaTeX Warning: Label `table:coefficients' multiply defined.
 
@@ -444,18 +451,18 @@ LaTeX Warning: Label `table:coefficients' multiply defined.
 )
 \openout1 = `psp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 ("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
@@ -560,7 +567,7 @@ G,.JBIG2,.JB2,.eps]
 <ucsd_seal.png, id=1, 1927.2pt x 1927.2pt>
 File: ucsd_seal.png Graphic file (type png)
 <use ucsd_seal.png>
-Package pdftex.def Info: ucsd_seal.png  used on input line 59.
+Package pdftex.def Info: ucsd_seal.png  used on input line 60.
 (pdftex.def)             Requested size: 93.94957pt x 93.92488pt.
 [1
 
@@ -573,47 +580,80 @@ Package pdftex.def Info: ucsd_seal.png  used on input line 59.
 \tf@lof=\write4
 \openout4 = `psp.lof'.
 
- (psp.lot)
+ [1] (psp.lot)
 \tf@lot=\write5
 \openout5 = `psp.lot'.
 
- [1] [1] [1] [2]
-Overfull \hbox (4.15256pt too wide) in paragraph at lines 107--108
+ [2] [1] [1] [2]
+Overfull \hbox (4.15256pt too wide) in paragraph at lines 116--117
 []\OT1/cmr/m/n/12 While conso-ci-a-tional democ-racy dif-fers con-cep-tu-ally f
 rom power-sharing in-sti-tu-tions found
  []
 
 [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
-[19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] (psp.aux)
+[19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] (psp.bbl
+[33] [34]
+Underfull \hbox (badness 1226) in paragraph at lines 138--142
+[]\OT1/cmr/m/n/12 Milton J. Es-man.  The Man-age-ment of Com-mu-nal Con-flict. 
+ \OT1/cmr/m/it/12 Pub-lic Pol-icy\OT1/cmr/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 1728) in paragraph at lines 144--149
+[]\OT1/cmr/m/n/12 Michael Joshua Fleet.  Na-tion-al-ism and Multi-ethnic Gov-er
+-nance in Bosnia-
+ []
+
+[35] [36] [37]
+Underfull \hbox (badness 1845) in paragraph at lines 300--306
+[]\OT1/cmr/m/n/12 Arend Li-jphart.  Di-vi-sion of Power:: The Federal-Unitary a
+nd Centralized-
+ []
+
+[38] [39] [40] [41]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 5
+37.
+
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 537.
+
+[42]) [43]
+\cbl=\skip85
+ [44] [45] (psp.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 14344 strings out of 492484
- 259227 string characters out of 3121601
- 334593 words of memory out of 3000000
- 18591 multiletter control sequences out of 15000+200000
- 538673 words of font info for 46 fonts, out of 3000000 for 9000
+ 14638 strings out of 492484
+ 266550 string characters out of 3121601
+ 498101 words of memory out of 3000000
+ 18870 multiletter control sequences out of 15000+200000
+ 538982 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  52i,10n,71p,2499b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/tbrai/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/tbrai/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/tbra
-i/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
+blic/amsfonts/cm/cmbx8.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/tbrai/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/tbrai/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/tbra
+i/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
 :/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr7.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr8.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/tbrai/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/tbrai/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on psp.pdf (35 pages, 689961 bytes).
+cmr12.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr7.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tbrai/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/tbrai/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
+tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.p
+fb>
+Output written on psp.pdf (49 pages, 733060 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
+ 216 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
