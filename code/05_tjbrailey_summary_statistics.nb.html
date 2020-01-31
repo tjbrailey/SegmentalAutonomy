@@ -2910,46 +2910,6 @@ div.tocify {
 <h1>Load and clean data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIFBTUCBkYXRhLCBjcmVhdGVkIGluIHRqYnJhaWxleV93cmFuZ2xlX2RhdGEuUm1kLlxucHNwIDwtIHJpbzo6aW1wb3J0KHBhc3RlMChoZXJlOjpoZXJlKCksIFwiL2RhdGEvdGpicmFpbGV5X3BzcF9jbGVhbi5jc3ZcIikpXG5wc3AgPC0gcHNwWywtMV1cbnBzcF9zdWIgPC0gcHNwICU+JVxuICBkcGx5cjo6c2VsZWN0KGNvd24sIHllYXIsIGRwaV9hdXRvbiwgZHBpX2F1dGhvcixcbiAgICAgICAgICAgICAgICBpZGNfc3ViZWQsIGlkY19zdWJ0YXgsIGlkY19zdWJwb2xpY2UsXG4gICAgICAgICAgICAgICAgcG9saXR5NF9wb2xpdHlfc2NvcmUpXG5cbiMgUmVnaW9uYWwgQXV0b25vbXkgSW5kZXhcbnJhaSA8LSByaW86OmltcG9ydChwYXN0ZTAoaGVyZTo6aGVyZSgpLCBcIi9kYXRhL1JBSV9jb3VudHJ5X3Njb3Jlc18yMDE1Lnhsc3hcIikpICU+JVxuICBkcGx5cjo6c2VsZWN0KGNvdW50cnlfbmFtZSwgeWVhciwgbl9SQUkpICU+JVxuICBkcGx5cjo6bXV0YXRlKGNvd24gPSBjb3VudHJ5Y29kZTo6Y291bnRyeWNvZGUoY291bnRyeV9uYW1lLCBcImNvdW50cnkubmFtZVwiLCBcImNvd25cIiksXG4gICAgICAgICAgICAgICAgeWVhciA9IGFzLm51bWVyaWMoeWVhcikpICU+JVxuICBkcGx5cjo6c2VsZWN0KGNvd24sIHllYXIsIG5fUkFJKVxuXG4jIExvY2FsIEF1dG9ub215IEluZGV4XG5sYWkgPC0gcmlvOjppbXBvcnQocGFzdGUwKGhlcmU6OmhlcmUoKSwgXCIvZGF0YS9MQUlfZGF0YV92Nl90ZW1wMi5zYXZcIikpXG5cbiMgRXRobmljIFBvd2VyIFJlbGF0aW9uc1xuZXByIDwtIHJpbzo6aW1wb3J0KHBhc3RlMChoZXJlOjpoZXJlKCksIFwiL2RhdGEvRVBSLTIwMTguMS4xLmNzdlwiKSkgJT4lXG4gIGRwbHlyOjptdXRhdGUoY293biA9IGNvdW50cnljb2RlOjpjb3VudHJ5Y29kZShnd2lkLCBcImd3blwiLCBcImNvd25cIikpICU+JVxuICBkcGx5cjo6c2VsZWN0KGNvd24sIGZyb20sIGdyb3VwLCByZWdfYXV0KSAlPiVcbiAgZHBseXI6OnJlbmFtZSh5ZWFyID0gZnJvbSkgJT4lIFxuICBkcGx5cjo6Z3JvdXBfYnkoY293biwgZ3JvdXApICU+JVxuICB0aWR5cjo6Y29tcGxldGUoY293biwgZ3JvdXAsIFxuICAgICAgICAgICAgICAgICAgeWVhciA9IDE5NDY6MjAxNywgXG4gICAgICAgICAgICAgICAgICBmaWxsID0gbGlzdChpbmNpZGVudHMgPSAwKSkgXG5lcHJfd2lkZSA8LSBlcHIgJT4lIFxuICB0aWR5cjo6cGl2b3Rfd2lkZXIobmFtZXNfZnJvbSA9IGdyb3VwLCBcbiAgICAgICAgICAgICAgICAgICAgIHZhbHVlc19mcm9tID0gcmVnX2F1dCkgJT4lXG4gIGRwbHlyOjpncm91cF9ieShjb3duKSBcbmVwcl93aWRlIDwtIGVwcl93aWRlICU+JVxuICB0aWR5cjo6ZmlsbF8obmFtZXMoZXByX3dpZGVbLDI6NjQyXSkpICU+JVxuICBkcGx5cjo6dW5ncm91cCgpXG5lcHJfd2lkZSRyZWdfYXV0X2NvbnQgPC0gcm93U3VtcyhlcHJfd2lkZVssMzo2NDJdID09IFRSVUUsIG5hLnJtID0gVFJVRSlcbmVwcl9maW5hbCA8LSBlcHJfd2lkZSAlPiUgIFxuICBkcGx5cjo6bXV0YXRlKHJlZ19hdXRfZHVtID0gaWZlbHNlKHJlZ19hdXRfY29udCA+PSAxLCAxLCAwKSkgJT4lXG4gIGRwbHlyOjpzZWxlY3QoY293biwgeWVhciwgcmVnX2F1dF9kdW0sIHJlZ19hdXRfY29udClcbmBgYCJ9 -->
-<pre class="r"><code># Load PSP data, created in tjbrailey_wrangle_data.Rmd.
-psp &lt;- rio::import(paste0(here::here(), &quot;/data/tjbrailey_psp_clean.csv&quot;))
-psp &lt;- psp[,-1]
-psp_sub &lt;- psp %&gt;%
-  dplyr::select(cown, year, dpi_auton, dpi_author,
-                idc_subed, idc_subtax, idc_subpolice,
-                polity4_polity_score)
-
-# Regional Autonomy Index
-rai &lt;- rio::import(paste0(here::here(), &quot;/data/RAI_country_scores_2015.xlsx&quot;)) %&gt;%
-  dplyr::select(country_name, year, n_RAI) %&gt;%
-  dplyr::mutate(cown = countrycode::countrycode(country_name, &quot;country.name&quot;, &quot;cown&quot;),
-                year = as.numeric(year)) %&gt;%
-  dplyr::select(cown, year, n_RAI)
-
-# Local Autonomy Index
-lai &lt;- rio::import(paste0(here::here(), &quot;/data/LAI_data_v6_temp2.sav&quot;))
-
-# Ethnic Power Relations
-epr &lt;- rio::import(paste0(here::here(), &quot;/data/EPR-2018.1.1.csv&quot;)) %&gt;%
-  dplyr::mutate(cown = countrycode::countrycode(gwid, &quot;gwn&quot;, &quot;cown&quot;)) %&gt;%
-  dplyr::select(cown, from, group, reg_aut) %&gt;%
-  dplyr::rename(year = from) %&gt;% 
-  dplyr::group_by(cown, group) %&gt;%
-  tidyr::complete(cown, group, 
-                  year = 1946:2017, 
-                  fill = list(incidents = 0)) 
-epr_wide &lt;- epr %&gt;% 
-  tidyr::pivot_wider(names_from = group, 
-                     values_from = reg_aut) %&gt;%
-  dplyr::group_by(cown) 
-epr_wide &lt;- epr_wide %&gt;%
-  tidyr::fill_(names(epr_wide[,2:642])) %&gt;%
-  dplyr::ungroup()
-epr_wide$reg_aut_cont &lt;- rowSums(epr_wide[,3:642] == TRUE, na.rm = TRUE)
-epr_final &lt;- epr_wide %&gt;%  
-  dplyr::mutate(reg_aut_dum = ifelse(reg_aut_cont &gt;= 1, 1, 0)) %&gt;%
-  dplyr::select(cown, year, reg_aut_dum, reg_aut_cont)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
