@@ -109,7 +109,8 @@ vdem_psp_sub <- vdem %>%
   dplyr::select(country_name, 
                 year, 
                 e_miinterc, 
-                e_Civil_War) %>% 
+                e_Civil_War,
+                v2elfrfair) %>% 
   dplyr::rename(country = country_name)
 
 vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
@@ -478,7 +479,9 @@ psp_rename <- psp_rename %>%
               qog_wbgi_pve, 
               qog_hum_satdem,
               qog_hum_supdem, 
-              qog_hum_trust) 
+              qog_hum_trust,
+              bti_ffe,
+              v2elfrfair) 
 
 variable.names(psp_rename)
 ```

@@ -75,7 +75,7 @@ psp_lm("qog_hum_trust", "rai_n_RAI")
 # Linear Regression on Polity Scores
 ```{r}
 psp_lm("polity4_polity_score", "dpi_auton")
-psp_lm("bti_ffe", "dpi_auton")
+psp_lm("v2elfrfair", "dpi_auton")
 
 psp_lm("polity4_polity_score", "epr_reg_aut_dum")
 psp_lm("polity4_polity_score", "rai_n_RAI")
