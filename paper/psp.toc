@@ -10,26 +10,26 @@
 \contentsline {subsection}{\numberline {2.1}Empirical Conceptions of Segmental Autonomy}{10}%
 \contentsline {subsection}{\numberline {2.2}Partition and Power-Dividing}{12}%
 \contentsline {subsection}{\numberline {2.3}Ontologizing Power-Sharing}{13}%
-\contentsline {subsection}{\numberline {2.4}Segmental Autonomy in Mali and Niger}{14}%
-\contentsline {section}{\numberline {3}Theory and Hypothesis}{18}%
-\contentsline {section}{\numberline {4}Methodology}{21}%
-\contentsline {subsection}{\numberline {4.1}Data Collection}{21}%
-\contentsline {subsection}{\numberline {4.2}Measurements}{23}%
-\contentsline {subsubsection}{\numberline {4.2.1}Dependent Variables}{23}%
-\contentsline {subsubsection}{\numberline {4.2.2}Independent Variables}{23}%
-\contentsline {subsubsection}{\numberline {4.2.3}Control Variables}{24}%
-\contentsline {subsection}{\numberline {4.3}Models}{24}%
-\contentsline {section}{\numberline {5}Results}{25}%
-\contentsline {subsection}{\numberline {5.1}Comparison Across Measurements}{27}%
-\contentsline {section}{\numberline {6}Discussion}{27}%
-\contentsline {subsection}{\numberline {6.1}Scope and Limitations}{30}%
-\contentsline {subsection}{\numberline {6.2}Conclusion}{32}%
-\contentsline {section}{References}{33}%
-\contentsline {section}{\numberline {7}Appendices}{44}%
-\contentsline {subsection}{\numberline {7.1}Codebook}{44}%
-\contentsline {subsubsection}{\numberline {7.1.1}Basic Country Variables}{44}%
-\contentsline {subsubsection}{\numberline {7.1.2}Populations}{44}%
-\contentsline {subsubsection}{\numberline {7.1.3}Democracy and Political System}{44}%
-\contentsline {subsubsection}{\numberline {7.1.4}Measures of Segmental Autonomy and Authority}{45}%
-\contentsline {subsubsection}{\numberline {7.1.5}Other Provisions of Power-Sharing}{45}%
-\contentsline {subsubsection}{\numberline {7.1.6}Conflict}{45}%
+\contentsline {section}{\numberline {3}Theory and Hypothesis}{14}%
+\contentsline {section}{\numberline {4}Segmental Autonomy in Mali and Niger}{17}%
+\contentsline {section}{\numberline {5}Methodology}{23}%
+\contentsline {subsection}{\numberline {5.1}Data Collection}{23}%
+\contentsline {subsection}{\numberline {5.2}Measurements}{24}%
+\contentsline {subsubsection}{\numberline {5.2.1}Dependent Variables}{24}%
+\contentsline {subsubsection}{\numberline {5.2.2}Independent Variables}{25}%
+\contentsline {subsubsection}{\numberline {5.2.3}Control Variables}{26}%
+\contentsline {subsection}{\numberline {5.3}Models}{26}%
+\contentsline {section}{\numberline {6}Results}{27}%
+\contentsline {subsection}{\numberline {6.1}Comparison Across Measurements}{30}%
+\contentsline {section}{\numberline {7}Discussion}{31}%
+\contentsline {subsection}{\numberline {7.1}Scope and Limitations}{32}%
+\contentsline {subsection}{\numberline {7.2}Conclusion}{34}%
+\contentsline {section}{References}{36}%
+\contentsline {section}{\numberline {8}Appendices}{47}%
+\contentsline {subsection}{\numberline {8.1}Codebook}{47}%
+\contentsline {subsubsection}{\numberline {8.1.1}Basic Country Variables}{47}%
+\contentsline {subsubsection}{\numberline {8.1.2}Populations}{47}%
+\contentsline {subsubsection}{\numberline {8.1.3}Democracy and Political System}{48}%
+\contentsline {subsubsection}{\numberline {8.1.4}Measures of Segmental Autonomy and Authority}{48}%
+\contentsline {subsubsection}{\numberline {8.1.5}Other Provisions of Power-Sharing}{48}%
+\contentsline {subsubsection}{\numberline {8.1.6}Conflict}{48}%

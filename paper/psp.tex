@@ -13,6 +13,18 @@
 \usepackage{geometry}
 \usepackage{tabularx}
 \usepackage{lipsum}
+\usepackage[svgnames]{xcolor}
+\usepackage{listings}
+
+\lstset{language=R,
+	basicstyle=\small\ttfamily,
+	stringstyle=\color{DarkGreen},
+	otherkeywords={0,1,2,3,4,5,6,7,8,9},
+	morekeywords={TRUE,FALSE},
+	deletekeywords={data,frame,length,as,character},
+	keywordstyle=\color{blue},
+	commentstyle=\color{DarkGreen},
+}
 
 \geometry{letterpaper, portrait, margin=1in}
 
@@ -84,15 +96,15 @@ University of California, San Diego\\
 
 \begin{center}\section*{Acknowledgements}\end{center}
 \addcontentsline{toc}{section}{Acknowledgments}
-Without veering into melodrama, the completion of this thesis would have been impossible were it not for the generosity and unparalleled knowledge of several political science professors and graduate students, as well as the unwavering support from my fellow cohort and my friends. 
+%Without veering into melodrama, the completion of this thesis would have been impossible were it not for the generosity and unparalleled knowledge of several political science professors and graduate students, as well as the unwavering support from my fellow cohort and my friends. 
 
-To Professor Gareth Nellis, who helped not only to hone my writing, data analysis, and research design skills, but who offered advice and guidance on a whole host of random questions and concerns I threw his way throughout the program, I am incredibly grateful. You have undoubtedly made me a better political scientist and scholar, and it has been a true joy to work with you.   
+%To Professor Gareth Nellis, who helped not only to hone my writing, data analysis, and research design skills, but who offered advice and guidance on a whole host of random questions and concerns I threw his way throughout the program, I am incredibly grateful. You have undoubtedly made me a better political scientist and scholar, and it has been a true joy to work with you.   
 
-To Professor Daniel Butler and Professor Kaare Strøm, thank you for guiding this year's cohort, going out of your way to learn more about our ideas and goals and help us fully realize them through our theses. Again, our papers would not be of their present quality had it not been for your tutelage.
+%To Professor Daniel Butler and Professor Kaare Strøm, thank you for guiding this year's cohort, going out of your way to learn more about our ideas and goals and help us fully realize them through our theses. Again, our papers would not be of their present quality had it not been for your tutelage.
 
-To Michael Seese, our wonderful teaching assistant, and graduate student Brian Engelsma, thank you for your guidance, suggestions, and critiques of my work. Your enthusiasm for the field has certainly rubbed off on me, and I hope to continue doing this whole research thing for years to come. 
+%To Michael Seese, our wonderful teaching assistant, and graduate student Brian Engelsma, thank you for your guidance, suggestions, and critiques of my work. Your enthusiasm for the field has certainly rubbed off on me, and I hope to continue doing this whole research thing for years to come. 
 
-Lastly, to my cohort and my friends: directly and indirectly you have made not just the senior thesis but my time as an undergraduate a whole bunch of fun. Thank you all for challenging and supporting me over the past four years.
+%Lastly, to my cohort and my friends: directly and indirectly you have made not just the senior thesis but my time as an undergraduate a whole bunch of fun. Thank you all for challenging and supporting me over the past four years.
 
 \pagebreak
 
@@ -185,46 +197,6 @@ This ontology could well be a significant development in the power-sharing liter
 
 While conducting the literature review portion of my thesis, I managed to extract most of the relevant information on the provisions of each form of power-sharing from the author’s typology tables. Further, authors who have conducted meta-analyses on power-sharing institutions such as Andeweg (2000), Bogaards (1998), and Norris (2008), include sections on the development of conceptions over time, allowing me to easily integrate terms into the ontology. Further, I have provided citations for each provision, and suggested a range of variables that could be utilized for measuring each provision. As mentioned, given that some of these provisions are inherently broad, not all provisions have been assigned a variable and, as such, unlock an avenue for further research. For pedagogical purposes, I have assigned upper-level nodes to be one of three possible parent classes: “political systems” such as liberal consociationalism, integrative consociationalism, and the like; “power-sharing arrangements”—characterized as institutions implemented via peace agreements—such as territorial, economic, and military power-sharing; and “power-sharing alternatives” which encompass partition and power-dividing, concepts that are often posited in opposition to power-sharing institutions. The code and data for reproducing the ontology visualization can be found in the appendix of this paper.
 
-\subsection{Segmental Autonomy in Mali and Niger}
-The contiguous states of Mali and Niger provide an insightful qualitative comparison of the effects of regional autonomy. As described in Table 2, the two states bear striking similarities that warrant further investigation and comparison: they have similar population sizes and GDP; share the same political system; and have both been subject to French colonial rule. More importantly, both states have a significant Tuareg population within their borders. Since independence in 1960 (granted on  June 20 and August 3 for Mali and Niger respectively), the two countries have had similar political experiences. From military and one-party rule for most of the 1960s and 1970s, to various coups d’état against monopolistic leaders, to democratic reforms throughout the 1990s, Mali and Niger's stories have been of ethnic tension and regional instability. The two countries diverge significantly in 1999 when Mali, in response to growing ethnic tensions, implemented regional autonomy in the form of regional elections. Following similar ethnic violence and a coup, Niger opted for the inclusion of Tuareg members as ministers in a coalition government, and explicitly avoided regional autonomy provisions for the Tuareg population\footnote{Minorities at Risk Project, 2003}. In not implementing regional autonomy, various reports suggest that relations between the Niger government and the Tuareg ethnic population have declined, especially when compared to the relative peace and amicability between the Tuareg and the Malian government. 
-
-\begin{table}[ht]
-\centering
-\setlength{\tabcolsep}{10pt}
-\renewcommand{\arraystretch}{1.5} 
-\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|c|}
-  \hline
-\textbf{Country}                &   \textbf{Mali}  &  \textbf{Niger}  \\ 
-  \hline
-Regional Autonomy?              &   Yes            &  No              \\
-    \hline
-Population (1999, millions)     &   10.6           &  10.9            \\
-    \hline
-Tuareg \% of Population (2001)  &   10             &  9.3             \\
-    \hline
-GDP (1999, billion USD)         &   3.4            &  2.0             \\
-    \hline
-Ethnic Fractionalization (1999) &   0.8            &  0.6             \\
-	\hline
-Area (million sq. km.) 			&   1.2 		   &  1.3 			  \\
-	\hline
-Former French Colony?			&  Yes			   &  Yes			  \\
-    \hline 
-Political System                &  Unitary semi-presidential republic & Unitary
-semi-presidential republic  \\
-   \hline
-\end{tabular}}
-\caption{Country Characteristics Around Mali's Decentralization}
-\end{table}
-
-Prior to achieving autonomy in 1999, the Tuareg had been pressuring the Malian government to decentralize decision-making and grant them greater economic freedom. Though the Malian government were concerned that the Tuareg might push for a complete secession from the state, they refused to grant the Tuareg people regional autonomy or any form of power-sharing provision. The increase in political pressure by the Tuareg culminated in a coup d’état in 1991 against authoritarian leader Moussa Traoré and the following year saw the introduction of peace accords granting the Tuareg some level of regional autonomy\footnote{Humphreys, 2005}. Though intended to abate tensions between the central government and the ethnic groups in Mali, the peace accords were not fully implemented until 1999 when the first Tuareg regional elections were held\footnote{Keita, 1998; Seely, 2001}. Prior to the regional elections, rates of politically-motivated conflict between the Tuareg, the central government, and other minority ethnic populations, remained high. In the years following the \textit{de facto} implementation of regional autonomy, conflict rates and fatalities appeared to decrease. The Ethnic Power-Relations Atlas (EPR) anecdotally remarks that following regional autonomy in the north east, conflict rates markedly decreased, especially within the Tuareg region\footnote{Vogt et al., 2015}. Similarly, the Minorities at Risk Project note that, despite a recent history of rebellion and violence, Mali's Tuareg population are "unlikely to engage in large-scale violence in the near future"\footnote{Minorities at Risk Project, 2003}. 
-
-The Tuareg in Niger faced similar discrimination post-independence. As in Mali, the Tuareg were economically marginalized and effectively unable to participate in government decision-making. In 1993, two years after especially intense violence between the military government and the Tuareg population, a power-sharing government was established in the form of a coalition cabinet. Though some government positions were held by Tuareg politicians, they were quickly sacked and detained\footnote{Krings, 1995}. It was not until 1994 that the Tuareg---though still in the midst of violence with state army---were successfully integrated into the governing coalition. While their inclusion pointed to reduced tensions, subsequent elections and coups rendered the Tuareg powerless, and in 2007 a Tuareg rebellion broke out against the government. Interestingly, the 2007 Tuareg rebellions occurred in both Mali and Niger almost simultaneously, but where the violence in Mali focused on the government's failure to implement economic reforms, the violence in Niger was attributed to their political exclusion\footnote{Bertelsmann, 2008}. Why did the Nigerien government refuse decentralization? Many believe that regions populated by the Tuareg are rich in uranium, which, during the 1990s, accounted for about 80\% of Niger's exports. The central government did not wish to relinquish their most economically viable region to an ethnic minority and adversary and thus sought integration through alternative power-sharing provisions\footnote{Krings, 1995; Pons 1993}. These provisions were never fully realized and, as a result, the Tuareg population in Niger---throughout the numerous democratic and authoritarian transitions since 1999---are purported to exhibit several risk factors for rebellion and increased violence\footnote{Minorities at Risk Project, 2003}.
-
-In process-tracing the political histories and trajectories of post-independence Mali and Niger, it is clear that Niger has faced greater political unrest as a result of dictatorial leadership (such as the constitutional crisis of 2009), economic and environmental factors, and other factors unrelated to the power-sharing institutions themselves. However, it is undeniable that much of the ethnic unrest and violence stems directly from the central government's inability to meaningfully integrate or accommodate the Tuareg population. This includes their failure to grant regional autonomy to the Tuareg after several decades of Tuareg demands. While the political future of the Tuareg in Mali is uncertain and conflict persists as a result of underlying economic grievances, the level of violence between ethnic minorities and the central government is far less severe than in Niger. As mentioned, reports from EPR and Minorities at Risk suggest that the Tuareg in Mali are significantly less likely to rebel given that they have been integrated into the central government and are able to exercise regional autonomy, both \textit{de facto} and \textit{de jure}. Empirically, little work has been conducted to assess whether the number of casualties has changed since the implementation of autonomy in Mali, though data from the Armed Conflict Location and Event Data (ACLED) indicates that the implementation of segmental autonomy was a contributing factor to the reduction of conflict\footnote{Raleigh et al., 2010};\footnote{Brailey, 2019, unpublished manuscript}.
-
-As with the empirical conceptions of regional autonomy, \textit{prima facie} evidence from Mali and Niger should be interpreted with caution. Though this paper seeks to understand the impacts of regional autonomy across three dimensions---conflict, intergroup trust, and democratization---evidence and measurements for the latter two variables in the two states are scarce. Moreover, we see that these states are facing a plethora of dynamic political issues, making it difficult to isolate and attribute a single causal mechanism. To elucidate, if regional autonomy is in fact reducing intergroup tensions, there exists little data to analyze ethnic group trust for the Malian population in and around 1999, and even if the data did exist it would be difficult to isolate regional autonomy as the main cause, given that there are several other country-specific factors operating and interacting with autonomy and its implementation. In any case, evidence from Mali and Niger, and the seemingly positive impacts of regional autonomy in the former state, warrants further investigation as to the substantive effects of regional autonomy in ethnically fractionalized polities. 
-
 \section{Theory and Hypothesis}
 States that employ segmental autonomy provisions along with other provisions of power-sharing, either through peace accord or constitutional reform, are more likely to experience reduced intergroup tensions and prolonged peace. I conceptually define power-sharing provisions as the underlying mechanisms within a constitution or peace agreement that allow for military, political, economic, social, and territorial inclusion and accommodation between state factions. More specifically, I define segmental autonomy in line with Lijphart (1969, 1977), Norris (2008), and Kelly’s (2019) definition. That is, minority groups, with government-recognized autonomy over specific and salient issues. I operationalize this concept by measuring the importance of these provisions in terms of temporal democracy scores, conflict prolongation, and proxies for intergroup tolerance such as social trust measures and support for democracy surveys. In other words, does the implementation of segmental or regional autonomy within a state cause peace or exacerbate existing intergroup tensions? The measurements by which I operationalize my concept can be found in electoral datasets such as the Database for Political Institutions, the Uppsala Conflict Data Program, and Quality of Governance. 
 
@@ -252,6 +224,54 @@ We see similar causal arguments put forth in more recent literature on power-sha
 
 This causal mechanism is not without its detractors. Though Kelly (2019) ultimately argues in favor of segmental autonomy provisions in ethnically diverse states, they caution that autonomy, through its separation of groups along ethnic lines, could reduce intergroup interactions to the point that prejudice, scapegoating, and secession may occur. Though not empirically analyzed in Kelly’s work, Lijphart’s mechanism, when pushed too far, could indeed have a negative effect on intergroup relations. This is perhaps where Norris’s (2008) theory that multiple power-sharing institutions are required to counterbalance the potential risks of more dispersive forms of conflict management comes into play. Keller and Smith (2005) share a similar concern to Kelly (2019) in that segmental autonomy may go beyond political decentralization and group self-determination, instead exacerbating intergroup tensions and oppositional identities, and incentivizing more extreme concessions by the central government. However, they are generally less optimistic regarding the potential payoffs of dispersive institutions, stating that “[t]he long-term implications of [subnational autonomy] are unclear, but in the short term there has been a tendency for increased demands for further autonomy among distinct groups within regions”\footnote{Keller and Smith, 2005, 240}. The fundamental causal chain between the implementation of segmental autonomy provisions, conflict, intergroup relations, and democratization, is similar among each author I have looked at. These authors’ causal arguments deviate regarding the severity of the outcomes; while some suggest that dispersed and autonomous ethnic groups will reduce conflict, others suggest that there exists some latent optimum level of dispersion and that when pushed too far, autonomy will exert a negative effect of conflict and intergroup relations.  
 
+Additionally, Seely (2001) identifies three key mechanisms that justify the implementation of segmental autonomy; mechanisms that simultaneously benefit the central government and the decentralized region. Cooptation refers to the extension of autonomy to groups that pose a potential threat to the state. In order to avoid the breakup of a state or a conflict, cooptation is designed to abate political instability by meeting the needs of a dissatisfied group. Regional autonomy can also serve to legitimize the central government. In granting more autonomy to salient regions, the central government might be perceived as more democratic and inclusive. Beyond just perception, I believe that legitimization may in fact also improve democracy given that regional actors, if integrated successfully, can serve as checks and balances against the central government. Lastly, and somewhat counterintuitively, regional autonomy can serve to consolidate power in the central government by allowing regional elites to compete in elections and engage with the state. As with the previous two mechanisms, consolidation serves as a concession to regional groups and has the potential to reduce tensions and violence, yet also allows the central government to tighten their grip on the state through reconfiguring their power. 
+
+\section{Segmental Autonomy in Mali and Niger}
+The contiguous states of Mali and Niger provide an instructive qualitative comparison of the effects of regional autonomy. As described in Table 2, the two states bear striking similarities at baseline that warrant further investigation and comparison: they have similar population sizes and GDP; share the same political system; and have both been subject to French colonial rule. More importantly, both states have a significant Tuareg population within their borders and similar ethnic group structures. According to their respective censuses, Mali comprises of 50\% Mande, 16\% Fula, 13\% Voltaic, and 10\% Tuareg while Niger consists of 55\% Hausa, 21\% Zarma-Songhai, and 9\% Tuareg. Though interethnic relationships between most groups are peaceful, the Tuaregs---who are more regionalized in Mali and Niger---have historically faced discrimination. The Tuareg are traditionally nomadic pastoralists, though in Mali and Niger they are largely regionally consolidated in the north. The Tuareg are linguistically and culturally distinct; they speak Tamasheq and, unlike other ethnic groups in Mali and Niger, are matrilineal. In addition to economic marginalization, the Tuareg have faced cultural discrimination such as the prohibition of nomadism in Niger and a lack of representation in the central government in both states\footnote{Ibrahim, 1994}. The Tuareg's violence toward the central government, and their demands for increased autonomy and representation, can be attributed to their shift between powerlessness and discrimination post-independence\footnote{Vogt et al., 2015}.  
+
+Since independence in 1960 (granted on  June 20 and August 3 for Mali and Niger respectively), the two countries have had similar political experiences. From military and one-party rule for most of the 1960s and 1970s, to various coups d’état against autocratic leaders, to democratic reforms throughout the 1990s, Mali and Niger's stories have been of ethnic tension and regional instability. The two countries diverge significantly in 1999 when Mali, in response to growing ethnic tensions, implemented regional autonomy in the form of regional elections. Following similar ethnic violence and a coup, Niger opted for the inclusion of Tuareg members as ministers in a coalition government, and explicitly avoided regional autonomy provisions for the Tuareg population\footnote{Minorities at Risk Project, 2003}. In not implementing regional autonomy, various reports suggest that relations between the Niger government and the Tuareg ethnic population have declined, especially when compared to the relative peace and amicability between the Tuareg and the Malian government following autonomy. These well-matched cases allow for the use of John Stewart Mill's "method of difference" which compares different outcomes associated with an independent variable across two cases\footnote{Mill, 1843}. In Mali and Niger, the two states are also well-matched on the outcome variables prior to the implementation of segmental autonomy, where data exist. For example, both Mali and Niger ranked relatively low on the PolityIV index following independence and prior to democratization in the 1990s, and we see the two states diverge in purported levels of democracy and social trust ratings after 1999. For the other measures that these states have been matched on, Mali and Niger exhibit similar trends from independence through to the end of the century. This will be elucidated later in the section, but these similar characteristics and parallel trends on the variables and outcomes of interest provide justification to process-trace the impacts of segmental autonomy. 
+
+\begin{table}[!htbp]
+	\centering
+	\setlength{\tabcolsep}{10pt}
+	\renewcommand{\arraystretch}{1.5} 
+	\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|c|}
+			\hline
+			\textbf{Country}                &   \textbf{Mali}  &  \textbf{Niger}  \\ 
+			\hline
+			Regional Autonomy?              &   Yes            &  No              \\
+			\hline
+			Population (1999, millions)     &   10.6           &  10.9            \\
+			\hline
+			Tuareg \% of Population (2001)  &   10             &  9.3             \\
+			\hline
+			GDP (1999, billion USD)         &   3.4            &  2.0             \\
+			\hline
+			Ethnic Fractionalization (1999) &   0.8            &  0.6             \\
+			\hline
+			Area (million sq. km.) 			&   1.2 		   &  1.3 			  \\
+			\hline
+			Former French Colony?			&  Yes			   &  Yes			  \\
+			\hline 
+			Political System                &  Unitary semi-presidential republic & Unitary
+			semi-presidential republic  \\
+			\hline
+	\end{tabular}}
+	\caption{Country Characteristics Around Mali's Decentralization}
+\end{table}
+
+Prior to achieving autonomy in 1999, the Tuareg had been pressuring the Malian government to decentralize decision-making and grant them greater economic freedom. Though the Malian government were concerned that the Tuareg might push for a complete secession from the state, they refused to grant the Tuareg people regional autonomy or any form of power-sharing provision. The increase in political pressure by the Tuareg culminated in a coup d’état in 1991 against authoritarian leader Moussa Traoré and the following year saw the introduction of peace accords granting the Tuareg some level of regional autonomy\footnote{Humphreys, 2005}. Though intended to abate tensions between the central government and the ethnic groups in Mali, the peace accords were not fully implemented until 1999 when the first Tuareg regional elections were held\footnote{Keita, 1998; Seely, 2001}. Prior to the regional elections, rates of politically-motivated conflict between the Tuareg, the central government, and other minority ethnic populations, remained high. In the years following the \textit{de facto} implementation of regional autonomy, conflict rates and fatalities appeared to decrease. The Ethnic Power-Relations Atlas (EPR) anecdotally remarks that following regional autonomy in the north east, conflict rates markedly decreased, especially within the Tuareg region\footnote{Vogt et al., 2015}. Similarly, the Minorities at Risk Project note that, despite a recent history of rebellion and violence, Mali's Tuareg population are "unlikely to engage in large-scale violence in the near future"\footnote{Minorities at Risk Project, 2003}. 
+
+The Tuareg in Niger faced similar discrimination post-independence. As in Mali, the Tuareg were economically marginalized and effectively unable to participate in government decision-making. In 1993, two years after especially intense violence between the military government and the Tuareg population, a power-sharing government was established in the form of a coalition cabinet. Though some government positions were held by Tuareg politicians, they were quickly sacked and detained\footnote{Krings, 1995}. It was not until 1994 that the Tuareg---though still in the midst of violence with state army---were successfully integrated into the governing coalition. While their inclusion pointed to reduced tensions, 2004 saw the removal (and execution) of Tuareg officials in government, effectively ending the coalition cabinet model of power-sharing. Again, the Tuareg were rendered powerless, and in 2007 a Tuareg rebellion broke out against the government demanding more representation. Interestingly, the 2007 Tuareg rebellions occurred in both Mali and Niger almost simultaneously, but where the violence in Mali focused on the government's failure to implement economic reforms, the violence in Niger was attributed to their political exclusion\footnote{Bertelsmann, 2008}. 
+
+Why did the Nigerien government refuse decentralization? Pons (1993) argues that the regions populated by the Tuareg happen to be rich in uranium, which, during the 1990s, accounted for about 80\% of Niger's exports. The central government did not wish to relinquish their most economically viable region to an ethnic minority and adversary and thus sought integration through alternative power-sharing provisions\footnote{Krings, 1995; Pons 1993}. These provisions were never fully realized and, as a result, the Tuareg population in Niger---throughout the numerous democratic and authoritarian transitions since 1999---are purported to exhibit several risk factors for rebellion and increased violence\footnote{Minorities at Risk Project, 2003}. 
+
+There seems to exist evidence of autonomy's positive cooptive effect as, immediately after the implementation of autonomy, Tuareg rebels willingly "handed over mortars, anti-tank mines and grenade launchers" to the central government, who then destroyed these weapons\footnote{Reuters, 2008}.  Regional autonomy also served to legitimize the Tuareg, who were represented in the central government following regional elections in 1999. 
+
+In process-tracing the political histories and trajectories of post-independence Mali and Niger, it is clear that Niger has faced greater political unrest as a result of dictatorial leadership (such as the constitutional crisis of 2009), economic and environmental factors, and other factors unrelated to the power-sharing institutions themselves. However, it is undeniable that much of the ethnic unrest and violence stems directly from the central government's inability to meaningfully integrate or accommodate the Tuareg population. This includes their failure to grant regional autonomy to the Tuareg after several decades of Tuareg demands. While the political future of the Tuareg in Mali is uncertain and conflict persists as a result of underlying economic grievances, the level of violence between ethnic minorities and the central government is far less severe than in Niger. As mentioned, reports from EPR and Minorities at Risk suggest that the Tuareg in Mali are significantly less likely to rebel given that they have been integrated into the central government and are able to exercise regional autonomy, both \textit{de facto} and \textit{de jure}. Empirically, little work has been conducted to assess whether the number of casualties has changed since the implementation of autonomy in Mali, though data from the Armed Conflict Location and Event Data (ACLED) indicates that the implementation of segmental autonomy was a contributing factor to the reduction of conflict\footnote{Raleigh et al., 2010};\footnote{Brailey, 2019, unpublished manuscript}.
+
+As with the empirical conceptions of regional autonomy, \textit{prima facie} evidence from Mali and Niger should be interpreted with caution. Though this paper seeks to understand the impacts of regional autonomy across three dimensions---conflict, intergroup trust, and democratization---evidence and measurements for the latter two variables in the two states are scarce. Moreover, we see that these states are facing a plethora of dynamic political issues, making it difficult to isolate and attribute a single causal mechanism. To elucidate, if regional autonomy is in fact reducing intergroup tensions, there exists little data to analyze ethnic group trust for the Malian population in and around 1999, and even if the data did exist it would be difficult to isolate regional autonomy as the main cause, given that there are several other country-specific factors operating and interacting with autonomy and its implementation. It is worth mentioning the resource curse as one such country-specific factor in Niger. A large body of literature suggests that, because Niger relied on uranium as its primary export, the state is inherently more likely to face political instability and autocratic shifts\footnote{Mehlum et al., 2006; Sachs and Warner, 2001}. While this may have contributed to Niger's overall instability, Tuareg violence occurred irrespective of resources; their focus was solely on achieving more political influence. In any case, evidence from Mali and Niger, and the seemingly positive impacts of regional autonomy in the former state, warrants further investigation as to the substantive effects of regional autonomy in ethnically fractionalized polities. 
+
 \section{Methodology}
 \subsection{Data Collection}
 Data collection began with a broad overview of existing datasets on power-sharing in existing papers. A great deal of time was spent finding and reading-in the data, as well as reaching out to academics in order to find codebooks and bypass dead weblinks. As mentioned, Ansorg et al.’s (2013) expansive study on existing datasets was of great help in my own evaluation of existing datasets. Their findings very much parallel my own experiences with these political datasets: they are often hard to obtain; they often do not contain all the information required to fully understand the data; they are often conceptualized and parameterized differently, making comparison especially challenging; and there is often little information on how the variables were coded, reducing the credibility of these data. Moreover, many of the datasets suffer from significant missingness, again potentially reducing the accuracy of the authors’ findings. 
@@ -275,18 +295,18 @@ Districts do not count as autonomous regions. Disputed autonomy is not recorded.
 not counted as autonomous. \textbf{Deviating from convention, no information recorded as 0}\footnote{Cruz et al., 2018, emphasis in original}.
 
 \doublespacing
-I supplement this core measurement of the presence of autonomous with some more fine-grained measurements of autonomy from Strøm et al.’s dataset. Specifically, I include subed, subtax, and subpolice, to see if specific forms of segmental autonomy exert more or less of an effect on my dependent variables. I also generate a new variable, tb\_aut, that simply takes a value of one if either subed, subtax, or subpolice equal one. Lastly, I include a measure of federalism, pt\_federal, in order to compare the results of federalist versus autonomy provisions.  
+I supplement these core assessments of the presence of autonomous regions by running simple bivariate regressions using different measures of regional autonomy from Ethnic Power Relations and the Regional Autonomy Index. Though I have already assessed the correlation between these variables, it seems logical to assess their predictive power with regards to our outcome variables of interest. The results of these bivariate regressions can be found in the results section. 
 
 \subsubsection{Control Variables} 
-The impetus behind including my control variables comes from existing empirical studies\footnote{Hartzell and Hoddie, 2007; Kelly, 2019; Norris, 2008; Strøm et al., 2017; Walter, 2002} and the necessity of country controls. As such, I have included variables from QOG on political stability, the Gini Index, population, and polity score\footnote{I exclude polity score from the model where the dependent variable is also polity score}. Additionally, I calculate a new variable, tb\_other\_provis, which takes a value of one when any of the other core provisions of consociational democracy—mutual veto, proportionality, or grand coalition—are present in any country-year observation. 
+The impetus behind including my control variables comes from existing empirical studies\footnote{Hartzell and Hoddie, 2007; Kelly, 2019; Norris, 2008; Strøm et al., 2017; Walter, 2002} and the necessity of country controls. As such, I have included variables from QOG on political stability, the Gini Index, population, and polity score\footnote{I exclude polity score from the model where the dependent variable is also polity score}. Additionally, I calculate a new variable, tb\_other\_provis, which takes a value of one when any of the other core provisions of consociational democracy---mutual veto, proportionality, or grand coalition---are present in any country-year observation, and use this to calculate interaction effects in my models. 
 
 \subsection{Models}
-Prior to running statistical models, I generate simple cross-sectional time-series plots that show the relationship between the percentage of years each state has spent with de jure implementation of segmental autonomy and levels of social trust, polity score, and conflict intensity within the state. These summary statistics can be found in the appendix of this paper. As these cross-sectional visualizations include all states in the dataset, we do not see any significant trends across time, though it does show the variation in the implementation of segmental autonomy across time. 
+Prior to running statistical models, I generate simple cross-sectional time-series plots that show the relationship between the percentage of years each state has spent with \textit{de jure} implementation of segmental autonomy and levels of social trust, polity score, and conflict intensity within the state. These summary statistics can be found in the appendix of this paper. As these cross-sectional visualizations include all states in the dataset, we do not see any significant trends across time, though it does give some insight into how prevalent segmental autonomy is across the world's states. 
 
-I begin my statistical analyses by subsetting the data to those states that exhibit high levels of ethnic fractionalization (characterized by states that have an ethnic fractionalization score of above the world median value), and then running several iterations of robust ordinary least squares (OLS) regression on my cross-sectional time-series dataset on three distinct dependent variables. For each dependent variable—levels of social trust, conflict intensity, and polity score—the same control variables are included in the OLS. For all models, I include country fixed-effects, and for the latter two iterations, I include year fixed-effects. 
+I begin my statistical analyses by subsetting the data to those states that exhibit high levels of ethnic fractionalization (characterized by states that have an ethnic fractionalization score of above the world median value), and then running several iterations of robust ordinary least squares (OLS) regression on my cross-sectional time-series dataset on three distinct dependent variables. For conflict duration as a dependent variable, I run a Cox proportional hazards model to assess whether the implementation of regional autonomy serves to reduce the length of a conflict. For each dependent variable---levels of social trust, conflict intensity, and polity score---the same control variables are included in the OLS. For all models, I include country fixed-effects, and for the latter two iterations, I include year fixed-effects. Lastly, and for robustness, the OLS regressions are clustered by their standard errors.  
 
 \section{Results}
-Table 3 shows the impact of segmental autonomy on social trust levels for all country-year observations that fall above the median ethnic fractionalization value for all states in my dataset. As shown, for all iterations of our model, our segmental autonomy variable does not exert a statistically significant effect on our dependent variable. It seems that the presence of other power-sharing provisions, not including segmental autonomy, might serve to reduce levels of social trust across ethnically diverse states. But when combined with segmental autonomy, the statistical significance of this interaction disappears. It should be noted that we see no statistical significance when utilizing the other measurements of segmental and regional autonomy. 
+Table 3 shows the impact of segmental autonomy on social trust levels for all country-year observations that fall above the median ethnic fractionalization value for all states in my dataset. Results are mixed. A simple bivariate regression indicates that regional autonomy exerts a statistically significant positive effect on levels of social trust across states, however, the inclusion of control variables and year fixed effects flips the direction of regional autonomy and renders it not statistically significant. We see that the presence of other consociational provisions exert a negative and non-statistically significant effect on levels of social trust in a state, though this becomes positive and significant at the one-star level when we interact this variable with the regional autonomy measure. The adjusted $R^2$ values across models suggest that the Model 3 is able to explain up to 51\% of the total variance in the data, though there is not much change in the $R^2$ and adjusted $R^2$ values across models. Similarly, the root mean squared error (RMSE)---standard deviation of the unexplained variance---does not differ significantly across models, indicating that additional control variables do not better predict the outcome variable.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -295,7 +315,7 @@ Table 3 shows the impact of segmental autonomy on social trust levels for all co
 			& Model 1 & Model 2 & Model 3 \\
 			\hline
 			(Intercept)                  & $49.65$      & $9.79$    & $22.37$     \\
-			& $$           & $(12.38)$ & $(12.09)$   \\
+			& $ $           & $(12.38)$ & $(12.09)$   \\
 			Regional Autonomy                   & $0.40^{***}$ & $-3.75$   & $-30.81$    \\
 			& $(0.00)$     & $(19.00)$ & $(23.94)$   \\
 			Political Instability               &              & $4.19$    & $4.90$      \\
@@ -325,30 +345,29 @@ Table 3 shows the impact of segmental autonomy on social trust levels for all co
 	\end{center}
 \end{table}
 			
-Table 4 uses a dichotomous conflict intensity measurement as the dependent variable. Again, we do not see segmental autonomy exert any statistically significant effect on conflict intensity levels in ethnically diverse states. Though at odds with a large portion of the literature, the presence of other core provisions may slightly increase the severity of conflict in ethnically diverse states. This result undoubtedly warrants further investigation. We do see, intuitively, political stability exerting a statistically significant effect on conflict intensity. That is, as a state becomes more politically stable, conflict rates decrease.  
+Table 4 uses a dichotomous conflict intensity measurement as the dependent variable. Again, we do not see segmental autonomy exert any statistically significant effect on conflict intensity levels in ethnically diverse states. Similar to the results in our OLS on social trust levels, the interaction effect between regional autonomy and other consociational provisions reduces conflict by a factor of 47\%. Though this is only weakly statistically significant, these findings do provide some evidence that the presence of autonomy, when implemented alongside other provisions of power-sharing, may reduce conflict rates in ethnically diverse polities. 
 
 \begin{table}[!htbp]
 	\centering
-	\begingroup\footnotesize
 	\begin{tabular}{lrrrr}
 		\hline
 		& coef & HR = exp(coef) & 95\% CI & $p$-value \\ 
 		\hline
-		Regional Autonomy & -32.40 & 0.00 & [ 0.00,   Inf] & 1.00 \\ 
-		Other Provisions & -2.74 & 0.06 & [ 0.01,  0.55] & 0.01 \\ 
-		Political Instability & -1.48 & 0.23 & [ 0.13,  0.39] & < 0.00 \\ 
-		Gini Index & 0.02 & 1.02 & [ 0.97,  1.08] & 0.43 \\ 
-		Population & -0.00 & 1.00 & [ 1.00,  1.00] & < 0.00 \\ 
-		PolityIV Score & -0.09 & 0.92 & [ 0.84,  0.99] & 0.04 \\ 
-		Regional Autonomy:Other Provisions & NA & NA & [   NA,    NA] & NA \\ 
+		Regional Autonomy & 0.38 & 1.47 & [0.83, 2.59] & 0.19 \\ 
+		Other Provisions & 0.58 & 1.79 & [1.20, 2.67] & $0.00^{**}$ \\ 
+		Political Instability & -0.04 & 0.96 & [0.77, 1.20] & 0.73 \\ 
+		Gini Index & 0.00 & 1.00 & [0.98, 1.03] & 0.79 \\ 
+		Population & -0.00 & 1.00 & [1.00, 1.00] & 0.49 \\ 
+		PolityIV Score & -0.02 & 0.98 & [0.95, 1.01] & 0.20 \\ 
+		Regional Autonomy:Other Provisions & -0.64 & 0.53 & [0.25, 1.12] & $0.10 {\textbf{ .}}$ \\ 
 		\hline
+		\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$, $\textbf{.}p<0.1$}}
 	\end{tabular}
-	\endgroup
-	\caption{Regional Autonomy and Prolonged Peace, $n = $ 245, number of events = 195.} 
+	\caption{Cox regression model, $n = $ 245, number of events = 195.} 
 	\label{mod}
 \end{table}
 
-Table 5 shows the effect that the presence of segmental autonomy has on democratization in an ethnically fractionalized state. Any statistical significance we do see from the autonomy variable quickly dissipates when we incorporate our control variables and interactions. These results will be analyzed in more depth in the next sections. Given our results, and that our OLS regressions are global models, it may be useful to assess the saliency of provisions using more “localized” approaches.
+Table 5 shows the effect that the presence of segmental autonomy has on democratization in an ethnically fractionalized state, and is perhaps the most compelling finding of this study. Across all three models, the implementation of segmental autonomy correlates with increased polity scores, and when accounting for control variable and interaction effects, the statistical significance of the presence of segmental autonomy increases. Somewhat counterintuitively, the interaction effect between regional autonomy and other consociational provisions reduces democracy levels with weak statistical significance. That said, the high adjusted $R^2$ values and relatively low RMSE values suggest that these models do a good job of predicting the outcomes and explaining the variance within the data. The results presented in Table 5 are especially compelling given that country fixed effects and clustered standard errors tend to underestimate relationships between variables. The fact that such a strong relationship exists across the two multivariate regressions in spite of the threat of type II error suggests that the effect of regional autonomy on democracy scores is salient.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -387,7 +406,7 @@ Table 5 shows the effect that the presence of segmental autonomy has on democrat
 
 \subsection{Comparison Across Measurements}
 
-Table 6
+Lastly, Table 6 provides a cursory assessment of the different measures of autonomy's predictive validity. As discussed, much of the existing power-sharing literature purports that autonomy will either have a null or positive effect on democratization\footnote{Lijphart, 1969; Lijphart, 1975; Nordlinger, 1974; Norris, 2008; Kelly, 2019}. Running simple bivariate regressions on PolityIV's polity score measurement, I find that each measurement exerts a positive effect on polity score\footnote{The fact that these three measurements are statistically significant at the three star level is insignificant given the low adjusted $R^2$ value. More importantly, the three measures are all positively correlated with our outcome variable, and, though they supposedly measure the same construct, each exerts a different positive effect on the outcome variable.}. Obviously, this finding necessitates several caveats and qualifications such as the number of observations for each measurement, but it is an interesting finding nonetheless. It is also interesting that the one index measurement of autonomy exerts the weakest effect (0.05) whereas the two binary indicators exert more positive effects (1.69 and 1.52 respectively). This is perhaps because of the reliability and content validity issues faced by grouping error and systematic measurement error when operationalizing a concept as a binary, as was discussed in previous sections.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -395,30 +414,29 @@ Table 6
 			\hline
 			& Model 1 & Model 2 & Model 3 \\
 			\hline
-			(Intercept)        & $49.65^{***}$ & $43.57^{***}$ & $21.24^{***}$ \\
-			& $(4.31)$      & $(4.71)$      & $(2.68)$      \\
-			\textit{auton} (DPI)         & $4.30^{*}$    &               &               \\
-			& $(2.14)$      &               &               \\
-			\textit{reg\_aut} (EPR) &               & $6.08^{**}$   &               \\
-			&               & $(1.93)$      &               \\
-			\textit{n\_RAI} (RAI)        &               &               & $0.45^{**}$   \\
-			&               &               & $(0.15)$      \\
+			(Intercept)       & $5.37^{***}$ & $7.54^{***}$ & $5.26^{***}$ \\
+			& $(0.05)$     & $(0.06)$     & $(0.05)$     \\
+			auton (DPI)       & $1.69^{***}$ &              &              \\
+			& $(0.12)$     &              &              \\
+			n\_RAI (RAI)      &              & $0.05^{***}$ &              \\
+			&              & $(0.00)$     &              \\
+			reg\_aut (EPR)    &              &              & $1.52^{***}$ \\
+			&              &              & $(0.10)$     \\
 			\hline
-			Country Fixed Effects?	& Y				& Y				& Y				\\
-			R$^2$              		& 0.61          & 0.61          & 0.65          \\
-			Adj. R$^2$         		& 0.58          & 0.58          & 0.63          \\
-			Num. obs.          		& 1927          & 1936          & 1372          \\
-			RMSE               		& 10.55         & 10.51         & 9.61          \\
+			R$^2$             & 0.03         & 0.05         & 0.04         \\
+			Adj. R$^2$        & 0.03         & 0.05         & 0.04         \\
+			Num. obs.         & 5847         & 2678         & 5973         \\
+			RMSE              & 3.33         & 2.17         & 3.31         \\
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Comparing Measures of Regional Autonomy on Social Trust}
+		\caption{Comparison of Regional Autonomy Measures on Polity Score}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
 
 \section{Discussion}
-The OLS models provide little support for the core hypotheses. We do not see any significant effects exerted by the presence of segmental in ethnically fragmented states for any of our three dependent variables. Given that the existing literature of power-sharing writ large produce mixed findings as to its effectiveness, these results seem to reflect the aggregated findings as opposed to the conclusions of any given author. While the literature on consociational design generally suggests that these provisions can be beneficial, many of these studies are case-specific, so perhaps null results at the aggregate level might not be so unexpected. 
+The OLS and Cox regression models provide some convincing evidence in support of my initial hypotheses.
 
 Regarding levels of social trust, we see segmental autonomy provisions alone having no significant effect, though we do see the presence of multiple consociational provisions diminishing levels of social trust with statistical significance. However, the high RMSE value and r-squared value purports to only explain fifty percent of the variance in the relationship between autonomy and social trust, and so even when account for country and year fixed-effects and our controls, these core provisions fail to explain the underlying patterns in the data. While I will elucidate further in the next section, issues such as a lack of data when controlling for all independent variables may indeed have affected our results. 
 
@@ -455,6 +473,8 @@ My own findings provide mixed results of the efficacy of individual provisions o
 
 \section{Appendices}
 \subsection{Codebook}
+
+Below is a list of the main variables used in the summary statistics and models of this paper. The first section of the variable name, before the first underscore (e.g. \textbf{qog\_}) indicates the dataset from which the variable originates. Any variable starting with \textbf{tb\_} is the creation of the author. In the replication package, the file 01\_tjbrailey\_wrangle\_data elucidates the process of joining these variables together to create the final Provisions of Power-Sharing dataset.  
 
 \newlength\cbl
 \newenvironment{codebook}[1][rob\_avprison1]{
@@ -530,6 +550,5 @@ My own findings provide mixed results of the efficacy of individual provisions o
 	\code{ucdp\_type\_of\_conflict}{}
 	\code{prio\_onset}{}
 \end{codebook}
-
 	
 \end{document}
