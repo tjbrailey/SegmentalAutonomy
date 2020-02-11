@@ -16,31 +16,24 @@ psp_lm <- function(dv, iv){
   library(ggplot2)
   
   # Load data
-  psp <- dplyr::as_data_frame(rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv")))
-  psp <- psp[,-1]
-  
-  # Subset
-  #psp <- psp %>%
-   # dplyr::group_by(country) %>%
-    #dplyr::mutate(no_aut = sum(idc_auton, na.rm = TRUE)) %>%
-    #dplyr::filter(sum(no_aut) != 0)
+  #ttt <- "https://raw.githubusercontent.com/tjbrailey/SeniorThesis/master/data/tjbrailey_psp_clean.csv?token=ALBH6OPEF7NLZMCVGMCHFEK6IHP44"
+  #psp <- read.csv(url(ttt))
+  psp <- read.csv(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+  #psp <- psp[,-1]
   
   psp <- psp %>%
-    dplyr::group_by(country) %>%
+    dplyr::mutate_if(is.numeric, round, digits = 3) %>%
     dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
-  
-  #psp <- psp %>%
-   # dplyr::group_by(country) %>%
-    #dplyr::filter(qog_gle_gdp < median(psp$qog_gle_gdp, na.rm = TRUE))
-  
   
   lm1 <- estimatr::lm_robust(!!sym(dv) ~ !!sym(iv) + as.factor(country), 
                              data = psp, se_type = "CR2", clusters = country)
   
-  lm5 <- estimatr::lm_robust(!!sym(dv) ~ !!sym(iv) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, 
+  lm5 <- estimatr::lm_robust(!!sym(dv) ~ !!sym(iv) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score + tb_other_provis
+                             , 
                              data = psp, se_type = "CR2", clusters = country)
   
-  lm6 <- estimatr::lm_robust(!!sym(dv) ~ (!!sym(iv) * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, 
+  lm6 <- estimatr::lm_robust(!!sym(dv) ~ (!!sym(iv) * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score
+                               , 
                              data = psp, se_type = "CR2", clusters = country)
   
   

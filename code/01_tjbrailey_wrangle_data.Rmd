@@ -145,6 +145,7 @@ qog_ts_psp_sub <- qog_ts %>%
                 vdem_partipdem,
                 iaep_nr,
                 bti_sop,
+                bti_ffe,
                 gol_est,
                 gol_mt,
                 iaep_es,
