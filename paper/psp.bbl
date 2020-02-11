@@ -83,9 +83,15 @@ Nils-Christian Bormann, Lars-Erik Cederman, Scott Gates, Benjamin A.~T. Graham,
 
 \bibitem{brailey_after_2019}
 Thomas~J. Brailey.
-\newblock After {Segmental} {Autonomy}: {Assessing} {Conflict} {andService}
+\newblock After {Segmental} {Autonomy}: {Assessing} {Conflict} and {Service}
   {Proliferation} in {Mali}’s {Autonomous} {Region}.
-\newblock December 2019.
+\newblock {\em Unpublished manuscript}, December 2019.
+
+\bibitem{bratton_popular_2002}
+Michael Bratton, Massa Coulibaly, and Fabiana Machado.
+\newblock Popular {Views} of the {Legitimacy} of the {State} in {Mali}.
+\newblock {\em Canadian Journal of African Studies / Revue Canadienne des
+  Études Africaines}, 36(2):197--238, 2002.
 
 \bibitem{caluwaerts_combining_2015}
 Didier Caluwaerts and Min Reuchamps.
@@ -178,6 +184,13 @@ BENJAMIN~A.T. Graham, MICHAEL~K. Miller, and KAARE~W. Strøm.
 \newblock {\em The American political science review}, 111(04):686--704,
   November 2017.
 
+\bibitem{hall_history_2011}
+Bruce~S. Hall.
+\newblock {\em A history of race in {Muslim} {West} {Africa}, 1600-1960}.
+\newblock Number 115 in African studies. Cambridge University Press, Cambridge
+  ; New York, 2011.
+\newblock OCLC: ocn678924687.
+
 \bibitem{halpern_disorderly_1986}
 Sue~M. Halpern.
 \newblock The disorderly universe of consociational democracy.
@@ -212,6 +225,12 @@ Donald~L. Horowitz.
 Donald~L. Horowitz.
 \newblock Ethnic power sharing: three big problems.
 \newblock {\em Journal of Democracy}, 25(2):5--20, 2014.
+
+\bibitem{ibrahim_political_1994}
+Jibrin Ibrahim.
+\newblock Political {Exclusion}, {Democratization} and {Dynamics} of
+  {Ethnicity} in {Niger}.
+\newblock {\em Africa Today}, 41(3):15--39, 1994.
 
 \bibitem{intergovernmental_authority_on_development_agreement_2015}
 {Intergovernmental Authority on Development}.
@@ -568,10 +587,10 @@ D.~M. Tull.
   in {Africa}.
 \newblock {\em African Affairs}, 104(416):375--398, July 2005.
 
-\bibitem{united_nations_high_commissioner_for_refugees_refworld_nodate}
+\bibitem{united_nations_high_commissioner_for_refugees_refworld_2003}
 {United Nations High Commissioner for Refugees}.
 \newblock Refworld {\textbar} {Assessment} for {Tuareg} in {Niger}.
-\newblock Technical report.
+\newblock Technical report, 2003.
 
 \bibitem{vogt_integrating_2015}
 Manuel Vogt, Nils-Christian Bormann, Seraina Rüegger, Lars-Erik Cederman,
@@ -626,5 +645,9 @@ Stefan Wolff.
   of {Territorial} {Self}-{Governance}.
 \newblock {\em International Journal on Minority and Group Rights},
   20(1):27--50, 2013.
+
+\bibitem{world_values_survey_world_nodate}
+{World Values Survey}.
+\newblock World {Values} {Survey}, {Mali} 2007.
 
 \end{thebibliography}

@@ -31,6 +31,9 @@ library(ggplot2)
 # Load PSP data, created in tjbrailey_wrangle_data.Rmd.
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 psp <- psp[,-1]
+psp <- psp %>%
+    dplyr::mutate_if(is.numeric, round, digits = 3) %>%
+    dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
 
 # Load esssential scripts
 source(paste0(here::here(), "/R/csts.R"))
@@ -98,17 +101,18 @@ reporttools::displayCoxPH(cox3)
 ```
 # Bivariate Comparison Across Operationalizations
 ```{r}
-dpi_reg <- lm(qog_hum_trust ~ dpi_auton + as.factor(country), psp)
+dpi_reg <- estimatr::lm_robust(polity4_polity_score ~ (dpi_auton * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop, data = psp, se_type = "CR2", clusters = country)
 
-epr_reg <- lm(qog_hum_trust ~ epr_reg_aut_dum + as.factor(country), psp)
+epr_reg <- estimatr::lm_robust(polity4_polity_score ~ (epr_reg_aut_dum * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop, data = psp, se_type = "CR2", clusters = country)
 
-rai_reg <- lm(qog_hum_trust ~ rai_n_RAI + as.factor(country), psp)
+rai_reg <- estimatr::lm_robust(polity4_polity_score ~ (rai_n_RAI * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop, data = psp, se_type = "CR2", clusters = country)
 
-texreg::texreg(list(dpi_reg, epr_reg, rai_reg), mfrow = TRUE, 
+tex_fin <- texreg::texreg(list(dpi_reg, epr_reg, rai_reg), mfrow = TRUE, 
                                 omit.coef = "as.factor", 
                                 include.ci = FALSE, 
-                                custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y")))
-  
+                                custom.gof.rows = list(`Country fixed effects` = c("Y", "Y", "Y"),
+                                                       `Year fixed effects` = c("Y", "Y", "Y")))
+tex_fin
 ```
 
 

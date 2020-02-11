@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  10 FEB 2020 21:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  11 FEB 2020 09:01
 entering extended mode
 **./psp.tex
 (psp.tex
@@ -509,6 +509,9 @@ LaTeX Warning: Label `table:coefficients' multiply defined.
 
 LaTeX Warning: Label `table:coefficients' multiply defined.
 
+
+LaTeX Warning: Label `table:coefficients' multiply defined.
+
 )
 \openout1 = `psp.aux'.
 
@@ -654,46 +657,46 @@ rom power-sharing in-sti-tu-tions found
 
 [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33]
-[34] [35] [36] (psp.bbl [37] [38]
-Underfull \hbox (badness 1226) in paragraph at lines 144--148
+[34] [35] [36] [37] [38] (psp.bbl [39] [40]
+Underfull \hbox (badness 1226) in paragraph at lines 150--154
 []\OT1/cmr/m/n/12 Milton J. Es-man.  The Man-age-ment of Com-mu-nal Con-flict. 
  \OT1/cmr/m/it/12 Pub-lic Pol-icy\OT1/cmr/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 150--155
+Underfull \hbox (badness 1728) in paragraph at lines 156--161
 []\OT1/cmr/m/n/12 Michael Joshua Fleet.  Na-tion-al-ism and Multi-ethnic Gov-er
 -nance in Bosnia-
  []
 
-[39] [40] [41]
-Underfull \hbox (badness 1845) in paragraph at lines 318--324
+[41] [42] [43] [44]
+Underfull \hbox (badness 1845) in paragraph at lines 337--343
 []\OT1/cmr/m/n/12 Arend Li-jphart.  Di-vi-sion of Power:: The Federal-Unitary a
 nd Centralized-
  []
 
-[42] [43] [44] [45]
+[45] [46] [47] [48]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 5
-73.
+92.
 
 ("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 573.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 592.
 
-[46]) [47]
+[49]) [50]
 \cbl=\skip85
- [48] [49] [50] (psp.aux)
+ [51] [52] [53] (psp.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 16638 strings out of 492484
- 294578 string characters out of 3121601
- 641496 words of memory out of 3000000
- 20837 multiletter control sequences out of 15000+200000
+ 16643 strings out of 492484
+ 294683 string characters out of 3121601
+ 644496 words of memory out of 3000000
+ 20842 multiletter control sequences out of 15000+200000
  539603 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  52i,13n,71p,2499b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -713,9 +716,9 @@ rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/tbrai/AppDat
 a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
 tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.p
 fb>
-Output written on psp.pdf (54 pages, 748094 bytes).
+Output written on psp.pdf (57 pages, 752726 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
+ 241 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

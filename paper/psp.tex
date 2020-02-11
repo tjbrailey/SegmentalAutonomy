@@ -408,7 +408,42 @@ Table 5 shows the effect that the presence of segmental autonomy has on democrat
 
 \subsection{Robustness Checks}
 
-Table 6 provides a assessment of the different measures of autonomy's predictive validity. As discussed, much of the existing power-sharing literature purports that autonomy will either have a null or positive effect on democratization\footnote{Lijphart, 1969; Lijphart, 1975; Nordlinger, 1974; Norris, 2008; Kelly, 2019}. Running simple bivariate regressions on PolityIV's polity score measurement, I find that each measurement exerts a positive effect on polity score\footnote{The fact that these three measurements are statistically significant at the three star level is insignificant given the low adjusted $R^2$ value. More importantly, the three measures are all positively correlated with our outcome variable, and, though they supposedly measure the same construct, each exerts a different positive effect on the outcome variable.}. Obviously, this finding necessitates several caveats and qualifications such as the number of observations for each measurement, but it is an interesting finding nonetheless. It is also interesting that the one index measurement of autonomy exerts the weakest effect (0.05) whereas the two binary indicators exert more positive effects (1.69 and 1.52 respectively). This is perhaps because of the reliability and content validity issues faced by grouping error and systematic measurement error when operationalizing a concept as a binary, as was discussed in previous sections.  
+\begin{table}
+	\begin{center}
+		\begin{tabular}{l c c c }
+			\hline
+			& Model 1 & Model 2 & Model 3 \\
+			\hline
+			(Intercept)                  & $-1.39^{***}$ & $-0.64$     & $-0.64$      \\
+			& $(0.00)$      & $(0.64)$    & $(0.64)$     \\
+			dpi\_auton                   & $0.04$        & $-0.50$     & $1.80^{***}$ \\
+			& $(1.56)$      & $(0.33)$    & $(0.36)$     \\
+			qog\_wbgi\_pve               &               & $0.04$      & $0.04$       \\
+			&               & $(0.08)$    & $(0.08)$     \\
+			qog\_wdi\_gini               &               & $0.00$      & $0.00$       \\
+			&               & $(0.01)$    & $(0.01)$     \\
+			qog\_gle\_pop                &               & $-0.00$     & $-0.00$      \\
+			&               & $(0.00)$    & $(0.00)$     \\
+			polity4\_polity\_score       &               & $0.05^{**}$ & $0.05^{**}$  \\
+			&               & $(0.01)$    & $(0.01)$     \\
+			tb\_other\_provis            &               & $0.41^{*}$  & $0.41^{*}$   \\
+			&               & $(0.15)$    & $(0.15)$     \\
+			dpi\_auton:tb\_other\_provis &               &             & $-0.22$      \\
+			&               &             & $(0.29)$     \\
+			\hline
+			R$^2$                        & 0.69          & 0.92        & 0.92         \\
+			Adj. R$^2$                   & 0.68          & 0.91        & 0.91         \\
+			Num. obs.                    & 2111          & 753         & 753          \\
+			RMSE                         & 0.81          & 0.36        & 0.36         \\
+			\hline
+			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+		\end{tabular}
+		\caption{Statistical models}
+		\label{table:coefficients}
+	\end{center}
+\end{table}
+
+Table 6 provides an assessment of the different measures of autonomy's predictive validity. As discussed, much of the existing power-sharing literature purports that autonomy will either have a null or positive effect on democratization\footnote{Lijphart, 1969; Lijphart, 1975; Nordlinger, 1974; Norris, 2008; Kelly, 2019}. Running simple bivariate regressions on PolityIV's polity score measurement, I find that each measurement exerts a positive effect on polity score\footnote{The fact that these three measurements are statistically significant at the three star level is insignificant given the low adjusted $R^2$ value. More importantly, the three measures are all positively correlated with our outcome variable, and, though they supposedly measure the same construct, each exerts a different positive effect on the outcome variable.}. Obviously, this finding necessitates several caveats and qualifications such as the number of observations for each measurement, but it is an interesting finding nonetheless. It is also interesting that the one index measurement of autonomy exerts the weakest effect (0.05) whereas the two binary indicators exert more positive effects (1.69 and 1.52 respectively). This is perhaps because of the reliability and content validity issues faced by grouping error and systematic measurement error when operationalizing a concept as a binary, as was discussed in previous sections.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -416,23 +451,37 @@ Table 6 provides a assessment of the different measures of autonomy's predictive
 			\hline
 			& Model 1 & Model 2 & Model 3 \\
 			\hline
-			(Intercept)       & $5.37^{***}$ & $7.54^{***}$ & $5.26^{***}$ \\
-			& $(0.05)$     & $(0.06)$     & $(0.05)$     \\
-			auton (DPI)       & $1.69^{***}$ &              &              \\
-			& $(0.12)$     &              &              \\
-			n\_RAI (RAI)      &              & $0.05^{***}$ &              \\
-			&              & $(0.00)$     &              \\
-			reg\_aut (EPR)    &              &              & $1.52^{***}$ \\
-			&              &              & $(0.10)$     \\
+			(Intercept)                          & $-4.07$       & $-4.23$  &          \\
+			& $(2.96)$      & $(2.86)$ &          \\
+			dpi\_auton                           & $11.53^{***}$ &          &          \\
+			& $(1.69)$      &          &          \\
+			tb\_other\_provis                    & $0.65$        & $0.07$   & $-3.94$  \\
+			& $(0.77)$      & $(0.70)$ & $(8.35)$ \\
+			qog\_wbgi\_pve                       & $0.87$        & $0.71$   & $0.33$   \\
+			& $(0.65)$      & $(0.65)$ & $(0.48)$ \\
+			qog\_wdi\_gini                       & $0.02$        & $0.02$   & $-0.06$  \\
+			& $(0.05)$      & $(0.05)$ & $(0.07)$ \\
+			qog\_gle\_pop                        & $0.00$        & $0.00$   & $0.00$   \\
+			& $(0.00)$      & $(0.00)$ & $(0.00)$ \\
+			dpi\_auton:tb\_other\_provis         & $-6.20^{*}$   &          &          \\
+			& $(2.67)$      &          &          \\
+			epr\_reg\_aut\_dum                   &               & $-0.25$  &          \\
+			&               & $(0.68)$ &          \\
+			epr\_reg\_aut\_dum:tb\_other\_provis &               & $-1.55$  &          \\
+			&               & $(2.11)$ &          \\
+			rai\_n\_RAI                          &               &          & $-8.19$  \\
+			&               &          & $(8.35)$ \\
+			rai\_n\_RAI:tb\_other\_provis        &               &          & $8.60$   \\
+			&               &          & $(8.25)$ \\
 			\hline
-			R$^2$             & 0.03         & 0.05         & 0.04         \\
-			Adj. R$^2$        & 0.03         & 0.05         & 0.04         \\
-			Num. obs.         & 5847         & 2678         & 5973         \\
-			RMSE              & 3.33         & 2.17         & 3.31         \\
+			R$^2$                                & 0.82          & 0.81     & 0.77     \\
+			Adj. R$^2$                           & 0.79          & 0.79     & 0.73     \\
+			Num. obs.                            & 758           & 773      & 221      \\
+			RMSE                                 & 2.35          & 2.38     & 1.03     \\
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Comparison of Regional Autonomy Measures on Polity Score}
+		\caption{Statistical models}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
