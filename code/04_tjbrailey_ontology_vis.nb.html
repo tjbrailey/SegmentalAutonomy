@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2559,7 +2558,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -2860,13 +2859,38 @@ color: rgb(3, 106, 7);
           theseArgs = theseArgs.concat([task.data]);
           task = task.code;
         }
-        var taskFunc = eval("(" + task + ")");
+        var taskFunc = tryEval(task);
         if (typeof(taskFunc) !== "function") {
           throw new Error("Task must be a function! Source:\n" + task);
         }
         taskFunc.apply(target, theseArgs);
       });
     }
+  }
+
+  // Attempt eval() both with and without enclosing in parentheses.
+  // Note that enclosing coerces a function declaration into
+  // an expression that eval() can parse
+  // (otherwise, a SyntaxError is thrown)
+  function tryEval(code) {
+    var result = null;
+    try {
+      result = eval(code);
+    } catch(error) {
+      if (!error instanceof SyntaxError) {
+        throw error;
+      }
+      try {
+        result = eval("(" + code + ")");
+      } catch(e) {
+        if (e instanceof SyntaxError) {
+          throw error;
+        } else {
+          throw e;
+        }
+      }
+    }
+    return result;
   }
 
   function initSizing(el) {
@@ -3261,17 +3285,56 @@ color: rgb(3, 106, 7);
     invokePostRenderHandlers();
   }
 
-  // Wait until after the document has loaded to render the widgets.
+
+  function has_jQuery3() {
+    if (!window.jQuery) {
+      return false;
+    }
+    var $version = window.jQuery.fn.jquery;
+    var $major_version = parseInt($version.split(".")[0]);
+    return $major_version >= 3;
+  }
+
+  /*
+  / Shiny 1.4 bumped jQuery from 1.x to 3.x which means jQuery's
+  / on-ready handler (i.e., $(fn)) is now asyncronous (i.e., it now
+  / really means $(setTimeout(fn)).
+  / https://jquery.com/upgrade-guide/3.0/#breaking-change-document-ready-handlers-are-now-asynchronous
+  /
+  / Since Shiny uses $() to schedule initShiny, shiny>=1.4 calls initShiny
+  / one tick later than it did before, which means staticRender() is
+  / called renderValue() earlier than (advanced) widget authors might be expecting.
+  / https://github.com/rstudio/shiny/issues/2630
+  /
+  / For a concrete example, leaflet has some methods (e.g., updateBounds)
+  / which reference Shiny methods registered in initShiny (e.g., setInputValue).
+  / Since leaflet is privy to this life-cycle, it knows to use setTimeout() to
+  / delay execution of those methods (until Shiny methods are ready)
+  / https://github.com/rstudio/leaflet/blob/18ec981/javascript/src/index.js#L266-L268
+  /
+  / Ideally widget authors wouldn't need to use this setTimeout() hack that
+  / leaflet uses to call Shiny methods on a staticRender(). In the long run,
+  / the logic initShiny should be broken up so that method registration happens
+  / right away, but binding happens later.
+  */
+  function maybeStaticRenderLater() {
+    if (shinyMode && has_jQuery3()) {
+      window.jQuery(window.HTMLWidgets.staticRender);
+    } else {
+      window.HTMLWidgets.staticRender();
+    }
+  }
+
   if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", function() {
       document.removeEventListener("DOMContentLoaded", arguments.callee, false);
-      window.HTMLWidgets.staticRender();
+      maybeStaticRenderLater();
     }, false);
   } else if (document.attachEvent) {
     document.attachEvent("onreadystatechange", function() {
       if (document.readyState === "complete") {
         document.detachEvent("onreadystatechange", arguments.callee);
-        window.HTMLWidgets.staticRender();
+        maybeStaticRenderLater();
       }
     });
   }
@@ -3359,7 +3422,7 @@ color: rgb(3, 106, 7);
       if (o !== null && typeof o === "object" && part in o) {
         if (i == (l - 1)) { // if we are at the end of the line then evalulate
           if (typeof o[part] === "string")
-            o[part] = eval("(" + o[part] + ")");
+            o[part] = tryEval(o[part]);
         } else { // otherwise continue to next embedded object
           o = o[part];
         }
@@ -3727,7 +3790,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -3813,6 +3875,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -3844,6 +3907,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -3954,10 +4023,15 @@ psp_ont &lt;- readxl::read_xlsx(paste0(here::here(),&#39;/data/tjbrailey_psp_ont
 * `` -&gt; ...8
 * `` -&gt; ...9</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHNwX29udCA8LSBkcGx5cjo6YXNfZGF0YV9mcmFtZShwc3Bfb250KVxuXG4jIHNlbGVjdCByZWxldmFudCB2YXJpYWJsZXMuXG5wc3Bfb250X3ByZXAgPC0gcHNwX29udCAlPiVcbiAgZHBseXI6OnNlbGVjdChjaGlsZF8wLFxuICAgICAgICAgICAgICAgIGNoaWxkXzEsXG4gICAgICAgICAgICAgICAgcHJvdmlzaW9ucylcbmBgYCJ9 -->
-<pre class="r"><code>psp_ont &lt;- dplyr::as_data_frame(psp_ont)
-
-# select relevant variables.
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHNwX29udCA8LSBkcGx5cjo6YXNfZGF0YV9mcmFtZShwc3Bfb250KVxuYGBgIn0= -->
+<pre class="r"><code>psp_ont &lt;- dplyr::as_data_frame(psp_ont)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYGFzX2RhdGFfZnJhbWUoKWAgaXMgZGVwcmVjYXRlZCwgdXNlIGBhc190aWJibGUoKWAgKGJ1dCBtaW5kIHRoZSBuZXcgc2VtYW50aWNzKS5cblx1MDAxYls5MG1UaGlzIHdhcm5pbmcgaXMgZGlzcGxheWVkIG9uY2UgcGVyIHNlc3Npb24uXHUwMDFiWzM5bVxuIn0= -->
+<pre><code>`as_data_frame()` is deprecated, use `as_tibble()` (but mind the new semantics).
+[90mThis warning is displayed once per session.[39m</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzZWxlY3QgcmVsZXZhbnQgdmFyaWFibGVzLlxucHNwX29udF9wcmVwIDwtIHBzcF9vbnQgJT4lXG4gIGRwbHlyOjpzZWxlY3QoY2hpbGRfMCxcbiAgICAgICAgICAgICAgICBjaGlsZF8xLFxuICAgICAgICAgICAgICAgIHByb3Zpc2lvbnMpXG5gYGAifQ== -->
+<pre class="r"><code># select relevant variables.
 psp_ont_prep &lt;- psp_ont %&gt;%
   dplyr::select(child_0,
                 child_1,
@@ -3970,7 +4044,7 @@ psp_ont_prep &lt;- psp_ont %&gt;%
 <h1>Define Hierarchy</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZW5lcmF0ZSBwYXRoU3RyaW5nIGFzIG5ldyBjb2x1bW4uXG5wc3Bfb250X3ByZXAkcGF0aFN0cmluZyA8LSBwYXN0ZShcIlBvd2VyIFNoYXJpbmcgUHJvdmlzaW9uXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBzcF9vbnRfcHJlcCRjaGlsZF8wLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwc3Bfb250X3ByZXAkY2hpbGRfMSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHNwX29udF9wcmVwJHByb3Zpc2lvbnMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNlcCA9IFwifFwiKVxuXG4jIGNyZWF0ZSBsaXN0LiBcbnBzcF90cmVlIDwtIGRhdGEudHJlZTo6YXMuTm9kZShwc3Bfb250X3ByZXAsIHBhdGhEZWxpbWl0ZXIgPSBcInxcIilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBnZW5lcmF0ZSBwYXRoU3RyaW5nIGFzIG5ldyBjb2x1bW4uXG5wc3Bfb250X3ByZXAkcGF0aFN0cmluZyA8LSBwYXN0ZShcIlBvd2VyIFNoYXJpbmcgUHJvdmlzaW9uXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBzcF9vbnRfcHJlcCRjaGlsZF8wLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwc3Bfb250X3ByZXAkY2hpbGRfMSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHNwX29udF9wcmVwJHByb3Zpc2lvbnMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNlcCA9IFwifFwiKVxuXG4jIGNyZWF0ZSBsaXN0LiBcbnBzcF90cmVlIDwtIGRhdGEudHJlZTo6YXMuTm9kZShwc3Bfb250X3ByZXAsIHBhdGhEZWxpbWl0ZXIgPSBcInxcIilcbnByaW50KHBzcF90cmVlLCBsaW1pdCA9IDE1KVxuYGBgIn0= -->
 <pre class="r"><code># generate pathString as new column.
 psp_ont_prep$pathString &lt;- paste(&quot;Power Sharing Provision&quot;,
                              psp_ont_prep$child_0,
@@ -3979,12 +4053,13 @@ psp_ont_prep$pathString &lt;- paste(&quot;Power Sharing Provision&quot;,
                              sep = &quot;|&quot;)
 
 # create list. 
-psp_tree &lt;- data.tree::as.Node(psp_ont_prep, pathDelimiter = &quot;|&quot;)</code></pre>
+psp_tree &lt;- data.tree::as.Node(psp_ont_prep, pathDelimiter = &quot;|&quot;)
+print(psp_tree, limit = 15)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6MTd9LCJyZGYiOiJINHNJQUFBQUFBQUFCbzJVelk3VE1CREhuYlJiMUVwOHJIZ0IzL2FVZ0NxK0hvQXpXc0ZscjY0enBBYkhFL21qcFp4NEdzNDg0Y0k0ZGJaTkZIV0oxTmFaL1A0emY0OHovZnp4YnIyNld6SEdjamE3bXJGOFJzdDVUbDhabTdObC9QM0IyT3hsRjJEc0JYMnUwNE9iVzl5RDVWKzJ3aXBUODF1TE8rVVVHajY2Q08xdy9yc29XdFRLS3lrMGR3Zm5vUm16QTV4dVNGS0RBVXNDaWNhaFZGcDRxaUcwY3MwRW5pUldtSW9FSWhZYkdwckNtK0FERmRpQng4dG1qbmhyc1VXYlhQakRZN2lEdWdIanFZQUlIZzAyaDR2NHliVVVHMlhBdTR2NGhwclp4UDcwL2ZoLzc5eENhOEZGYnpFd2hhT3RoVkUvb2VMS2VDRFk4OXBpYU4xMGRxdHFWWFVINVpVUGc5WlA0ZDlDcGFUcWpPd1U3Qi96WGlrTDB2TUtHcFJXeU1NbC9FOVJsR1hKMzNPREZUaStmOFZmY3hjMlUzaEMzNTdROWJzejloeFA2UHFFZm5nelJJLzRZSDZ1REIyUVM3UFRCNWNhZHFBLzBaTVJ2YlM0TDN2RjB6aVd2MWgzWFkvVFNpM2NPTzJxRWw2VVgyMlhsOTJQSkUrd2pXZENvanpPOHlJSzBseG5vMFNaSFFXZUJ4TmRWWVhjQnZPOVdKOXBXWEthSFYwK3JMTmorZnh2U3JWSXFlWWd0NWpXQ3pBMXZlVDluclRZZ0U0M3o2Z1RYU1BLbHY1ZmZMOURpcnJTSTgxVEg1R28rMGkzWjNiL0Q0RHk2ekxWQkFBQSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6MTd9LCJyZGYiOiJINHNJQUFBQUFBQUFCbzJVelk3VE1CREhuYlFiMUVwOHJIZ0IzemdsdXh0WTRBNW5WTUZscjY0enBGNGNUMlE3TGVYRTAzRG1DUmNtcVVPYktPb1N5WW85L3MzTTMrTk1Qbis4ZTcyOFd6TEdabXlXeEd4MlFWT1dmRmpkNUxjNVkvT1lWaEdiczBYNy9rN1V5ODdBMkFzYWwySGoxUXAzWVBtWGpiREtsSHhsY2F1Y1FzTkhENkVkem4rbGFZMWFlU1dGNW03dlBGUmpkb0RUZ2x4S01HREpRYUp4S0pVV25uSUlyVncxZ1FjWEsweEJEcUpOTmhRMGhWZU5ieWpCRmp5ZUYzUEFhNHMxMnFEQzd4L0RIWlFWR0U4SlJPUFJZTFUvaXg5VlM3RldCcnc3aTYrcG1GVmJuNzRlLzYrZFc2Z3R1RlpiYTVqQzBaYkNxQjlRY0dVOEVPeDVhYkdwM1hSMHEwcFZkQmZsbFc4R3BaL0M3NXRDU2RVSjJTcllQYWE5VUJhazV3VlVLSzJRKzNQNDd6VE5zb3kvNHdZTGNIeDN4YSs1YTlaVGVFQnZqMmorOW9ROXhRT2FIOUgzYjRib0FSLzB6NFdoQzNLaGQzcmpRc01XOUNmYUdkRUxpN3VzOTNoS0kvN0p1dWR5SEZacTRjWmhsNFh3SXZ0cXU3anNZZVR5Qk92MlRzZ3BidnM1YVIxQ1gwZWpRSkVkR1o0M3BsVlZwSExUbUc5cGZ1TExndExvb1BMZlBEcWtqLytFVUVrSU5RZTV3VEJQd0pUMGtmZG4wbUlOT2l5ZVVTVzZRbVExL1Y5OGYwS3l1c3dqOVZOdmthaDdTM2RtOXZBWDg4eTQ3ZDhFQUFBPSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["levelName"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Power Sharing Provision"},{"1":"Â¦--political system"},{"1":"Â¦   Â¦--general consocilationalism"},{"1":"Â¦   Â¦   Â¦--grand coalition"},{"1":"Â¦   Â¦   Â¦--mutual veto"},{"1":"Â¦   Â¦   Â¦--proportionality"},{"1":"Â¦   Â¦   Â¦--segmental autonomy"},{"1":"Â¦   Â¦   Â¦--coalition cabinets"},{"1":"Â¦   Â¦   Â¦--bicameralism"},{"1":"Â¦   Â¦   Â¦--proportional representation"},{"1":"Â¦   Â¦   Â¦--organized interest groups"},{"1":"Â¦   Â¦   Â¦--rigid constitution"},{"1":"Â¦   Â¦   Â¦--judicial review"},{"1":"Â¦   Â¦   Â¦--direct democracy"},{"1":"Â¦   Â¦   Â°--... 7 nodes w/ 0 sub"},{"1":"Â¦   Â°--... 5 nodes w/ 26 sub"},{"1":"Â°--... 2 nodes w/ 84 sub"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[17]},"pages":{}}}
+{"columns":[{"label":["levelName"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Power Sharing Provision"},{"1":"¦--political system"},{"1":"¦   ¦--general consocilationalism"},{"1":"¦   ¦   ¦--grand coalition"},{"1":"¦   ¦   ¦--mutual veto"},{"1":"¦   ¦   ¦--proportionality"},{"1":"¦   ¦   ¦--segmental autonomy"},{"1":"¦   ¦   ¦--coalition cabinets"},{"1":"¦   ¦   ¦--bicameralism"},{"1":"¦   ¦   ¦--proportional representation"},{"1":"¦   ¦   ¦--organized interest groups"},{"1":"¦   ¦   ¦--rigid constitution"},{"1":"¦   ¦   ¦--judicial review"},{"1":"¦   ¦   ¦--direct democracy"},{"1":"¦   ¦   °--... 7 nodes w/ 0 sub"},{"1":"¦   °--... 5 nodes w/ 26 sub"},{"1":"°--... 2 nodes w/ 84 sub"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[17]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
@@ -3998,26 +4073,26 @@ psp_tree &lt;- data.tree::as.Node(psp_ont_prep, pathDelimiter = &quot;|&quot;)</
 <h1>Visualizations</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwZXBhcmUgbGlzdCBmb3IgdmlzdWFsaXphdGlvbi4gXG5wc3BfbGlzdCA8LSBkYXRhLnRyZWU6OlRvTGlzdEV4cGxpY2l0KHBzcF90cmVlLCB1bm5hbWUgPSBUUlVFKVxucHNwX29udG9sb2d5X3ZpcyA8LSBuZXR3b3JrRDM6OmRpYWdvbmFsTmV0d29yayhwc3BfbGlzdCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgZm9udFNpemUgPSAxNCxcbiAgICAgICAgICAgICAgICAgICAgICAgICB0ZXh0Q29sb3VyID0gXCJibGFja1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgIG9wYWNpdHkgPSAwLjcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgd2lkdGggPSA5MDAsXG4gICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0ID0gOTAwKVxuIyB2aXN1YWxpemUuXG5wc3Bfb250b2xvZ3lfdmlzXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwZXBhcmUgbGlzdCBmb3IgdmlzdWFsaXphdGlvbi4gXG5wc3BfbGlzdCA8LSBkYXRhLnRyZWU6OlRvTGlzdEV4cGxpY2l0KHBzcF90cmVlLCB1bm5hbWUgPSBUUlVFKVxucHNwX29udG9sb2d5X3ZpcyA8LSBuZXR3b3JrRDM6OmRpYWdvbmFsTmV0d29yayhwc3BfbGlzdCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgZm9udFNpemUgPSAxNCxcbiAgICAgICAgICAgICAgICAgICAgICAgICB0ZXh0Q29sb3VyID0gXCJibGFja1wiLFxuICAgICAgICAgICAgICAgICAgICAgICAgIG9wYWNpdHkgPSAwLjcsXG4gICAgICAgICAgICAgICAgICAgICAgICAgd2lkdGggPSAxNTAwLFxuICAgICAgICAgICAgICAgICAgICAgICAgIGhlaWdodCA9IDEyMDApXG4jIHZpc3VhbGl6ZS5cbnBzcF9vbnRvbG9neV92aXNcbmBgYCJ9 -->
 <pre class="r"><code># pepare list for visualization. 
 psp_list &lt;- data.tree::ToListExplicit(psp_tree, unname = TRUE)
 psp_ontology_vis &lt;- networkD3::diagonalNetwork(psp_list, 
                          fontSize = 14,
                          textColour = &quot;black&quot;,
                          opacity = 0.7,
-                         width = 900,
-                         height = 900)
+                         width = 1500,
+                         height = 1200)
 # visualize.
 psp_ontology_vis</code></pre>
 <!-- rnb-source-end -->
 
-<!-- rnb-htmlwidget-begin eyJkZXBlbmRlbmNpZXMiOlt7ImFsbF9maWxlcyI6dHJ1ZSwiYXR0YWNobWVudCI6W10sImhlYWQiOltdLCJtZXRhIjpbXSwibmFtZSI6Imh0bWx3aWRnZXRzIiwicGFja2FnZSI6W10sInNjcmlwdCI6Imh0bWx3aWRnZXRzLmpzIiwic3JjIjp7ImZpbGUiOiJDOi9Vc2Vycy9Ub20gQnJhaWxleS9Eb2N1bWVudHMvUi93aW4tbGlicmFyeS8zLjUvaHRtbHdpZGdldHMvd3d3In0sInN0eWxlc2hlZXQiOltdLCJ2ZXJzaW9uIjoiMS4zIn0seyJhbGxfZmlsZXMiOnRydWUsImF0dGFjaG1lbnQiOltdLCJoZWFkIjpbXSwibWV0YSI6W10sIm5hbWUiOiJkMyIsInBhY2thZ2UiOltdLCJzY3JpcHQiOiJkMy5taW4uanMiLCJzcmMiOnsiZmlsZSI6IkM6L1VzZXJzL1RvbSBCcmFpbGV5L0RvY3VtZW50cy9SL3dpbi1saWJyYXJ5LzMuNS9uZXR3b3JrRDMvaHRtbHdpZGdldHMvbGliL2QzLTQuNS4wIn0sInN0eWxlc2hlZXQiOltdLCJ2ZXJzaW9uIjoiNC41LjAifSx7ImFsbF9maWxlcyI6ZmFsc2UsImF0dGFjaG1lbnQiOltdLCJoZWFkIjpbXSwibWV0YSI6W10sIm5hbWUiOiJkaWFnb25hbE5ldHdvcmstYmluZGluZyIsInBhY2thZ2UiOltdLCJzY3JpcHQiOiJkaWFnb25hbE5ldHdvcmsuanMiLCJzcmMiOnsiZmlsZSI6IkM6L1VzZXJzL1RvbSBCcmFpbGV5L0RvY3VtZW50cy9SL3dpbi1saWJyYXJ5LzMuNS9uZXR3b3JrRDMvaHRtbHdpZGdldHMifSwic3R5bGVzaGVldCI6W10sInZlcnNpb24iOiIwLjQifV0sIm1ldGFkYXRhIjp7ImNsYXNzZXMiOlsiZGlhZ29uYWxOZXR3b3JrIiwiaHRtbHdpZGdldCJdLCJzaXppbmdQb2xpY3kiOnsiYnJvd3NlciI6eyJkZWZhdWx0SGVpZ2h0IjpbXSwiZGVmYXVsdFdpZHRoIjpbXSwiZXh0ZXJuYWwiOltmYWxzZV0sImZpbGwiOlt0cnVlXSwicGFkZGluZyI6W119LCJkZWZhdWx0SGVpZ2h0IjpbXSwiZGVmYXVsdFdpZHRoIjpbXSwia25pdHIiOnsiZGVmYXVsdEhlaWdodCI6W10sImRlZmF1bHRXaWR0aCI6W10sImZpZ3VyZSI6W3RydWVdfSwicGFkZGluZyI6WzEwXSwidmlld2VyIjp7ImRlZmF1bHRIZWlnaHQiOltdLCJkZWZhdWx0V2lkdGgiOltdLCJmaWxsIjpbdHJ1ZV0sInBhZGRpbmciOltdLCJwYW5lSGVpZ2h0IjpbXSwic3VwcHJlc3MiOltmYWxzZV19LCJ2aWV3ZXIuZmlsbCI6W3RydWVdLCJ2aWV3ZXIucGFkZGluZyI6WzBdfX19 -->
+<!-- rnb-htmlwidget-begin eyJkZXBlbmRlbmNpZXMiOlt7ImFsbF9maWxlcyI6dHJ1ZSwiYXR0YWNobWVudCI6W10sImhlYWQiOltdLCJtZXRhIjpbXSwibmFtZSI6Imh0bWx3aWRnZXRzIiwicGFja2FnZSI6W10sInNjcmlwdCI6Imh0bWx3aWRnZXRzLmpzIiwic3JjIjp7ImZpbGUiOiJDOi9Vc2Vycy90YnJhaS9Eb2N1bWVudHMvUi93aW4tbGlicmFyeS8zLjYvaHRtbHdpZGdldHMvd3d3In0sInN0eWxlc2hlZXQiOltdLCJ2ZXJzaW9uIjoiMS41LjEifSx7ImFsbF9maWxlcyI6dHJ1ZSwiYXR0YWNobWVudCI6W10sImhlYWQiOltdLCJtZXRhIjpbXSwibmFtZSI6ImQzIiwicGFja2FnZSI6W10sInNjcmlwdCI6ImQzLm1pbi5qcyIsInNyYyI6eyJmaWxlIjoiQzovVXNlcnMvdGJyYWkvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvMy42L25ldHdvcmtEMy9odG1sd2lkZ2V0cy9saWIvZDMtNC41LjAifSwic3R5bGVzaGVldCI6W10sInZlcnNpb24iOiI0LjUuMCJ9LHsiYWxsX2ZpbGVzIjpmYWxzZSwiYXR0YWNobWVudCI6W10sImhlYWQiOltdLCJtZXRhIjpbXSwibmFtZSI6ImRpYWdvbmFsTmV0d29yay1iaW5kaW5nIiwicGFja2FnZSI6W10sInNjcmlwdCI6ImRpYWdvbmFsTmV0d29yay5qcyIsInNyYyI6eyJmaWxlIjoiQzovVXNlcnMvdGJyYWkvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvMy42L25ldHdvcmtEMy9odG1sd2lkZ2V0cyJ9LCJzdHlsZXNoZWV0IjpbXSwidmVyc2lvbiI6IjAuNCJ9XSwibWV0YWRhdGEiOnsiY2xhc3NlcyI6WyJkaWFnb25hbE5ldHdvcmsiLCJodG1sd2lkZ2V0Il0sInNpemluZ1BvbGljeSI6eyJicm93c2VyIjp7ImRlZmF1bHRIZWlnaHQiOltdLCJkZWZhdWx0V2lkdGgiOltdLCJleHRlcm5hbCI6W2ZhbHNlXSwiZmlsbCI6W3RydWVdLCJwYWRkaW5nIjpbXX0sImRlZmF1bHRIZWlnaHQiOltdLCJkZWZhdWx0V2lkdGgiOltdLCJrbml0ciI6eyJkZWZhdWx0SGVpZ2h0IjpbXSwiZGVmYXVsdFdpZHRoIjpbXSwiZmlndXJlIjpbdHJ1ZV19LCJwYWRkaW5nIjpbMTBdLCJ2aWV3ZXIiOnsiZGVmYXVsdEhlaWdodCI6W10sImRlZmF1bHRXaWR0aCI6W10sImZpbGwiOlt0cnVlXSwicGFkZGluZyI6W10sInBhbmVIZWlnaHQiOltdLCJzdXBwcmVzcyI6W2ZhbHNlXX0sInZpZXdlci5maWxsIjpbdHJ1ZV0sInZpZXdlci5wYWRkaW5nIjpbMF19fX0= -->
 
 <!-- htmlwidget-container-begin -->
-<div id="htmlwidget-e0676c039de0c29ae114" style="width:900px;height:900px;" class="diagonalNetwork html-widget"></div>
+<div id="htmlwidget-a51415527394966c79a6" style="width:1500px;height:1200px;" class="diagonalNetwork html-widget"></div>
 <!-- htmlwidget-container-end -->
-<script type="application/json" data-for="htmlwidget-e0676c039de0c29ae114">{"x":{"root":{"name":"Power Sharing Provision","children":[{"name":"political system","children":[{"name":"general consocilationalism","children":[{"name":"grand coalition","child_0":"political system","child_1":"general consocilationalism","provisions":"grand coalition"},{"name":"mutual veto","child_0":"political system","child_1":"general consocilationalism","provisions":"mutual veto"},{"name":"proportionality","child_0":"political system","child_1":"general consocilationalism","provisions":"proportionality"},{"name":"segmental autonomy","child_0":"political system","child_1":"general consocilationalism","provisions":"segmental autonomy"},{"name":"coalition cabinets","child_0":"political system","child_1":"general consocilationalism","provisions":"coalition cabinets"},{"name":"bicameralism","child_0":"political system","child_1":"general consocilationalism","provisions":"bicameralism"},{"name":"proportional representation","child_0":"political system","child_1":"general consocilationalism","provisions":"proportional representation"},{"name":"organized interest groups","child_0":"political system","child_1":"general consocilationalism","provisions":"organized interest groups"},{"name":"rigid constitution","child_0":"political system","child_1":"general consocilationalism","provisions":"rigid constitution"},{"name":"judicial review","child_0":"political system","child_1":"general consocilationalism","provisions":"judicial review"},{"name":"direct democracy","child_0":"political system","child_1":"general consocilationalism","provisions":"direct democracy"},{"name":"neutral head of state","child_0":"political system","child_1":"general consocilationalism","provisions":"neutral head of state"},{"name":"referendums","child_0":"political system","child_1":"general consocilationalism","provisions":"referendums"},{"name":"independent central bank","child_0":"political system","child_1":"general consocilationalism","provisions":"independent central bank"},{"name":"balance of power","child_0":"political system","child_1":"general consocilationalism","provisions":"balance of power"},{"name":"government leader as primus inter pares","child_0":"political system","child_1":"general consocilationalism","provisions":"government leader as primus inter pares"},{"name":"proportional employment","child_0":"political system","child_1":"general consocilationalism","provisions":"proportional employment"},{"name":"decentralized/federal government","child_0":"political system","child_1":"general consocilationalism","provisions":"decentralized/federal government"}]},{"name":"corporate consociationalism","children":[{"name":"balance of power","child_0":"political system","child_1":"corporate consociationalism","provisions":"balance of power"},{"name":"predetermination of power positions","child_0":"political system","child_1":"corporate consociationalism","provisions":"predetermination of power positions"},{"name":"ethnic quotas","child_0":"political system","child_1":"corporate consociationalism","provisions":"ethnic quotas"},{"name":"deterritorialization","child_0":"political system","child_1":"corporate consociationalism","provisions":"deterritorialization"}]},{"name":"liberal consociationalism","children":[{"name":"wider access for ethnic groups","child_0":"political system","child_1":"liberal consociationalism","provisions":"wider access for ethnic groups"}]},{"name":"coercive consociationalism","children":[{"name":"integration","child_0":"political system","child_1":"coercive consociationalism","provisions":"integration"},{"name":"hegemonic control","child_0":"political system","child_1":"coercive consociationalism","provisions":"hegemonic control"},{"name":"partition","child_0":"political system","child_1":"coercive consociationalism","provisions":"partition"},{"name":"cooperative internationalization","child_0":"political system","child_1":"coercive consociationalism","provisions":"cooperative internationalization"},{"name":"arbitration","child_0":"political system","child_1":"coercive consociationalism","provisions":"arbitration"}]},{"name":"complex consociationalism","children":[{"name":"general consociationalism","child_0":"political system","child_1":"complex consociationalism","provisions":"general consociationalism"},{"name":"recognition of multiple ethnic identities","child_0":"political system","child_1":"complex consociationalism","provisions":"recognition of multiple ethnic identities"},{"name":"restructuring of security sector","child_0":"political system","child_1":"complex consociationalism","provisions":"restructuring of security sector"},{"name":"features for conflict reduction","child_0":"political system","child_1":"complex consociationalism","provisions":"features for conflict reduction"},{"name":"international involvement","child_0":"political system","child_1":"complex consociationalism","provisions":"international involvement"}]},{"name":"integrative consociationalism","children":[{"name":"bicameralism","child_0":"political system","child_1":"integrative consociationalism","provisions":"bicameralism"},{"name":"duality of local and national governance","child_0":"political system","child_1":"integrative consociationalism","provisions":"duality of local and national governance"},{"name":"mixed electoral system","child_0":"political system","child_1":"integrative consociationalism","provisions":"mixed electoral system"},{"name":"cross-cutting electoral districting","child_0":"political system","child_1":"integrative consociationalism","provisions":"cross-cutting electoral districting"}]}]},{"name":"power-sharing arrangements","children":[{"name":"constraining","children":[{"name":"freedom from discrimination","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"freedom from discrimination"},{"name":"freedom from practice","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"freedom from practice"},{"name":"military legislator ban","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"military legislator ban"},{"name":"ethnic party ban","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"ethnic party ban"},{"name":"judicial review","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial review"},{"name":"judicial tenure","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial tenure"},{"name":"judicial constitution","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial constitution"}]},{"name":"inclusive","children":[{"name":"grand coalition","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"grand coalition"},{"name":"mutual veto","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"mutual veto"},{"name":"unity government","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"unity government"},{"name":"reserved executive positions","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"reserved executive positions"},{"name":"reserved seats","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"reserved seats"},{"name":"mandated military inclusiveness","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"mandated military inclusiveness"}]},{"name":"dispersive","children":[{"name":"territorial decentralization","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"territorial decentralization"},{"name":"subnational tax authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational tax authority"},{"name":"subnational education authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational education authority"},{"name":"subnational police authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational police authority"},{"name":"state/provincial executive elections","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"state/provincial executive elections"},{"name":"state/provincial legislative elections","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"state/provincial legislative elections"},{"name":"constituency alignment","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"constituency alignment"}]},{"name":"vertical","children":[{"name":"subnational autonomy","child_0":"power-sharing arrangements","child_1":"vertical","provisions":"subnational autonomy"}]},{"name":"horizontal","children":[{"name":"elite cooperation","child_0":"power-sharing arrangements","child_1":"horizontal","provisions":"elite cooperation"}]},{"name":"complex","children":[{"name":"self-governing territorial entity","child_0":"power-sharing arrangements","child_1":"complex","provisions":"self-governing territorial entity"},{"name":"heterogeneity","child_0":"power-sharing arrangements","child_1":"complex","provisions":"heterogeneity"},{"name":"local power-sharing","child_0":"power-sharing arrangements","child_1":"complex","provisions":"local power-sharing"},{"name":"central power-sharing","child_0":"power-sharing arrangements","child_1":"complex","provisions":"central power-sharing"}]},{"name":"political","children":[{"name":"electoral proportional representation","child_0":"power-sharing arrangements","child_1":"political","provisions":"electoral proportional representation"},{"name":"administrative proportional representation","child_0":"power-sharing arrangements","child_1":"political","provisions":"administrative proportional representation"},{"name":"executive proportional reprsentation","child_0":"power-sharing arrangements","child_1":"political","provisions":"executive proportional reprsentation"}]},{"name":"territorial","children":[{"name":"federalism","child_0":"power-sharing arrangements","child_1":"territorial","provisions":"federalism"},{"name":"regional autonomy","child_0":"power-sharing arrangements","child_1":"territorial","provisions":"regional autonomy"}]},{"name":"military","children":[{"name":"distribution of state coercive power","child_0":"power-sharing arrangements","child_1":"military","provisions":"distribution of state coercive power"}]},{"name":"economic","children":[{"name":"distribution of economic resources among groups","child_0":"power-sharing arrangements","child_1":"economic","provisions":"distribution of economic resources among groups"}]}]},{"name":"power-sharing alternatives","children":[{"name":"power-dividing","children":[{"name":"civil liberties","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"civil liberties"},{"name":"multiple majorities","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"multiple majorities"},{"name":"checks and balances","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"checks and balances"},{"name":"human rights bills","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"human rights bills"},{"name":"separation of powers","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"separation of powers"}]},{"name":"partition","children":[{"name":"partition de jure","child_0":"power-sharing alternatives","child_1":"partition","provisions":"partition de jure"},{"name":"adjusted borders","child_0":"power-sharing alternatives","child_1":"partition","provisions":"adjusted borders"},{"name":"regional autonomy","child_0":"power-sharing alternatives","child_1":"partition","provisions":"regional autonomy"}]}]}]},"options":{"height":900,"width":900,"fontSize":14,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"black","margin":{"top":null,"right":null,"bottom":null,"left":null},"opacity":0.7}},"evals":[],"jsHooks":[]}</script>
-<!-- htmlwidget-sizing-policy-base64 PHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9odG1sd2lkZ2V0LXNpemluZyIgZGF0YS1mb3I9Imh0bWx3aWRnZXQtZTA2NzZjMDM5ZGUwYzI5YWUxMTQiPnsidmlld2VyIjp7IndpZHRoIjo5MDAsImhlaWdodCI6OTAwLCJwYWRkaW5nIjoxMCwiZmlsbCI6ZmFsc2V9LCJicm93c2VyIjp7IndpZHRoIjo5MDAsImhlaWdodCI6OTAwLCJwYWRkaW5nIjoxMCwiZmlsbCI6ZmFsc2V9fTwvc2NyaXB0Pg== -->
+<script type="application/json" data-for="htmlwidget-a51415527394966c79a6">{"x":{"root":{"name":"Power Sharing Provision","children":[{"name":"political system","children":[{"name":"general consocilationalism","children":[{"name":"grand coalition","child_0":"political system","child_1":"general consocilationalism","provisions":"grand coalition"},{"name":"mutual veto","child_0":"political system","child_1":"general consocilationalism","provisions":"mutual veto"},{"name":"proportionality","child_0":"political system","child_1":"general consocilationalism","provisions":"proportionality"},{"name":"segmental autonomy","child_0":"political system","child_1":"general consocilationalism","provisions":"segmental autonomy"},{"name":"coalition cabinets","child_0":"political system","child_1":"general consocilationalism","provisions":"coalition cabinets"},{"name":"bicameralism","child_0":"political system","child_1":"general consocilationalism","provisions":"bicameralism"},{"name":"proportional representation","child_0":"political system","child_1":"general consocilationalism","provisions":"proportional representation"},{"name":"organized interest groups","child_0":"political system","child_1":"general consocilationalism","provisions":"organized interest groups"},{"name":"rigid constitution","child_0":"political system","child_1":"general consocilationalism","provisions":"rigid constitution"},{"name":"judicial review","child_0":"political system","child_1":"general consocilationalism","provisions":"judicial review"},{"name":"direct democracy","child_0":"political system","child_1":"general consocilationalism","provisions":"direct democracy"},{"name":"neutral head of state","child_0":"political system","child_1":"general consocilationalism","provisions":"neutral head of state"},{"name":"referendums","child_0":"political system","child_1":"general consocilationalism","provisions":"referendums"},{"name":"independent central bank","child_0":"political system","child_1":"general consocilationalism","provisions":"independent central bank"},{"name":"balance of power","child_0":"political system","child_1":"general consocilationalism","provisions":"balance of power"},{"name":"government leader as primus inter pares","child_0":"political system","child_1":"general consocilationalism","provisions":"government leader as primus inter pares"},{"name":"proportional employment","child_0":"political system","child_1":"general consocilationalism","provisions":"proportional employment"},{"name":"decentralized/federal government","child_0":"political system","child_1":"general consocilationalism","provisions":"decentralized/federal government"}]},{"name":"corporate consociationalism","children":[{"name":"balance of power","child_0":"political system","child_1":"corporate consociationalism","provisions":"balance of power"},{"name":"predetermination of power positions","child_0":"political system","child_1":"corporate consociationalism","provisions":"predetermination of power positions"},{"name":"ethnic quotas","child_0":"political system","child_1":"corporate consociationalism","provisions":"ethnic quotas"},{"name":"deterritorialization","child_0":"political system","child_1":"corporate consociationalism","provisions":"deterritorialization"}]},{"name":"liberal consociationalism","children":[{"name":"wider access for ethnic groups","child_0":"political system","child_1":"liberal consociationalism","provisions":"wider access for ethnic groups"}]},{"name":"coercive consociationalism","children":[{"name":"integration","child_0":"political system","child_1":"coercive consociationalism","provisions":"integration"},{"name":"hegemonic control","child_0":"political system","child_1":"coercive consociationalism","provisions":"hegemonic control"},{"name":"partition","child_0":"political system","child_1":"coercive consociationalism","provisions":"partition"},{"name":"cooperative internationalization","child_0":"political system","child_1":"coercive consociationalism","provisions":"cooperative internationalization"},{"name":"arbitration","child_0":"political system","child_1":"coercive consociationalism","provisions":"arbitration"}]},{"name":"complex consociationalism","children":[{"name":"general consociationalism","child_0":"political system","child_1":"complex consociationalism","provisions":"general consociationalism"},{"name":"recognition of multiple ethnic identities","child_0":"political system","child_1":"complex consociationalism","provisions":"recognition of multiple ethnic identities"},{"name":"restructuring of security sector","child_0":"political system","child_1":"complex consociationalism","provisions":"restructuring of security sector"},{"name":"features for conflict reduction","child_0":"political system","child_1":"complex consociationalism","provisions":"features for conflict reduction"},{"name":"international involvement","child_0":"political system","child_1":"complex consociationalism","provisions":"international involvement"}]},{"name":"integrative consociationalism","children":[{"name":"bicameralism","child_0":"political system","child_1":"integrative consociationalism","provisions":"bicameralism"},{"name":"duality of local and national governance","child_0":"political system","child_1":"integrative consociationalism","provisions":"duality of local and national governance"},{"name":"mixed electoral system","child_0":"political system","child_1":"integrative consociationalism","provisions":"mixed electoral system"},{"name":"cross-cutting electoral districting","child_0":"political system","child_1":"integrative consociationalism","provisions":"cross-cutting electoral districting"}]}]},{"name":"power-sharing arrangements","children":[{"name":"constraining","children":[{"name":"freedom from discrimination","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"freedom from discrimination"},{"name":"freedom from practice","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"freedom from practice"},{"name":"military legislator ban","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"military legislator ban"},{"name":"ethnic party ban","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"ethnic party ban"},{"name":"judicial review","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial review"},{"name":"judicial tenure","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial tenure"},{"name":"judicial constitution","child_0":"power-sharing arrangements","child_1":"constraining","provisions":"judicial constitution"}]},{"name":"inclusive","children":[{"name":"grand coalition","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"grand coalition"},{"name":"mutual veto","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"mutual veto"},{"name":"unity government","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"unity government"},{"name":"reserved executive positions","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"reserved executive positions"},{"name":"reserved seats","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"reserved seats"},{"name":"mandated military inclusiveness","child_0":"power-sharing arrangements","child_1":"inclusive","provisions":"mandated military inclusiveness"}]},{"name":"dispersive","children":[{"name":"territorial decentralization","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"territorial decentralization"},{"name":"subnational tax authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational tax authority"},{"name":"subnational education authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational education authority"},{"name":"subnational police authority","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"subnational police authority"},{"name":"state/provincial executive elections","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"state/provincial executive elections"},{"name":"state/provincial legislative elections","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"state/provincial legislative elections"},{"name":"constituency alignment","child_0":"power-sharing arrangements","child_1":"dispersive","provisions":"constituency alignment"}]},{"name":"vertical","children":[{"name":"subnational autonomy","child_0":"power-sharing arrangements","child_1":"vertical","provisions":"subnational autonomy"}]},{"name":"horizontal","children":[{"name":"elite cooperation","child_0":"power-sharing arrangements","child_1":"horizontal","provisions":"elite cooperation"}]},{"name":"complex","children":[{"name":"self-governing territorial entity","child_0":"power-sharing arrangements","child_1":"complex","provisions":"self-governing territorial entity"},{"name":"heterogeneity","child_0":"power-sharing arrangements","child_1":"complex","provisions":"heterogeneity"},{"name":"local power-sharing","child_0":"power-sharing arrangements","child_1":"complex","provisions":"local power-sharing"},{"name":"central power-sharing","child_0":"power-sharing arrangements","child_1":"complex","provisions":"central power-sharing"}]},{"name":"political","children":[{"name":"electoral proportional representation","child_0":"power-sharing arrangements","child_1":"political","provisions":"electoral proportional representation"},{"name":"administrative proportional representation","child_0":"power-sharing arrangements","child_1":"political","provisions":"administrative proportional representation"},{"name":"executive proportional reprsentation","child_0":"power-sharing arrangements","child_1":"political","provisions":"executive proportional reprsentation"}]},{"name":"territorial","children":[{"name":"federalism","child_0":"power-sharing arrangements","child_1":"territorial","provisions":"federalism"},{"name":"regional autonomy","child_0":"power-sharing arrangements","child_1":"territorial","provisions":"regional autonomy"}]},{"name":"military","children":[{"name":"distribution of state coercive power","child_0":"power-sharing arrangements","child_1":"military","provisions":"distribution of state coercive power"}]},{"name":"economic","children":[{"name":"distribution of economic resources among groups","child_0":"power-sharing arrangements","child_1":"economic","provisions":"distribution of economic resources among groups"}]}]},{"name":"power-sharing alternatives","children":[{"name":"power-dividing","children":[{"name":"civil liberties","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"civil liberties"},{"name":"multiple majorities","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"multiple majorities"},{"name":"checks and balances","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"checks and balances"},{"name":"human rights bills","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"human rights bills"},{"name":"separation of powers","child_0":"power-sharing alternatives","child_1":"power-dividing","provisions":"separation of powers"}]},{"name":"partition","children":[{"name":"partition de jure","child_0":"power-sharing alternatives","child_1":"partition","provisions":"partition de jure"},{"name":"adjusted borders","child_0":"power-sharing alternatives","child_1":"partition","provisions":"adjusted borders"},{"name":"regional autonomy","child_0":"power-sharing alternatives","child_1":"partition","provisions":"regional autonomy"}]}]}]},"options":{"height":1200,"width":1500,"fontSize":14,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"black","margin":{"top":null,"right":null,"bottom":null,"left":null},"opacity":0.7}},"evals":[],"jsHooks":[]}</script>
+<!-- htmlwidget-sizing-policy-base64 PHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9odG1sd2lkZ2V0LXNpemluZyIgZGF0YS1mb3I9Imh0bWx3aWRnZXQtYTUxNDE1NTI3Mzk0OTY2Yzc5YTYiPnsidmlld2VyIjp7IndpZHRoIjoxNTAwLCJoZWlnaHQiOjEyMDAsInBhZGRpbmciOjEwLCJmaWxsIjpmYWxzZX0sImJyb3dzZXIiOnsid2lkdGgiOjE1MDAsImhlaWdodCI6MTIwMCwicGFkZGluZyI6MTAsImZpbGwiOmZhbHNlfX08L3NjcmlwdD4= -->
 
 <!-- rnb-htmlwidget-end -->
 
@@ -4029,7 +4104,7 @@ psp_ontology_vis</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIjA0IE9udG9sb2d5IFZpc3VhbGl6YXRpb24iDQphdXRob3I6ICJUaG9tYXMgSi4gQnJhaWxleSINCmRhdGU6ICIyOS8wOS8yMDE5Ig0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRvYzogeWVzDQogICAgdG9jX2Zsb2F0OiB5ZXMNCiAgcGRmX2RvY3VtZW50Og0KICAgIHRvYzogeWVzDQogIGh0bWxfZG9jdW1lbnQ6DQogICAgdG9jOiB5ZXMNCmVkaXRvcl9vcHRpb25zOg0KICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lDQotLS0NCjxzdHlsZT4NCiAgICBib2R5IC5tYWluLWNvbnRhaW5lciB7DQogICAgICAgIG1heC13aWR0aDogMTAwJTsNCiAgICB9DQo8L3N0eWxlPg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCnJtKGxpc3Q9bHMoKSkNCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmxpYnJhcnkobWFncml0dHIpDQpsaWJyYXJ5KGdncGxvdDIpDQpgYGANCg0KIyBMb2FkIERhdGENCmBgYHtyfQ0KIyByZWFkIGluIGV4Y2VsIGZpbGUuIA0KcHNwX29udCA8LSByZWFkeGw6OnJlYWRfeGxzeChwYXN0ZTAoaGVyZTo6aGVyZSgpLCcvZGF0YS90amJyYWlsZXlfcHNwX29udG9sb2d5Lnhsc3gnKSkNCnBzcF9vbnQgPC0gZHBseXI6OmFzX2RhdGFfZnJhbWUocHNwX29udCkNCg0KIyBzZWxlY3QgcmVsZXZhbnQgdmFyaWFibGVzLg0KcHNwX29udF9wcmVwIDwtIHBzcF9vbnQgJT4lDQogIGRwbHlyOjpzZWxlY3QoY2hpbGRfMCwNCiAgICAgICAgICAgICAgICBjaGlsZF8xLA0KICAgICAgICAgICAgICAgIHByb3Zpc2lvbnMpDQpgYGANCg0KIyBEZWZpbmUgSGllcmFyY2h5DQpgYGB7cn0NCiMgZ2VuZXJhdGUgcGF0aFN0cmluZyBhcyBuZXcgY29sdW1uLg0KcHNwX29udF9wcmVwJHBhdGhTdHJpbmcgPC0gcGFzdGUoIlBvd2VyIFNoYXJpbmcgUHJvdmlzaW9uIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHNwX29udF9wcmVwJGNoaWxkXzAsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBzcF9vbnRfcHJlcCRjaGlsZF8xLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwc3Bfb250X3ByZXAkcHJvdmlzaW9ucywNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2VwID0gInwiKQ0KDQojIGNyZWF0ZSBsaXN0LiANCnBzcF90cmVlIDwtIGRhdGEudHJlZTo6YXMuTm9kZShwc3Bfb250X3ByZXAsIHBhdGhEZWxpbWl0ZXIgPSAifCIpDQpwcmludChwc3BfdHJlZSwgbGltaXQgPSAxNSkNCg0KYGBgDQojIFZpc3VhbGl6YXRpb25zDQpgYGB7cn0NCiMgcGVwYXJlIGxpc3QgZm9yIHZpc3VhbGl6YXRpb24uIA0KcHNwX2xpc3QgPC0gZGF0YS50cmVlOjpUb0xpc3RFeHBsaWNpdChwc3BfdHJlZSwgdW5uYW1lID0gVFJVRSkNCnBzcF9vbnRvbG9neV92aXMgPC0gbmV0d29ya0QzOjpkaWFnb25hbE5ldHdvcmsocHNwX2xpc3QsIA0KICAgICAgICAgICAgICAgICAgICAgICAgIGZvbnRTaXplID0gMTQsDQogICAgICAgICAgICAgICAgICAgICAgICAgdGV4dENvbG91ciA9ICJibGFjayIsDQogICAgICAgICAgICAgICAgICAgICAgICAgb3BhY2l0eSA9IDAuNywNCiAgICAgICAgICAgICAgICAgICAgICAgICB3aWR0aCA9IDkwMCwNCiAgICAgICAgICAgICAgICAgICAgICAgICBoZWlnaHQgPSA5MDApDQojIHZpc3VhbGl6ZS4NCnBzcF9vbnRvbG9neV92aXMNCmBgYA0KIyMjIE5vdGU6IFRoaXMgb250b2xvZ3kgaXMgYSB3b3JrIGluIHByb2dyZXNzLg0KYGBge3IsIGluY2x1ZGUgPSBGQUxTRX0NCiMgc2F2ZSB2aXN1YWxpemF0aW9uLg0KbmV0d29ya0QzOjpzYXZlTmV0d29yayhwc3Bfb250b2xvZ3lfdmlzLCBmaWxlID0gcGFzdGUwKGhlcmU6OmhlcmUoKSwgJy92aXMvcHNwX29udG9sb2d5X3Zpcy5odG1sJykpDQp3ZWJzaG90Ojp3ZWJzaG90KCJmaWxlOi8vL0M6L1VzZXJzL1RvbSUyMEJyYWlsZXkvRHJvcGJveC9naXRodWJfcHJpdmF0ZS9TZW5pb3JUaGVzaXMvdmlzL3BzcF9vbnRvbG9neV92aXMuaHRtbCIsIHBhc3RlMChoZXJlOjpoZXJlKCksICIvdmlzL3BzcF9vbnRvbG9neV92aXMucG5nIikpDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIjA0IE9udG9sb2d5IFZpc3VhbGl6YXRpb24iDQphdXRob3I6ICJUaG9tYXMgSi4gQnJhaWxleSINCmRhdGU6ICIyOS8wOS8yMDE5Ig0Kb3V0cHV0Og0KICBodG1sX25vdGVib29rOg0KICAgIHRvYzogeWVzDQogICAgdG9jX2Zsb2F0OiB5ZXMNCiAgcGRmX2RvY3VtZW50Og0KICAgIHRvYzogeWVzDQogIGh0bWxfZG9jdW1lbnQ6DQogICAgdG9jOiB5ZXMNCmVkaXRvcl9vcHRpb25zOg0KICBjaHVua19vdXRwdXRfdHlwZTogaW5saW5lDQotLS0NCjxzdHlsZT4NCiAgICBib2R5IC5tYWluLWNvbnRhaW5lciB7DQogICAgICAgIG1heC13aWR0aDogMTAwJTsNCiAgICB9DQo8L3N0eWxlPg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCnJtKGxpc3Q9bHMoKSkNCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmxpYnJhcnkobWFncml0dHIpDQpsaWJyYXJ5KGdncGxvdDIpDQpgYGANCg0KIyBMb2FkIERhdGENCmBgYHtyfQ0KIyByZWFkIGluIGV4Y2VsIGZpbGUuIA0KcHNwX29udCA8LSByZWFkeGw6OnJlYWRfeGxzeChwYXN0ZTAoaGVyZTo6aGVyZSgpLCcvZGF0YS90amJyYWlsZXlfcHNwX29udG9sb2d5Lnhsc3gnKSkNCnBzcF9vbnQgPC0gZHBseXI6OmFzX2RhdGFfZnJhbWUocHNwX29udCkNCg0KIyBzZWxlY3QgcmVsZXZhbnQgdmFyaWFibGVzLg0KcHNwX29udF9wcmVwIDwtIHBzcF9vbnQgJT4lDQogIGRwbHlyOjpzZWxlY3QoY2hpbGRfMCwNCiAgICAgICAgICAgICAgICBjaGlsZF8xLA0KICAgICAgICAgICAgICAgIHByb3Zpc2lvbnMpDQpgYGANCg0KIyBEZWZpbmUgSGllcmFyY2h5DQpgYGB7cn0NCiMgZ2VuZXJhdGUgcGF0aFN0cmluZyBhcyBuZXcgY29sdW1uLg0KcHNwX29udF9wcmVwJHBhdGhTdHJpbmcgPC0gcGFzdGUoIlBvd2VyIFNoYXJpbmcgUHJvdmlzaW9uIiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHNwX29udF9wcmVwJGNoaWxkXzAsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBzcF9vbnRfcHJlcCRjaGlsZF8xLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwc3Bfb250X3ByZXAkcHJvdmlzaW9ucywNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2VwID0gInwiKQ0KDQojIGNyZWF0ZSBsaXN0LiANCnBzcF90cmVlIDwtIGRhdGEudHJlZTo6YXMuTm9kZShwc3Bfb250X3ByZXAsIHBhdGhEZWxpbWl0ZXIgPSAifCIpDQpwcmludChwc3BfdHJlZSwgbGltaXQgPSAxNSkNCg0KYGBgDQojIFZpc3VhbGl6YXRpb25zDQpgYGB7cn0NCiMgcGVwYXJlIGxpc3QgZm9yIHZpc3VhbGl6YXRpb24uIA0KcHNwX2xpc3QgPC0gZGF0YS50cmVlOjpUb0xpc3RFeHBsaWNpdChwc3BfdHJlZSwgdW5uYW1lID0gVFJVRSkNCnBzcF9vbnRvbG9neV92aXMgPC0gbmV0d29ya0QzOjpkaWFnb25hbE5ldHdvcmsocHNwX2xpc3QsIA0KICAgICAgICAgICAgICAgICAgICAgICAgIGZvbnRTaXplID0gMTQsDQogICAgICAgICAgICAgICAgICAgICAgICAgdGV4dENvbG91ciA9ICJibGFjayIsDQogICAgICAgICAgICAgICAgICAgICAgICAgb3BhY2l0eSA9IDAuNywNCiAgICAgICAgICAgICAgICAgICAgICAgICB3aWR0aCA9IDE1MDAsDQogICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0ID0gMTIwMCkNCiMgdmlzdWFsaXplLg0KcHNwX29udG9sb2d5X3Zpcw0KYGBgDQojIyMgTm90ZTogVGhpcyBvbnRvbG9neSBpcyBhIHdvcmsgaW4gcHJvZ3Jlc3MuDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFfQ0KIyBzYXZlIHZpc3VhbGl6YXRpb24uDQpuZXR3b3JrRDM6OnNhdmVOZXR3b3JrKHBzcF9vbnRvbG9neV92aXMsIGZpbGUgPSBwYXN0ZTAoaGVyZTo6aGVyZSgpLCAnL3Zpcy9wc3Bfb250b2xvZ3lfdmlzLmh0bWwnKSkNCndlYnNob3Q6OndlYnNob3QoImZpbGU6Ly8vQzovVXNlcnMvdGJyYWkvRHJvcGJveC9naXRodWJfcHJpdmF0ZS9TZW5pb3JUaGVzaXMvdmlzL3BzcF9vbnRvbG9neV92aXMuaHRtbCIsIHBhc3RlMChoZXJlOjpoZXJlKCksICIvdmlzL3BzcF9vbnRvbG9neV92aXMucG5nIikpDQpgYGANCg==</div>
 
 
 </div>

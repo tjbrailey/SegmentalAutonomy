@@ -308,46 +308,46 @@ Prior to running statistical models, I generate simple cross-sectional time-seri
 I begin my statistical analyses by subsetting the data to those states that exhibit high levels of ethnic fractionalization (characterized by states that have an ethnic fractionalization score of above the world median value), and then running several iterations of robust ordinary least squares (OLS) regression on my cross-sectional time-series dataset on three distinct dependent variables. For conflict duration as a dependent variable, I run a Cox proportional hazards model to assess whether the implementation of regional autonomy serves to reduce the length of a conflict. For each dependent variable---levels of social trust, conflict intensity, and polity score---the same control variables are included in the OLS. For all models, I include country fixed-effects, and for the latter two iterations, I include year fixed-effects. Lastly, and for robustness, the OLS regressions are clustered by their standard errors.  
 
 \section{Results}
-Table 3 shows the impact of segmental autonomy on social trust levels for all country-year observations that fall above the median ethnic fractionalization value for all states in my dataset. Results are mixed. My first hypothesis posits that regional autonomy, in granting ethnic groups more political power and serving as a concession to marginalized ethnic groups, may reduce political grievances and intergroup tensions. A simple bivariate regression indicates that regional autonomy exerts a statistically significant positive effect on levels of social trust across states, however, the inclusion of control variables and year fixed effects flips the direction of regional autonomy and renders it not statistically significant. We see that the presence of other consociational provisions exert a negative and non-statistically significant effect on levels of social trust in a state, though this becomes positive and significant at the one-star level when we interact this variable with the regional autonomy measure. The adjusted $R^2$ values across models suggest that the Model 3 is able to explain up to 51\% of the total variance in the data, though there is not much change in the $R^2$ and adjusted $R^2$ values across models. Similarly, the root mean squared error (RMSE)---standard deviation of the unexplained variance---does not differ significantly across models, indicating that additional control variables do not better predict the outcome variable.  
+Table 3 shows the impact of segmental autonomy on social trust levels for all country-year observations that fall above the median ethnic fractionalization value for all states in my dataset. Here, social trust is taken to be the average of all country-survey scores available within each country-year observation, with 0 representing the lowest possible trust levels, and 100 representing the highest possible trust levels. The results are mixed. The first hypothesis posits that regional autonomy, in granting ethnic groups more political power and serving as a concession to marginalized ethnic groups, may reduce political grievances and intergroup tensions. A simple bivariate regression indicates that regional autonomy exerts a statistically significant positive effect on levels of social trust across states, however, the inclusion of control variables and year fixed effects flips the direction of regional autonomy---from a 0.4-point increase to a -30.8-point decrease---and renders it not statistically significant. We see that the presence of other consociational provisions exert a negative and non-statistically significant effect on levels of social trust in a state, though this becomes positive and significant at the one-star level when we interact this variable with the regional autonomy measure. The adjusted $R^2$ values across models suggest that the Model 3 is able to explain up to 51\% of the total variance in the data, though there is not much change in the $R^2$ and adjusted $R^2$ values across models. Similarly, the root mean squared error (RMSE)---standard deviation of the unexplained variance---does not differ significantly across models, indicating that additional control variables do not better predict the outcome variable.  
 
 \begin{table}[!htbp]
 	\begin{center}
-		\begin{tabular}{lccc}
+		\begin{tabular}{l c c c }
 			\hline
 			& Model 1 & Model 2 & Model 3 \\
 			\hline
-			(Intercept)                  & $49.65$      & $9.79$    & $22.37$     \\
-			& $ $           & $(12.38)$ & $(12.09)$   \\
-			Regional Autonomy                   & $0.40^{***}$ & $-3.75$   & $-30.81$    \\
-			& $(0.00)$     & $(19.00)$ & $(23.94)$   \\
-			Political Instability               &              & $4.19$    & $4.90$      \\
-			&              & $(4.93)$  & $(5.03)$    \\
-			Gini Index               &              & $0.53$    & $0.49$      \\
-			&              & $(0.30)$  & $(0.32)$    \\
-			Population                &              & $0.00$    & $0.00$      \\
-			&              & $(0.00)$  & $(0.00)$    \\
-			PolityIV Score       &              & $0.74$    & $0.77$      \\
-			&              & $(0.83)$  & $(0.82)$    \\
-			Other Provisions            &              &           & $-12.28$    \\
-			&              &           & $(3.39)$    \\
-			Regional Autonomy:Other Provisions &              &           & $29.00^{*}$ \\
-			&              &           & $(5.98)$    \\
+			(Intercept)                  & $49.65^{***}$ & $22.38$   & $22.38$     \\
+			& $(0.00)$      & $(12.09)$ & $(12.09)$   \\
+			Regional Autonomy                   & $0.40^{***}$  & $-30.83$  & $-30.83$    \\
+			& $(0.00)$      & $(23.94)$ & $(23.94)$   \\
+			Political Instability               &               & $4.89$    & $4.89$      \\
+			&               & $(5.03)$  & $(5.03)$    \\
+			Gini Index               &               & $0.49$    & $0.49$      \\
+			&               & $(0.32)$  & $(0.32)$    \\
+			Population               &               & $0.00$    & $0.00$      \\
+			&               & $(0.00)$  & $(0.00)$    \\
+			Polity Score       &               & $0.77$    & $0.77$      \\
+			&               & $(0.82)$  & $(0.82)$    \\
+			Other Provisions           &               & $-12.28$  & $-12.28$    \\
+			&               & $(3.39)$  & $(3.39)$    \\
+			Regional Autonomy:Other Provisions &               &           & $29.00^{*}$ \\
+			&               &           & $(5.98)$    \\
 			\hline
-			Country Fixed Effects?		 & Y			& Y 		& Y			  \\
-			Year Fixed Effects?			 & N			& Y			& Y			  \\
-			R$^2$                        & 0.51         & 0.58      & 0.58        \\
-			Adj. R$^2$                   & 0.47         & 0.50      & 0.51        \\
-			Num. obs.                    & 598          & 409       & 409         \\
-			RMSE                         & 11.47        & 11.57     & 11.53       \\
+			Country Fixed Effects?		 & Y			 & Y 		   & Y			  \\
+			Year Fixed Effects?			 & N			 & Y		   & Y			  \\
+			R$^2$                        & 0.51          & 0.58      & 0.58        \\
+			Adj. R$^2$                   & 0.47          & 0.51      & 0.51        \\
+			Num. obs.                    & 598           & 409       & 409         \\
+			RMSE                         & 11.47         & 11.53     & 11.53       \\
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Regional Autonomy's Impact on Social Trust}
+		\caption{Segmental Autonomy's Effect on Social Trust}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
 			
-The second hypothesis posits that regional autonomy---again serving as a concession to marginalized and potentially de-stabling groups---reduces conflict in ethnically fractious regions. Table 4 uses a dichotomous conflict measurement as the dependent variable; it takes a value of 1 when there is a significant conflict occurring in a given year, and 0 otherwise. Again, we do not see segmental autonomy exert any statistically significant effect on conflict intensity levels in ethnically diverse states. Similar to the results in our OLS on social trust levels, the interaction effect between regional autonomy and other consociational provisions reduces conflict by a factor of 47\%\footnote{Cox regression models calculate the association between "survival" time and a given independent variable. Here, a hazard ratio coefficient of 0.53 reduces the hazard by 47\%.}. Though this is only weakly statistically significant, these findings do provide some evidence that the presence of autonomy, when implemented alongside other provisions of power-sharing, may reduce conflict rates in ethnically diverse polities. 
+The second hypothesis posits that regional autonomy---again serving as a concession to marginalized and potentially de-stabling groups---reduces conflict in ethnically fractious regions. Table 4 uses a dichotomous conflict measurement as the dependent variable; it takes a value of 1 when there is a significant conflict occurring in a given year, and 0 otherwise\footnote{UCDP defines "significant" as a conflict with over 1000 battle-related deaths. For the purposes of this study, the value is subsetted to only internal conflicts. A number of issues arise with this coding of conflict and they will be addressed in a later section.}. Again, we do not see segmental autonomy exert any statistically significant effect on conflict intensity levels in ethnically diverse states. Similar to the results in our OLS on social trust levels, the interaction effect between regional autonomy and other consociational provisions serve to reduce conflict to a statistically significant degree. The Cox model indicates that these variables reduce conflict by a factor of 47\%\footnote{Cox regression models calculate the association between "survival" time and a given independent variable. Here, a hazard ratio coefficient of 0.53 reduces the hazard by 47\%.}. Though this is only weakly statistically significant, these findings do provide some evidence that the presence of autonomy, when implemented alongside other provisions of power-sharing, may reduce conflict rates in ethnically diverse polities. 
 
 \begin{table}[!htbp]
 	\centering
@@ -369,7 +369,7 @@ The second hypothesis posits that regional autonomy---again serving as a concess
 	\label{mod}
 \end{table}
 
-Table 5 shows the effect that the presence of segmental autonomy has on democratization in an ethnically fractionalized state, and is perhaps the most compelling finding of this study. Recall that segmental autonomy can serve to legitimize a regime by granting power to a diverse range of actors, and that legitimization may extend from just positive perceptions of democracy to actual improvements of democratic performance. Across all three models, the implementation of segmental autonomy correlates with increased polity scores, and when accounting for control variables and interaction effects, the statistical significance of the presence of segmental autonomy increases. Somewhat counterintuitively, the interaction effect between regional autonomy and other consociational provisions reduces democracy levels with weak statistical significance. That said, the high adjusted $R^2$ values and relatively low RMSE values suggest that these models do a good job of predicting the outcomes and explaining the variance within the data. The results presented in Table 5 are especially compelling given that country fixed effects and clustered standard errors are designed to account for any possible confounding variables and alternative explanations. The fact that such a strong relationship exists across the two multivariate regressions in spite of the threat of type II error suggests that the effect of regional autonomy on democracy scores is salient.  
+Table 5 shows the effect that the presence of segmental autonomy has on democratization in an ethnically fractionalized state, and is perhaps the most compelling finding of this study. Recall that segmental autonomy can serve to legitimize a regime by granting power to a diverse range of actors, and that legitimization may extend from just positive perceptions of democracy to actual improvements of democratic performance. Using PolityIV polity score, a twenty-one point index of democratic indicators, we can assess the substantive effects of regional autonomy. Across all three models, the implementation of segmental autonomy correlates with increased polity scores, and when accounting for control variables and interaction effects, the statistical significance of the presence of segmental autonomy increases. Somewhat counterintuitively, the interaction effect between regional autonomy and other consociational provisions reduces democracy levels with weak statistical significance. That said, the high adjusted $R^2$ values and relatively low RMSE values suggest that these models do a good job of predicting the outcomes and explaining the variance within the data. The results presented in Table 5 are especially compelling given that country fixed effects and clustered standard errors are designed to account for any possible confounding variables and alternative explanations. The fact that such a strong relationship exists across the two multivariate regressions in spite of the threat of type II error suggests that the effect of regional autonomy on democracy scores is salient.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -377,38 +377,40 @@ Table 5 shows the effect that the presence of segmental autonomy has on democrat
 			\hline
 			& Model 1 & Model 2 & Model 3 \\
 			\hline
-			(Intercept)                  & $-7.27^{***}$ & $-3.90$     & $-4.07$       \\
-			& $(0.00)$      & $(2.94)$    & $(2.96)$      \\
-			Regional Autonomy                   & $2.94$        & $5.85^{**}$ & $11.53^{***}$ \\
-			& $(3.67)$      & $(1.47)$    & $(1.69)$      \\
-			Political Instability               &               & $0.88$      & $0.87$        \\
-			&               & $(0.65)$    & $(0.65)$      \\
-			Gini Index               &               & $0.02$      & $0.02$        \\
-			&               & $(0.05)$    & $(0.05)$      \\
-			Population               &               & $0.00$      & $0.00$        \\
-			&               & $(0.00)$    & $(0.00)$      \\
-			Other Provisions            &               &             & $0.65$        \\
-			&               &             & $(0.77)$      \\
-			Regional Autonomy:Other Provisions &               &             & $-6.20^{*}$   \\
-			&               &             & $(2.67)$      \\
+			(Intercept)                  & $-7.27^{***}$ & $-4.07$  & $-4.07$       \\
+			& $(0.00)$      & $(2.96)$ & $(2.96)$      \\
+			Regional Autonomy                  & $2.94$        & $0.24$   & $11.53^{***}$ \\
+			& $(3.67)$      & $(1.55)$ & $(1.69)$      \\
+			Political Instability              &               & $0.87$   & $0.87$        \\
+			&               & $(0.65)$ & $(0.65)$      \\
+			Gini Index              &               & $0.02$   & $0.02$        \\
+			&               & $(0.05)$ & $(0.05)$      \\
+			Population                &               & $0.00$   & $0.00$        \\
+			&               & $(0.00)$ & $(0.00)$      \\
+			Other Provisions           &               & $0.65$   & $0.65$        \\
+			&               & $(0.77)$ & $(0.77)$      \\
+			Regional Autonomy:Other Provisions &               &          & $-6.20^{*}$   \\
+			&               &          & $(2.67)$      \\
 			\hline
 			Country Fixed Effects?		 & Y			 & Y 		   & Y			  \\
 			Year Fixed Effects?			 & N			 & Y		   & Y			  \\
-			R$^2$                        & 0.64          & 0.82        & 0.82          \\
-			Adj. R$^2$                   & 0.63          & 0.79        & 0.79          \\
-			Num. obs.                    & 2379          & 758         & 758           \\
-			RMSE                         & 4.27          & 2.35        & 2.35          \\
+			R$^2$                        & 0.64          & 0.82     & 0.82          \\
+			Adj. R$^2$                   & 0.63          & 0.79     & 0.79          \\
+			Num. obs.                    & 2379          & 758      & 758           \\
+			RMSE                         & 4.27          & 2.35     & 2.35          \\
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Regional Autonomy's Effect on Democratization}
+		\caption{Segmental Autonomy's Effect on Democratization}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
 
 \subsection{Robustness Checks}
 
-\begin{table}
+One potential alternative explanation to the result in the previous section is the decentralization could be a component of the polity score index. To account for this, I run the same regression as in Table 5, but swap out the dependent variable for a measure of free and fair elections in Table 6. This variable comes from V-Dem, and asks: "Taking all aspects of the pre-election period, election day, and the post-election process into account, would you consider this national election to be free and fair?"\footnote{Coppedge et al., 2018} It is an ordinal variable where 0 indicates the election was not free or fair, and 4 indicates that the election was free and fair. Logically, we see that polity score is correlated with free and fair elections, given that the latter is a component of the former. More interestingly, we see that, as with the results in Table 5, the presence of regional autonomy increases free and fair elections by 1.8 points and is statistically significant at the p < 0.001 level. The presence of other consociational provisions also increases democracy when using this measure as a proxy. These results suggest that, irrespective of our measure of democracy, the implementation of regional autonomy serves to improve democracy in ethnically fractious regions. One final point: the interaction effect of regional autonomy and other provisions, is, as was the case in the previous model, negatively associated with democracy. This seems to be at odds with Norris (2008) who suggests that the more power-sharing provisions implemented, the better. In any case, the interaction effect between regional autonomy and other power-sharing provisions may be a fruitful area of further research. 
+
+\begin{table}[!htbp]
 	\begin{center}
 		\begin{tabular}{l c c c }
 			\hline
@@ -416,21 +418,23 @@ Table 5 shows the effect that the presence of segmental autonomy has on democrat
 			\hline
 			(Intercept)                  & $-1.39^{***}$ & $-0.64$     & $-0.64$      \\
 			& $(0.00)$      & $(0.64)$    & $(0.64)$     \\
-			dpi\_auton                   & $0.04$        & $-0.50$     & $1.80^{***}$ \\
+			Regional Autonomy                   & $0.04$        & $-0.50$     & $1.80^{***}$ \\
 			& $(1.56)$      & $(0.33)$    & $(0.36)$     \\
-			qog\_wbgi\_pve               &               & $0.04$      & $0.04$       \\
+			Political Instability               &               & $0.04$      & $0.04$       \\
 			&               & $(0.08)$    & $(0.08)$     \\
-			qog\_wdi\_gini               &               & $0.00$      & $0.00$       \\
+			Gini Index              &               & $0.00$      & $0.00$       \\
 			&               & $(0.01)$    & $(0.01)$     \\
-			qog\_gle\_pop                &               & $-0.00$     & $-0.00$      \\
+			Population               &               & $-0.00$     & $-0.00$      \\
 			&               & $(0.00)$    & $(0.00)$     \\
-			polity4\_polity\_score       &               & $0.05^{**}$ & $0.05^{**}$  \\
+			Polity Score       &               & $0.05^{**}$ & $0.05^{**}$  \\
 			&               & $(0.01)$    & $(0.01)$     \\
-			tb\_other\_provis            &               & $0.41^{*}$  & $0.41^{*}$   \\
+			Other Provisions            &               & $0.41^{*}$  & $0.41^{*}$   \\
 			&               & $(0.15)$    & $(0.15)$     \\
-			dpi\_auton:tb\_other\_provis &               &             & $-0.22$      \\
+			Regional Autonomy:Other Provisions &               &             & $-0.22$      \\
 			&               &             & $(0.29)$     \\
 			\hline
+			Country Fixed Effects?		 & Y			 & Y 		   & Y			  \\
+			Year Fixed Effects?			 & N			 & Y		   & Y			  \\
 			R$^2$                        & 0.69          & 0.92        & 0.92         \\
 			Adj. R$^2$                   & 0.68          & 0.91        & 0.91         \\
 			Num. obs.                    & 2111          & 753         & 753          \\
@@ -438,12 +442,12 @@ Table 5 shows the effect that the presence of segmental autonomy has on democrat
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Statistical models}
+		\caption{Alternative Measure to PolityIV Score (Free and Fair Elections)}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
 
-Table 6 provides an assessment of the different measures of autonomy's predictive validity. As discussed, much of the existing power-sharing literature purports that autonomy will either have a null or positive effect on democratization\footnote{Lijphart, 1969; Lijphart, 1975; Nordlinger, 1974; Norris, 2008; Kelly, 2019}. Running simple bivariate regressions on PolityIV's polity score measurement, I find that each measurement exerts a positive effect on polity score\footnote{The fact that these three measurements are statistically significant at the three star level is insignificant given the low adjusted $R^2$ value. More importantly, the three measures are all positively correlated with our outcome variable, and, though they supposedly measure the same construct, each exerts a different positive effect on the outcome variable.}. Obviously, this finding necessitates several caveats and qualifications such as the number of observations for each measurement, but it is an interesting finding nonetheless. It is also interesting that the one index measurement of autonomy exerts the weakest effect (0.05) whereas the two binary indicators exert more positive effects (1.69 and 1.52 respectively). This is perhaps because of the reliability and content validity issues faced by grouping error and systematic measurement error when operationalizing a concept as a binary, as was discussed in previous sections.  
+Table 7 provides an assessment of the different measures of autonomy's predictive validity. As discussed, much of the existing power-sharing literature purports that autonomy will either have a null or positive effect on democratization\footnote{Lijphart, 1969; Lijphart, 1975; Nordlinger, 1974; Norris, 2008; Kelly, 2019}. This is through the generation of multiple focal points that simultaneously reduces political pressure on the central government while also legitimizing the regime. When I take the most demanding regression model from the main results section---incorporating clustered standard errors, country and year fixed effects, and control variables---and use PolityIV's polity score measurement as the dependent variable, I find that each measurement exerts a completely different effect on polity score. The Ethnic Power Relations measurement of regional autonomy (which, like DPI's measurement, is a binary variable) suggests that the presence of regional autonomy in ethnically diverse states exerts a weakly negative and non-statistically significant effect on democratization. Similarly, the Regional Autonomy Index variable exerts a negative and statistically insignificant effect on democratization. Both alternative measurements remain insignificant when interacting with other consociational provisions, leading to questions of construct validity\footnote{It is also worth noting that the Regional Autonomy Index does not have the same country-coverage as the DPI and EPR measures, so it is likely that the discrepancy in results is due to this difference in scale.}. These findings seem to be in line with the core of my argument. Recall that the simple correlation table suggested that measures of regional autonomy were not well correlated with each other, whereas measures of subnational authority (a distinct but theoretically related concept) showed much higher correlation rates across different measurements. Given that existing measures of regional autonomy are not well correlated, it seems logical that we would see contrasting results in our regression model. In any case, these results suggest that, even with the use of indices and other aggregate measurements, the concept of regional autonomy is difficult to pin down. Future research should focus on understanding, defining, and measuring segmental autonomy more effectively.  
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -453,27 +457,29 @@ Table 6 provides an assessment of the different measures of autonomy's predictiv
 			\hline
 			(Intercept)                          & $-4.07$       & $-4.23$  &          \\
 			& $(2.96)$      & $(2.86)$ &          \\
-			dpi\_auton                           & $11.53^{***}$ &          &          \\
+			DPI                           & $11.53^{***}$ &          &          \\
 			& $(1.69)$      &          &          \\
-			tb\_other\_provis                    & $0.65$        & $0.07$   & $-3.94$  \\
+			Other Provisions                    & $0.65$        & $0.07$   & $-3.94$  \\
 			& $(0.77)$      & $(0.70)$ & $(8.35)$ \\
-			qog\_wbgi\_pve                       & $0.87$        & $0.71$   & $0.33$   \\
+			Political Instability                       & $0.87$        & $0.71$   & $0.33$   \\
 			& $(0.65)$      & $(0.65)$ & $(0.48)$ \\
-			qog\_wdi\_gini                       & $0.02$        & $0.02$   & $-0.06$  \\
+			Gini Index                      & $0.02$        & $0.02$   & $-0.06$  \\
 			& $(0.05)$      & $(0.05)$ & $(0.07)$ \\
-			qog\_gle\_pop                        & $0.00$        & $0.00$   & $0.00$   \\
+			Population                        & $0.00$        & $0.00$   & $0.00$   \\
 			& $(0.00)$      & $(0.00)$ & $(0.00)$ \\
-			dpi\_auton:tb\_other\_provis         & $-6.20^{*}$   &          &          \\
+			DPI:Other Provisions         & $-6.20^{*}$   &          &          \\
 			& $(2.67)$      &          &          \\
-			epr\_reg\_aut\_dum                   &               & $-0.25$  &          \\
+			EPR                   &               & $-0.25$  &          \\
 			&               & $(0.68)$ &          \\
-			epr\_reg\_aut\_dum:tb\_other\_provis &               & $-1.55$  &          \\
+			EPR:Other Provisions &               & $-1.55$  &          \\
 			&               & $(2.11)$ &          \\
-			rai\_n\_RAI                          &               &          & $-8.19$  \\
+			RAI                          &               &          & $-8.19$  \\
 			&               &          & $(8.35)$ \\
-			rai\_n\_RAI:tb\_other\_provis        &               &          & $8.60$   \\
+			RAI:Other Provisions        &               &          & $8.60$   \\
 			&               &          & $(8.25)$ \\
 			\hline
+			Country Fixed Effects?		 		 & Y			 & Y 		& Y			  \\
+			Year Fixed Effects?			 		 & Y			 & Y		& Y			  \\
 			R$^2$                                & 0.82          & 0.81     & 0.77     \\
 			Adj. R$^2$                           & 0.79          & 0.79     & 0.73     \\
 			Num. obs.                            & 758           & 773      & 221      \\
@@ -481,15 +487,13 @@ Table 6 provides an assessment of the different measures of autonomy's predictiv
 			\hline
 			\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
 		\end{tabular}
-		\caption{Statistical models}
+		\caption{Comparison of Measures of Regional Autonomy}
 		\label{table:coefficients}
 	\end{center}
 \end{table}
 
 \section{Discussion}
-The OLS and Cox regression models provide some convincing evidence in support of my initial hypotheses.
-
-Regarding levels of social trust, we see segmental autonomy provisions alone having no significant effect, though we do see the presence of multiple consociational provisions diminishing levels of social trust with statistical significance. However, the high RMSE value and r-squared value purports to only explain fifty percent of the variance in the relationship between autonomy and social trust, and so even when account for country and year fixed-effects and our controls, these core provisions fail to explain the underlying patterns in the data. While I will elucidate further in the next section, issues such as a lack of data when controlling for all independent variables may indeed have affected our results. 
+The OLS and Cox regression models provide some convincing evidence in support of my initial hypotheses. Regarding levels of social trust, we see segmental autonomy provisions alone having no significant effect, though we do see the presence of multiple consociational provisions diminishing levels of social trust with statistical significance. However, the high RMSE value and r-squared value purports to only explain fifty percent of the variance in the relationship between autonomy and social trust, and so even when account for country and year fixed-effects and our controls, these core provisions fail to explain the underlying patterns in the data. While I will elucidate further in the next section, issues such as a lack of data when controlling for all independent variables may indeed have affected our results. 
 
 Similarly, mixed results emerge when looking at conflict intensity. As expected, we see political stability exerting a statistically significant effect on conflict rates, where less stable polities are more likely to see more intense conflicts. We do not see any relationship between autonomy and conflict intensity, though we see that the inclusion of multiple consociational provisions correlates with reduced rates of conflict. This finding is in line with existing literature and with my second hypothesis, though this suggests that segmental autonomy—even if present alongside other power-sharing provisions—does not affect conflict intensity. Additionally, an r-squared value of 0.55 warrants further investigation because, as is the case with the first model, our model fails to fully explain the variation in the data. 
 

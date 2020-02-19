@@ -31,9 +31,6 @@ library(ggplot2)
 # Load PSP data, created in tjbrailey_wrangle_data.Rmd.
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 psp <- psp[,-1]
-psp <- psp %>%
-    dplyr::mutate_if(is.numeric, round, digits = 3) %>%
-    dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
 
 # Load esssential scripts
 source(paste0(here::here(), "/R/csts.R"))
@@ -101,6 +98,10 @@ reporttools::displayCoxPH(cox3)
 ```
 # Bivariate Comparison Across Operationalizations
 ```{r}
+psp <- psp %>%
+    dplyr::mutate_if(is.numeric, round, digits = 3) %>%
+    dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
+
 dpi_reg <- estimatr::lm_robust(polity4_polity_score ~ (dpi_auton * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop, data = psp, se_type = "CR2", clusters = country)
 
 epr_reg <- estimatr::lm_robust(polity4_polity_score ~ (epr_reg_aut_dum * tb_other_provis) + as.factor(country) + as.factor(year) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop, data = psp, se_type = "CR2", clusters = country)

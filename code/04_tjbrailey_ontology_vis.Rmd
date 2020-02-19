@@ -61,8 +61,8 @@ psp_ontology_vis <- networkD3::diagonalNetwork(psp_list,
                          fontSize = 14,
                          textColour = "black",
                          opacity = 0.7,
-                         width = 900,
-                         height = 900)
+                         width = 1500,
+                         height = 1200)
 # visualize.
 psp_ontology_vis
 ```
@@ -70,5 +70,5 @@ psp_ontology_vis
 ```{r, include = FALSE}
 # save visualization.
 networkD3::saveNetwork(psp_ontology_vis, file = paste0(here::here(), '/vis/psp_ontology_vis.html'))
-webshot::webshot("file:///C:/Users/Tom%20Brailey/Dropbox/github_private/SeniorThesis/vis/psp_ontology_vis.html", paste0(here::here(), "/vis/psp_ontology_vis.png"))
+webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/psp_ontology_vis.html", paste0(here::here(), "/vis/psp_ontology_vis.png"))
 ```
