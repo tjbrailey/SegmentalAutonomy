@@ -15,6 +15,10 @@
 \usepackage{lipsum}
 \usepackage[svgnames]{xcolor}
 \usepackage{listings}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{epstopdf}
 
 \lstset{language=R,
 	basicstyle=\small\ttfamily,
@@ -35,7 +39,7 @@
 \renewcommand{\cftlottitlefont}{\hfill\Large\bfseries}
 \renewcommand{\cftafterlottitle}{\hfill}
 
-\graphicspath{{./}{Documents}}
+\graphicspath{{./}{Documents}} 
 
 \begin{document}
 
@@ -163,7 +167,13 @@ Kuperman’s work makes two arguments that serve to further muddy the debate on 
 \subsection{Ontologizing Power-Sharing}
 In addition to creating a large-N dataset on the provisions of power-sharing, I have formulated an ontology (Figure XXXX) of the different formulations of power-sharing, power-dividing, and partition. Starting with Lijphart’s (1969) seminal work and moving forward, I have attempted to classify and categorize each different definition and their purported provisions. Many of these provisions could be further sub-categorized, and there is marked variation in the specificity of the provisions across conceptions, but this ontology provides a broad but solid overview of the similarities and differences between the existing conceptions of peace institutions. To supplement the broad ontology, I have also created a visualization of provisions that overlap between concepts. That way, the contested and fluid nature of these provisions can be more easily interpreted.  
 
-[ADD PAGE FOR ONTOLOGY]
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 6in]{reg_aut_ontology_vis.png}
+	\end{center}
+\caption{Regional Autonomy Across Conceptualizations}
+\end{figure}
+
 
 This ontology could well be a significant development in the power-sharing literature. There are currently seventy-eight provisions when broken down by author, and yet these works often fail to highlight the relevance of the provisions themselves. I do not know whether all of the provisions of, say, coercive consociationalism or inclusive power-sharing, exert the same effect, whether some are redundant, or whether, when it comes to the institutionalization of peace, I face a simple case of ``more is better''. While these questions lie outside of the scope of this paper, I believe that a deeper analysis into the interactions of all known provisions---as opposed to the broader concepts themselves---will produce fascinating findings. 
 
@@ -548,48 +558,51 @@ Below is a list of the main variables used in the summary statistics and models 
 		\code{year}{Year of country observation.}
 		\code{cowc}{Correlates of War country code (character).}
 		\code{cown}{Correlates of War country code (numeric).}
-		\code{year}{}
-		\code{year}{}
-		\code{year}{}
-		\code{year}{}
-		\code{year}{}
-		\code{year}{}
 	\end{codebook}
 
 \subsubsection{Populations}
 
 \begin{codebook}
-	\code{qog\_al\_ethnic}{}
-	\code{}{}
+	\code{qog\_al\_ethnic}{Ethnic fractionalization.}
+	\code{qog\_hum\_trust}{Index of social trust survey questions.}
+	\code{qog\_hum\_supdem}{Index of support for democracy survey questions.}
+	\code{qog\_hum\_satdem}{Index of satisfaction with democracy survey questions.}
+	\code{qog\_gle\_pop}{Population by year.}
 \end{codebook}
 
 \subsubsection{Democracy and Political System}
 
 \begin{codebook}
-	\code{dpi\_system}{}
-	\code{}{}
+	\code{dpi\_system}{Political system.}
+	\code{polity4\_polity\_score}{PolityIV's polity score index.}
+	\code{vdem\_v2elfrfair}{Free and fair elections (continuous).}
+	\code{qog\_wbgi\_pve}{Political instability (continuous).}
+	\code{qog\_wdi\_gini}{Gini Index.}
 \end{codebook}
 
 \subsubsection{Measures of Segmental Autonomy and Authority}
 
 \begin{codebook}
-	\code{idc\_subtax}{}
-	\code{idc\_subed}{}
-	\code{idc\_subpolice}{}
-	\code{idc\_fedunits}{}
-	\code{dpi\_auton}{}
-	\code{dpi\_author}{}
-	\code{epr\_reg\_aut\_dum}{}
-	\code{epr\_reg\_aut\_cont}{}
-	\code{rai\_n\_RAI}{}
+	\code{idc\_subtax}{Subnational tax authority.}
+	\code{idc\_subed}{Subnational education authority.}
+	\code{idc\_subpolice}{Subnational police authority.}
+	\code{idc\_fedunits}{Change in federal units.}
+	\code{dpi\_auton}{Presence of autonomous regions.}
+	\code{dpi\_author}{Provinces with authority over spending, taxing, or legislating.}
+	\code{epr\_reg\_aut\_dum}{Regional autonomy for salient ethnic groups (binary).}
+	\code{epr\_reg\_aut\_cont}{Regional autonomy for salient ethnic groups (interval).}
+	\code{rai\_n\_RAI}{Regional autonomy index.}
 \end{codebook}
 
 
 \subsubsection{Other Provisions of Power-Sharing}
 	
 	\begin{codebook}
-		\code{idc\_mveto}{}
-		\code{}{}
+		\code{idc\_mveto}{Mutual veto.}
+		\code{gcman}{Mandated grand coalition.}
+		\code{gcimp}{Grand coalition implemented.}
+		\code{dpi\_pr}{Proportional Representation.}
+		\code{tb\_other\_provis}{Presence of other consociational provisions (binary).}
 	\end{codebook}
 
 \subsubsection{Conflict}
@@ -597,15 +610,21 @@ Below is a list of the main variables used in the summary statistics and models 
 \begin{codebook}
 	\code{vdem\_e\_miinterc}{Armed conflict (interval).}
 	\code{vdem\_e\_civil\_war}{Civil war (binary).}
-	\code{ucdp\_side\_a}{}
-	\code{ucdp\_side\_b}{}
-	\code{ucdp\_territory\_name}{}
-	\code{ucdp\_intensity\_level}{}
-	\code{ucdp\_cumulative\_intensity}{}
-	\code{ucdp\_type\_of\_conflict}{}
-	\code{prio\_onset}{}
+	\code{ucdp\_side\_a}{Government in conflict.}
+	\code{ucdp\_side\_b}{Opposition actor in conflict.}
+	\code{ucdp\_territory\_name}{Territory over which the conflict is fought.}
+	\code{ucdp\_intensity\_level}{Intensity level of the conflict (interval).}
+	\code{ucdp\_cumulative\_intensity}{Intensity level of the conflict, accounting for time (binary).}
+	\code{ucdp\_type\_of\_conflict}{Type of conflict: Extrasystemic, interstate, internal.}
+	\code{prio\_onset}{Onset of conflict (binary).}
 \end{codebook}
 
 \subsection{Summary Statistics}
+
+\subsection{Ontology}
+\begin{sidewaysfigure}[ht]
+	\includegraphics[width = 9.5in]{psp_ontology_vis.png}
+	\caption{Full Ontology of Power-Sharing Provisions}
+\end{sidewaysfigure}
 
 \end{document}

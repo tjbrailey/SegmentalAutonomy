@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  11 MAR 2020 23:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  12 MAR 2020 02:47
 entering extended mode
 **./psp.tex
 (psp.tex
@@ -491,58 +491,36 @@ File: listings.cfg 2019/09/10 1.8c listings configuration
 ))
 Package: listings 2019/09/10 1.8c (Carsten Heinz)
 
-("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/wrapfig\wrapfig.st
+y"
+\wrapoverhang=\dimen166
+\WF@size=\dimen167
+\c@WF@wrappedlines=\count275
+\WF@box=\box54
+\WF@everypar=\toks28
+Package: wrapfig 2003/01/31  v 3.6
+)
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\lscape.st
+y"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\rotating.
 sty"
-File: lstlang1.sty 2019/09/10 1.8c listings language file
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang2.
-sty"
-File: lstlang2.sty 2019/09/10 1.8c listings language file
+\c@r@tfl@t=\count276
+\rotFPtop=\skip85
+\rotFPbot=\skip86
+\rot@float@box=\box55
+\rot@mess@toks=\toks29
 )
-("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang3.
-sty"
-File: lstlang3.sty 2019/09/10 1.8c listings language file
-) (psp.aux
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
+pdf.sty"
+Package: epstopdf 2019/11/24 v2.7 Conversion with epstopdf on the fly (HO)
 
-LaTeX Warning: Label `table:coefficients' multiply defined.
-
-
-LaTeX Warning: Label `table:coefficients' multiply defined.
-
-
-LaTeX Warning: Label `table:coefficients' multiply defined.
-
-)
-\openout1 = `psp.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-
-("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
-df.mkii"
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count275
-\scratchdimen=\dimen166
-\scratchbox=\box54
-\nofMPsegments=\count276
-\nofMParguments=\count277
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count278
-\MPscratchDim=\dimen167
-\MPnumerator=\count279
-\makeMPintoPDFobject=\count280
-\everyMPtoPDFconversion=\toks29
-)
 ("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epsto
 pdf-base.sty"
 Package: epstopdf-base 2019/11/24 v2.7 Base part for package epstopdf
@@ -593,6 +571,58 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 460.
+))
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
+sty"
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang2.
+sty"
+File: lstlang2.sty 2019/09/10 1.8c listings language file
+)
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang3.
+sty"
+File: lstlang3.sty 2019/09/10 1.8c listings language file
+) (psp.aux
+
+LaTeX Warning: Label `table:coefficients' multiply defined.
+
+
+LaTeX Warning: Label `table:coefficients' multiply defined.
+
+
+LaTeX Warning: Label `table:coefficients' multiply defined.
+
+)
+\openout1 = `psp.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
+("C:\Users\tbrai\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
+df.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count277
+\scratchdimen=\dimen168
+\scratchbox=\box56
+\nofMPsegments=\count278
+\nofMParguments=\count279
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count280
+\MPscratchDim=\dimen169
+\MPnumerator=\count281
+\makeMPintoPDFobject=\count282
+\everyMPtoPDFconversion=\toks31
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -628,20 +658,20 @@ G,.JBIG2,.JB2,.eps]
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count281
+\c@lstlisting=\count283
 <ucsd_seal.png, id=1, 1927.2pt x 1927.2pt>
 File: ucsd_seal.png Graphic file (type png)
 <use ucsd_seal.png>
-Package pdftex.def Info: ucsd_seal.png  used on input line 73.
+Package pdftex.def Info: ucsd_seal.png  used on input line 77.
 (pdftex.def)             Requested size: 93.94957pt x 93.92488pt.
 [1
 
 {C:/Users/tbrai/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./ucsd_seal
-.png>] (psp.toc)
+.png>] (psp.toc [1])
 \tf@toc=\write3
 \openout3 = `psp.toc'.
 
- [1] (psp.lof)
+ (psp.lof)
 \tf@lof=\write4
 \openout4 = `psp.lof'.
 
@@ -650,15 +680,21 @@ Package pdftex.def Info: ucsd_seal.png  used on input line 73.
 \openout5 = `psp.lot'.
 
  [2] [1] [1] [2] [3] [4] [5] [6]
-[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
-[22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
-[37] [38] [39] [40] [41] [42] (psp.bbl
+[7] [8] [9] [10] [11] [12]
+<reg_aut_ontology_vis.png, id=63, 505.22084pt x 408.19167pt>
+File: reg_aut_ontology_vis.png Graphic file (type png)
+<use reg_aut_ontology_vis.png>
+Package pdftex.def Info: reg_aut_ontology_vis.png  used on input line 172.
+(pdftex.def)             Requested size: 433.62pt x 350.34041pt.
+ [13 <./reg_aut_ontology_vis.png>] [14] [15] [16]
+[17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31]
+[32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] (psp.bbl
 Underfull \hbox (badness 4048) in paragraph at lines 10--14
 []\OT1/cmr/m/n/12 Afrobarometer.  Afro-barom-e-ter Data, Mali, Round 1, 1991, a
 vail-able at
  []
 
-[43] [44]
+[44] [45]
 Underfull \hbox (badness 4205) in paragraph at lines 161--166
 []\OT1/cmr/m/n/12 Maria Escobar-Lemmon and Ash-ley D. Ross.  Does De-cen-tral-i
 za-tion Im-
@@ -676,7 +712,7 @@ Underfull \hbox (badness 2119) in paragraph at lines 161--166
 ence\OT1/cmr/m/n/12 , 58(1):175--188, 2014.  []eprint:
  []
 
-[45]
+[46]
 Underfull \hbox (badness 1226) in paragraph at lines 168--172
 []\OT1/cmr/m/n/12 Milton J. Es-man.  The Man-age-ment of Com-mu-nal Con-flict. 
  \OT1/cmr/m/it/12 Pub-lic Pol-icy\OT1/cmr/m/n/12 ,
@@ -688,13 +724,13 @@ Underfull \hbox (badness 1728) in paragraph at lines 174--179
 -nance in Bosnia-
  []
 
-[46] [47] [48]
+[47] [48] [49]
 Underfull \hbox (badness 1845) in paragraph at lines 363--369
 []\OT1/cmr/m/n/12 Arend Li-jphart.  Di-vi-sion of Power:: The Federal-Unitary a
 nd Centralized-
  []
 
-[49]
+[50]
 Underfull \hbox (badness 1122) in paragraph at lines 454--459
 []\OT1/cmr/m/n/12 Andreas Mehler.  Why Fed-er-al-ism Did Not Lead to Se-ces-sio
 n in Cameroon.
@@ -706,7 +742,7 @@ Underfull \hbox (badness 5847) in paragraph at lines 454--459
 4.  Pub-lisher: Rout-ledge []eprint:
  []
 
-[50] [51]
+[51] [52]
 Underfull \hbox (badness 7522) in paragraph at lines 560--565
 []\OT1/cmr/m/n/12 Philip G. Roeder.  Se-ces-sion-ism, In-sti-tu-tions, and Chan
 ge.  \OT1/cmr/m/it/12 Eth-nop-
@@ -718,7 +754,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 560--565
 -lisher: Rout-ledge []eprint:
  []
 
-[52] [53]
+[53] [54]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 6
 34.
 
@@ -728,21 +764,37 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 634.
 
-[54]) [55]
-\cbl=\skip85
- [56] [57] [58] (psp.aux)
+[55]) [56]
+\cbl=\skip87
+ [57]
+Underfull \hbox (badness 1215) in paragraph at lines 591--591
+[]\OT1/cmr/m/n/12 Provinces with au-thor-ity over spend-ing,
+ []
+
+[58]
+<psp_ontology_vis.png, id=216, 505.22084pt x 408.19167pt>
+File: psp_ontology_vis.png Graphic file (type png)
+<use psp_ontology_vis.png>
+Package pdftex.def Info: psp_ontology_vis.png  used on input line 626.
+(pdftex.def)             Requested size: 686.56499pt x 554.74094pt.
+
+Overfull \hbox (36.13498pt too wide) in paragraph at lines 626--627
+[][] 
+ []
+
+[59] [60 <./psp_ontology_vis.png>] (psp.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 16654 strings out of 492484
- 294928 string characters out of 3121601
- 644496 words of memory out of 3000000
- 20852 multiletter control sequences out of 15000+200000
+ 16861 strings out of 492484
+ 298109 string characters out of 3121601
+ 656655 words of memory out of 3000000
+ 21042 multiletter control sequences out of 15000+200000
  539949 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 52i,13n,71p,2468b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 54i,13n,71p,2468b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx8.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fo
@@ -759,9 +811,9 @@ ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/tbrai/AppData
 /Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/
 tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.p
 fb>
-Output written on psp.pdf (62 pages, 767769 bytes).
+Output written on psp.pdf (64 pages, 952830 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
+ 267 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
