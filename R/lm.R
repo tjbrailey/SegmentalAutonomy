@@ -35,8 +35,8 @@ psp_lm <- function(dv, iv){
   
   
   lm1_tex <- texreg::texreg(lm1, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-  lm2_tex <- texreg::texreg(lm5, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
-  lm3_tex <- texreg::texreg(lm6, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
+  lm2_tex <- texreg::texreg(lm2, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
+  lm3_tex <- texreg::texreg(lm3, omit.coef = "as.factor", include.ci = FALSE, custom.gof.rows = list(`Fixed effects` = ("Y")))
   
   
   lm_full_tex <- texreg::texreg(list(lm1, lm2, lm3), 
