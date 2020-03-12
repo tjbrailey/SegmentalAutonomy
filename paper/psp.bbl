@@ -6,6 +6,12 @@ Robert Adcock and David Collier.
   {Quantitative} {Research}.
 \newblock {\em The American Political Science Review}, 95(3):529--546, 2001.
 
+\bibitem{afrobarometer_afrobarometer_nodate}
+{Afrobarometer}.
+\newblock Afrobarometer {Data}, {Mali}, {Round} 1, 1991, available at
+  http://www.afrobarometer.org.
+\newblock type: dataset.
+
 \bibitem{allansson_ucdp_nodate}
 Marie Allansson.
 \newblock {UCDP} {Conflict} {Encyclopedia} ({UCDP} database) - {Department} of
@@ -58,7 +64,7 @@ Helga~Malmin Binningsbø.
 \newblock {\em International Area Studies Review}, 16(1):89--112, March 2013.
 
 \bibitem{bogaards_favourable_1998}
-MATTHIJS Bogaards.
+Matthijs Bogaards.
 \newblock The favourable factors for consociational democracy: a review.
 \newblock {\em European journal of political research}, 33(4):475--496, June
   1998.
@@ -151,6 +157,13 @@ Emily Dunlop and Elisabeth King.
 \newblock {\em Compare: A Journal of Comparative and International Education},
   pages 1--21, June 2019.
 
+\bibitem{escobarlemmon_does_2014}
+Maria Escobar‐Lemmon and Ashley~D. Ross.
+\newblock Does {Decentralization} {Improve} {Perceptions} of {Accountability}?
+  {Attitudinal} {Evidence} from {Colombia}.
+\newblock {\em American Journal of Political Science}, 58(1):175--188, 2014.
+\newblock \_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/ajps.12043.
+
 \bibitem{esman_management_1973}
 Milton~J. Esman.
 \newblock The {Management} of {Communal} {Conflict}.
@@ -163,6 +176,14 @@ Michael~Joshua Fleet.
   {Methods} of {Multi}-{Ethnic} {Government}: {A} {Study} of
   {Consociationalism} and {Centripetalism}.
 \newblock {\em Mapping Politics}, 6(0), October 2014.
+
+\bibitem{gasper_decentralization_1989}
+D.~R. Gasper.
+\newblock Decentralization of planning and administration in {Zimbabwe} :
+  international perspectives and 1980s experiences.
+\newblock Technical Report 18929, International Institute of Social Studies of
+  Erasmus University Rotterdam (ISS), The Hague, November 1989.
+\newblock Publication Title: ISS Working Papers - General Series.
 
 \bibitem{gates_power-sharing_2008}
 Scott Gates, Kaare Ström, {International Peace Research Institute (Oslo)},
@@ -429,6 +450,13 @@ Andreas Mehler.
   {Determinants} of {Constitutional} {Reform} in {Divided} {Societies}.
 \newblock {\em Civil Wars}, 15(sup1):21--43, December 2013.
 
+\bibitem{mehler_why_2014}
+Andreas Mehler.
+\newblock Why {Federalism} {Did} {Not} {Lead} to {Secession} in {Cameroon}.
+\newblock {\em Ethnopolitics}, 13(1):48--66, January 2014.
+\newblock Publisher: Routledge \_eprint:
+  https://doi.org/10.1080/17449057.2013.844435.
+
 \bibitem{mehlum_institutions_2006}
 Halvor Mehlum, Karl Moene, and Ragnar Torvik.
 \newblock Institutions and the {Resource} {Curse}*.
@@ -516,6 +544,7 @@ Megha Ram and Kaare~Wallace Strøm.
 \newblock Mutual veto and power-sharing.
 \newblock {\em International Area Studies Review}, 17(4):343--358, December
   2014.
+\newblock Publisher: SAGE Publications Ltd.
 
 \bibitem{regan_diplomatic_2009}
 Patrick~M. Regan, Richard~W. Frank, and Aysegul Aydin.
@@ -526,6 +555,13 @@ Patrick~M. Regan, Richard~W. Frank, and Aysegul Aydin.
 Philip~G. Roeder.
 \newblock Soviet {Federalism} and {Ethnic} {Mobilization}.
 \newblock {\em World Politics}, 43(2):196--232, 1991.
+
+\bibitem{roeder_secessionism_2014}
+Philip~G. Roeder.
+\newblock Secessionism, {Institutions}, and {Change}.
+\newblock {\em Ethnopolitics}, 13(1):86--104, January 2014.
+\newblock Publisher: Routledge \_eprint:
+  https://doi.org/10.1080/17449057.2013.844437.
 
 \bibitem{roeder_sustainable_2003}
 Philip~G. Roeder and Donald Rothchild.
@@ -555,6 +591,7 @@ Jennifer~C. Seely.
 \newblock A {Political} {Analysis} of {Decentralisation}: {Coopting} the
   {Tuareg} {Threat} in {Mali}.
 \newblock {\em The Journal of Modern African Studies}, 39(3):499--524, 2001.
+\newblock Publisher: Cambridge University Press.
 
 \bibitem{sriram_making_2013}
 Chandra~Lekha Sriram.
@@ -596,6 +633,22 @@ D.~M. Tull.
 {United Nations High Commissioner for Refugees}.
 \newblock Refworld {\textbar} {Assessment} for {Tuareg} in {Niger}.
 \newblock Technical report, 2003.
+
+\bibitem{unknown_leader_1991}
+{Unknown}.
+\newblock Leader of {Mali} {Coup} {Promises} {Democracy}, March 1991.
+\newblock Library Catalog: www.latimes.com.
+
+\bibitem{unknown_malis_1991}
+{Unknown}.
+\newblock Mali's {Dictator} {Is} {Overthrown} in {Coup}.
+\newblock {\em The New York Times}, March 1991.
+
+\bibitem{vhumbunu_reviving_nodate}
+Clayton Vhumbunu.
+\newblock Reviving peace in {South} {Sudan} through the {Revitalised} {Peace}
+  {Agreement}.
+\newblock Library Catalog: www.accord.org.za.
 
 \bibitem{vogt_integrating_2015}
 Manuel Vogt, Nils-Christian Bormann, Seraina Rüegger, Lars-Erik Cederman,
