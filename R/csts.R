@@ -1,12 +1,12 @@
-# Cross-Section Time-Series Anlaysis
-
-### A function that takes an independent and a dependent variable and generates a cross-sectional analysis plot of the 
-### two variables. This function will be sourced into the 03_tjbrailey_data_analysis.Rmd file and will run several 
-### iterations using different IVs and DVs. 
-
-# Input Variables
-  # - dv - Dependent Variable
-  # - iv - Independent Variable
+#' Cross-Section Time-Series Anlaysis
+#'
+#' A function that takes an independent and a dependent variable and generates a cross-sectional analysis plot of the 
+#' two variables. This function will be sourced into the 03_tjbrailey_data_analysis.Rmd file and will run several 
+#' iterations using different IVs and DVs. 
+#' 
+#' @param dv Dependent variable.
+#' @param iv Independent variable.
+#' @return plot The plot. 
 
 csts <- function(dv, iv){
   
@@ -54,7 +54,7 @@ csts <- function(dv, iv){
     geom_point() + 
     geom_smooth(method = "lm", se = FALSE) + 
     theme_bw() +
-    labs(title = paste0(dv_text,  " Value by Percentage of Years Under Segmental Autonomy"),
+    labs(title = stringr::str_wrap(paste0(dv_text,  " Value by Percentage of Years Under Segmental Autonomy"), 50),
        x = paste0("Percentage of Years Under Segmental Autonomy (", iv, ")"),
        y = paste0(dv_text, " Value")) +
     theme(title = element_text(size = 16),
