@@ -1,5 +1,5 @@
 ---
-title: "02 Variable Exploring"
+title: "02 Variable Exploration"
 author: "Thomas J. Brailey"
 date: "29/09/2019"
 output:
@@ -26,48 +26,48 @@ library(magrittr)
 library(ggplot2)
 ```
 
-# Load Data
+# Load data
 ```{r}
-# Load PSP data, created in tjbrailey_wrangle_data.Rmd.
+# Load PSP data, created in tjbrailey_wrangle_data.Rmd
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 psp <- psp[,-1]
 variable.names(psp)
 ```
 
-# Exploration of Core Consociational Provisions
+# Exploration of core consociational provisions
 ```{r}
-# Exploring consociationalism.
+# Exploring consociationalism
 
-# States that employ mutual veto provisions.
+# States that employ mutual veto provisions
 psp %>% 
   dplyr::filter(idc_mveto == 1) %>%
   dplyr::distinct(country)
 
-# States that employ grand coalition provisions.
+# States that employ grand coalition provisions
 psp %>%
   dplyr::filter(idc_gcman == 1 & idc_gcimp == 1) %>%
   dplyr::distinct(country)
  
-# States that employ proportionality/
+# States that employ proportionality
 psp %>%
   dplyr::filter(dpi_pr == 1) %>%
   dplyr::distinct(country)
 
-# States that employ segmental autonomy.
+# States that employ segmental autonomy
 psp %>%
   dplyr::filter(idc_auton == 1) %>% 
   dplyr::distinct(country)
 ```
 
-# Exploration of Segmental Autonomy
+# Exploration of segmental autonomy
 ```{r}
-# idc_auton missingness/summary.
+# idc_auton missingness/summary
 auton_sum <- psp %>%
   dplyr::select(country, year, idc_auton) %>%
   dplyr::group_by(idc_auton) %>%
   dplyr::summarize(summary = n())
 
-# States that have employed segmental autonomy provisions. 
+# States that have employed segmental autonomy provisions
 seg_states <- psp %>%
   dplyr::filter(idc_auton == 1) %>% 
   dplyr::distinct(country) %>%
@@ -76,7 +76,7 @@ seg_states <- psp %>%
 seg_states_dat <- psp %>% 
   dplyr::filter(country %in% c(seg_states))
 
-# States that have, between 1975 and 2010, employed segmental autonomy provisions.
+# States that have, between 1975 and 2010, employed segmental autonomy provisions
 seg_imp <- seg_states_dat %>%
   dplyr::filter(idc_auton == 0) %>%
   dplyr::distinct(country) %>%
@@ -103,7 +103,7 @@ ggsave(gp1, filename = paste0(here::here(), "/vis/seg_auton_implement.png"), uni
 ```
 
 ```{r}
-# Subdivisions of Segmental Autonomy.
+# Subdivisions of segmental autonomy
 subed <- psp %>%
   dplyr::filter(idc_subed == 1) %>%
   dplyr::distinct(country, year)

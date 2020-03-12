@@ -27,13 +27,13 @@ library(magrittr)
 library(ggplot2)
 ```
 
-# Load Data
+# Load data
 ```{r}
-# Set working directory. 
+# Set working directory 
 wd <- paste0(here::here(), '/data/') 
 
-# Install datasets.
-# Power-sharing-specific datasets.
+# Install datasets
+# Power-sharing-specific datasets
 idc <- rio::import(paste0(wd, 'IDC_country-year_v1_0.RData'))
 dtd <- rio::import(paste0(wd,'Democracy Timeseries Data January 2009 Excel2007.csv'))
 vdem <- rio::import(paste0(wd,"V-Dem-CY+Others-v8.csv"))
@@ -44,12 +44,13 @@ intra <- rio::import(paste0(wd, 'annual_onset.dta'))
 p4 <- rio::import(paste0(here::here(), "/data/p4v2017.xls"))
 ```
 
-# Set Baseline Data
+# Tidy datasets
+## Set baseline data
 ```{r}
-# Use Strom et al.'s (2017) data as baseline.
+# Use Strom et al.'s (2017) data as baseline
 tb <- idc
 
-# Rename unmatched countries.
+# Rename unmatched countries
 tb$country[tb$country == "Cent. Af. Rep."] <- "Central African Republic"
 tb$country[tb$country == "Dom. Rep."] <- "Dominican Republic"
 tb$country[tb$country == "GDR"] <- "German Democratic Republic"
@@ -65,7 +66,7 @@ tb$cown <- countrycode::countrycode(tb$country, 'country.name', 'cown')
 
 # Some values were not matched unambiguously: Serbia
 
-# Select key variables.
+# Select key variables
 tb <- tb %>%
   dplyr::select(country, 
                 cowc, 
@@ -102,9 +103,9 @@ tb <- tb %>%
                 )
 ```
 
-## Clean V-Dem
+## Clean VDEM
 ```{r}
-# Select key variables.
+# Select key variables
 vdem_psp_sub <- vdem %>%
   dplyr::select(country_name, 
                 year, 
@@ -189,7 +190,7 @@ qog_ts_psp_sub <- qog_ts_psp_sub %>%
 
 ## Clean DPI
 ```{r}
-# Select key variables.
+# Select key variables
 dpi_psp_sub <- dpi %>%
   dplyr::select(countryname, 
                 year,
@@ -259,7 +260,7 @@ p4_psp_sub <- p4_psp_sub %>%
   dplyr::filter(!is.na(cowc)) %>%
   dplyr::select(-country)
 ```
-# Clean RAI
+## Clean RAI
 ```{r}
 rai_psp_sub <- rio::import(paste0(here::here(), "/data/RAI_country_scores_2015.xlsx")) %>%
   dplyr::select(country_name, year, n_RAI) %>%
@@ -269,7 +270,7 @@ rai_psp_sub <- rio::import(paste0(here::here(), "/data/RAI_country_scores_2015.x
   dplyr::select(cown, cowc, year, n_RAI)
 ```
 
-# Clean EPR
+## Clean EPR
 ```{r}
 epr <- rio::import(paste0(here::here(), "/data/EPR-2018.1.1.csv")) %>%
   dplyr::mutate(cown = countrycode::countrycode(gwid, "gwn", "cown")) %>%
@@ -297,9 +298,9 @@ epr_psp_sub <- epr_wide %>%
 
 ```
 
-# Join Data
+# Join data
 ```{r}
-# Join data one-by-one. Check for discrepancies. 
+# Join data one-by-one. Check for discrepancies
 tb_2 <- dplyr::left_join(tb, qog_ts_psp_sub, by = c("cown", "cowc", "year"))
 tb_3 <- dplyr::left_join(tb_2, dpi_psp_sub, by = c("cown", "cowc", "year"))
 tb_4 <- dplyr::left_join(tb_3, vdem_psp_sub, by = c("cown", "cowc", "year"))
@@ -309,24 +310,24 @@ tb_7 <- dplyr::left_join(tb_6, intra_psp_sub, by = c("cown", "cowc", "year"))
 tb_8 <- dplyr::left_join(tb_7, p4_psp_sub, by = c("cown", "cowc", "year"))
 tb_9 <- dplyr::left_join(tb_8, rai_psp_sub, by = c("cown", "cowc", "year"))
 
-# Collapse duplicate country/years whie retaining values.
+# Collapse duplicate country/years whie retaining values
 tb_10 <- tb_9 %>% 
   dplyr::group_by(country, year) %>%
   dplyr::summarise_all(dplyr::funs(dplyr::first(na.omit(.))))
 
-# Save data as a .rds file.
+# Save data as a .rds file
 saveRDS(tb_10, paste0(here::here(), '/data/tjbrailey_psp_not_cleaned.rds'))
 
-# Remove intermediate join files.
+# Remove intermediate join files
 #rm(tb, tb_1, tb_2, tb_3, tb_4, tb_5, tb_6)
 ```
 
-# Visualize Data Before Recoding
+# Visualize data before recoding
 ```{r}
-# DataExplorer missingness.
+# DataExplorer missingness
 DataExplorer::plot_missing(tb_10)
 
-# Save image.
+# Save image
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
@@ -335,10 +336,10 @@ dev.off()
 ```
 
 ```{r}
-# DataExplorer variable histograms. 
+# DataExplorer variable histograms
 DataExplorer::plot_histogram(tb_10)
 
-# Save images.
+# Save images
 png(file = paste0(here::here(), '/vis/tjbrailey_psp_datexp.png'),
     width = 2000,
     height = 1000)
@@ -347,10 +348,10 @@ dev.off()
 ```
 
 ```{r}
-# Amelia missingness.
+# Amelia missingness
 Amelia::missmap(tb_10)
 
-# Save image.
+# Save image
 png(file = paste0(here::here(), "/vis/tjbrailey_psp_missingness.png"),
     width = 2000, 
     height = 1000)
@@ -360,10 +361,10 @@ dev.off()
 
 # Recode and Rename Variables
 ```{r}
-# Install data.
+# Install data
 psp <- rio::import(paste0(here::here(), "/data/tjbrailey_psp_not_cleaned.rds"))
 
-# Remove codings for NA values.
+# Remove codings for NA values
 psp_na_recode <- psp
 
 psp_na_recode[psp_na_recode == "-999"] <- NA
@@ -379,7 +380,7 @@ psp_na_recode[psp_na_recode == ".a"] <- NA
 psp_na_recode[psp_na_recode == ".b"] <- NA
 psp_na_recode[psp_na_recode == ".e"] <- NA
 
-# Rename variables.
+# Rename variables
 psp_rename <- psp_na_recode
 
 psp_rename <- psp_rename %>%
@@ -473,6 +474,7 @@ psp_rename <- psp_rename %>%
                 
                 rai_n_RAI = n_RAI
                 ) %>% 
+  
   # Fill out remaining variables
   dplyr::group_by(country) %>% 
   tidyr::fill(qog_wdi_gini, 
@@ -486,31 +488,37 @@ psp_rename <- psp_rename %>%
 variable.names(psp_rename)
 ```
 
-# Add Binary for Other Provisions, New Measure of Autonomy, and Cumulative Conflict Length
+# Additional variables
 ```{r}
 psp_add_bin <- psp_rename %>%
+  
+  # Other provisions
   dplyr::mutate(tb_other_provis = ifelse(idc_mveto == 1|
                                       idc_gcman == 1 |
                                         idc_gcimp == 1 |
                                         dpi_pr == 1, 1, 0),
   tb_other_provis = ifelse(is.na(tb_other_provis), 0, tb_other_provis)) %>%
+  
+  # Alternative measure of autonomy
   dplyr::mutate(tb_aut = ifelse(idc_subtax == 1 | 
                                   idc_subed == 1 |
                                   idc_subpolice == 1, 1, 0)) %>%
   dplyr::group_by(ucdp_side_a, ucdp_side_b) %>% 
+  
+  # Length of conflict
   dplyr::mutate(tb_conflict_length = sum(length(ucdp_cumulative_intensity), na.rm = T)) %>%
   dplyr::ungroup()
   
 psp_add_bin$tb_conflict_length[psp_add_bin$tb_conflict_length == 4943] <- NA
 ```
 
-# Save Final Data
+# Save final data
 ```{r}
 # Save as a .csv file 
-write.csv(psp_add_bin, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
+#write.csv(psp_add_bin, file = paste0(here::here(), "/data/tjbrailey_psp_clean.csv"))
 ```
 
-# Visualize After Recoding
+# Visualize after recoding
 ```{r}
 DataExplorer::plot_missing(psp_add_bin)
 ```
@@ -521,5 +529,11 @@ DataExplorer::plot_histogram(psp_add_bin)
 
 ```{r}
 Amelia::missmap(psp_add_bin)
+
+png(file = paste0(here::here(), "/vis/tjbrailey_psp_clean_missingness.png"),
+    width = 2000, 
+    height = 1000)
+Amelia::missmap(psp_add_bin)
+dev.off()
 ```
 

@@ -84,7 +84,7 @@ reg_data_complete <- reg_data[complete.cases(reg_data), ] %>%
   dplyr::select(cown, year, dpi_auton, n_RAI, reg_aut_dum, idc_subtax, idc_subed, idc_subpolice, dpi_author, polity4_polity_score)
 ```
 
-# Correlation tables
+# Plot correlation tables
 ```{r}
 auton_cor_pear <- xtable::xtable(round(cor(reg_data_complete[,3:9]),2))
 upper <- auton_cor_pear
@@ -139,7 +139,6 @@ reg6_tex <- texreg::texreg(reg6, include.ci = FALSE)
 reg6_tex
 plot(x = reg_data_complete$reg_aut_dum, y = reg_data_complete$polity4_polity_score)
 abline(reg = reg6)
-
 
 reg_full_tex <- texreg::texreg(list(reg1, reg5, reg6), 
                               mfrow = TRUE, 
