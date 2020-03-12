@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {3}Theory and Hypothesis}{15}%
 \contentsline {subsubsection}{\numberline {3.0.1}Proliferation of Focal Points}{16}%
 \contentsline {subsubsection}{\numberline {3.0.2}Targeted Concessions to Regional Minorities}{17}%
-\contentsline {subsubsection}{\numberline {3.0.3}Checks and Balances on the Central Government}{17}%
+\contentsline {subsubsection}{\numberline {3.0.3}Checks and Balances on the Central Government}{18}%
 \contentsline {subsubsection}{\numberline {3.0.4}Alternative Mechanisms}{18}%
 \contentsline {section}{\numberline {4}Segmental Autonomy in Mali and Niger}{19}%
 \contentsline {section}{\numberline {5}Methodology}{25}%
@@ -19,9 +19,9 @@
 \contentsline {subsubsection}{\numberline {5.2.2}Independent Variables}{27}%
 \contentsline {subsubsection}{\numberline {5.2.3}Control Variables}{28}%
 \contentsline {subsection}{\numberline {5.3}Empirical Conceptions of Segmental Autonomy}{28}%
-\contentsline {subsection}{\numberline {5.4}Models}{30}%
-\contentsline {section}{\numberline {6}Results}{30}%
-\contentsline {section}{\numberline {7}Discussion}{35}%
+\contentsline {subsection}{\numberline {5.4}Models}{29}%
+\contentsline {section}{\numberline {6}Results}{31}%
+\contentsline {section}{\numberline {7}Discussion}{34}%
 \contentsline {subsection}{\numberline {7.1}Robustness Checks}{36}%
 \contentsline {subsection}{\numberline {7.2}Scope and Limitations}{39}%
 \contentsline {subsection}{\numberline {7.3}Conclusion}{42}%
@@ -35,4 +35,6 @@
 \contentsline {subsubsection}{\numberline {8.1.5}Other Provisions of Power-Sharing}{58}%
 \contentsline {subsubsection}{\numberline {8.1.6}Conflict}{59}%
 \contentsline {subsection}{\numberline {8.2}Summary Statistics}{59}%
+\contentsline {subsubsection}{\numberline {8.2.1}Cross-Sectional Time-Series Plots}{59}%
+\contentsline {subsubsection}{\numberline {8.2.2}Missingness Plots}{59}%
 \contentsline {subsection}{\numberline {8.3}Ontology}{59}%

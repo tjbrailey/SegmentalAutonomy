@@ -165,7 +165,7 @@ It is also worth acknowledging the concepts of partitioning and power-dividing a
 Kuperman’s work makes two arguments that serve to further muddy the debate on power-sharing versus alternative forms of institutionalizing peace. Firstly, they argue that there are ``six case of \textit{true} power sharing'' based on the presence of regional autonomy, peace enforcement, disguised victory, non-ethnic schisms, and a pause in fighting\footnote{Kuperman, 1996, emphasis added}. Secondly, they argue in favor of partition—partition de jure, adjusted borders, and/or regional autonomy—in the case of the conflicts in Bosnia. Specifically, they argue that regional autonomy would be the most effective method; ``close to de facto partition, without the prize of independence. It is a compromise solution''\footnote{Kuperman, 2006}. However, regional or segmental autonomy is a key provision in several different conceptions of power-sharing in peace agreements and in political systems. Though partition is purported to be a ``a solution of ‘last resort’'' and as a ``meeting point between the needs for self-determination and territorial expression'', the provisions by which it is deemed to be successful are shared by an opposing institution: power-sharing\footnote{Berg and Ben-Porat, 2008, 32; Waterman, 1987}. Given the overlap between the provisions of not just the forms of power-sharing, but also other methods of institutionalizing peace, it seems logical to assess which of these provisions are most common, and which are most effective. 
 
 \subsection{Ontologizing Power-Sharing}
-In addition to creating a large-N dataset on the provisions of power-sharing, I have formulated an ontology (Figure XXXX) of the different formulations of power-sharing, power-dividing, and partition. Starting with Lijphart’s (1969) seminal work and moving forward, I have attempted to classify and categorize each different definition and their purported provisions. Many of these provisions could be further sub-categorized, and there is marked variation in the specificity of the provisions across conceptions, but this ontology provides a broad but solid overview of the similarities and differences between the existing conceptions of peace institutions. To supplement the broad ontology, I have also created a visualization of provisions that overlap between concepts. That way, the contested and fluid nature of these provisions can be more easily interpreted.  
+In addition to creating a large-N dataset on the provisions of power-sharing, I have formulated an ontology (Figure 1) of the different formulations of power-sharing, power-dividing, and partition. Starting with Lijphart’s (1969) seminal work and moving forward, I have attempted to classify and categorize each different definition and their purported provisions. Many of these provisions could be further sub-categorized, and there is marked variation in the specificity of the provisions across conceptions, but this ontology provides a broad but solid overview of the similarities and differences between the existing conceptions of peace institutions. To supplement the broad ontology, I have also created a visualization of provisions that overlap between concepts. That way, the contested and fluid nature of these provisions can be more easily interpreted.  
 
 \begin{figure}[H]
 	\begin{center}
@@ -182,7 +182,7 @@ While conducting the literature review portion of my thesis, I managed to extrac
 To conclude, while there is much disagreement over the broad conceptions of power-sharing, analyzing the provisions of power-sharing make identifying causal mechanisms and outcomes far easier. It also allows for the reconciliation of conflicting studies on power-sharing. Segmental autonomy in particular is cited as a core provision across several conceptions of power-sharing, consociational democracy, and partition. Understanding this provision may serve to partially reconcile the power-sharing literature and provide insight into the causal mechanisms behind the implementation of power-sharing in ethnically divided and developing states. 
 
 \section{Theory and Hypothesis}
-States that employ segmental autonomy provisions along with other provisions of power-sharing, either through peace accord or constitutional reform, are more likely to experience reduced intergroup tensions and prolonged peace. That existing studies study segmental autonomy using different measures and do not isolate the individual effect of the variable, it is difficult to estimate what our results will show. That some authors argue in favor of consociationalism while others warn of its ineffectiveness, further muddies our theoretical prior. In an ethnically fractionalized state, where certain groups may have faced powerlessness or discrimination, the implementation of regional autonomy---be it through regional elections, educational authority, linguistic autonomy, or else---can be seen as a concession by the central government, and a signal of peace. Assuming this basic logic, I present my core hypotheses, and lay out a more nuanced theory and causal mechanism. 
+Given that segmental autonomy is fairly common across countries, and continues to be implemented in conflictual societies today, governments and citizens must consider the provision effective to some degree. But how do we understand and measure the substantive effect that segmental autonomy actually has in a given state? Can we, for example, make educated guesses as to its effect when fully implemented in South Sudan? I hypothesize that states employing segmental autonomy provisions along with other provisions of power-sharing, either through peace accord or constitutional reform, are more likely to experience reduced intergroup tensions, prolonged peace, and ultimately, democratization. That existing studies study segmental autonomy using different measures and do not isolate the individual effect of the variable, it is difficult to estimate what our results will show. That some authors argue in favor of consociationalism while others warn of its ineffectiveness, further muddies our theoretical prior. In an ethnically fractionalized state, where certain groups may have faced powerlessness or discrimination, the implementation of regional autonomy---be it through regional elections, educational authority, linguistic autonomy, or otherwise---can be seen as a concession by the central government, and a signal of peace. Assuming this basic logic, I present my core hypotheses and then lay out a more nuanced theory and causal mechanism. 
 
 \singlespacing
 
@@ -316,6 +316,13 @@ Where does this leave us? Frustratingly, the development of a new measurement th
 
 \subsection{Models}
 Prior to running statistical models, I generate simple cross-sectional time-series plots that show the relationship between the percentage of years each state has spent with \textit{de jure} implementation of segmental autonomy and levels of social trust, polity score, and conflict intensity within the state. These summary statistics can be found in the appendix of this paper. As these cross-sectional visualizations include all states in the dataset, we do not see any significant trends across time, though it does give some insight into how prevalent segmental autonomy is across the world's states. 
+
+\begin{figure}[!htbp]
+	\begin{center}
+		\includegraphics[width = 6in]{csts_polity4_polity_score.png}
+	\end{center}
+	\caption{Global Relationship Between Segmental Autonomy and Polity Score}
+\end{figure}
 
 I begin my statistical analyses by subsetting the data to those states that exhibit high levels of ethnic fractionalization (characterized by states that have an ethnic fractionalization score of above the world median value), and then running several iterations of robust ordinary least squares (OLS) regression on my cross-sectional time-series dataset on three distinct dependent variables. For conflict duration as a dependent variable, I run a Cox proportional hazards model to assess whether the implementation of regional autonomy serves to reduce the length of a conflict. For each dependent variable---levels of social trust, conflict intensity, and polity score---the same control variables are included in the OLS. For all models, I include country fixed-effects, and for the latter two iterations, I include year fixed-effects. Lastly, to ensure my estimates are robust, the OLS regressions are clustered by standard error.  
 
@@ -549,16 +556,16 @@ Below is a list of the main variables used in the summary statistics and models 
 	\def\code##1##2{{\bfseries ##1}\hfill
 		\parbox[t]{\dimexpr\linewidth-15em-\cbl}{##2}\par}}{\noindent}
 
-\subsubsection{Basic Country Variables}
-
 \singlespacing
+
+\subsubsection{Basic Country Variables}
 	
-	\begin{codebook}
-		\code{country}{Country name.}
-		\code{year}{Year of country observation.}
-		\code{cowc}{Correlates of War country code (character).}
-		\code{cown}{Correlates of War country code (numeric).}
-	\end{codebook}
+\begin{codebook}
+	\code{country}{Country name.}
+	\code{year}{Year of country observation.}
+	\code{cowc}{Correlates of War country code (character).}
+	\code{cown}{Correlates of War country code (numeric).}
+\end{codebook}
 
 \subsubsection{Populations}
 
@@ -597,13 +604,13 @@ Below is a list of the main variables used in the summary statistics and models 
 
 \subsubsection{Other Provisions of Power-Sharing}
 	
-	\begin{codebook}
-		\code{idc\_mveto}{Mutual veto.}
-		\code{gcman}{Mandated grand coalition.}
-		\code{gcimp}{Grand coalition implemented.}
-		\code{dpi\_pr}{Proportional Representation.}
-		\code{tb\_other\_provis}{Presence of other consociational provisions (binary).}
-	\end{codebook}
+\begin{codebook}
+	\code{idc\_mveto}{Mutual veto.}
+	\code{gcman}{Mandated grand coalition.}
+	\code{gcimp}{Grand coalition implemented.}
+	\code{dpi\_pr}{Proportional Representation.}
+	\code{tb\_other\_provis}{Presence of other consociational provisions (binary).}
+\end{codebook}
 
 \subsubsection{Conflict}
 
@@ -620,6 +627,8 @@ Below is a list of the main variables used in the summary statistics and models 
 \end{codebook}
 
 \subsection{Summary Statistics}
+\subsubsection{Cross-Sectional Time-Series Plots}
+\subsubsection{Missingness Plots}
 
 \subsection{Ontology}
 \begin{sidewaysfigure}[ht]
