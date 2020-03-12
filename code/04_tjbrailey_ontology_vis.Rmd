@@ -3,11 +3,12 @@ title: "04 Ontology Visualization"
 author: "Thomas J. Brailey"
 date: "29/09/2019"
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: yes
   html_notebook:
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
   html_document:
     toc: yes
 editor_options:
@@ -29,7 +30,10 @@ library(ggplot2)
 # Load data
 ```{r}
 # Read in excel file 
-files <- list.files(paste0(here::here(), "/data/"), "tjbrailey_psp_ontology.xlsx", full.names = TRUE)
+files <- list.files(paste0(here::here(), "/data/"), 
+                    "tjbrailey_psp_ontology.xlsx", 
+                    full.names = TRUE
+                    )
 files <- files[2]
 
 read_excel_allsheets <- function(filename) { 

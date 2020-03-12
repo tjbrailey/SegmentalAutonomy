@@ -3,11 +3,12 @@ title: "01 Data Wrangling"
 author: "Thomas J. Brailey"
 date: "29/09/2019"
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: yes
   html_notebook:
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
   html_document:
     toc: yes
 editor_options:
@@ -20,7 +21,7 @@ editor_options:
 </style>
 
 ```{r setup, include=FALSE}
-# Be sure to run the entire markdown file.
+# Be sure to run the entire markdown file
 rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(magrittr)
@@ -114,13 +115,15 @@ vdem_psp_sub <- vdem %>%
                 v2elfrfair) %>% 
   dplyr::rename(country = country_name)
 
-vdem_psp_sub$country <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'country.name')
-vdem_psp_sub$cown <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cown')
-vdem_psp_sub$cowc <- countrycode::countrycode(vdem_psp_sub$country, 'country.name', 'cowc')
-
-# Some values were not matched unambiguously: Republic of Vietnam, Würtemberg
-# Some values were not matched unambiguously: Brunswick, Hamburg, Hesse-Darmstadt, Hesse-Kassel, Hong Kong SAR China, Nassau, Oldenburg, Palestinian Territories, Piedmont-Sardinia, Saxe-Weimar-Eisenach, Serbia
-# Some values were not matched unambiguously: Brunswick, Hamburg, Hesse-Darmstadt, Hesse-Kassel, Hong Kong SAR China, Nassau, Oldenburg, Palestinian Territories, Piedmont-Sardinia, Saxe-Weimar-Eisenach, Serbia
+vdem_psp_sub$country <- countrycode::countrycode(
+  vdem_psp_sub$country, 'country.name', 'country.name'
+  )
+vdem_psp_sub$cown <- countrycode::countrycode(
+  vdem_psp_sub$country, 'country.name', 'cown'
+  )
+vdem_psp_sub$cowc <- countrycode::countrycode(
+  vdem_psp_sub$country, 'country.name', 'cowc'
+  )
 
 vdem_psp_sub <- vdem_psp_sub %>%
   dplyr::select(-country)
@@ -173,16 +176,22 @@ qog_ts_psp_sub <- qog_ts %>%
   ) %>%
   dplyr::rename(country = cname)
 
-qog_ts_psp_sub$country[qog_ts_psp_sub$country == "Micronesia"] <- "Federated States of Micronesia"
-qog_ts_psp_sub$country[qog_ts_psp_sub$country == "Serbia and Montenegro"] <- "Montenegro"
-qog_ts_psp_sub$country <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'country.name')
+qog_ts_psp_sub$country[
+  qog_ts_psp_sub$country == "Micronesia"
+  ] <- "Federated States of Micronesia"
+qog_ts_psp_sub$country[
+  qog_ts_psp_sub$country == "Serbia and Montenegro"
+  ] <- "Montenegro"
+qog_ts_psp_sub$country <- countrycode::countrycode(
+  qog_ts_psp_sub$country, 'country.name', 'country.name'
+  )
 
-qog_ts_psp_sub$cown <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cown')
-qog_ts_psp_sub$cowc <- countrycode::countrycode(qog_ts_psp_sub$country, 'country.name', 'cowc')
-
-# Some values were not matched unambiguously: Tibet
-# Some values were not matched unambiguously: Serbia
-# Some values were not matched unambiguously: Serbia
+qog_ts_psp_sub$cown <- countrycode::countrycode(
+  qog_ts_psp_sub$country, 'country.name', 'cown'
+  )
+qog_ts_psp_sub$cowc <- countrycode::countrycode(
+  qog_ts_psp_sub$country, 'country.name', 'cowc'
+  )
 
 qog_ts_psp_sub <- qog_ts_psp_sub %>%
   dplyr::select(-country)
@@ -211,9 +220,15 @@ dpi_psp_sub$country[dpi_psp_sub$country == "PRK"] <- "North Korea"
 dpi_psp_sub$country[dpi_psp_sub$country == "ROK"] <- "South Korea"
 dpi_psp_sub$country[dpi_psp_sub$country == "S. Africa"] <- "South Africa"
 
-dpi_psp_sub$country <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'country.name')
-dpi_psp_sub$cowc <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'cowc')
-dpi_psp_sub$cown <- countrycode::countrycode(dpi_psp_sub$country, 'country.name', 'cown')
+dpi_psp_sub$country <- countrycode::countrycode(
+  dpi_psp_sub$country, 'country.name', 'country.name'
+  )
+dpi_psp_sub$cowc <- countrycode::countrycode(
+  dpi_psp_sub$country, 'country.name', 'cowc'
+  )
+dpi_psp_sub$cown <- countrycode::countrycode(
+  dpi_psp_sub$country, 'country.name', 'cown'
+  )
 
 dpi_psp_sub <- dpi_psp_sub %>%
   dplyr::select(-country)
@@ -222,14 +237,21 @@ dpi_psp_sub <- dpi_psp_sub %>%
 ## Clean UCDP
 ```{r}
 ucdp_psp_sub <- ucdp %>% 
-  dplyr::select(location, year, side_a, side_b, territory_name, intensity_level, cumulative_intensity, type_of_conflict) %>%
+  dplyr::select(location, year, 
+                side_a, side_b, 
+                territory_name, 
+                intensity_level, 
+                cumulative_intensity, 
+                type_of_conflict) %>%
   dplyr::filter(stringr::str_detect(location, ",", negate = TRUE)) %>%
   dplyr::rename(country = location)
 
-# Some values were not matched unambiguously: Hyderabad
-
-ucdp_psp_sub$cowc <- countrycode::countrycode(ucdp_psp_sub$country, "country.name", "cowc")
-ucdp_psp_sub$cown <- countrycode::countrycode(ucdp_psp_sub$country, "country.name", "cown")
+ucdp_psp_sub$cowc <- countrycode::countrycode(
+  ucdp_psp_sub$country, "country.name", "cowc"
+  )
+ucdp_psp_sub$cown <- countrycode::countrycode(
+  ucdp_psp_sub$country, "country.name", "cown"
+  )
 
 ucdp_psp_sub <- dplyr::select(ucdp_psp_sub, -country) 
 ```
@@ -239,10 +261,12 @@ ucdp_psp_sub <- dplyr::select(ucdp_psp_sub, -country)
 intra_psp_sub <- intra %>%
   dplyr::select(gwno, year, onset2)
 
-#Some values were not matched unambiguously: 711, 816
-
-intra_psp_sub$cowc <- countrycode::countrycode(intra_psp_sub$gwno, 'gwn', 'cowc')
-intra_psp_sub$cown <- countrycode::countrycode(intra_psp_sub$gwno, 'gwn', 'cown')
+intra_psp_sub$cowc <- countrycode::countrycode(
+  intra_psp_sub$gwno, 'gwn', 'cowc'
+  )
+intra_psp_sub$cown <- countrycode::countrycode(
+  intra_psp_sub$gwno, 'gwn', 'cown'
+  )
 
 intra_psp_sub <- intra_psp_sub %>% dplyr::select(-gwno)
 ```
@@ -251,10 +275,12 @@ intra_psp_sub <- intra_psp_sub %>% dplyr::select(-gwno)
 p4_psp_sub <- p4 %>%
   dplyr::select(country, year, polity, fragment) 
 
-#Some values were not matched unambiguously: Orange Free State, Prussia, Sardinia, Serbia, Serbia and Montenegro, United Province CA
-
-p4_psp_sub$cowc <- countrycode::countrycode(p4_psp_sub$country, 'country.name', 'cowc')
-p4_psp_sub$cown <- countrycode::countrycode(p4_psp_sub$country, 'country.name', 'cown')
+p4_psp_sub$cowc <- countrycode::countrycode(
+  p4_psp_sub$country, 'country.name', 'cowc'
+  )
+p4_psp_sub$cown <- countrycode::countrycode(
+  p4_psp_sub$country, 'country.name', 'cown'
+  )
 
 p4_psp_sub <- p4_psp_sub %>% 
   dplyr::filter(!is.na(cowc)) %>%
@@ -506,7 +532,9 @@ psp_add_bin <- psp_rename %>%
   dplyr::group_by(ucdp_side_a, ucdp_side_b) %>% 
   
   # Length of conflict
-  dplyr::mutate(tb_conflict_length = sum(length(ucdp_cumulative_intensity), na.rm = T)) %>%
+  dplyr::mutate(tb_conflict_length = sum(
+    length(ucdp_cumulative_intensity), na.rm = T)
+    ) %>%
   dplyr::ungroup()
   
 psp_add_bin$tb_conflict_length[psp_add_bin$tb_conflict_length == 4943] <- NA

@@ -3,11 +3,12 @@ title: "05 Summary Statistics"
 author: "Thomas J. Brailey"
 date: "1/24/2020"
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: yes
   html_notebook:
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
   html_document:
     toc: yes
 editor_options:
@@ -81,21 +82,33 @@ reg_data <- join2 %>%
                 dpi_author = as.logical(dpi_author),
                 reg_aut_dum = as.logical(reg_aut_dum))
 reg_data_complete <- reg_data[complete.cases(reg_data), ] %>%
-  dplyr::select(cown, year, dpi_auton, n_RAI, reg_aut_dum, idc_subtax, idc_subed, idc_subpolice, dpi_author, polity4_polity_score)
+  dplyr::select(cown, year, 
+                dpi_auton, n_RAI, reg_aut_dum, 
+                idc_subtax, idc_subed, idc_subpolice, 
+                dpi_author, polity4_polity_score
+                )
 ```
 
 # Plot correlation tables
 ```{r}
-auton_cor_pear <- xtable::xtable(round(cor(reg_data_complete[,3:9]),2))
+auton_cor_pear <- xtable::xtable(round(cor(reg_data_complete[, 3:9]
+                                           ), 2)
+                                 )
 upper <- auton_cor_pear
 upper[upper.tri(auton_cor_pear)] <- ""
 upper <- as.data.frame(upper)
 upper <- xtable::xtable(upper)
 upper
 
-auton_cor_spear <- xtable::xtable(round(cor(reg_data_complete[,3:9], method = "spearman"),2))
+auton_cor_spear <- xtable::xtable(round(cor(reg_data_complete[, 3:9], 
+                                            method = "spearman"
+                                            ), 2)
+                                  )
 auton_cor_spear
-auton_cor_ken <- xtable::xtable(round(cor(reg_data_complete[,3:9], method = "kendall"),2))
+auton_cor_ken <- xtable::xtable(round(cor(reg_data_complete[, 3:9], 
+                                          method = "kendall"
+                                          ), 2)
+                                )
 auton_cor_ken
 ```
 
@@ -129,8 +142,11 @@ reg5 <- lm(polity4_polity_score ~ n_RAI, data = reg_data_complete)
 reg5_tex <- texreg::texreg(reg5, include.ci = FALSE)
 reg5_tex
 jpeg(filename = paste0(here::here(), "/vis/polity_score_rai_reg.jpeg"))
-plot(x = reg_data_complete$n_RAI, y = reg_data_complete$polity4_polity_score,
-     xlab = "RAI Measure of Autonomy", ylab = "Polity Score", main = "Predicting Polity Score with Regional Autonomy Provisions")
+plot(x = reg_data_complete$n_RAI, 
+     y = reg_data_complete$polity4_polity_score,
+     xlab = "RAI Measure of Autonomy", 
+     ylab = "Polity Score", 
+     main = "Predicting Polity Score with Regional Autonomy Provisions")
 abline(reg = reg5, col = "red")
 dev.off()
 

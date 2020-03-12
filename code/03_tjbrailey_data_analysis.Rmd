@@ -5,6 +5,7 @@ date: "29/09/2019"
 output:
   pdf_document:
     toc: yes
+    keep_tex: yes
   html_notebook:
     toc: yes
     toc_float: yes
@@ -90,18 +91,18 @@ psp_lm("polity4_polity_score", "rai_n_RAI")
 ```{r}
 # DPI
 cox1 <- survival::coxph(survival::Surv(year, ucdp_cumulative_intensity) ~ (dpi_auton * tb_other_provis) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, data = psp)
-summary(cox1)
-reporttools::displayCoxPH(cox1)
+#summary(cox1)
+#reporttools::displayCoxPH(cox1)
 
 # EPR
 cox2 <- survival::coxph(survival::Surv(year, ucdp_cumulative_intensity) ~ (epr_reg_aut_dum * tb_other_provis) + as.factor(country) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, data = psp)
-summary(cox2)
-reporttools::displayCoxPH(cox2)
+#summary(cox2)
+#reporttools::displayCoxPH(cox2)
 
 # RAI
 cox3 <- survival::coxph(survival::Surv(year, ucdp_cumulative_intensity) ~ (rai_n_RAI * tb_other_provis) + as.factor(country) + qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score, data = psp)
-summary(cox3)
-reporttools::displayCoxPH(cox3)
+#summary(cox3)
+#reporttools::displayCoxPH(cox3)
 ```
 # Multivariate comparison across operationalizations
 ```{r}

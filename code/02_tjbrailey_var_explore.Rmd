@@ -3,11 +3,12 @@ title: "02 Variable Exploration"
 author: "Thomas J. Brailey"
 date: "29/09/2019"
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: yes
   html_notebook:
     toc: yes
     toc_float: yes
-  pdf_document:
-    toc: yes
   html_document:
     toc: yes
 editor_options:
