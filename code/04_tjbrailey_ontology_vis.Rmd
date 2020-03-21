@@ -88,9 +88,12 @@ psp_list <- data.tree::ToListExplicit(psp_tree, unname = TRUE)
 psp_ontology_vis <- networkD3::diagonalNetwork(psp_list, 
                          fontSize = 14,
                          textColour = "black",
-                         opacity = 0.7,
-                         width = 1500,
-                         height = 1200)
+                         opacity = 100,
+                         width = 1900,
+                         height = 1400
+                         )
+psp_ontology_vis <- htmlwidgets::prependContent(psp_ontology_vis, htmltools::tags$h1("Full Mapping of Power-Sharing Conceptions"))
+
 # Visualize.
 psp_ontology_vis
 
@@ -99,9 +102,10 @@ reg_aut_list <- data.tree::ToListExplicit(reg_aut_tree, unname = TRUE)
 reg_aut_ontology_vis <- networkD3::diagonalNetwork(reg_aut_list, 
                          fontSize = 50,
                          textColour = "black",
-                         opacity = 0.7,
+                         opacity = 100,
                          width = 1500,
                          height = 1200)
+reg_aut_ontology_vis <- htmlwidgets::prependContent(reg_aut_ontology_vis, htmltools::tags$h1("Mapping Regional Autonomy"))
 reg_aut_ontology_vis
 ```
 # Save
