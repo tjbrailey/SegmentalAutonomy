@@ -1,7 +1,20 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: psp.aux
-The style file: plain.bst
-Database file #1: psp_bib.bib
-Warning--empty journal in afrobarometer_afrobarometer_nodate
-Warning--empty year in afrobarometer_afrobarometer_nodate
-Warning--empty institution in united_nations_high_commissioner_for_refugees_refworld_2003
-(There were 3 warnings)
+[0] Config.pm:304> INFO - This is Biber 2.13
+[0] Config.pm:307> INFO - Logfile is 'psp.blg'
+[35] biber-MSWIN64:315> INFO - === 
+[61] Biber.pm:375> INFO - Reading 'psp.bcf'
+[181] Biber.pm:905> INFO - Found 74 citekeys in bib section 0
+[200] Biber.pm:4196> INFO - Processing section 0
+[205] Utils.pm:75> INFO - Globbing data source 'psp.bib'
+[220] Utils.pm:91> INFO - Globbed data source 'psp.bib' to psp.bib
+[238] Biber.pm:4373> INFO - Looking for bibtex format file 'psp.bib' for section 0
+[267] bibtex.pm:1462> INFO - LaTeX decoding ...
+[608] bibtex.pm:1281> INFO - Found BibTeX data source 'psp.bib'
+[748] Utils.pm:300> WARN - ISBN '978-0-271-03487-4 978-0-271-05474-2 978-0-271-03208-5 978-0-271-04930-4 978-0-271-05307-3' in entry 'hartzell_crafting_2007' is invalid - run biber with '--validate_datamodel' for details.
+[799] Utils.pm:300> WARN - ISBN '978-0-691-13467-3 978-0-691-12728-6' in entry 'roeder_where_2007' is invalid - run biber with '--validate_datamodel' for details.
+[1027] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1027] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1027] Biber.pm:4024> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[1028] Biber.pm:4030> INFO - No sort tailoring available for locale 'en-US'
+[1098] bbl.pm:648> INFO - Writing 'psp.bbl' with encoding 'UTF-8'
+[1144] bbl.pm:751> INFO - Output to psp.bbl
+[1150] Biber.pm:110> INFO - WARNINGS: 2
