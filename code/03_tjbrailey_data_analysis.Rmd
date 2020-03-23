@@ -123,5 +123,11 @@ tex_fin <- texreg::texreg(list(dpi_reg, epr_reg, rai_reg), mfrow = TRUE,
                                                        `Year fixed effects` = c("Y", "Y", "Y")))
 tex_fin
 ```
-
-
+# Simple SJ Coefficient Plots
+```{r}
+sj <- estimatr::lm_robust(polity4_polity_score ~ dpi_auton * tb_other_provis + as.factor(country) + as.factor(year) +
+                            qog_wbgi_pve + qog_wdi_gini + qog_gle_pop + polity4_polity_score
+                               , 
+                             data = psp, se_type = "CR2", clusters = country)
+sjPlot::plot_model(sj)
+```
