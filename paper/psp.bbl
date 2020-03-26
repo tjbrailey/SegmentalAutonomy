@@ -71,7 +71,7 @@
       \verb https://www.jstor.org/stable/3118231
       \endverb
     \endentry
-    \entry{afrobarometer_afrobarometer_nodate}{article}{}
+    \entry{afrobarometer_afrobarometer_1991}{unpublished}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=da2637970f038a28bcdc4023431c0571}{%
            family={{Afrobarometer}},
@@ -85,11 +85,22 @@
       \strng{authorfullhash}{da2637970f038a28bcdc4023431c0571}
       \field{sortinit}{A}
       \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
-      \field{labeldatesource}{nodate}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{howpublished}{Dataset}
       \field{note}{type: dataset}
-      \field{title}{Afrobarometer Data, Mali, Round 1, 1991, available at http://www.afrobarometer.org.}
+      \field{title}{Afrobarometer Data, Mali, Round 1, 1991}
+      \field{type}{Dataset}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb http://www.afrobarometer.org.
+      \endverb
+      \verb{url}
+      \verb http://www.afrobarometer.org.
+      \endverb
     \endentry
     \entry{andeweg_consociational_2000}{article}{}
       \name{author}{1}{}{%
@@ -488,7 +499,7 @@
       \verb http://doi.wiley.com/10.1111/1475-6765.00392
       \endverb
     \endentry
-    \entry{brailey_after_2019}{article}{}
+    \entry{brailey_after_2019}{unpublished}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=d5723792e9b83bd9e4d43096a85a7531}{%
            family={Brailey},
@@ -511,7 +522,6 @@
       \field{labeltitlesource}{title}
       \field{abstract}{When ethnic groups are granted regional autonomy by the state’s nationalgovernment, what do we expect to see? Existing literature posits that seg-mental autonomy, by allowing minority groups to act independently of thecentral government, can lead to a decrease in conflict in ethnically diversesocieties. That said, this literature is highly contested and few quantita-tive studies exist to support these claims. Further, existing literature onsegmental autonomy focuses almost exclusively on conflict, failing to addressother possible outcomes of granting autonomy such as regional economic out-put, services, and development in the autonomous region. In 2000, the Maligovernment granted autonomy to the Tuareg minority population along thenorth-east border with Niger. Using conflict and health-services data threeyears prior to, and three years post, autonomy, this paper utilizes geographicinformation systems ({GIS}) in order to map conflict rates and health serviceproliferation in and around the Tuareg’s autonomous region in Mali.}
       \field{day}{1}
-      \field{journaltitle}{Unpublished manuscript}
       \field{month}{12}
       \field{title}{After Segmental Autonomy: Assessing Conflict and Service Proliferation in Mali’s Autonomous Region}
       \field{year}{2019}
@@ -519,19 +529,19 @@
     \endentry
     \entry{charron_government_2009}{article}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=2874cc2081263de6a4d85782c51b0ea9}{%
+        {{un=0,uniquepart=base,hash=5272e79701f598d47678678915c33a2b}{%
            family={Charron},
            familyi={C\bibinitperiod},
-           given={N.},
+           given={Nicholas},
            giveni={N\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{2874cc2081263de6a4d85782c51b0ea9}
-      \strng{fullhash}{2874cc2081263de6a4d85782c51b0ea9}
-      \strng{bibnamehash}{2874cc2081263de6a4d85782c51b0ea9}
-      \strng{authorbibnamehash}{2874cc2081263de6a4d85782c51b0ea9}
-      \strng{authornamehash}{2874cc2081263de6a4d85782c51b0ea9}
-      \strng{authorfullhash}{2874cc2081263de6a4d85782c51b0ea9}
+      \strng{namehash}{5272e79701f598d47678678915c33a2b}
+      \strng{fullhash}{5272e79701f598d47678678915c33a2b}
+      \strng{bibnamehash}{5272e79701f598d47678678915c33a2b}
+      \strng{authorbibnamehash}{5272e79701f598d47678678915c33a2b}
+      \strng{authornamehash}{5272e79701f598d47678678915c33a2b}
+      \strng{authorfullhash}{5272e79701f598d47678678915c33a2b}
       \field{sortinit}{C}
       \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{extradatescope}{labelyear}
@@ -691,58 +701,24 @@
       \field{pages}{49\bibrangedash 71}
       \range{pages}{23}
     \endentry
-    \entry{unknown_tuareg_2008}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=4871dc81352a90e36ac59ff887079f03}{%
-           family={France24},
-           familyi={F\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Bamako}%
-      }
-      \strng{namehash}{4871dc81352a90e36ac59ff887079f03}
-      \strng{fullhash}{4871dc81352a90e36ac59ff887079f03}
-      \strng{bibnamehash}{4871dc81352a90e36ac59ff887079f03}
-      \strng{authorbibnamehash}{4871dc81352a90e36ac59ff887079f03}
-      \strng{authornamehash}{4871dc81352a90e36ac59ff887079f03}
-      \strng{authorfullhash}{4871dc81352a90e36ac59ff887079f03}
-      \field{sortinit}{F}
-      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{19}
-      \field{journaltitle}{France24}
-      \field{month}{8}
-      \field{title}{Tuareg rebels open to laying down arms}
-      \field{year}{2008}
-      \field{dateera}{ce}
-      \verb{urlraw}
-      \verb https://www.france24.com/en/20080819-tuareg-rebels-open-laying-down-arms-niger-libya
-      \endverb
-      \verb{url}
-      \verb https://www.france24.com/en/20080819-tuareg-rebels-open-laying-down-arms-niger-libya
-      \endverb
-    \endentry
     \entry{gasper_decentralization_1989}{report}{}
       \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=29ea783965c4a00d5b8ea4eef98822c7}{%
+        {{un=0,uniquepart=base,hash=29d564494d3ad27e0ab668d3a65cc577}{%
            family={Gasper},
            familyi={G\bibinitperiod},
-           given={D.\bibnamedelimi R.},
+           given={Des\bibnamedelima R.},
            giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
            givenun=0}}%
       }
       \list{institution}{1}{%
         {International Institute of Social Studies of Erasmus University Rotterdam ({ISS}), The Hague}%
       }
-      \strng{namehash}{29ea783965c4a00d5b8ea4eef98822c7}
-      \strng{fullhash}{29ea783965c4a00d5b8ea4eef98822c7}
-      \strng{bibnamehash}{29ea783965c4a00d5b8ea4eef98822c7}
-      \strng{authorbibnamehash}{29ea783965c4a00d5b8ea4eef98822c7}
-      \strng{authornamehash}{29ea783965c4a00d5b8ea4eef98822c7}
-      \strng{authorfullhash}{29ea783965c4a00d5b8ea4eef98822c7}
+      \strng{namehash}{29d564494d3ad27e0ab668d3a65cc577}
+      \strng{fullhash}{29d564494d3ad27e0ab668d3a65cc577}
+      \strng{bibnamehash}{29d564494d3ad27e0ab668d3a65cc577}
+      \strng{authorbibnamehash}{29d564494d3ad27e0ab668d3a65cc577}
+      \strng{authornamehash}{29d564494d3ad27e0ab668d3a65cc577}
+      \strng{authorfullhash}{29d564494d3ad27e0ab668d3a65cc577}
       \field{sortinit}{G}
       \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
       \field{extradatescope}{labelyear}
@@ -779,8 +755,8 @@
         {{un=0,uniquepart=base,hash=fbd71805fb6938dd2b78bf0afe0cb6a7}{%
            family={Graham},
            familyi={G\bibinitperiod},
-           given={{BenjaminA}.T.},
-           giveni={B\bibinitperiod},
+           given={Benjamin\bibnamedelima A.T.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
            givenun=0}}%
         {{un=0,uniquepart=base,hash=7dfde1df50452c33c26dd2bb436e08fa}{%
            family={Miller},
@@ -788,12 +764,12 @@
            given={Michael\bibnamedelima K.},
            giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod},
            givenun=0}}%
-        {{un=2,uniquepart=given,hash=0e3aa48444633efdc7f1cea2c1be4eea}{%
+        {{un=0,uniquepart=base,hash=0e3aa48444633efdc7f1cea2c1be4eea}{%
            family={Strøm},
            familyi={S\bibinitperiod},
            given={Kaare\bibnamedelima W.},
            giveni={K\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=2}}%
+           givenun=0}}%
       }
       \strng{namehash}{05797ff8f59efc491312a0facd771683}
       \strng{fullhash}{05797ff8f59efc491312a0facd771683}
@@ -838,12 +814,12 @@
     \endentry
     \entry{hartzell_crafting_2007}{book}{}
       \name{author}{2}{}{%
-        {{un=1,uniquepart=given,hash=cdb456fba8ab056545f45ad2be1fd57c}{%
+        {{un=0,uniquepart=base,hash=8247974f12dfd9bc2397636bedb1471f}{%
            family={Hartzell},
            familyi={H\bibinitperiod},
-           given={Caroline\bibnamedelima A},
-           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=1}}%
+           given={Caroline},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=8601e99f103cf2012deaf44a150dd66e}{%
            family={Hoddie},
            familyi={H\bibinitperiod},
@@ -857,12 +833,13 @@
       \list{publisher}{1}{%
         {Pennsylvania State University Press}%
       }
-      \strng{namehash}{a9b2a402db5f7ba7f524a61bc5d5b564}
-      \strng{fullhash}{a9b2a402db5f7ba7f524a61bc5d5b564}
-      \strng{bibnamehash}{a9b2a402db5f7ba7f524a61bc5d5b564}
-      \strng{authorbibnamehash}{a9b2a402db5f7ba7f524a61bc5d5b564}
-      \strng{authornamehash}{a9b2a402db5f7ba7f524a61bc5d5b564}
-      \strng{authorfullhash}{a9b2a402db5f7ba7f524a61bc5d5b564}
+      \strng{namehash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \strng{fullhash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \strng{bibnamehash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \strng{authorbibnamehash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \strng{authornamehash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \strng{authorfullhash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \field{extraname}{1}
       \field{sortinit}{H}
       \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
       \field{extradatescope}{labelyear}
@@ -889,12 +866,12 @@
     \endentry
     \entry{hartzell_institutionalizing_2003}{article}{}
       \name{author}{2}{}{%
-        {{un=1,uniquepart=given,hash=8247974f12dfd9bc2397636bedb1471f}{%
+        {{un=0,uniquepart=base,hash=8247974f12dfd9bc2397636bedb1471f}{%
            family={Hartzell},
            familyi={H\bibinitperiod},
            given={Caroline},
            giveni={C\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=8601e99f103cf2012deaf44a150dd66e}{%
            family={Hoddie},
            familyi={H\bibinitperiod},
@@ -908,6 +885,7 @@
       \strng{authorbibnamehash}{c9d3888f201f27e0055b0b88b4c817d8}
       \strng{authornamehash}{c9d3888f201f27e0055b0b88b4c817d8}
       \strng{authorfullhash}{c9d3888f201f27e0055b0b88b4c817d8}
+      \field{extraname}{2}
       \field{sortinit}{H}
       \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
       \field{extradatescope}{labelyear}
@@ -953,12 +931,12 @@
            given={Matthew},
            giveni={M\bibinitperiod},
            givenun=0}}%
-        {{un=1,uniquepart=given,hash=8247974f12dfd9bc2397636bedb1471f}{%
+        {{un=0,uniquepart=base,hash=8247974f12dfd9bc2397636bedb1471f}{%
            family={Hartzell},
            familyi={H\bibinitperiod},
            given={Caroline},
            giveni={C\bibinitperiod},
-           givenun=1}}%
+           givenun=0}}%
       }
       \strng{namehash}{d03f10044c63f7285b29af43fed99759}
       \strng{fullhash}{d03f10044c63f7285b29af43fed99759}
@@ -1317,7 +1295,7 @@
       \verb http://cmp.sagepub.com/cgi/doi/10.1080/07388940802218945
       \endverb
     \endentry
-    \entry{keefer_database_nodate}{article}{}
+    \entry{keefer_database_2018}{report}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=9048e9c5d191f0d9b7443b16dbbff54d}{%
            family={Keefer},
@@ -1340,11 +1318,14 @@
       \strng{authorfullhash}{fbc2a94aacaa77d38bf31d483a5dbba3}
       \field{sortinit}{K}
       \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
-      \field{labeldatesource}{nodate}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{langid}{english}
       \field{title}{Database of Political Institutions: Changes and Variable Definitions}
+      \field{year}{2018}
+      \field{dateera}{ce}
       \field{pages}{29}
       \range{pages}{1}
       \verb{file}
@@ -2139,7 +2120,7 @@
       \verb https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0297.2006.01045.x
       \endverb
     \endentry
-    \entry{mill_system_2002}{book}{}
+    \entry{mill_system_1843}{book}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=b627c5e688e8b7502c2468b40c681f20}{%
            family={Mill},
@@ -2149,10 +2130,10 @@
            givenun=0}}%
       }
       \list{location}{1}{%
-        {Hawaii}%
+        {Cambridge New York Melbourne}%
       }
       \list{publisher}{1}{%
-        {University of the Pacific}%
+        {Cambridge University Press}%
       }
       \strng{namehash}{b627c5e688e8b7502c2468b40c681f20}
       \strng{fullhash}{b627c5e688e8b7502c2468b40c681f20}
@@ -2166,13 +2147,11 @@
       \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{annotation}{"In order to make original editions of historical works available to scholars at an economical price, this facsimile of the original edition of 1891 is reproduced from the best available copy and has been digitally enhanced to improve legibility, but the text remains unaltered to retain historical authenticity."--T.p. verso}
-      \field{isbn}{978-1-4102-0252-9}
-      \field{note}{{OCLC}: ocm54904237}
-      \field{pagetotal}{622}
-      \field{shorttitle}{A system of logic}
-      \field{title}{A system of logic: ratiocinative and inductive ; being a connected view of the principles of evidence and the methods of scientific investigation}
-      \field{year}{2002}
+      \field{edition}{Reprint der Originalausgabe London 1843}
+      \field{isbn}{978-1-108-04088-4}
+      \field{shorttitle}{A system of logic, ratiocinative and inductive}
+      \field{title}{A system of logic, ratiocinative and inductive: being a connected view of the principles of evidence, and the methods of scientific investigation}
+      \field{year}{1843}
       \field{dateera}{ce}
     \endentry
     \entry{minorities_at_risk_project_minorities_2009}{report}{}
@@ -2651,19 +2630,19 @@
            given={Megha},
            giveni={M\bibinitperiod},
            givenun=0}}%
-        {{un=2,uniquepart=given,hash=2662b073d427edebea05b0bb710f70b2}{%
+        {{un=0,uniquepart=base,hash=0e3aa48444633efdc7f1cea2c1be4eea}{%
            family={Strøm},
            familyi={S\bibinitperiod},
-           given={Kaare\bibnamedelima Wallace},
+           given={Kaare\bibnamedelima W.},
            giveni={K\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=2}}%
+           givenun=0}}%
       }
-      \strng{namehash}{07ab0f2a827f22d526bbc2f2b7e8203f}
-      \strng{fullhash}{07ab0f2a827f22d526bbc2f2b7e8203f}
-      \strng{bibnamehash}{07ab0f2a827f22d526bbc2f2b7e8203f}
-      \strng{authorbibnamehash}{07ab0f2a827f22d526bbc2f2b7e8203f}
-      \strng{authornamehash}{07ab0f2a827f22d526bbc2f2b7e8203f}
-      \strng{authorfullhash}{07ab0f2a827f22d526bbc2f2b7e8203f}
+      \strng{namehash}{d33dfbb7d958424ccb16f7b39460e0c9}
+      \strng{fullhash}{d33dfbb7d958424ccb16f7b39460e0c9}
+      \strng{bibnamehash}{d33dfbb7d958424ccb16f7b39460e0c9}
+      \strng{authorbibnamehash}{d33dfbb7d958424ccb16f7b39460e0c9}
+      \strng{authornamehash}{d33dfbb7d958424ccb16f7b39460e0c9}
+      \strng{authorfullhash}{d33dfbb7d958424ccb16f7b39460e0c9}
       \field{sortinit}{R}
       \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
       \field{extradatescope}{labelyear}
@@ -2943,6 +2922,41 @@
       \endverb
       \keyw{Exports,Growth,Natural resources}
     \endentry
+    \entry{schumpeter_capitalism_1950}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=07134412456e02b5464990fcb9bda353}{%
+           family={Schumpeter},
+           familyi={S\bibinitperiod},
+           given={Joseph\bibnamedelima A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Harper Perennial Modern Thought}%
+      }
+      \strng{namehash}{07134412456e02b5464990fcb9bda353}
+      \strng{fullhash}{07134412456e02b5464990fcb9bda353}
+      \strng{bibnamehash}{07134412456e02b5464990fcb9bda353}
+      \strng{authorbibnamehash}{07134412456e02b5464990fcb9bda353}
+      \strng{authornamehash}{07134412456e02b5464990fcb9bda353}
+      \strng{authorfullhash}{07134412456e02b5464990fcb9bda353}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st ed}
+      \field{isbn}{978-0-06-156161-0}
+      \field{pagetotal}{431}
+      \field{title}{Capitalism, socialism, and democracy}
+      \field{year}{1950}
+      \field{dateera}{ce}
+      \keyw{Capitalism,Democracy,Socialism}
+    \endentry
     \entry{seaver_regional_2000}{article}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=bd39be8ef48eab6e8674bd7ec4282a35}{%
@@ -3083,12 +3097,12 @@
     \endentry
     \entry{strom_inclusion_2017}{article}{}
       \name{author}{4}{}{%
-        {{un=2,uniquepart=given,hash=0e3aa48444633efdc7f1cea2c1be4eea}{%
+        {{un=0,uniquepart=base,hash=0e3aa48444633efdc7f1cea2c1be4eea}{%
            family={Strøm},
            familyi={S\bibinitperiod},
            given={Kaare\bibnamedelima W.},
            giveni={K\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=2}}%
+           givenun=0}}%
         {{un=0,uniquepart=base,hash=8a04f6062964fa6337029576ed4c158b}{%
            family={Gates},
            familyi={G\bibinitperiod},
@@ -3148,91 +3162,6 @@
       \verb https://www.cambridge.org/core/product/identifier/S0007123415000174/type/journal_article
       \endverb
     \endentry
-    \entry{unknown_leader_1991}{online}{}
-      \name{author}{1}{}{%
-        {{un=1,uniquepart=given,hash=803a3d0b12e220c810632bac9a5fb899}{%
-           family={Times},
-           familyi={T\bibinitperiod},
-           given={Los\bibnamedelima Angeles},
-           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
-           givenun=1}}%
-      }
-      \strng{namehash}{803a3d0b12e220c810632bac9a5fb899}
-      \strng{fullhash}{803a3d0b12e220c810632bac9a5fb899}
-      \strng{bibnamehash}{803a3d0b12e220c810632bac9a5fb899}
-      \strng{authorbibnamehash}{803a3d0b12e220c810632bac9a5fb899}
-      \strng{authornamehash}{803a3d0b12e220c810632bac9a5fb899}
-      \strng{authorfullhash}{803a3d0b12e220c810632bac9a5fb899}
-      \field{sortinit}{T}
-      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{The coup leader whose forces overthrew Mali's military dictator after a crescendo of anti-government protest promised Tuesday that "the army will no longer meddle in politics" and will oversee a prompt transition to multi-party democracy.}
-      \field{day}{27}
-      \field{langid}{american}
-      \field{month}{3}
-      \field{note}{Library Catalog: www.latimes.com}
-      \field{title}{Leader of Mali Coup Promises Democracy}
-      \field{titleaddon}{Los Angeles Times}
-      \field{urlday}{10}
-      \field{urlmonth}{3}
-      \field{urlyear}{2020}
-      \field{year}{1991}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \verb{file}
-      \verb Snapshot:C\:\\Users\\tbrai\\Zotero\\storage\\TVK5L26P\\la-xpm-1991-03-27-mn-944-story.html:text/html
-      \endverb
-      \verb{urlraw}
-      \verb https://www.latimes.com/archives/la-xpm-1991-03-27-mn-944-story.html
-      \endverb
-      \verb{url}
-      \verb https://www.latimes.com/archives/la-xpm-1991-03-27-mn-944-story.html
-      \endverb
-    \endentry
-    \entry{unknown_malis_1991}{article}{}
-      \name{author}{1}{}{%
-        {{un=1,uniquepart=given,hash=181a7f06822412b0d23a443201915df7}{%
-           family={Times},
-           familyi={T\bibinitperiod},
-           given={New\bibnamedelima York},
-           giveni={N\bibinitperiod\bibinitdelim Y\bibinitperiod},
-           givenun=1}}%
-      }
-      \strng{namehash}{181a7f06822412b0d23a443201915df7}
-      \strng{fullhash}{181a7f06822412b0d23a443201915df7}
-      \strng{bibnamehash}{181a7f06822412b0d23a443201915df7}
-      \strng{authorbibnamehash}{181a7f06822412b0d23a443201915df7}
-      \strng{authornamehash}{181a7f06822412b0d23a443201915df7}
-      \strng{authorfullhash}{181a7f06822412b0d23a443201915df7}
-      \field{sortinit}{T}
-      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{27}
-      \field{issn}{0362-4331}
-      \field{journaltitle}{The New York Times}
-      \field{langid}{american}
-      \field{month}{3}
-      \field{title}{Mali's Dictator Is Overthrown in Coup}
-      \field{urlday}{10}
-      \field{urlmonth}{3}
-      \field{urlyear}{2020}
-      \field{year}{1991}
-      \field{dateera}{ce}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://www.nytimes.com/1991/03/27/world/mali-s-dictator-is-overthrown-in-coup.html
-      \endverb
-      \verb{url}
-      \verb https://www.nytimes.com/1991/03/27/world/mali-s-dictator-is-overthrown-in-coup.html
-      \endverb
-      \keyw{{ARMAMENT},{DEFENSE} {AND} {MILITARY} {FORCES},Coups D'Etat and Attempted Coups D'Etat,Mali,{TRAORE},{MOUSSA}}
-    \endentry
     \entry{tull_hidden_2005}{article}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=328260cfcda2ea7a486c9a3b46fb9b2a}{%
@@ -3284,6 +3213,124 @@
       \endverb
       \verb{url}
       \verb https://academic.oup.com/afraf/article-lookup/doi/10.1093/afraf/adi034
+      \endverb
+    \endentry
+    \entry{unknown_leader_1991}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=88183b946cc5f0e8c96b2e66e1c74a7e}{%
+           family={{Unknown}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{fullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{bibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorbibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authornamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorfullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \field{extraname}{1}
+      \field{sortinit}{U}
+      \field{sortinithash}{77a6935510e008adcf5b555e7b4f0711}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The coup leader whose forces overthrew Mali's military dictator after a crescendo of anti-government protest promised Tuesday that "the army will no longer meddle in politics" and will oversee a prompt transition to multi-party democracy.}
+      \field{day}{27}
+      \field{langid}{american}
+      \field{month}{3}
+      \field{note}{Library Catalog: www.latimes.com}
+      \field{title}{Leader of Mali Coup Promises Democracy}
+      \field{titleaddon}{Los Angeles Times}
+      \field{urlday}{10}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\tbrai\\Zotero\\storage\\TVK5L26P\\la-xpm-1991-03-27-mn-944-story.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.latimes.com/archives/la-xpm-1991-03-27-mn-944-story.html
+      \endverb
+      \verb{url}
+      \verb https://www.latimes.com/archives/la-xpm-1991-03-27-mn-944-story.html
+      \endverb
+    \endentry
+    \entry{unknown_malis_1991}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=88183b946cc5f0e8c96b2e66e1c74a7e}{%
+           family={{Unknown}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{fullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{bibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorbibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authornamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorfullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \field{extraname}{2}
+      \field{sortinit}{U}
+      \field{sortinithash}{77a6935510e008adcf5b555e7b4f0711}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{27}
+      \field{issn}{0362-4331}
+      \field{journaltitle}{The New York Times}
+      \field{langid}{american}
+      \field{month}{3}
+      \field{title}{Mali's Dictator Is Overthrown in Coup}
+      \field{urlday}{10}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.nytimes.com/1991/03/27/world/mali-s-dictator-is-overthrown-in-coup.html
+      \endverb
+      \verb{url}
+      \verb https://www.nytimes.com/1991/03/27/world/mali-s-dictator-is-overthrown-in-coup.html
+      \endverb
+      \keyw{{ARMAMENT},{DEFENSE} {AND} {MILITARY} {FORCES},Coups D'Etat and Attempted Coups D'Etat,Mali,{TRAORE},{MOUSSA}}
+    \endentry
+    \entry{unknown_tuareg_2008}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=88183b946cc5f0e8c96b2e66e1c74a7e}{%
+           family={Unknown},
+           familyi={U\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bamako}%
+      }
+      \strng{namehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{fullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{bibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorbibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authornamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorfullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \field{extraname}{3}
+      \field{sortinit}{U}
+      \field{sortinithash}{77a6935510e008adcf5b555e7b4f0711}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{19}
+      \field{journaltitle}{France24}
+      \field{month}{8}
+      \field{title}{Tuareg rebels open to laying down arms}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.france24.com/en/20080819-tuareg-rebels-open-laying-down-arms-niger-libya
+      \endverb
+      \verb{url}
+      \verb https://www.france24.com/en/20080819-tuareg-rebels-open-laying-down-arms-niger-libya
       \endverb
     \endentry
     \entry{vhumbunu_reviving_2019}{online}{}
@@ -3561,7 +3608,7 @@
       \verb http://www.sciencedirect.com/science/article/pii/026098278790005X
       \endverb
     \endentry
-    \entry{world_values_survey_world_nodate}{online}{}
+    \entry{world_values_survey_world_2007}{online}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=e947f062ad91a5d3497993e3e5ce033a}{%
            family={{World Values Survey}},
@@ -3576,14 +3623,16 @@
       \field{sortinit}{W}
       \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
       \field{extradatescope}{labelyear}
-      \field{labeldatesource}{url}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{World Values Survey, Mali 2007}
+      \field{title}{World Values Survey: Mali, 2007}
       \field{titleaddon}{World Values Survey Database}
       \field{urlday}{6}
       \field{urlmonth}{2}
       \field{urlyear}{2020}
+      \field{year}{2007}
+      \field{dateera}{ce}
       \field{urldateera}{ce}
       \verb{file}
       \verb WVS Database:C\:\\Users\\tbrai\\Zotero\\storage\\CAZCEAAN\\WVSDocumentationWV5.html:text/html
