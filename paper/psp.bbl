@@ -203,6 +203,49 @@
       \verb Ansorg et al. - Mind the Gap An Annotated Overview of Datasets in.pdf:C\:\\Users\\tbrai\\Zotero\\storage\\B3YAHDWX\\Ansorg et al. - Mind the Gap An Annotated Overview of Datasets in.pdf:application/pdf
       \endverb
     \endentry
+    \entry{arteh_state-building_2016}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=897146ff5cdf7645b600d3f68dfa7503}{%
+           family={Arteh},
+           familyi={A\bibinitperiod},
+           given={{HE}\bibnamedelima Mohamed\bibnamedelima Omer},
+           giveni={H\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8b71885c173e15b7835b39a082e749e4}{%
+           family={Mosley},
+           familyi={M\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Chatham House}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \strng{namehash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \strng{fullhash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \strng{bibnamehash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \strng{authorbibnamehash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \strng{authornamehash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \strng{authorfullhash}{8d10d09e3c3e0b2a8911da9992e41cee}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{16}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{title}{State-Building in Somalia: Development and Security Priorities in 2016}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb Arteh and Mosley - State-Building in Somalia Development and Securit.pdf:C\:\\Users\\tbrai\\Zotero\\storage\\MV8EGIA6\\Arteh and Mosley - State-Building in Somalia Development and Securit.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{barry_consociational_1975}{article}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=cf2dfc9865a779e4c717e0d5063df1e1}{%
