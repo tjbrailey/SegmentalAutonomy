@@ -163,3 +163,13 @@ reg_full_tex <- texreg::texreg(list(reg1, reg5, reg6),
 
 reg_full_tex
 ```
+
+# Other Calculations
+```{r}
+# Percentage of ethnically fractionalized states
+psp_eth <- psp %>%
+    dplyr::mutate_if(is.numeric, round, digits = 3) %>%
+    dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
+pct <- length(unique(psp_eth$country)) / length(unique(psp$country)) * 100
+pct
+```
