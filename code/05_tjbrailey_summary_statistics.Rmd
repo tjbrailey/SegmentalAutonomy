@@ -172,4 +172,10 @@ psp_eth <- psp %>%
     dplyr::filter(qog_fe_etfra > median(psp$qog_fe_etfra, na.rm = TRUE))
 pct <- length(unique(psp_eth$country)) / length(unique(psp$country)) * 100
 pct
+
+# Summary table
+vars <- psp[, c("polity4_polity_score", "ucdp_cumulative_intensity", "qog_hum_trust", "dpi_auton", "qog_fe_etfra")]
+cap <- "Summary Statistics"
+reporttools::tableContinuous(vars = vars, cap = cap, longtable = FALSE)
+
 ```
