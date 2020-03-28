@@ -655,6 +655,114 @@
       \field{labeltitlesource}{title}
       \field{title}{"V-Dem Codebook v8" Varieties of Democracy (V-Dem) Project}
     \endentry
+    \entry{dunning_information_2020}{book}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=9e055e65cf7f69f7226e55a96709f0fd}{%
+           family={Dunning},
+           familyi={D\bibinitperiod},
+           given={Thad},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2195bc7706ae2f96647562df2327d0cb}{%
+           family={Humphreys},
+           familyi={H\bibinitperiod},
+           given={Macartan},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9b1369530819277a11277fa111ba6d62}{%
+           family={Hyde},
+           familyi={H\bibinitperiod},
+           given={Susan\bibnamedelima D},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd0aedbdea8528d76206479ff151c5e6}{%
+           family={{McIntosh}},
+           familyi={M\bibinitperiod},
+           given={Craig},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96c19bd213a7c74af73b2c373dff5598}{%
+           family={Nellis},
+           familyi={N\bibinitperiod},
+           given={Gareth},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Cambridge, United Kingdom; New York}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{4d5909a9a0abc2d391e1f427664c5f2a}
+      \strng{fullhash}{ca83e741fce309f6e2baeaee0358fa0b}
+      \strng{bibnamehash}{4d5909a9a0abc2d391e1f427664c5f2a}
+      \strng{authorbibnamehash}{4d5909a9a0abc2d391e1f427664c5f2a}
+      \strng{authornamehash}{4d5909a9a0abc2d391e1f427664c5f2a}
+      \strng{authorfullhash}{ca83e741fce309f6e2baeaee0358fa0b}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{"Throughout the world, voters lack access to information about politicians, government performance, and public services. Efforts to remedy these informational deficits are numerous. Yet do informational campaigns influence voter behavior and increase democratic accountability? Through the first project of the Metaketa Initiative, sponsored by the Evidence in Governance and Politics ({EGAP}) research network, this book aims to address this substantive question and at the same time introduce a new model for cumulative learning that increases coordination among otherwise independent researcher teams. It presents the overall results (using meta-analysis) from six independently conducted but coordinated field experimental studies, the results from each individual study, and the findings from a related evaluation of whether practitioners utilize this information as expected. It also discusses lessons learned from {EGAP}'s efforts to coordinate field experiments, increase replication of theoretically important studies across contexts, and increase the external validity of field experimental research"--}
+      \field{isbn}{978-1-108-38139-0}
+      \field{note}{{OCLC}: 1127405393}
+      \field{title}{Information, accountability, and cumulative learning lessons from Metaketa I}
+      \field{year}{2020}
+      \field{dateera}{ce}
+    \endentry
+    \entry{dunning_replicate_2014}{online}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9e055e65cf7f69f7226e55a96709f0fd}{%
+           family={Dunning},
+           familyi={D\bibinitperiod},
+           given={Thad},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=818be14da07f003378a0180b60bbeb62}{%
+           family={Hyde},
+           familyi={H\bibinitperiod},
+           given={Susan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \strng{fullhash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \strng{bibnamehash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \strng{authorbibnamehash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \strng{authornamehash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \strng{authorfullhash}{74d2e78b14a93e1e2cd35f779cbc0047}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The benefits of scientific methods can be undermined by academic incentives to publish “groundbreaking” research. A new research funding model is a possible solution.}
+      \field{day}{16}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{note}{Library Catalog: www.washingtonpost.com}
+      \field{title}{Replicate it! A proposal to improve the study of political accountability}
+      \field{titleaddon}{Washington Post}
+      \field{urlday}{27}
+      \field{urlmonth}{3}
+      \field{urlyear}{2020}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Snapshot:C\:\\Users\\tbrai\\Zotero\\storage\\V4M2RWWC\\replicate-it-a-proposal-to-improve-the-study-of-political-accountability.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.washingtonpost.com/news/monkey-cage/wp/2014/05/16/replicate-it-a-proposal-to-improve-the-study-of-political-accountability/
+      \endverb
+      \verb{url}
+      \verb https://www.washingtonpost.com/news/monkey-cage/wp/2014/05/16/replicate-it-a-proposal-to-improve-the-study-of-political-accountability/
+      \endverb
+    \endentry
     \entry{escobarlemmon_does_2014}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=ae96c30b42e311c332f2bd89bd641ee2}{%
@@ -853,6 +961,56 @@
       \endverb
       \verb{url}
       \verb https://www.cambridge.org/core/product/identifier/S0003055417000326/type/journal_article
+      \endverb
+    \endentry
+    \entry{halpern_disorderly_1986}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=9c68c45718ec115726a4a9f0ed62f0d1}{%
+           family={Halpern},
+           familyi={H\bibinitperiod},
+           given={Sue\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \strng{fullhash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \strng{bibnamehash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \strng{authorbibnamehash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \strng{authornamehash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \strng{authorfullhash}{9c68c45718ec115726a4a9f0ed62f0d1}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0140-2382, 1743-9655}
+      \field{journaltitle}{West European Politics}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{2}
+      \field{shortjournal}{West European Politics}
+      \field{title}{The disorderly universe of consociational democracy}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2020}
+      \field{volume}{9}
+      \field{year}{1986}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{181\bibrangedash 197}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1080/01402388608424573
+      \endverb
+      \verb{file}
+      \verb Halpern - 1986 - The disorderly universe of consociational democrac.pdf:C\:\\Users\\tbrai\\Zotero\\storage\\7RDRACNM\\Halpern - 1986 - The disorderly universe of consociational democrac.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.tandfonline.com/doi/abs/10.1080/01402388608424573
+      \endverb
+      \verb{url}
+      \verb http://www.tandfonline.com/doi/abs/10.1080/01402388608424573
       \endverb
     \endentry
     \entry{hartzell_crafting_2007}{book}{}
