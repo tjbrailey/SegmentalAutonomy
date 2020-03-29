@@ -1,0 +1,72 @@
+---
+title: "06 Map"
+author: "Thomas J. Brailey"
+date: "1/24/2020"
+output:
+  pdf_document:
+    toc: yes
+    keep_tex: yes
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    toc: yes
+editor_options:
+  chunk_output_type: inline
+---
+<style>
+    body .main-container {
+        max-width: 100%;
+    }
+</style>
+
+```{r setup, include=FALSE}
+rm(list=ls())
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(ggplot2)
+```
+
+# Load data
+```{r}
+mali <- sf::st_read(paste0(here::here(), "/data/map/gadm36_MLI_shp/gadm36_MLI_0.shp"))
+niger <- sf::st_read(paste0(here::here(), "/data/map/gadm36_NER_shp/gadm36_NER_0.shp"))
+tuareg <- sf::st_read(paste0(here::here(), "/data/map/GeoEPR-2019/GeoEPR.shp")) %>%
+  dplyr::filter(group == "Tuareg" & 
+                  statename %in% c("Mali", "Niger") & 
+                  from == 1960)
+africa <- sf::st_read(paste0(here::here(), "/data/map/Africa_SHP/Africa.shp"))
+sf::st_crs(africa) <- 4326
+
+```
+
+# Plot 
+```{r}
+map <- ggplot() +
+  geom_sf(data = tuareg, fill = "#e6d073", aes(color = "Tuareg Region"), alpha = .7) +
+  geom_sf(data = africa, color = "gray", fill = "hollow") +
+  geom_sf(data = mali, color = "black", fill = "hollow") +
+  geom_sf(data = niger, color = "black", fill = "hollow") +
+  geom_sf_label(data = mali, aes(label = NAME_0), fill = "hollow") +
+  geom_sf_label(data = niger, aes(label = NAME_0), fill = "hollow") +
+  scale_color_manual(values = "#e6d073") +
+  labs(color = "") +
+  coord_sf(xlim = c(-16, 20), ylim = c(8, 26)) +
+  theme(axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),   
+          panel.border = element_rect(colour = "black", fill=NA, size=1),
+          panel.background=element_blank(), 
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          plot.background=element_blank()) 
+map
+```
+
+# Save data 
+```{r}
+ggsave(plot = map, filename = paste0(here::here(), "/paper/tuareg_map.jpeg"), width = 10, height = 10)
+```
