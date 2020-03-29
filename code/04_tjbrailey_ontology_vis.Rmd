@@ -112,8 +112,8 @@ reg_aut_ontology_vis
 ```{r, include = FALSE}
 # Save visualizations
 networkD3::saveNetwork(psp_ontology_vis, file = paste0(here::here(), '/vis/psp_ontology_vis.html'))
-webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/psp_ontology_vis.html", paste0(here::here(), "/vis/psp_ontology_vis.png"))
+webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/psp_ontology_vis.html", paste0(here::here(), "/paper/psp_ontology_vis.png"))
 
 networkD3::saveNetwork(reg_aut_ontology_vis, file = paste0(here::here(), '/vis/reg_aut_ontology_vis.html'))
-webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/reg_aut_ontology_vis.html", paste0(here::here(), "/vis/reg_aut_ontology_vis.png"))
+webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/reg_aut_ontology_vis.html", paste0(here::here(), "/paper/reg_aut_ontology_vis.png"))
 ```
