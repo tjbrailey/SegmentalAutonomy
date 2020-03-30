@@ -75,14 +75,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {8.2}Summary Statistics}{63}{subsection.8.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.1}Map}{63}{subsubsection.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.2.1}Tabulated Summary Statistics}{63}{subsubsection.8.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.2}Tabulated Summary Statistics}{63}{subsubsection.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.2}Map}{64}{subsubsection.8.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.3}Cross-Sectional Time-Series Plots}{63}{subsubsection.8.2.3}%
+\contentsline {subsubsection}{\numberline {8.2.3}Cross-Sectional Time-Series Plots}{65}{subsubsection.8.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {8.2.4}Missingness Plots}{66}{subsubsection.8.2.4}%
+\contentsline {subsubsection}{\numberline {8.2.4}Missingness Plots}{65}{subsubsection.8.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3}Ontology}{66}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.3}Ontology}{67}{subsection.8.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4}Replication Package}{66}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.4}Replication Package}{67}{subsection.8.4}%

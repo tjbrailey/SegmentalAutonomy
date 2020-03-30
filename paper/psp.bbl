@@ -542,6 +542,76 @@
       \verb http://doi.wiley.com/10.1111/1475-6765.00392
       \endverb
     \endentry
+    \entry{bormann_does_2014}{article}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=5e1abe0c6cf31b9709c024ae8c4a286a}{%
+           family={Bormann},
+           familyi={B\bibinitperiod},
+           given={Nils-Christian},
+           giveni={N\bibinithyphendelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b4c274681a4039c77b32955c93369ac1}{%
+           family={Cederman},
+           familyi={C\bibinitperiod},
+           given={Lars-Erik},
+           giveni={L\bibinithyphendelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8a04f6062964fa6337029576ed4c158b}{%
+           family={Gates},
+           familyi={G\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fbd71805fb6938dd2b78bf0afe0cb6a7}{%
+           family={Graham},
+           familyi={G\bibinitperiod},
+           given={Benjamin\bibnamedelimb A\bibnamedelima T},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b6b73033929000982e3c827e3d45cb6}{%
+           family={Hug},
+           familyi={H\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a105bdb4ccdeb50e25397b04ccd8a8b}{%
+           family={Strøm},
+           familyi={S\bibinitperiod},
+           given={Kaare},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=20447d4bc9bf77d7c5677791faacea65}{%
+           family={Wucherpfennig},
+           familyi={W\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8953c6b48f4a9ad999ddd03087a59ed7}
+      \strng{fullhash}{342fe272d5bca06d33f918ebcee1bb23}
+      \strng{bibnamehash}{8953c6b48f4a9ad999ddd03087a59ed7}
+      \strng{authorbibnamehash}{8953c6b48f4a9ad999ddd03087a59ed7}
+      \strng{authornamehash}{8953c6b48f4a9ad999ddd03087a59ed7}
+      \strng{authorfullhash}{342fe272d5bca06d33f918ebcee1bb23}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{13}
+      \field{journaltitle}{Unpublished manuscript}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{title}{Does formal or informal power-sharing produce peace?}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{pages}{49}
+      \range{pages}{1}
+      \verb{file}
+      \verb Bormann et al. - Does formal or informal power-sharing produce peac.pdf:C\:\\Users\\tbrai\\Zotero\\storage\\JGJDVRYX\\Bormann et al. - Does formal or informal power-sharing produce peac.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{brailey_after_2019}{unpublished}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=d5723792e9b83bd9e4d43096a85a7531}{%
