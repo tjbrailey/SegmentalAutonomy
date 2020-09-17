@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  29 MAR 2020 21:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  5 SEP 2020 07:08
 entering extended mode
 **./psp.tex
 (psp.tex
@@ -1128,7 +1128,7 @@ e.}) has been already used, duplicate ignored
                    \relax 
 l.126 
        [1] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-<reg_aut_ontology_vis.png, id=540, 505.22084pt x 408.19167pt>
+<reg_aut_ontology_vis.png, id=538, 505.22084pt x 408.19167pt>
 File: reg_aut_ontology_vis.png Graphic file (type png)
 <use reg_aut_ontology_vis.png>
 Package pdftex.def Info: reg_aut_ontology_vis.png  used on input line 186.
@@ -1145,7 +1145,7 @@ Overfull \hbox (5.1427pt too wide) in paragraph at lines 237--237
  []
 
 [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32]
-<csts_polity4_polity_score.png, id=795, 867.24pt x 578.16pt>
+<csts_polity4_polity_score.png, id=793, 867.24pt x 578.16pt>
 File: csts_polity4_polity_score.png Graphic file (type png)
 <use csts_polity4_polity_score.png>
 Package pdftex.def Info: csts_polity4_polity_score.png  used on input line 342.
@@ -1209,7 +1209,7 @@ Underfull \hbox (badness 1215) in paragraph at lines 652--652
  []
 
 [62]
-<tuareg_map.jpeg, id=976, 722.7pt x 722.7pt>
+<tuareg_map.jpeg, id=974, 722.7pt x 722.7pt>
 File: tuareg_map.jpeg Graphic file (type jpg)
 <use tuareg_map.jpeg>
 Package pdftex.def Info: tuareg_map.jpeg  used on input line 711.
@@ -1220,19 +1220,19 @@ Overfull \hbox (36.13498pt too wide) in paragraph at lines 711--712
  []
 
 [63]
-<csts_qog_hum_trust.png, id=983, 867.24pt x 578.16pt>
+<csts_qog_hum_trust.png, id=981, 867.24pt x 578.16pt>
 File: csts_qog_hum_trust.png Graphic file (type png)
 <use csts_qog_hum_trust.png>
 Package pdftex.def Info: csts_qog_hum_trust.png  used on input line 723.
 (pdftex.def)             Requested size: 289.07999pt x 192.71658pt.
  [64 <./tuareg_map.jpeg>]
-<csts_ucdp_cumulative_intensity.png, id=988, 867.24pt x 578.16pt>
+<csts_ucdp_cumulative_intensity.png, id=986, 867.24pt x 578.16pt>
 File: csts_ucdp_cumulative_intensity.png Graphic file (type png)
 <use csts_ucdp_cumulative_intensity.png>
 Package pdftex.def Info: csts_ucdp_cumulative_intensity.png  used on input line
  730.
 (pdftex.def)             Requested size: 289.07999pt x 192.71658pt.
-<tjbrailey_psp_clean_missingness.png, id=989, 2007.5pt x 1003.75pt>
+<tjbrailey_psp_clean_missingness.png, id=987, 2007.5pt x 1003.75pt>
 File: tjbrailey_psp_clean_missingness.png Graphic file (type png)
 <use tjbrailey_psp_clean_missingness.png>
 Package pdftex.def Info: tjbrailey_psp_clean_missingness.png  used on input lin
@@ -1245,7 +1245,7 @@ Overfull \hbox (108.40497pt too wide) in paragraph at lines 741--742
 
 [65 <./csts_qog_hum_trust.png> <./csts_ucdp_cumulative_intensity.png>] [66 <./t
 jbrailey_psp_clean_missingness.png>]
-<psp_ontology_vis.png, id=1001, 639.05417pt x 475.10834pt>
+<psp_ontology_vis.png, id=999, 639.05417pt x 475.10834pt>
 File: psp_ontology_vis.png Graphic file (type png)
 <use psp_ontology_vis.png>
 Package pdftex.def Info: psp_ontology_vis.png  used on input line 751.
@@ -1300,9 +1300,9 @@ ts/cm/cmti10.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti12.pfb><C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/tbrai/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on psp.pdf (72 pages, 1649979 bytes).
+Output written on psp.pdf (72 pages, 1649567 bytes).
 PDF statistics:
- 1136 PDF objects out of 1200 (max. 8388607)
+ 1134 PDF objects out of 1200 (max. 8388607)
  308 named destinations out of 1000 (max. 500000)
  385 words of extra memory for PDF output out of 10000 (max. 10000000)
 
