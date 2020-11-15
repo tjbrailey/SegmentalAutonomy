@@ -1,0 +1,75 @@
+---
+title: "Provisions of Power-Sharing: Assessing the Impacts of Segmental Autonomy"
+author: "Thomas J. Brailey"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    fig_caption: yes
+    fig_crop: yes
+    keep_tex: no
+    number_sections: true
+    citation_package: biblatex
+bibliography: psp.bib
+header-includes:
+  - \usepackage[english]{babel}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{amsmath}
+  - \usepackage{graphicx}
+  - \usepackage{caption}
+  - \usepackage{physics}
+  - \usepackage{float}
+  - \usepackage{tocloft}
+  - \usepackage{inputenc}
+  - \usepackage{setspace}
+  - \usepackage{tabularx}
+  - \usepackage{lipsum}
+  - \usepackage{listings}
+  - \usepackage{wrapfig}
+  - \usepackage{mathtools}
+  - \usepackage{lscape}
+  - \usepackage{rotating}
+  - \usepackage{epstopdf}
+  - \usepackage{hyperref}
+  - \usepackage[backend=biber,citestyle=authoryear, autocite=footnote, doi = false, url = false, isbn = false]{biblatex}
+  - \geometry{letterpaper, portrait, margin=1in}
+  - \addbibresource{psp.bib}
+  - \hypersetup{colorlinks = false, linkbordercolor = {white}, citebordercolor = {white}, urlbordercolor = {white}}
+  - \lstset{language=R, basicstyle=\small\ttfamily,stringstyle=\color{DarkGreen},otherkeywords={0,1,2,3,4,5,6,7,8,9},morekeywords={TRUE,FALSE},deletekeywords={data,frame,length,as,character}, keywordstyle=\color{blue}, commentstyle=\color{DarkGreen}}
+  - \graphicspath{{./}{Documents}} 
+  - \newlength\cbl
+  - \newenvironment{codebook}[1][]{\settowidth{\cbl}{#1}\parskip1em plus .3em minus .2em\parindent0pt\def\code##1##2{{\bfseries##1}\hfill\parbox[t]{\dimexpr\linewidth-15em-\cbl}{##2}\par}}
+fontsize: 14pt
+---
+
+```{=latex}
+\newlength\cbl
+\newenvironment{codebook}[1][rob\_avprison1]{
+    \settowidth{\cbl}{#1}
+    \parskip1em plus .3em minus .2em
+    \parindent0pt
+    \def\code##1##2{{\bfseries ##1}\hfill
+        \parbox[t]{\dimexpr\linewidth-15em-\cbl}{##2}\par}}{\noindent}
+```
+
+\pagenumbering{arabic}
+
+\doublespacing
+
+\newpage
+
+Defining function here:
+
+
+
+\newpage
+
+\singlespacing
+
+\subsubsection{Basic Country Variables}
+	
+\begin{codebook}
+  \code{country}{Country name.}
+  \code{year}{Year of country observation.}
+  \code{cowc}{Correlates of War country code (character).}
+  \code{cown}{Correlates of War country code (numeric).}
+\end{codebook}
