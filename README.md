@@ -1,4 +1,4 @@
-# SeniorThesis
+# SegmentalAutonomy
 Code, documents, and data for my senior thesis project.
 
 ### Notes 
