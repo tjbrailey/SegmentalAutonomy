@@ -216,16 +216,26 @@ upper <- as.data.frame(upper)
 upper <- xtable::xtable(upper)
 upper
 
-auton_cor_spear <- 
-  xtable::xtable(
-    round(
-      cor(
-        reg_data_complete[, 3:9],
-        method = "spearman"
-      ), 2)
+colnames(reg_data_complete) <- c("cown", "year", "auton (DPI)", "n_RAI (RAI)", "reg_aut (EPR)", "subtax (IDC)", "subed (IDC)", "subpolice (IDC)", "author (DPI)", "vdem_e_polity2")
+
+auton_cor_pear <-
+  xtable::print.xtable(
+    xtable::xtable(
+      #round(
+      #  cor(
+      #    reg_data_complete[, 3:9],
+      #  ), 2)
+      upper,
+      align = "rlllllll",
+      caption = "Pearson's correlation of segmental autonomy variables"
+    ),
+    table.placement = "!htbp", 
+    #latex.environments = c("myresizeenv"), 
+    scalebox = 0.8,
+    file = paste0(here::here(), "/paper/pearsons_correlation_of_autonomy_variables.tex")
   )
 
-auton_cor_spear
+auton_cor_pear
 
 auton_cor_ken <- 
   xtable::xtable(

@@ -17,11 +17,13 @@ csts <- function(dv, iv){
   # Make text look pretty 
   if(dv == "vdem_e_miinterc"){
     dv_text <- "Conflict Intensity"
-  } else if(dv == "qog_ess_trpeople"){
+  } else if(dv == "epr_incidence_terr_eth_flag"){
+    dv_text <- "Incidence of Ethnic Conflict"
+  } else if(dv == "hum_at_0"){
       dv_text <- "Social Trust"
-  } else if(dv == "wvs_E111"){
+  } else if(dv == "hum_de_1"){
       dv_text <- "Satisfaction with Political System"
-  } else if(dv == "wvs_E117"){
+  } else if(dv == "hum_de_2"){
       dv_text <- "Support for Democracy"
   } else if(dv == "vdem_e_polity2"){
       dv_text <- "Polity Score"

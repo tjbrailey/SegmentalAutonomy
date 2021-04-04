@@ -88,9 +88,25 @@ reg_aut_ontology_vis <-
     height = 1200
   )
 
-#reg_aut_ontology_vis <- htmlwidgets::prependContent(reg_aut_ontology_vis, htmltools::tags$h1("Mapping Regional Autonomy"))
 reg_aut_ontology_vis
 
 networkD3::saveNetwork(reg_aut_ontology_vis, file = paste0(here::here(), '/vis/reg_aut_ontology_vis.html'))
 
 webshot::webshot("file:///C:/Users/tbrai/Dropbox/github_private/SeniorThesis/vis/reg_aut_ontology_vis.html", paste0(here::here(), "/paper/reg_aut_ontology_vis.png"))
+
+
+test <- reg_aut_ont %>% 
+  dplyr::mutate(dplyr::across(dplyr::everything(), ~stringr::str_to_title(.)),
+                dplyr::across(dplyr::everything(), ~stringr::str_replace_all(., "ø", "o"))) %>%
+  dplyr::rename_with(.cols = dplyr::everything(), .fn = ~ stringr::str_to_title(.)) %>%
+  dplyr::select(-Pathstring)
+
+xtable::print.xtable(
+  xtable::xtable(
+    test, 
+    caption = "Regional Autonomy Across Conceptualizations"
+    ), 
+  table.placement = "!htbp",
+  scalebox = 0.8,
+  include.rownames = FALSE,
+  file = paste0(here::here(), "/paper/reg_aut_concept_map.tex"))

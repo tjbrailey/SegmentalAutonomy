@@ -24,6 +24,7 @@ wd <- paste0(here::here(), "/data/")
 source(paste0(here::here(), "/code/functions/csts.R"))
 source(paste0(here::here(), "/code/functions/lm.R"))
 source(paste0(here::here(), "/code/functions/read_all_excel.R"))
+source(paste0(here::here(), "/code/functions/lasso.R"))
 
 # Load datasets
 idc    <- rio::import(paste0(wd, "IDC_country-year_v1_0.RData"))
@@ -31,9 +32,10 @@ vdem   <- vdemdata::vdem
 dpi    <- rio::import(paste0(wd, "DPI2017_basefile_Jan2018.csv"))
 qog_ts <- rio::import(paste0(wd, "qog_std_ts_jan21.csv"))
 rai    <- rio::import(paste0(wd, "RAI_country jan2021.xlsx"))
-epr    <- rio::import(paste0(wd, "EPR-2019.csv"))
 wvs    <- rio::import(paste0(wd, "WVS_TimeSeries_R_v1_6.rds"))
-lai    <- rio::import(paste0(here::here(), "/data/LAI_data_v6_temp2.sav"))
+lai    <- rio::import(paste0(wd, "LAI_data_v6_temp2.sav"))
+epr_cf <- rio::import(paste0(wd, "epr_conflict.csv"))
+hum    <- rio::import(paste0(wd, "HUMAN Surveys - Country-Year Data.dta"))
 
 files <- list.files(paste0(here::here(), "/data/"), "tjbrailey_psp_ontology.xlsx", full.names = TRUE)
 files <- files[2]
@@ -73,3 +75,4 @@ source(paste0(here::here(), "/code/03_data_analysis.R"))
 source(paste0(here::here(), "/code/04_ontology.R"))
 
 source(paste0(here::here(), "/code/05_other_vis.R"))
+

@@ -59,14 +59,31 @@ idc_psp_sub <-
   # Select key variables
   dplyr::select(
     cowc, cown, year, 
-    mveto, gcman, gcimp, 
-    jrevman, relconstd, relconstp,
-    milleg, partynoethnic, jtenure, 
-    jconst, gcseats1, gcseats2, 
-    gcseats3, unity, resman, 
-    resseats, resseats2, resseatsimp,
-    miman, subtax, subed, subpolice, 
-    fedunits, state, muni
+    mveto, 
+    gcman, 
+    gcimp, 
+    jrevman, 
+    relconstd, 
+    relconstp,
+    milleg, 
+    partynoethnic, 
+    jtenure, 
+    jconst, 
+    gcseats1, 
+    gcseats2, 
+    gcseats3, 
+    unity, 
+    resman, 
+    resseats, 
+    resseats2, 
+    resseatsimp,
+    miman, 
+    subtax, 
+    subed, 
+    subpolice, 
+    fedunits, 
+    state, 
+    muni
   ) %>% 
   
   dplyr::rename_at(
@@ -80,7 +97,7 @@ idc_psp_sub <-
 vdem_psp_sub <- 
   vdem %>%
   dplyr::select(
-    country_name, year, e_miinterc, e_civil_war, v2elfrfair, e_polity2
+    country_name, year, e_miinterc, e_civil_war, v2elfrfair, e_polity2, e_polcomp,
   ) %>% 
   dplyr::rename(country = country_name) %>% 
   
@@ -102,15 +119,40 @@ vdem_psp_sub <-
 qog_ts_psp_sub <- 
   qog_ts %>%
   dplyr::select(
-    cname, year, fe_etfra, iaep_ebbp, gle_gdp,
-    bti_ci, cspf_sfi, gtm_unit, ccp_hr,
-    ffp_hr, jw_bicameral,
-    bti_ig, vdem_partipdem, iaep_nr, bti_sop,
-    bti_ffe, gol_est, gol_mt, iaep_es,
-    no_ef, no_ce, iaep_eccdt, iaep_ecdl,
-    iaep_eml, iaep_epmf, iaep_evp, iaep_lcre,
-    iaep_lego, iaep_lrit, wbgi_pve, wdi_gini, gle_pop,
-    fe_etfra, al_ethnic2000, pt_federal, wel_trstd
+    cname, year, 
+    fe_etfra, # Fearon ethnic fractionalization 
+    gle_gdp, # GDP
+    cspf_sfi, # State fragility index 
+    ccp_hr, # Human rights commission in constitution
+    ccp_freerel, # Freedom of religion
+    jw_bicameral, # Bicameral system
+    bti_ig, # interest groups
+    vdem_partipdem, # Participatory democracy index
+    iaep_nr, # National referendums 
+    bti_sop, # Seperation of powers
+    bti_ffe, # Free and fair elections
+    gol_mt,  # Multi tier type
+    iaep_es, # electoral system
+    no_ce,   # classification of executives
+    iaep_eccdt, # executive can change domestic taxes 
+    iaep_ecdl, # executive can dissolve legislature 
+    iaep_eml, # Executive is Member of Legislature
+    iaep_epmf, # Executive Power over Military Force
+    iaep_evp, # Executive Veto Power
+    iaep_lcre, # Legislature Can Remove Executive
+    iaep_lego, # Some other executive have the power to introduce legislation
+    iaep_lrit, # Legislature's Ratification of International Treaties 
+    wbgi_pve, # Political Stability and Absence of Violence/Terrorism, Estimate
+    wdi_gini, # Gini index 
+    gle_pop, # population 
+    fe_cultdiv, # Fearon cultral diversity 
+    al_ethnic2000, # Alesina ethnic fractionalization
+    pt_federal, # Federal Political Structure
+    chga_demo, # Dichotomous measure of democracy
+    bmr_dem, # Dichotomous measure of democracy
+    bmr_dembr, # Number of previous democratic breakdowns
+    bmr_demdur, # Consecutive years of current regime type
+    bmr_demtran # Democratic transition
   ) %>%
   dplyr::rename(country = cname) %>% 
   
@@ -137,7 +179,14 @@ qog_ts_psp_sub <-
 dpi_psp_sub <- 
   dpi %>%
   dplyr::select(
-    countryname, year, system, auton, author, pr, sensys, eiec, housesys
+    countryname, year, 
+    system, 
+    auton, 
+    author, 
+    pr, 
+    sensys, 
+    eiec, 
+    housesys
   ) %>%
   dplyr::rename(country = countryname) %>%
   dplyr::mutate(
@@ -165,7 +214,10 @@ dpi_psp_sub <-
 
 rai_psp_sub <- 
   rai %>% 
-  dplyr::select(country_name, year, n_RAI) %>%
+  dplyr::select(
+    country_name, year, 
+    n_RAI
+    ) %>%
   dplyr::mutate(
     cown = countrycode::countrycode(country_name, "country.name", "cown"),
     cowc = countrycode::countrycode(cown, "cown", "cowc"),
@@ -177,46 +229,37 @@ rai_psp_sub <-
     ~paste0("rai_", .)
   )
 
-# 1.6. EPR
+# 1.6. EPR conflict 
 
-epr_psp_sub <- 
-  epr %>%
-  dplyr::mutate(cown = countrycode::countrycode(gwid, "gwn", "cown")) %>%
-  dplyr::select(cown, from, group, reg_aut) %>%
-  dplyr::rename(year = from) %>% 
-  dplyr::group_by(cown, group) %>%
-  tidyr::complete(
-    cown, group,
-    year = 1946:2017,
-    fill = list(incidents = 0)
-  ) %>% 
-  tidyr::pivot_wider(
-    names_from = group,
-    values_from = reg_aut
-  ) %>%
-  dplyr::group_by(cown) %>%
-  tidyr::fill(dplyr::everything()) %>%
-  dplyr::ungroup() %>% 
+epr_psp_sub <-
+  epr_cf %>%
   dplyr::mutate(
-    reg_aut_cont = rowSums(.[,3:length(.)] == TRUE, na.rm = TRUE)
-  ) %>%  
-  dplyr::mutate(
-    reg_aut_dum = ifelse(reg_aut_cont >= 1, 1, 0),
-    cowc = countrycode::countrycode(cown, "cown", "cowc")) %>%
-  dplyr::select(cown, cowc, year, reg_aut_dum, reg_aut_cont) %>% 
+    cown = countrycode::countrycode(countries_gwid, "gwn", "cown"),
+    cowc = countrycode::countrycode(cown, "cown", "cowc")
+    ) %>%
+  dplyr::select(
+    cown, cowc, year, 
+    regaut_groups_count, 
+    dplyr::matches("onset_|peaceyears_|warhist_|incidence_")
+    ) %>%
+  dplyr::rename(reg_aut_cont = regaut_groups_count) %>%
+  dplyr::mutate(reg_aut_dum = ifelse(reg_aut_cont >= 1, 1, 0)) %>%
   dplyr::rename_at(
     dplyr::vars(!dplyr::matches("country|cowc|cown|year")), 
     ~paste0("epr_", .)
   )
-
+  
 # 1.7. WVS
 
 wvs_psp_sub <- 
   wvs %>% 
   dplyr::select(
     S003, S020,
-    E069_07, E069_11, E069_12,
-    E111, E117
+    E069_07, 
+    E069_11, 
+    E069_12,
+    E111, 
+    E117
   ) %>%
   dplyr::rename(year = S020) %>%
   dplyr::mutate(
@@ -237,6 +280,52 @@ wvs_psp_sub <-
   ) %>% 
   tidyr::fill(dplyr::everything())
 
+# 1.8. HUM 
+
+min_yr <- min(hum$id_200)
+max_yr <- 2018
+
+hum_psp_sub <-
+  hum %>% 
+  dplyr::select(-id_500, -id_103) %>%
+  dplyr::rename(
+    year = id_200,
+  ) %>%
+  dplyr::mutate(
+    cown = countrycode::countrycode(id_100, "iso3n", "cown"),
+    cowc = countrycode::countrycode(cown, "cown", "cowc"),
+    year = as.numeric(year),
+    cowc = dplyr::case_when(
+      id_101 == "Palestine" ~ "PLS",
+      id_101 == "Germany, East" ~ "EGRMNY",
+      id_101 == "Germany, West" ~ "WGRMNY", 
+      id_101 == "Hong Kong" ~ "HK",
+      id_101 == "Kosovo" ~ "KSV",
+      id_101 == "Puerto Rico" ~ "PR",
+      id_101 == "Serbia" ~ "SRB", 
+      id_101 == "Yugoslavia" ~ "YGV",
+      TRUE ~ cowc
+    ),
+    cown = dplyr::case_when(
+      id_101 == "Palestine" ~ 1001,
+      id_101 == "Germany, East" ~ 1002,
+      id_101 == "Germany, West" ~ 1003, 
+      id_101 == "Hong Kong" ~ 1004,
+      id_101 == "Kosovo" ~ 1005,
+      id_101 == "Puerto Rico" ~ 1006,
+      id_101 == "Serbia" ~ 1007, 
+      id_101 == "Yugoslavia" ~ 1008,
+      TRUE ~ cown
+    )
+  ) %>% 
+  dplyr::group_by(cown, cowc, id_101) %>% 
+  tidyr::complete(year = min_yr:max_yr) %>% 
+  tidyr::fill(dplyr::everything()) %>%
+  dplyr::rename_at(
+    dplyr::vars(!dplyr::matches("cowc|cown|year")),
+    ~paste0("hum_", .)
+  )
+
 ### 2. Join datasets
 
 # Join data one-by-one. Check for discrepancies
@@ -246,19 +335,20 @@ tb_4 <- dplyr::left_join(tb_3, epr_psp_sub)
 tb_5 <- dplyr::left_join(tb_4, rai_psp_sub)
 tb_6 <- dplyr::left_join(tb_5, dpi_psp_sub)
 tb_7 <- dplyr::left_join(tb_6, vdem_psp_sub)
+tb_8 <- dplyr::left_join(tb_7, hum_psp_sub)
 
 # Check duplicates
-test <- which(duplicated(tb_7[c("cowc", "year")]) == TRUE)
+test <- which(duplicated(tb_8[c("cowc", "year")]) == TRUE)
 
 # Collapse duplicate country/years while retaining values
-tb_8 <- tb_7 %>% 
+tb_9 <- tb_8 %>% 
   dplyr::group_by(cown, year) %>%
   dplyr::summarise_all(list(~dplyr::first(na.omit(.))))
 
 ### 3. Post-merge cleaning
 
 # Remove codings for NA values
-psp_na_recode <- tb_8
+psp_na_recode <- tb_9
 
 psp_na_recode[psp_na_recode == "-999" | psp_na_recode == -999] <- NA
 psp_na_recode[psp_na_recode == "-44" | psp_na_recode == -44] <- NA
@@ -294,12 +384,27 @@ psp_rename <-
     )
   ) %>%
   dplyr::ungroup() %>% 
-  dplyr::filter(!is.na(year),
-                !is.na(cowc),
-                year >= 1980,
-                year != 2020)
+  dplyr::filter(
+    !is.na(year),
+    !is.na(cowc),
+    year >= 1980,
+    year <= 2017
+    )
 
 psp_rename$country <- countrycode::countrycode(psp_rename$cown, "cown", "country.name")
+
+psp_rename <- 
+  psp_rename %>% 
+  dplyr::group_by(country) %>% 
+  dplyr::mutate(
+    reg_aut_lag1 = dplyr::lag(epr_reg_aut_dum), 
+    reg_aut_lag2 = dplyr::lag(epr_reg_aut_dum, n = 2),
+    reg_aut_lag3 = dplyr::lag(epr_reg_aut_dum, n = 3), 
+    reg_aut_lag4 = dplyr::lag(epr_reg_aut_dum, n = 4), 
+    reg_aut_lag5 = dplyr::lag(epr_reg_aut_dum, n = 5),
+    year_from_zero = dplyr::row_number() - 1,
+    yfr_1 = dplyr::row_number()
+    )
 
 # Visualize after recoding
 DataExplorer::plot_missing(psp_rename)
@@ -308,9 +413,11 @@ DataExplorer::plot_histogram(psp_rename)
 
 Amelia::missmap(psp_rename)
 
-png(file = paste0(here::here(), "/paper/tjbrailey_psp_clean_missingness.png"),
-    width = 2000, 
-    height = 1000)
+png(
+  file = paste0(here::here(), "/paper/tjbrailey_psp_clean_missingness.png"),
+  width = 2000, 
+  height = 1000
+  )
 Amelia::missmap(psp_rename)
 dev.off()
 
