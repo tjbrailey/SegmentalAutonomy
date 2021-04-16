@@ -137,7 +137,7 @@ However, by no means a wasted exercise:
 
 - Null findings are findings in and of themselves. 
 
-- Presents a roadmap for future analysis and cumulative findings (\cite{dunning_information_2020}). 
+- Presents a roadmap for future analysis and cumulative findings. 
 
 ### Thanks
 

@@ -108,7 +108,7 @@ knitr::include_graphics("../paper/tuareg_map.jpeg")
 
 ### What do we Learn from Process-Tracing? 
 
-- We see autonomy disperse focal points, serve as a concession to regional minorities, and serve as a check and balance on the central government.\footnote{\cite{seely_political_2001} provides an excellent discussion on decentralization in Mali in the late 1990s.}
+- We see autonomy disperse focal points, serve as a concession to regional minorities, and serve as a check and balance on the central government.\footnote{\cite{seely_political_2001} and \cite{krings_marginalisation_1995} provide excellent discussions on decentralization in Mali and Niger in the late 1990s.}
 
 - In the immediate years following autonomy, modest democratic improvements in Mali. Difficult to confidently attribute this to the implementation of segmental autonomy.  
 

@@ -1,5 +1,5 @@
 ---
-title: "Provisions of Power-Sharing: Assessing the Impacts of Segmental Autonomy^[Paper presented at the 2021 Midwestern Political Science Association conference.]"
+title: "Provisions of Power-Sharing: Assessing the Impacts of Segmental Autonomy^[Paper presented at the 2021 Midwest Political Science Association conference.]"
 author: "Thomas J. Brailey^[thomasjbrailey@gmail.com]"
 date: "6th April, 2021"
 output:

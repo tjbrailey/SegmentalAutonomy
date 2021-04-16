@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  4 APR 2021 08:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.16)  6 APR 2021 01:12
 entering extended mode
 **./provisions_of_power_sharing_mpsa2021_slides.tex
 (provisions_of_power_sharing_mpsa2021_slides.tex
@@ -1809,10 +1809,7 @@ Overfull \vbox (5.35548pt too high) detected at line 242
 ] [19
 
  <C:/Users/tbrai/AppData/Local/Programs/MiKTeX 2.9/tex/latex/beamer/beamericona
-rticle.pdf>] [20
-
-
-]
+rticle.pdf>]
 \tf@nav=\write6
 \openout6 = `provisions_of_power_sharing_mpsa2021_slides.nav'.
 
@@ -1822,11 +1819,11 @@ rticle.pdf>] [20
 \tf@snm=\write8
 \openout8 = `provisions_of_power_sharing_mpsa2021_slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 330.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 330.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 329.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 329.
 (provisions_of_power_sharing_mpsa2021_slides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 330.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 329.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 329.
 
 LaTeX Warning: There were undefined references.
 
@@ -1839,10 +1836,10 @@ slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 30836 strings out of 492484
- 579541 string characters out of 3121601
- 1031574 words of memory out of 3000000
- 34467 multiletter control sequences out of 15000+200000
+ 30831 strings out of 492484
+ 579378 string characters out of 3121601
+ 1031523 words of memory out of 3000000
+ 34465 multiletter control sequences out of 15000+200000
  88327 words of font info for 99 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,20n,67p,1396b,1345s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1862,10 +1859,10 @@ eX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Users/tbrai/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Users/tbrai/AppData/Local/Prog
 rams/MiKTeX 2.9/fonts/type1/public/lm/lmsy5.pfb><C:/Users/tbrai/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb>
-Output written on provisions_of_power_sharing_mpsa2021_slides.pdf (20 pages, 62
-8859 bytes).
+Output written on provisions_of_power_sharing_mpsa2021_slides.pdf (19 pages, 62
+2238 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
+ 670 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
  18560 words of extra memory for PDF output out of 20736 (max. 10000000)
 
